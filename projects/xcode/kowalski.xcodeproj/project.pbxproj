@@ -51,8 +51,6 @@
 		C1702E5C1461645B00ADE4F7 /* kwl_enginedata.c in Sources */ = {isa = PBXBuildFile; fileRef = C1702E581461645B00ADE4F7 /* kwl_enginedata.c */; };
 		C1702E5D1461645B00ADE4F7 /* kwl_enginedata.h in Headers */ = {isa = PBXBuildFile; fileRef = C1702E571461645B00ADE4F7 /* kwl_enginedata.h */; };
 		C1702E5E1461645B00ADE4F7 /* kwl_enginedata.c in Sources */ = {isa = PBXBuildFile; fileRef = C1702E581461645B00ADE4F7 /* kwl_enginedata.c */; };
-		C1760F7F1620D6160044204B /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = C1760F7E1620D6160044204B /* main.c */; };
-		C1760F811620D6160044204B /* kwltools.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C1760F801620D6160044204B /* kwltools.1 */; };
 		C1760F871620D6BD0044204B /* kwl_datavalidation.c in Sources */ = {isa = PBXBuildFile; fileRef = C1760F861620D6BD0044204B /* kwl_datavalidation.c */; };
 		C1760F8D1620DD5B0044204B /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C1760F8C1620DD5B0044204B /* libxml2.dylib */; };
 		C186B33511C3F225003D0013 /* libportaudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1655C5D1171B9AE004021DB /* libportaudio.a */; };
@@ -65,6 +63,7 @@
 		C1A018C41265EF120039DB22 /* kwl_eventdefinition.c in Sources */ = {isa = PBXBuildFile; fileRef = C1A018C21265EF120039DB22 /* kwl_eventdefinition.c */; };
 		C1A77322126C647C00B6B1C4 /* kwl_audiofileutil.h in Headers */ = {isa = PBXBuildFile; fileRef = C1A77320126C647C00B6B1C4 /* kwl_audiofileutil.h */; };
 		C1A77323126C647C00B6B1C4 /* kwl_audiofileutil.c in Sources */ = {isa = PBXBuildFile; fileRef = C1A77321126C647C00B6B1C4 /* kwl_audiofileutil.c */; };
+		C1AD37B81628935400CE9A8B /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = C1AD37B71628935400CE9A8B /* main.c */; };
 		C1AD43A212B9D2090034B985 /* libkowalski.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC046055464E500DB518D /* libkowalski.dylib */; };
 		C1AD43A512B9D27F0034B985 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C25E8C12633C6D007D17F6 /* Cocoa.framework */; };
 		C1AD43A612B9D2840034B985 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C160EDAA11BA3F1E0047DCD9 /* AudioToolbox.framework */; };
@@ -447,7 +446,6 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				C1760F811620D6160044204B /* kwltools.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -539,8 +537,6 @@
 		C1702E581461645B00ADE4F7 /* kwl_enginedata.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_enginedata.c; sourceTree = "<group>"; };
 		C1760F68161E399E0044204B /* kwl_datavalidation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = kwl_datavalidation.h; sourceTree = "<group>"; };
 		C1760F7B1620D6160044204B /* kwltools */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = kwltools; sourceTree = BUILT_PRODUCTS_DIR; };
-		C1760F7E1620D6160044204B /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = main.c; path = ../../projects/xcode/kwltools/main.c; sourceTree = "<group>"; };
-		C1760F801620D6160044204B /* kwltools.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; name = kwltools.1; path = ../../projects/xcode/kwltools/kwltools.1; sourceTree = "<group>"; };
 		C1760F861620D6BD0044204B /* kwl_datavalidation.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_datavalidation.c; sourceTree = "<group>"; };
 		C1760F8C1620DD5B0044204B /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/usr/lib/libxml2.dylib; sourceTree = DEVELOPER_DIR; };
 		C1820E2F12E9621B00E1BD7A /* kwl_positionalaudiosettings.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_positionalaudiosettings.c; sourceTree = "<group>"; };
@@ -556,6 +552,8 @@
 		C1A2605F1170D28E00955BDD /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		C1A77320126C647C00B6B1C4 /* kwl_audiofileutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_audiofileutil.h; sourceTree = "<group>"; };
 		C1A77321126C647C00B6B1C4 /* kwl_audiofileutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_audiofileutil.c; sourceTree = "<group>"; };
+		C1AD37B61628935400CE9A8B /* kwltools.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = kwltools.1; sourceTree = "<group>"; };
+		C1AD37B71628935400CE9A8B /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		C1AD431112B9D14F0034B985 /* Kowalski Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Kowalski Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1AD431312B9D1500034B985 /* kowalski_demo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "kowalski_demo-Info.plist"; sourceTree = "<group>"; };
 		C1AD449212B9D4AD0034B985 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = ../../res/artwork/icon.icns; sourceTree = SOURCE_ROOT; };
@@ -878,8 +876,8 @@
 		C1760F67161E399E0044204B /* tools */ = {
 			isa = PBXGroup;
 			children = (
-				C1760F7E1620D6160044204B /* main.c */,
-				C1760F801620D6160044204B /* kwltools.1 */,
+				C1AD37B61628935400CE9A8B /* kwltools.1 */,
+				C1AD37B71628935400CE9A8B /* main.c */,
 				C1760F68161E399E0044204B /* kwl_datavalidation.h */,
 				C1760F861620D6BD0044204B /* kwl_datavalidation.c */,
 			);
@@ -1393,8 +1391,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1760F7F1620D6160044204B /* main.c in Sources */,
 				C1760F871620D6BD0044204B /* kwl_datavalidation.c in Sources */,
+				C1AD37B81628935400CE9A8B /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

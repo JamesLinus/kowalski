@@ -1,0 +1,29 @@
+engine:
+- mmap if supported, per audio data item
+- dsp node graphs
+- skip _ext? (check how to exclude swig functions)
+- skip crossfade weighting
+- unify lots of kwlSharedXXX into state structs
+- refactor pitch shifting
+- better freeform event API
+- move kowalski cpp demo to its own Xcode project
+- threaded wavebank loading (w progress)
+- mixed message param types as union?
+- disconnect dap units properly (poll to see if still connected)
+
+tools
+- xpath cross referencing between nodes
+- define structure as DTD?
+- binary visualizer CLI
+- libsndfile? no (lgpl)?
+- xml -> bin C api
+- xml validation C api (skip schema?)
+- take audio file dir out of xml?
+- use xmlHashTable etc?
+- kwlFileOutputStream
+
+bindings:
+- skip for now
+
+editor:
+- skip

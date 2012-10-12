@@ -1,0 +1,10 @@
+/*! \mainpage Full documentation
+ *
+ * \section intro_sec Introduction
+ *
+ * This is the full Kowalski Engine documentation, including the public
+ * API as well as the backend source. If you are not interested in the 
+ * inner workings of the engine, you may be better off reading the 
+ * public API documentation, which describes how to use the Kowalski Engine
+ * in application code.
+ */

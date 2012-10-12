@@ -1,0 +1,7 @@
+ /*! \mainpage Public API documentation
+ *
+ * \section intro_sec Introduction
+ *
+ * This is the documentation for the public Kowalski Engine API which is
+ * defined in kowalski.h and kowalski_ext.h.
+ */

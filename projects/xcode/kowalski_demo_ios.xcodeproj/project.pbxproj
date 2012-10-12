@@ -1,0 +1,649 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
+		C1064E2413DA3453001DA332 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1064E2213DA3453001DA332 /* MainWindow.xib */; };
+		C1064E2513DA3453001DA332 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1064E2313DA3453001DA332 /* RootViewController.xib */; };
+		C1064E8213DA369D001DA332 /* demoproject.kwl in Resources */ = {isa = PBXBuildFile; fileRef = C1064E6E13DA369D001DA332 /* demoproject.kwl */; };
+		C1064E8313DA369D001DA332 /* freeformeventaudio in Resources */ = {isa = PBXBuildFile; fileRef = C1064E6F13DA369D001DA332 /* freeformeventaudio */; };
+		C1064E8413DA369D001DA332 /* music.kwb in Resources */ = {isa = PBXBuildFile; fileRef = C1064E7E13DA369D001DA332 /* music.kwb */; };
+		C1064E8513DA369D001DA332 /* notes.kwb in Resources */ = {isa = PBXBuildFile; fileRef = C1064E7F13DA369D001DA332 /* notes.kwb */; };
+		C1064E8613DA369D001DA332 /* numbers.kwb in Resources */ = {isa = PBXBuildFile; fileRef = C1064E8013DA369D001DA332 /* numbers.kwb */; };
+		C1064E8713DA369D001DA332 /* sfx.kwb in Resources */ = {isa = PBXBuildFile; fileRef = C1064E8113DA369D001DA332 /* sfx.kwb */; };
+		C1064ED513DA3BBB001DA332 /* libkowalski_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1064EC913DA3AC9001DA332 /* libkowalski_ios.a */; };
+		C1064ED913DA3BCD001DA332 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1064ED813DA3BCD001DA332 /* AudioToolbox.framework */; };
+		C1064EDB13DA3BCD001DA332 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1064EDA13DA3BCD001DA332 /* CoreAudio.framework */; };
+		C1309E1C13E33D63000796BD /* DemoBase.m in Sources */ = {isa = PBXBuildFile; fileRef = C1309E1B13E33D63000796BD /* DemoBase.m */; };
+		C1309E2D13E33E0D000796BD /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1309E2C13E33E0D000796BD /* DemoViewController.m */; };
+		C1309E6913E341A4000796BD /* PianoDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1309E6813E341A4000796BD /* PianoDemo.xib */; };
+		C16463D513E3525E00436CA4 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C16463D413E3525E00436CA4 /* AboutViewController.m */; };
+		C18064C613FEA4F20025240F /* DecodersDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C18064C413FEA4F20025240F /* DecodersDemo.m */; };
+		C18064C713FEA4F20025240F /* DecodersDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C18064C513FEA4F20025240F /* DecodersDemo.xib */; };
+		C1A5D52713E3583D00065F5C /* SeamlessPitchDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A5D52613E3583D00065F5C /* SeamlessPitchDemo.m */; };
+		C1A5D52913E358C200065F5C /* SeamlessPitchDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1A5D52813E358C200065F5C /* SeamlessPitchDemo.xib */; };
+		C1A5D54B13E359FD00065F5C /* MixPresetDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A5D54A13E359FD00065F5C /* MixPresetDemo.m */; };
+		C1A5D55013E35A1600065F5C /* MixPresetDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1A5D54F13E35A1600065F5C /* MixPresetDemo.xib */; };
+		C1A5D57613E35D3400065F5C /* FreeformEventsDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A5D57413E35D3400065F5C /* FreeformEventsDemo.m */; };
+		C1A5D57713E35D3400065F5C /* FreeformEventsDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1A5D57513E35D3400065F5C /* FreeformEventsDemo.xib */; };
+		C1C0FD8313DCB09D009769E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C0FD7A13DCB09D009769E7 /* main.m */; };
+		C1C0FD8413DCB09D009769E7 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1C0FD7B13DCB09D009769E7 /* MainWindow.xib */; };
+		C1C0FD8513DCB09D009769E7 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1C0FD7C13DCB09D009769E7 /* RootViewController.xib */; };
+		C1C0FD8613DCB09D009769E7 /* kowalski_demo_iosAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C0FD7E13DCB09D009769E7 /* kowalski_demo_iosAppDelegate.m */; };
+		C1C0FD8713DCB09D009769E7 /* PianoDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C0FD8013DCB09D009769E7 /* PianoDemo.m */; };
+		C1C0FD8813DCB09D009769E7 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C0FD8213DCB09D009769E7 /* RootViewController.m */; };
+		C1D9BDEC13E9AD0500C3C7DC /* InputDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D9BDEA13E9AD0500C3C7DC /* InputDemo.m */; };
+		C1D9BDED13E9AD0500C3C7DC /* InputDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1D9BDEB13E9AD0500C3C7DC /* InputDemo.xib */; };
+		C1D9BE0213E9AF9100C3C7DC /* SampleClockDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D9BE0013E9AF9100C3C7DC /* SampleClockDemo.m */; };
+		C1D9BE0313E9AF9100C3C7DC /* SampleClockDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1D9BE0113E9AF9100C3C7DC /* SampleClockDemo.xib */; };
+		C1D9BEB413E9C43000C3C7DC /* SafeWaveBankUnloadingDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D9BEB213E9C43000C3C7DC /* SafeWaveBankUnloadingDemo.m */; };
+		C1D9BEB513E9C43000C3C7DC /* SafeWaveBankUnloadingDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1D9BEB313E9C43000C3C7DC /* SafeWaveBankUnloadingDemo.xib */; };
+		C1D9BEC213E9C81D00C3C7DC /* ComplexSoundsDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D9BEC013E9C81D00C3C7DC /* ComplexSoundsDemo.m */; };
+		C1D9BEC313E9C81D00C3C7DC /* ComplexSoundsDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1D9BEC113E9C81D00C3C7DC /* ComplexSoundsDemo.xib */; };
+		C1D9BEE113E9CF0E00C3C7DC /* BalanceAndPanDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D9BEDF13E9CF0E00C3C7DC /* BalanceAndPanDemo.m */; };
+		C1D9BEE213E9CF0E00C3C7DC /* BalanceAndPanDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1D9BEE013E9CF0E00C3C7DC /* BalanceAndPanDemo.xib */; };
+		C1D9BF5B13E9D53900C3C7DC /* DSPDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D9BF5913E9D53900C3C7DC /* DSPDemo.m */; };
+		C1D9BF5C13E9D53900C3C7DC /* DSPDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1D9BF5A13E9D53900C3C7DC /* DSPDemo.xib */; };
+		C1D9BF9B13E9DFDD00C3C7DC /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C1D9BF9913E9DFDD00C3C7DC /* Icon.png */; };
+		C1D9BF9C13E9DFDD00C3C7DC /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C1D9BF9A13E9DFDD00C3C7DC /* Icon@2x.png */; };
+		C1D9BFA713E9E19900C3C7DC /* logo64x64.png in Resources */ = {isa = PBXBuildFile; fileRef = C1D9BFA613E9E19900C3C7DC /* logo64x64.png */; };
+		C1E320A413E5FA6800059E41 /* AudioMeteringDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E320A113E5FA6800059E41 /* AudioMeteringDemo.m */; };
+		C1E320A513E5FA6800059E41 /* AudioTaperDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C1E320A313E5FA6800059E41 /* AudioTaperDemo.m */; };
+		C1E320BB13E5FD2D00059E41 /* AudioMeteringDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1E320BA13E5FD2D00059E41 /* AudioMeteringDemo.xib */; };
+		C1E320BD13E5FD3500059E41 /* AudioTaperDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1E320BC13E5FD3500059E41 /* AudioTaperDemo.xib */; };
+		C1EF2E6C13EF2EA50052F99A /* EmitterSwarmDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EF2E6A13EF2EA50052F99A /* EmitterSwarmDemo.m */; };
+		C1EF2E6D13EF2EA50052F99A /* EmitterSwarmDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1EF2E6B13EF2EA50052F99A /* EmitterSwarmDemo.xib */; };
+		C1F0459513EBFA3C0078EE79 /* SoundEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F0459413EBFA3C0078EE79 /* SoundEmitter.m */; };
+		C1F0459C13EBFCC50078EE79 /* PositionalAudioDemoBase.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F0459B13EBFCC50078EE79 /* PositionalAudioDemoBase.m */; };
+		C1F0460113EC00C90078EE79 /* emittericon.png in Resources */ = {isa = PBXBuildFile; fileRef = C1F0460013EC00C90078EE79 /* emittericon.png */; };
+		C1F0463313EC023D0078EE79 /* DopplerShiftDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F0463213EC023D0078EE79 /* DopplerShiftDemo.m */; };
+		C1F0463813EC027B0078EE79 /* DopplerShiftDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1F0463713EC027B0078EE79 /* DopplerShiftDemo.xib */; };
+		C1F5EA201416B5C300825765 /* EventCallbackDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F5EA1E1416B5C300825765 /* EventCallbackDemo.m */; };
+		C1F5EA211416B5C300825765 /* EventCallbackDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1F5EA1F1416B5C300825765 /* EventCallbackDemo.xib */; };
+		C1F5EBC21417B6F100825765 /* listenericon.png in Resources */ = {isa = PBXBuildFile; fileRef = C1F5EBC11417B6F100825765 /* listenericon.png */; };
+		C1F5EC861417C8E100825765 /* ConeAttenuationDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F5EC841417C8E100825765 /* ConeAttenuationDemo.m */; };
+		C1F5EC871417C8E100825765 /* ConeAttenuationDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1F5EC851417C8E100825765 /* ConeAttenuationDemo.xib */; };
+		C1F5ECB21417D2FA00825765 /* emittericon90degcone.png in Resources */ = {isa = PBXBuildFile; fileRef = C1F5ECB01417D2FA00825765 /* emittericon90degcone.png */; };
+		C1F5ECB31417D2FA00825765 /* listenericon90degcone.png in Resources */ = {isa = PBXBuildFile; fileRef = C1F5ECB11417D2FA00825765 /* listenericon90degcone.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C1064EC213DA3AC9001DA332 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1064EB813DA3AC8001DA332 /* kowalski.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC046055464E500DB518D;
+			remoteInfo = kowalski_portaudio;
+		};
+		C1064EC413DA3AC9001DA332 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1064EB813DA3AC8001DA332 /* kowalski.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C1B3D57A135B8E880025DD08;
+			remoteInfo = kowalski_sdl;
+		};
+		C1064EC613DA3AC9001DA332 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1064EB813DA3AC8001DA332 /* kowalski.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C1AD431112B9D14F0034B985;
+			remoteInfo = kowalski_demo;
+		};
+		C1064EC813DA3AC9001DA332 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1064EB813DA3AC8001DA332 /* kowalski.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C1DD3C2B1370D12B00D10AA6;
+			remoteInfo = kowalski_ios;
+		};
+		C1760F9C1620E91F0044204B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1064EB813DA3AC8001DA332 /* kowalski.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C1760F7B1620D6160044204B;
+			remoteInfo = kwltools;
+		};
+		C1F0C45413DA3E4000E05434 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1064EB813DA3AC8001DA332 /* kowalski.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = C1DD3C2A1370D12B00D10AA6;
+			remoteInfo = kowalski_ios;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D6058910D05DD3D006BFB54 /* kowalski_demo_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kowalski_demo_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		8D1107310486CEB800E47090 /* kowalski_demo_ios-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "kowalski_demo_ios-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		C1064E2213DA3453001DA332 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = ../../src/enginedemo/ios/MainWindow.xib; sourceTree = SOURCE_ROOT; };
+		C1064E2313DA3453001DA332 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RootViewController.xib; path = ../../src/enginedemo/ios/RootViewController.xib; sourceTree = SOURCE_ROOT; };
+		C1064E6E13DA369D001DA332 /* demoproject.kwl */ = {isa = PBXFileReference; lastKnownFileType = file; name = demoproject.kwl; path = ../../res/demodata/final/demoproject.kwl; sourceTree = SOURCE_ROOT; };
+		C1064E6F13DA369D001DA332 /* freeformeventaudio */ = {isa = PBXFileReference; lastKnownFileType = folder; name = freeformeventaudio; path = ../../res/demodata/final/freeformeventaudio; sourceTree = SOURCE_ROOT; };
+		C1064E7E13DA369D001DA332 /* music.kwb */ = {isa = PBXFileReference; lastKnownFileType = file; name = music.kwb; path = ../../res/demodata/final/music.kwb; sourceTree = SOURCE_ROOT; };
+		C1064E7F13DA369D001DA332 /* notes.kwb */ = {isa = PBXFileReference; lastKnownFileType = file; name = notes.kwb; path = ../../res/demodata/final/notes.kwb; sourceTree = SOURCE_ROOT; };
+		C1064E8013DA369D001DA332 /* numbers.kwb */ = {isa = PBXFileReference; lastKnownFileType = file; name = numbers.kwb; path = ../../res/demodata/final/numbers.kwb; sourceTree = SOURCE_ROOT; };
+		C1064E8113DA369D001DA332 /* sfx.kwb */ = {isa = PBXFileReference; lastKnownFileType = file; name = sfx.kwb; path = ../../res/demodata/final/sfx.kwb; sourceTree = SOURCE_ROOT; };
+		C1064EB813DA3AC8001DA332 /* kowalski.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = kowalski.xcodeproj; sourceTree = "<group>"; };
+		C1064ECD13DA3AEB001DA332 /* kowalski.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kowalski.h; path = ../../src/engine/kowalski.h; sourceTree = SOURCE_ROOT; };
+		C1064ECE13DA3AF4001DA332 /* kowalski_ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kowalski_ext.h; path = ../../src/engine/kowalski_ext.h; sourceTree = SOURCE_ROOT; };
+		C1064ED813DA3BCD001DA332 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		C1064EDA13DA3BCD001DA332 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		C1309E1B13E33D63000796BD /* DemoBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoBase.m; sourceTree = "<group>"; };
+		C1309E2B13E33E0D000796BD /* DemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
+		C1309E2C13E33E0D000796BD /* DemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
+		C1309E6813E341A4000796BD /* PianoDemo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PianoDemo.xib; sourceTree = "<group>"; };
+		C16463D313E3525E00436CA4 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		C16463D413E3525E00436CA4 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		C18064C313FEA4F20025240F /* DecodersDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecodersDemo.h; sourceTree = "<group>"; };
+		C18064C413FEA4F20025240F /* DecodersDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecodersDemo.m; sourceTree = "<group>"; };
+		C18064C513FEA4F20025240F /* DecodersDemo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DecodersDemo.xib; sourceTree = "<group>"; };
+		C1A5D52513E3583D00065F5C /* SeamlessPitchDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeamlessPitchDemo.h; sourceTree = "<group>"; };
+		C1A5D52613E3583D00065F5C /* SeamlessPitchDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeamlessPitchDemo.m; sourceTree = "<group>"; };
+		C1A5D52813E358C200065F5C /* SeamlessPitchDemo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SeamlessPitchDemo.xib; sourceTree = "<group>"; };
+		C1A5D54913E359FD00065F5C /* MixPresetDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixPresetDemo.h; sourceTree = "<group>"; };
+		C1A5D54A13E359FD00065F5C /* MixPresetDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixPresetDemo.m; sourceTree = "<group>"; };
+		C1A5D54F13E35A1600065F5C /* MixPresetDemo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MixPresetDemo.xib; sourceTree = "<group>"; };
+		C1A5D57313E35D3400065F5C /* FreeformEventsDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeformEventsDemo.h; sourceTree = "<group>"; };
+		C1A5D57413E35D3400065F5C /* FreeformEventsDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreeformEventsDemo.m; sourceTree = "<group>"; };
+		C1A5D57513E35D3400065F5C /* FreeformEventsDemo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FreeformEventsDemo.xib; sourceTree = "<group>"; };
+		C1C0FD7913DCB09D009769E7 /* DemoBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoBase.h; sourceTree = "<group>"; };
+		C1C0FD7A13DCB09D009769E7 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C1C0FD7B13DCB09D009769E7 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		C1C0FD7C13DCB09D009769E7 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
+		C1C0FD7D13DCB09D009769E7 /* kowalski_demo_iosAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kowalski_demo_iosAppDelegate.h; sourceTree = "<group>"; };
+		C1C0FD7E13DCB09D009769E7 /* kowalski_demo_iosAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = kowalski_demo_iosAppDelegate.m; sourceTree = "<group>"; };
+		C1C0FD7F13DCB09D009769E7 /* PianoDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PianoDemo.h; sourceTree = "<group>"; };
+		C1C0FD8013DCB09D009769E7 /* PianoDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PianoDemo.m; sourceTree = "<group>"; };
+		C1C0FD8113DCB09D009769E7 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		C1C0FD8213DCB09D009769E7 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		C1D9BDE913E9AD0500C3C7DC /* InputDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputDemo.h; sourceTree = "<group>"; };
+		C1D9BDEA13E9AD0500C3C7DC /* InputDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputDemo.m; sourceTree = "<group>"; };
+		C1D9BDEB13E9AD0500C3C7DC /* InputDemo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InputDemo.xib; sourceTree = "<group>"; };
+		C1D9BDFF13E9AF9100C3C7DC /* SampleClockDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleClockDemo.h; sourceTree = "<group>"; };
+		C1D9BE0013E9AF9100C3C7DC /* SampleClockDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleClockDemo.m; sourceTree = "<group>"; };
+		C1D9BE0113E9AF9100C3C7DC /* SampleClockDemo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SampleClockDemo.xib; sourceTree = "<group>"; };
+		C1D9BEB113E9C43000C3C7DC /* SafeWaveBankUnloadingDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafeWaveBankUnloadingDemo.h; sourceTree = "<group>"; };
+		C1D9BEB213E9C43000C3C7DC /* SafeWaveBankUnloadingDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafeWaveBankUnloadingDemo.m; sourceTree = "<group>"; };
+		C1D9BEB313E9C43000C3C7DC /* SafeWaveBankUnloadingDemo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SafeWaveBankUnloadingDemo.xib; sourceTree = "<group>"; };
+		C1D9BEBF13E9C81D00C3C7DC /* ComplexSoundsDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComplexSoundsDemo.h; sourceTree = "<group>"; };
+		C1D9BEC013E9C81D00C3C7DC /* ComplexSoundsDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComplexSoundsDemo.m; sourceTree = "<group>"; };
+		C1D9BEC113E9C81D00C3C7DC /* ComplexSoundsDemo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComplexSoundsDemo.xib; sourceTree = "<group>"; };
+		C1D9BEDE13E9CF0E00C3C7DC /* BalanceAndPanDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalanceAndPanDemo.h; sourceTree = "<group>"; };
+		C1D9BEDF13E9CF0E00C3C7DC /* BalanceAndPanDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BalanceAndPanDemo.m; sourceTree = "<group>"; };
+		C1D9BEE013E9CF0E00C3C7DC /* BalanceAndPanDemo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BalanceAndPanDemo.xib; sourceTree = "<group>"; };
+		C1D9BF5813E9D53900C3C7DC /* DSPDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSPDemo.h; sourceTree = "<group>"; };
+		C1D9BF5913E9D53900C3C7DC /* DSPDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSPDemo.m; sourceTree = "<group>"; };
+		C1D9BF5A13E9D53900C3C7DC /* DSPDemo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DSPDemo.xib; sourceTree = "<group>"; };
+		C1D9BF9913E9DFDD00C3C7DC /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../../res/artwork/Icon.png; sourceTree = SOURCE_ROOT; };
+		C1D9BF9A13E9DFDD00C3C7DC /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../../res/artwork/Icon@2x.png"; sourceTree = SOURCE_ROOT; };
+		C1D9BFA613E9E19900C3C7DC /* logo64x64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo64x64.png; path = ../../res/artwork/logo64x64.png; sourceTree = SOURCE_ROOT; };
+		C1E320A013E5FA6800059E41 /* AudioMeteringDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioMeteringDemo.h; sourceTree = "<group>"; };
+		C1E320A113E5FA6800059E41 /* AudioMeteringDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioMeteringDemo.m; sourceTree = "<group>"; };
+		C1E320A213E5FA6800059E41 /* AudioTaperDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioTaperDemo.h; sourceTree = "<group>"; };
+		C1E320A313E5FA6800059E41 /* AudioTaperDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioTaperDemo.m; sourceTree = "<group>"; };
+		C1E320BA13E5FD2D00059E41 /* AudioMeteringDemo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioMeteringDemo.xib; sourceTree = "<group>"; };
+		C1E320BC13E5FD3500059E41 /* AudioTaperDemo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioTaperDemo.xib; sourceTree = "<group>"; };
+		C1EF2E6913EF2EA50052F99A /* EmitterSwarmDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmitterSwarmDemo.h; sourceTree = "<group>"; };
+		C1EF2E6A13EF2EA50052F99A /* EmitterSwarmDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmitterSwarmDemo.m; sourceTree = "<group>"; };
+		C1EF2E6B13EF2EA50052F99A /* EmitterSwarmDemo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmitterSwarmDemo.xib; sourceTree = "<group>"; };
+		C1F0459313EBFA3C0078EE79 /* SoundEmitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundEmitter.h; sourceTree = "<group>"; };
+		C1F0459413EBFA3C0078EE79 /* SoundEmitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundEmitter.m; sourceTree = "<group>"; };
+		C1F0459A13EBFCC50078EE79 /* PositionalAudioDemoBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositionalAudioDemoBase.h; sourceTree = "<group>"; };
+		C1F0459B13EBFCC50078EE79 /* PositionalAudioDemoBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PositionalAudioDemoBase.m; sourceTree = "<group>"; };
+		C1F0460013EC00C90078EE79 /* emittericon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = emittericon.png; path = ../../res/emittericon.png; sourceTree = SOURCE_ROOT; };
+		C1F0463113EC023D0078EE79 /* DopplerShiftDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DopplerShiftDemo.h; sourceTree = "<group>"; };
+		C1F0463213EC023D0078EE79 /* DopplerShiftDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DopplerShiftDemo.m; sourceTree = "<group>"; };
+		C1F0463713EC027B0078EE79 /* DopplerShiftDemo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DopplerShiftDemo.xib; sourceTree = "<group>"; };
+		C1F5EA1D1416B5C300825765 /* EventCallbackDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventCallbackDemo.h; sourceTree = "<group>"; };
+		C1F5EA1E1416B5C300825765 /* EventCallbackDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventCallbackDemo.m; sourceTree = "<group>"; };
+		C1F5EA1F1416B5C300825765 /* EventCallbackDemo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventCallbackDemo.xib; sourceTree = "<group>"; };
+		C1F5EBC11417B6F100825765 /* listenericon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = listenericon.png; path = ../../res/listenericon.png; sourceTree = SOURCE_ROOT; };
+		C1F5EC831417C8E100825765 /* ConeAttenuationDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConeAttenuationDemo.h; sourceTree = "<group>"; };
+		C1F5EC841417C8E100825765 /* ConeAttenuationDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConeAttenuationDemo.m; sourceTree = "<group>"; };
+		C1F5EC851417C8E100825765 /* ConeAttenuationDemo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConeAttenuationDemo.xib; sourceTree = "<group>"; };
+		C1F5ECB01417D2FA00825765 /* emittericon90degcone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = emittericon90degcone.png; path = ../../res/emittericon90degcone.png; sourceTree = SOURCE_ROOT; };
+		C1F5ECB11417D2FA00825765 /* listenericon90degcone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = listenericon90degcone.png; path = ../../res/listenericon90degcone.png; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1064ED513DA3BBB001DA332 /* libkowalski_ios.a in Frameworks */,
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
+				C1064ED913DA3BCD001DA332 /* AudioToolbox.framework in Frameworks */,
+				C1064EDB13DA3BCD001DA332 /* CoreAudio.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* kowalski_demo_ios.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				C1064EB813DA3AC8001DA332 /* kowalski.xcodeproj */,
+				C1064ED813DA3BCD001DA332 /* AudioToolbox.framework */,
+				C1064EDA13DA3BCD001DA332 /* CoreAudio.framework */,
+				C1064ECA13DA3AD4001DA332 /* include */,
+				C1C0FD7813DCB09D009769E7 /* src */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C1F5EBC11417B6F100825765 /* listenericon.png */,
+				C1F0460013EC00C90078EE79 /* emittericon.png */,
+				C1F5ECB01417D2FA00825765 /* emittericon90degcone.png */,
+				C1F5ECB11417D2FA00825765 /* listenericon90degcone.png */,
+				C1D9BFA613E9E19900C3C7DC /* logo64x64.png */,
+				C1D9BF9913E9DFDD00C3C7DC /* Icon.png */,
+				C1D9BF9A13E9DFDD00C3C7DC /* Icon@2x.png */,
+				C1064E2213DA3453001DA332 /* MainWindow.xib */,
+				C1064E2313DA3453001DA332 /* RootViewController.xib */,
+				8D1107310486CEB800E47090 /* kowalski_demo_ios-Info.plist */,
+				C1064E6E13DA369D001DA332 /* demoproject.kwl */,
+				C1064E6F13DA369D001DA332 /* freeformeventaudio */,
+				C1064E7E13DA369D001DA332 /* music.kwb */,
+				C1064E7F13DA369D001DA332 /* notes.kwb */,
+				C1064E8013DA369D001DA332 /* numbers.kwb */,
+				C1064E8113DA369D001DA332 /* sfx.kwb */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C1064EB913DA3AC8001DA332 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C1064EC313DA3AC9001DA332 /* libkowalski.dylib */,
+				C1064EC513DA3AC9001DA332 /* kowalski_sdl.dylib */,
+				C1064EC713DA3AC9001DA332 /* Kowalski Demo.app */,
+				C1064EC913DA3AC9001DA332 /* libkowalski_ios.a */,
+				C1760F9D1620E91F0044204B /* kwltools */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C1064ECA13DA3AD4001DA332 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				C1064ECD13DA3AEB001DA332 /* kowalski.h */,
+				C1064ECE13DA3AF4001DA332 /* kowalski_ext.h */,
+			);
+			name = include;
+			sourceTree = "<group>";
+		};
+		C1C0FD7813DCB09D009769E7 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				C16463D313E3525E00436CA4 /* AboutViewController.h */,
+				C16463D413E3525E00436CA4 /* AboutViewController.m */,
+				C1E320A013E5FA6800059E41 /* AudioMeteringDemo.h */,
+				C1E320A113E5FA6800059E41 /* AudioMeteringDemo.m */,
+				C1E320BA13E5FD2D00059E41 /* AudioMeteringDemo.xib */,
+				C1E320A213E5FA6800059E41 /* AudioTaperDemo.h */,
+				C1E320A313E5FA6800059E41 /* AudioTaperDemo.m */,
+				C1E320BC13E5FD3500059E41 /* AudioTaperDemo.xib */,
+				C1D9BEDE13E9CF0E00C3C7DC /* BalanceAndPanDemo.h */,
+				C1D9BEDF13E9CF0E00C3C7DC /* BalanceAndPanDemo.m */,
+				C1D9BEE013E9CF0E00C3C7DC /* BalanceAndPanDemo.xib */,
+				C1D9BEBF13E9C81D00C3C7DC /* ComplexSoundsDemo.h */,
+				C1D9BEC013E9C81D00C3C7DC /* ComplexSoundsDemo.m */,
+				C1D9BEC113E9C81D00C3C7DC /* ComplexSoundsDemo.xib */,
+				C1F5EC831417C8E100825765 /* ConeAttenuationDemo.h */,
+				C1F5EC841417C8E100825765 /* ConeAttenuationDemo.m */,
+				C1F5EC851417C8E100825765 /* ConeAttenuationDemo.xib */,
+				C18064C313FEA4F20025240F /* DecodersDemo.h */,
+				C18064C413FEA4F20025240F /* DecodersDemo.m */,
+				C18064C513FEA4F20025240F /* DecodersDemo.xib */,
+				C1C0FD7913DCB09D009769E7 /* DemoBase.h */,
+				C1309E1B13E33D63000796BD /* DemoBase.m */,
+				C1309E2B13E33E0D000796BD /* DemoViewController.h */,
+				C1309E2C13E33E0D000796BD /* DemoViewController.m */,
+				C1F0463113EC023D0078EE79 /* DopplerShiftDemo.h */,
+				C1F0463213EC023D0078EE79 /* DopplerShiftDemo.m */,
+				C1F0463713EC027B0078EE79 /* DopplerShiftDemo.xib */,
+				C1D9BF5813E9D53900C3C7DC /* DSPDemo.h */,
+				C1D9BF5913E9D53900C3C7DC /* DSPDemo.m */,
+				C1D9BF5A13E9D53900C3C7DC /* DSPDemo.xib */,
+				C1EF2E6913EF2EA50052F99A /* EmitterSwarmDemo.h */,
+				C1EF2E6A13EF2EA50052F99A /* EmitterSwarmDemo.m */,
+				C1EF2E6B13EF2EA50052F99A /* EmitterSwarmDemo.xib */,
+				C1F5EA1D1416B5C300825765 /* EventCallbackDemo.h */,
+				C1F5EA1E1416B5C300825765 /* EventCallbackDemo.m */,
+				C1F5EA1F1416B5C300825765 /* EventCallbackDemo.xib */,
+				C1A5D57313E35D3400065F5C /* FreeformEventsDemo.h */,
+				C1A5D57413E35D3400065F5C /* FreeformEventsDemo.m */,
+				C1A5D57513E35D3400065F5C /* FreeformEventsDemo.xib */,
+				C1D9BDE913E9AD0500C3C7DC /* InputDemo.h */,
+				C1D9BDEA13E9AD0500C3C7DC /* InputDemo.m */,
+				C1D9BDEB13E9AD0500C3C7DC /* InputDemo.xib */,
+				C1C0FD7D13DCB09D009769E7 /* kowalski_demo_iosAppDelegate.h */,
+				C1C0FD7E13DCB09D009769E7 /* kowalski_demo_iosAppDelegate.m */,
+				C1C0FD7A13DCB09D009769E7 /* main.m */,
+				C1C0FD7B13DCB09D009769E7 /* MainWindow.xib */,
+				C1A5D54913E359FD00065F5C /* MixPresetDemo.h */,
+				C1A5D54A13E359FD00065F5C /* MixPresetDemo.m */,
+				C1A5D54F13E35A1600065F5C /* MixPresetDemo.xib */,
+				C1C0FD7F13DCB09D009769E7 /* PianoDemo.h */,
+				C1C0FD8013DCB09D009769E7 /* PianoDemo.m */,
+				C1309E6813E341A4000796BD /* PianoDemo.xib */,
+				C1F0459A13EBFCC50078EE79 /* PositionalAudioDemoBase.h */,
+				C1F0459B13EBFCC50078EE79 /* PositionalAudioDemoBase.m */,
+				C1C0FD8113DCB09D009769E7 /* RootViewController.h */,
+				C1C0FD8213DCB09D009769E7 /* RootViewController.m */,
+				C1C0FD7C13DCB09D009769E7 /* RootViewController.xib */,
+				C1D9BEB113E9C43000C3C7DC /* SafeWaveBankUnloadingDemo.h */,
+				C1D9BEB213E9C43000C3C7DC /* SafeWaveBankUnloadingDemo.m */,
+				C1D9BEB313E9C43000C3C7DC /* SafeWaveBankUnloadingDemo.xib */,
+				C1D9BDFF13E9AF9100C3C7DC /* SampleClockDemo.h */,
+				C1D9BE0013E9AF9100C3C7DC /* SampleClockDemo.m */,
+				C1D9BE0113E9AF9100C3C7DC /* SampleClockDemo.xib */,
+				C1A5D52513E3583D00065F5C /* SeamlessPitchDemo.h */,
+				C1A5D52613E3583D00065F5C /* SeamlessPitchDemo.m */,
+				C1A5D52813E358C200065F5C /* SeamlessPitchDemo.xib */,
+				C1F0459313EBFA3C0078EE79 /* SoundEmitter.h */,
+				C1F0459413EBFA3C0078EE79 /* SoundEmitter.m */,
+			);
+			name = src;
+			path = ../../src/enginedemo/ios;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* kowalski_demo_ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "kowalski_demo_ios" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C1F0C45513DA3E4000E05434 /* PBXTargetDependency */,
+			);
+			name = kowalski_demo_ios;
+			productName = kowalski_demo_ios;
+			productReference = 1D6058910D05DD3D006BFB54 /* kowalski_demo_ios.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "kowalski_demo_ios" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+				en,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = C1064EB913DA3AC8001DA332 /* Products */;
+					ProjectRef = C1064EB813DA3AC8001DA332 /* kowalski.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* kowalski_demo_ios */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		C1064EC313DA3AC9001DA332 /* libkowalski.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libkowalski.dylib;
+			remoteRef = C1064EC213DA3AC9001DA332 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C1064EC513DA3AC9001DA332 /* kowalski_sdl.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = kowalski_sdl.dylib;
+			remoteRef = C1064EC413DA3AC9001DA332 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C1064EC713DA3AC9001DA332 /* Kowalski Demo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "Kowalski Demo.app";
+			remoteRef = C1064EC613DA3AC9001DA332 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C1064EC913DA3AC9001DA332 /* libkowalski_ios.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libkowalski_ios.a;
+			remoteRef = C1064EC813DA3AC9001DA332 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C1760F9D1620E91F0044204B /* kwltools */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = kwltools;
+			remoteRef = C1760F9C1620E91F0044204B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1064E2413DA3453001DA332 /* MainWindow.xib in Resources */,
+				C1064E2513DA3453001DA332 /* RootViewController.xib in Resources */,
+				C1064E8213DA369D001DA332 /* demoproject.kwl in Resources */,
+				C1064E8313DA369D001DA332 /* freeformeventaudio in Resources */,
+				C1064E8413DA369D001DA332 /* music.kwb in Resources */,
+				C1064E8513DA369D001DA332 /* notes.kwb in Resources */,
+				C1064E8613DA369D001DA332 /* numbers.kwb in Resources */,
+				C1064E8713DA369D001DA332 /* sfx.kwb in Resources */,
+				C1C0FD8413DCB09D009769E7 /* MainWindow.xib in Resources */,
+				C1C0FD8513DCB09D009769E7 /* RootViewController.xib in Resources */,
+				C1309E6913E341A4000796BD /* PianoDemo.xib in Resources */,
+				C1A5D52913E358C200065F5C /* SeamlessPitchDemo.xib in Resources */,
+				C1A5D55013E35A1600065F5C /* MixPresetDemo.xib in Resources */,
+				C1A5D57713E35D3400065F5C /* FreeformEventsDemo.xib in Resources */,
+				C1E320BB13E5FD2D00059E41 /* AudioMeteringDemo.xib in Resources */,
+				C1E320BD13E5FD3500059E41 /* AudioTaperDemo.xib in Resources */,
+				C1D9BDED13E9AD0500C3C7DC /* InputDemo.xib in Resources */,
+				C1D9BE0313E9AF9100C3C7DC /* SampleClockDemo.xib in Resources */,
+				C1D9BEB513E9C43000C3C7DC /* SafeWaveBankUnloadingDemo.xib in Resources */,
+				C1D9BEC313E9C81D00C3C7DC /* ComplexSoundsDemo.xib in Resources */,
+				C1D9BEE213E9CF0E00C3C7DC /* BalanceAndPanDemo.xib in Resources */,
+				C1D9BF5C13E9D53900C3C7DC /* DSPDemo.xib in Resources */,
+				C1D9BF9B13E9DFDD00C3C7DC /* Icon.png in Resources */,
+				C1D9BF9C13E9DFDD00C3C7DC /* Icon@2x.png in Resources */,
+				C1D9BFA713E9E19900C3C7DC /* logo64x64.png in Resources */,
+				C1F0460113EC00C90078EE79 /* emittericon.png in Resources */,
+				C1F0463813EC027B0078EE79 /* DopplerShiftDemo.xib in Resources */,
+				C1EF2E6D13EF2EA50052F99A /* EmitterSwarmDemo.xib in Resources */,
+				C18064C713FEA4F20025240F /* DecodersDemo.xib in Resources */,
+				C1F5EA211416B5C300825765 /* EventCallbackDemo.xib in Resources */,
+				C1F5EBC21417B6F100825765 /* listenericon.png in Resources */,
+				C1F5EC871417C8E100825765 /* ConeAttenuationDemo.xib in Resources */,
+				C1F5ECB21417D2FA00825765 /* emittericon90degcone.png in Resources */,
+				C1F5ECB31417D2FA00825765 /* listenericon90degcone.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1C0FD8313DCB09D009769E7 /* main.m in Sources */,
+				C1C0FD8613DCB09D009769E7 /* kowalski_demo_iosAppDelegate.m in Sources */,
+				C1C0FD8713DCB09D009769E7 /* PianoDemo.m in Sources */,
+				C1C0FD8813DCB09D009769E7 /* RootViewController.m in Sources */,
+				C1309E1C13E33D63000796BD /* DemoBase.m in Sources */,
+				C1309E2D13E33E0D000796BD /* DemoViewController.m in Sources */,
+				C16463D513E3525E00436CA4 /* AboutViewController.m in Sources */,
+				C1A5D52713E3583D00065F5C /* SeamlessPitchDemo.m in Sources */,
+				C1A5D54B13E359FD00065F5C /* MixPresetDemo.m in Sources */,
+				C1A5D57613E35D3400065F5C /* FreeformEventsDemo.m in Sources */,
+				C1E320A413E5FA6800059E41 /* AudioMeteringDemo.m in Sources */,
+				C1E320A513E5FA6800059E41 /* AudioTaperDemo.m in Sources */,
+				C1D9BDEC13E9AD0500C3C7DC /* InputDemo.m in Sources */,
+				C1D9BE0213E9AF9100C3C7DC /* SampleClockDemo.m in Sources */,
+				C1D9BEB413E9C43000C3C7DC /* SafeWaveBankUnloadingDemo.m in Sources */,
+				C1D9BEC213E9C81D00C3C7DC /* ComplexSoundsDemo.m in Sources */,
+				C1D9BEE113E9CF0E00C3C7DC /* BalanceAndPanDemo.m in Sources */,
+				C1D9BF5B13E9D53900C3C7DC /* DSPDemo.m in Sources */,
+				C1F0459513EBFA3C0078EE79 /* SoundEmitter.m in Sources */,
+				C1F0459C13EBFCC50078EE79 /* PositionalAudioDemoBase.m in Sources */,
+				C1F0463313EC023D0078EE79 /* DopplerShiftDemo.m in Sources */,
+				C1EF2E6C13EF2EA50052F99A /* EmitterSwarmDemo.m in Sources */,
+				C18064C613FEA4F20025240F /* DecodersDemo.m in Sources */,
+				C1F5EA201416B5C300825765 /* EventCallbackDemo.m in Sources */,
+				C1F5EC861417C8E100825765 /* ConeAttenuationDemo.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C1F0C45513DA3E4000E05434 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = kowalski_ios;
+			targetProxy = C1F0C45413DA3E4000E05434 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = kowalski_demo_ios_Prefix.pch;
+				INFOPLIST_FILE = "kowalski_demo_ios-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PRODUCT_NAME = kowalski_demo_ios;
+				SDKROOT = iphoneos5.0;
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = kowalski_demo_ios_Prefix.pch;
+				INFOPLIST_FILE = "kowalski_demo_ios-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PRODUCT_NAME = kowalski_demo_ios;
+				SDKROOT = iphoneos5.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = KWL_DEBUG_MEMORY;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PREBINDING = NO;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "kowalski_demo_ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "kowalski_demo_ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

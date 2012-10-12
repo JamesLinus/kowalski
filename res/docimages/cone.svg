@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.0 r9654"
+   sodipodi:docname="cone.svg"
+   inkscape:export-filename="/Volumes/SHARED/programming/svnroot/kowalski/doc/engine/images/cone.png"
+   inkscape:export-xdpi="113.3"
+   inkscape:export-ydpi="113.3">
+  <defs
+     id="defs4">
+    <marker
+       inkscape:stockid="TriangleOutL"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="TriangleOutL"
+       style="overflow:visible">
+      <path
+         id="path4095"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;marker-start:none"
+         transform="scale(0.8)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Lend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow2Lend"
+       style="overflow:visible;">
+      <path
+         id="path3973"
+         style="font-size:12.0;fill-rule:evenodd;stroke-width:0.62500000;stroke-linejoin:round;"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="scale(1.1) rotate(180) translate(1,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Lstart"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow2Lstart"
+       style="overflow:visible">
+      <path
+         id="path3970"
+         style="font-size:12.0;fill-rule:evenodd;stroke-width:0.62500000;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="scale(1.1) translate(1,0)" />
+    </marker>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath5435">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 160,532.36218 80,-80 -80,-90 -80,90 z"
+         id="path5437"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath5439">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 160,532.36218 80,-80 -80,-90 -80,90 z"
+         id="path5441"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath5443">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 160,532.36218 -80,80 -70,-90 30,-110 110,-40 130,30 0,120 -40,90 z"
+         id="path5445"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath5447">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 160,532.36218 -80,80 -70,-90 30,-110 110,-40 130,30 0,120 -40,90 z"
+         id="path5449"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath3817">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 585,377.36218 -190,50 0,-100 110,35 z"
+         id="path3819"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath3828">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 395,427.36218 80,95 110,-145 -190,50"
+         id="path3830"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.8"
+     inkscape:cx="506.34736"
+     inkscape:cy="651.98565"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:window-width="1596"
+     inkscape:window-height="1020"
+     inkscape:window-x="0"
+     inkscape:window-y="22"
+     inkscape:window-maximized="0">
+    <inkscape:grid
+       type="xygrid"
+       id="grid2985" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       sodipodi:type="arc"
+       style="fill:none;stroke:#8efc5a;stroke-width:1;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3023"
+       sodipodi:cx="585"
+       sodipodi:cy="377.36218"
+       sodipodi:rx="80"
+       sodipodi:ry="80"
+       d="m 665,377.36218 a 80,80 0 1 1 -160,0 80,80 0 1 1 160,0 z"
+       clip-path="url(#clipPath3817)"
+       inkscape:export-filename="/Volumes/SHARED/programming/svnroot/kowalski_sourceforge/trunk/res/docimages/conelistener.png"
+       inkscape:export-xdpi="113.3"
+       inkscape:export-ydpi="113.3" />
+    <path
+       sodipodi:type="arc"
+       style="fill:none;stroke:#8efc5a;stroke-width:1;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3824"
+       sodipodi:cx="395"
+       sodipodi:cy="427.36218"
+       sodipodi:rx="85"
+       sodipodi:ry="85"
+       d="m 480,427.36218 a 85,85 0 1 1 -170,0 85,85 0 1 1 170,0 z"
+       clip-path="url(#clipPath3828)"
+       inkscape:export-filename="/Volumes/SHARED/programming/svnroot/kowalski_sourceforge/trunk/res/docimages/conelistener.png"
+       inkscape:export-xdpi="113.3"
+       inkscape:export-ydpi="113.3" />
+    <text
+       xml:space="preserve"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Futura;-inkscape-font-specification:Futura Medium"
+       x="210.11172"
+       y="479.10062"
+       id="text5399"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5401"
+         x="210.11172"
+         y="479.10062" /></text>
+    <g
+       id="g6215">
+      <path
+         clip-path="url(#clipPath5447)"
+         d="m 220,532.36218 c 0,33.13709 -26.86292,60 -60,60 -33.13708,0 -60,-26.86291 -60,-60 0,-33.13708 26.86292,-60 60,-60 33.13708,0 60,26.86292 60,60 z"
+         sodipodi:ry="60"
+         sodipodi:rx="60"
+         sodipodi:cy="532.36218"
+         sodipodi:cx="160"
+         id="path2995"
+         style="fill:#000000;fill-opacity:0.12549020000000000;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         clip-path="none"
+         inkscape:connector-curvature="0"
+         id="path3767"
+         d="m 160,532.36217 0,-105"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:none;marker-end:url(#Arrow2Lend);opacity:1" />
+      <path
+         clip-path="none"
+         transform="matrix(0.5,0,0,0.5,77.5,263.68109)"
+         d="m 175,537.36218 c 0,5.52285 -4.47715,10 -10,10 -5.52285,0 -10,-4.47715 -10,-10 0,-5.52284 4.47715,-10 10,-10 5.52285,0 10,4.47716 10,10 z"
+         sodipodi:ry="10"
+         sodipodi:rx="10"
+         sodipodi:cy="537.36218"
+         sodipodi:cx="165"
+         id="path5393"
+         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         sodipodi:type="arc"
+         style="fill:#000000;fill-opacity:0.12549020000000000;stroke:none;stroke-width:0.69999999999999996;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         id="path5405"
+         sodipodi:cx="160"
+         sodipodi:cy="532.36218"
+         sodipodi:rx="60"
+         sodipodi:ry="60"
+         d="m 220,532.36218 c 0,33.13709 -26.86292,60 -60,60 -33.13708,0 -60,-26.86291 -60,-60 0,-33.13708 26.86292,-60 60,-60 33.13708,0 60,26.86292 60,60 z"
+         clip-path="url(#clipPath5439)" />
+      <path
+         clip-path="url(#clipPath5443)"
+         d="m 185,532.36218 c 0,13.80712 -11.19288,25 -25,25 -13.80712,0 -25,-11.19288 -25,-25 0,-13.80712 11.19288,-25 25,-25 13.80712,0 25,11.19288 25,25 z"
+         sodipodi:ry="25"
+         sodipodi:rx="25"
+         sodipodi:cy="532.36218"
+         sodipodi:cx="160"
+         id="path5429"
+         style="opacity:1;fill:#ff0700;fill-opacity:0.19026549000000001;fill-rule:nonzero;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         clip-path="url(#clipPath5435)"
+         d="m 195,532.36218 c 0,19.32997 -15.67003,35 -35,35 -19.32997,0 -35,-15.67003 -35,-35 0,-19.32996 15.67003,-35 35,-35 19.32997,0 35,15.67004 35,35 z"
+         sodipodi:ry="35"
+         sodipodi:rx="35"
+         sodipodi:cy="532.36218"
+         sodipodi:cx="160"
+         id="path5431"
+         style="opacity:1;fill:#ff1500;fill-opacity:0.19026548;fill-rule:nonzero;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         d="m 220,532.36218 c 0,33.13709 -26.86292,60 -60,60 -33.13708,0 -60,-26.86291 -60,-60 0,-33.13708 26.86292,-60 60,-60 33.13708,0 60,26.86292 60,60 z"
+         sodipodi:ry="60"
+         sodipodi:rx="60"
+         sodipodi:cy="532.36218"
+         sodipodi:cx="160"
+         id="path5451"
+         style="fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-opacity:1"
+         sodipodi:type="arc" />
+    </g>
+    <g
+       id="g6205">
+      <text
+         clip-path="none"
+         sodipodi:linespacing="125%"
+         id="text5371"
+         y="451.36218"
+         x="120.45703"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Futura;-inkscape-font-specification:Futura Medium"
+         xml:space="preserve"><tspan
+           style="font-size:9px;font-style:normal;font-weight:500;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;-inkscape-font-specification:Futura Medium"
+           y="451.36218"
+           x="121.8457"
+           id="tspan5373"
+           sodipodi:role="line">Inner cone </tspan><tspan
+           id="tspan5395"
+           style="font-size:9px;font-style:normal;font-weight:500;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;-inkscape-font-specification:Futura Medium"
+           y="462.61218"
+           x="120.45703"
+           sodipodi:role="line">angle</tspan></text>
+      <text
+         clip-path="none"
+         sodipodi:linespacing="125%"
+         id="text5375"
+         y="558.36218"
+         x="249.45703"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Futura;-inkscape-font-specification:Futura Medium"
+         xml:space="preserve"><tspan
+           style="font-size:9px"
+           id="tspan5379"
+           y="558.36218"
+           x="250.8457"
+           sodipodi:role="line">Outer cone </tspan><tspan
+           style="font-size:9px"
+           id="tspan5397"
+           y="569.61218"
+           x="249.45703"
+           sodipodi:role="line">angle</tspan></text>
+      <path
+         inkscape:connector-curvature="0"
+         id="path5455"
+         d="m 226,561.36218 -35,-15"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#TriangleOutL)" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path5829"
+         d="m 121,468.36218 20,25"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#TriangleOutL)" />
+    </g>
+    <use
+       x="0"
+       y="0"
+       xlink:href="#g6215"
+       id="use6224"
+       transform="matrix(-0.76604444,0.64278761,-0.64278761,-0.76604444,861.37476,733.12125)"
+       width="744.09448"
+       height="1052.3622"
+       inkscape:export-filename="/Volumes/SHARED/programming/svnroot/kowalski_sourceforge/trunk/res/docimages/conelistener.png"
+       inkscape:export-xdpi="113.3"
+       inkscape:export-ydpi="113.3" />
+    <use
+       x="0"
+       y="0"
+       xlink:href="#use6224"
+       id="use6788"
+       transform="matrix(-0.76604444,0.64278761,-0.64278761,-0.76604444,1164.6933,450.03033)"
+       width="744.09448"
+       height="1052.3622"
+       inkscape:export-filename="/Volumes/SHARED/programming/svnroot/kowalski_sourceforge/trunk/res/docimages/conelistener.png"
+       inkscape:export-xdpi="113.3"
+       inkscape:export-ydpi="113.3" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;opacity:0.34051724"
+       d="m 395,427.36218 190,-50"
+       id="path6794"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Volumes/SHARED/programming/svnroot/kowalski_sourceforge/trunk/res/docimages/conelistener.png"
+       inkscape:export-xdpi="113.3"
+       inkscape:export-ydpi="113.3" />
+    <text
+       xml:space="preserve"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Futura;-inkscape-font-specification:Futura Medium"
+       x="380"
+       y="357.36218"
+       id="text6796"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/Volumes/SHARED/programming/svnroot/kowalski_sourceforge/trunk/res/docimages/conelistener.png"
+       inkscape:export-xdpi="113.3"
+       inkscape:export-ydpi="113.3"><tspan
+         sodipodi:role="line"
+         id="tspan6798"
+         x="380"
+         y="357.36218">Listener</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Futura;-inkscape-font-specification:Futura Medium"
+       x="575"
+       y="307.36218"
+       id="text6800"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/Volumes/SHARED/programming/svnroot/kowalski_sourceforge/trunk/res/docimages/conelistener.png"
+       inkscape:export-xdpi="113.3"
+       inkscape:export-ydpi="113.3"><tspan
+         sodipodi:role="line"
+         id="tspan6802"
+         x="575"
+         y="307.36218">Event</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Geneva CY;-inkscape-font-specification:Geneva CY"
+       x="480"
+       y="462.36218"
+       id="text3832"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/Volumes/SHARED/programming/svnroot/kowalski_sourceforge/trunk/res/docimages/conelistener.png"
+       inkscape:export-xdpi="113.3"
+       inkscape:export-ydpi="113.3"><tspan
+         sodipodi:role="line"
+         id="tspan3834"
+         x="480"
+         y="462.36218"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-family:Futura;-inkscape-font-specification:Futura Medium">Listener angle</tspan><tspan
+         sodipodi:role="line"
+         x="480"
+         y="472.36218"
+         id="tspan3836"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-family:Futura;-inkscape-font-specification:Futura Medium">relative to the</tspan><tspan
+         sodipodi:role="line"
+         x="480"
+         y="482.36218"
+         id="tspan3838"
+         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-family:Futura;-inkscape-font-specification:Futura Medium">event</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Futura;-inkscape-font-specification:Futura Medium"
+       x="460"
+       y="372.36218"
+       id="text3840"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/Volumes/SHARED/programming/svnroot/kowalski_sourceforge/trunk/res/docimages/conelistener.png"
+       inkscape:export-xdpi="113.3"
+       inkscape:export-ydpi="113.3"><tspan
+         sodipodi:role="line"
+         id="tspan3842"
+         x="460"
+         y="372.36218">Event angle</tspan><tspan
+         sodipodi:role="line"
+         x="460"
+         y="382.36218"
+         id="tspan3844">relative to </tspan><tspan
+         sodipodi:role="line"
+         x="460"
+         y="392.36218"
+         id="tspan3846">the listener</tspan></text>
+  </g>
+</svg>

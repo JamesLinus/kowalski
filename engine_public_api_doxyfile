@@ -1,0 +1,15 @@
+//This file contains instructions for Doxygen on how to generate 
+//the Kowalski Engine documentation.
+PROJECT_NAME      = "Kowalski Engine Public API"
+OUTPUT_DIRECTORY  = doc/engine/public_api
+GENERATE_MAN      = NO
+GENERATE_LATEX    = NO
+GENERATE_HTML     = YES
+GENERATE_HTMLHELP = NO
+GENERATE_RTF      = NO
+GENERATE_XML      = NO
+HTML_FOOTER       = doxygenfooter.txt
+INPUT             = src/engine/kowalski.h src/engine/kowalski_ext.h src/engine/doxygen_mainpage_public_api.txt
+FILE_PATTERNS     = *.h *.c
+EXCLUDE_PATTERNS  = ._*
+OPTIMIZE_OUTPUT_FOR_C = YES

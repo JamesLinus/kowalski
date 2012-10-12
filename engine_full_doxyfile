@@ -1,0 +1,16 @@
+//This file contains instructions for Doxygen on how to generate 
+//the Kowalski Engine documentation.
+PROJECT_NAME      = "Kowalski Engine"
+OUTPUT_DIRECTORY  = doc/engine/full
+GENERATE_MAN      = NO
+GENERATE_LATEX    = NO
+GENERATE_HTML     = YES
+GENERATE_HTMLHELP = NO
+GENERATE_RTF      = NO
+GENERATE_XML      = NO
+HTML_FOOTER       = doxygenfooter.txt
+INPUT             = src/engine src/engine/hosts/iphone
+FILE_PATTERNS     = *.h *.c *.m doxygen_mainpage_full.txt
+EXCLUDE_PATTERNS  = ._*
+OPTIMIZE_OUTPUT_FOR_C = YES
+PREDEFINED        = KWL_OGG_VORBIS KWL_IPHONE

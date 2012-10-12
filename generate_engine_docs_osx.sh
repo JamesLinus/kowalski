@@ -1,0 +1,2 @@
+tools/doxygen/osx/doxygen engine_full_doxyfile
+tools/doxygen/osx/doxygen engine_public_api_doxyfile

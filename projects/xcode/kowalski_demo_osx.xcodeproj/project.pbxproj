@@ -39,7 +39,26 @@
 		C15759A41628F19F0051A4DF /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C15759A31628F19F0051A4DF /* CoreAudio.framework */; };
 		C15759A61628F1A90051A4DF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C15759A51628F1A90051A4DF /* AudioToolbox.framework */; };
 		C15759A81628F1B50051A4DF /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C15759A71628F1B50051A4DF /* AudioUnit.framework */; };
-		C15759AA1628F1DE0051A4DF /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C15759A91628F1DE0051A4DF /* SDL.framework */; };
+		C15759E81628F3CE0051A4DF /* SDL.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C15759E71628F3CE0051A4DF /* SDL.framework */; };
+		C15759E91628F3E60051A4DF /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C15759E71628F3CE0051A4DF /* SDL.framework */; };
+		C15759F11628F4F50051A4DF /* demoproject.kwl in Resources */ = {isa = PBXBuildFile; fileRef = C15759EC1628F4F50051A4DF /* demoproject.kwl */; };
+		C15759F21628F4F50051A4DF /* music.kwb in Resources */ = {isa = PBXBuildFile; fileRef = C15759ED1628F4F50051A4DF /* music.kwb */; };
+		C15759F31628F4F50051A4DF /* notes.kwb in Resources */ = {isa = PBXBuildFile; fileRef = C15759EE1628F4F50051A4DF /* notes.kwb */; };
+		C15759F41628F4F50051A4DF /* numbers.kwb in Resources */ = {isa = PBXBuildFile; fileRef = C15759EF1628F4F50051A4DF /* numbers.kwb */; };
+		C15759F51628F4F50051A4DF /* sfx.kwb in Resources */ = {isa = PBXBuildFile; fileRef = C15759F01628F4F50051A4DF /* sfx.kwb */; };
+		C1575A041628F4FE0051A4DF /* sine_signed_16bit_mono.aiff in Resources */ = {isa = PBXBuildFile; fileRef = C15759F71628F4FE0051A4DF /* sine_signed_16bit_mono.aiff */; };
+		C1575A051628F4FE0051A4DF /* sine_signed_16bit_mono.au in Resources */ = {isa = PBXBuildFile; fileRef = C15759F81628F4FE0051A4DF /* sine_signed_16bit_mono.au */; };
+		C1575A061628F4FE0051A4DF /* sine_signed_16bit_mono.wav in Resources */ = {isa = PBXBuildFile; fileRef = C15759F91628F4FE0051A4DF /* sine_signed_16bit_mono.wav */; };
+		C1575A071628F4FE0051A4DF /* sine_signed_24bit_mono.aiff in Resources */ = {isa = PBXBuildFile; fileRef = C15759FA1628F4FE0051A4DF /* sine_signed_24bit_mono.aiff */; };
+		C1575A081628F4FE0051A4DF /* sine_signed_24bit_mono.au in Resources */ = {isa = PBXBuildFile; fileRef = C15759FB1628F4FE0051A4DF /* sine_signed_24bit_mono.au */; };
+		C1575A091628F4FE0051A4DF /* sine_signed_24bit_mono.wav in Resources */ = {isa = PBXBuildFile; fileRef = C15759FC1628F4FE0051A4DF /* sine_signed_24bit_mono.wav */; };
+		C1575A0A1628F4FE0051A4DF /* sine_signed_32bit_mono.aiff in Resources */ = {isa = PBXBuildFile; fileRef = C15759FD1628F4FE0051A4DF /* sine_signed_32bit_mono.aiff */; };
+		C1575A0B1628F4FE0051A4DF /* sine_signed_32bit_mono.au in Resources */ = {isa = PBXBuildFile; fileRef = C15759FE1628F4FE0051A4DF /* sine_signed_32bit_mono.au */; };
+		C1575A0C1628F4FE0051A4DF /* sine_signed_32bit_mono.wav in Resources */ = {isa = PBXBuildFile; fileRef = C15759FF1628F4FE0051A4DF /* sine_signed_32bit_mono.wav */; };
+		C1575A0D1628F4FE0051A4DF /* sine_signed_8bit_mono.aiff in Resources */ = {isa = PBXBuildFile; fileRef = C1575A001628F4FE0051A4DF /* sine_signed_8bit_mono.aiff */; };
+		C1575A0E1628F4FE0051A4DF /* sine_signed_8bit_mono.au in Resources */ = {isa = PBXBuildFile; fileRef = C1575A011628F4FE0051A4DF /* sine_signed_8bit_mono.au */; };
+		C1575A0F1628F4FE0051A4DF /* sine_unsigned_8bit_mono.aiff in Resources */ = {isa = PBXBuildFile; fileRef = C1575A021628F4FE0051A4DF /* sine_unsigned_8bit_mono.aiff */; };
+		C1575A101628F4FE0051A4DF /* sine_unsigned_8bit_mono.wav in Resources */ = {isa = PBXBuildFile; fileRef = C1575A031628F4FE0051A4DF /* sine_unsigned_8bit_mono.wav */; };
 		C1AD37CB1628ED4E00CE9A8B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1AD37CA1628ED4E00CE9A8B /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +92,19 @@
 			remoteInfo = kwltools;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C15759E41628F3830051A4DF /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C15759E81628F3CE0051A4DF /* SDL.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C15758C41628EE6F0051A4DF /* kowalski.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = kowalski.xcodeproj; sourceTree = "<group>"; };
@@ -132,7 +164,25 @@
 		C15759A31628F19F0051A4DF /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreAudio.framework; sourceTree = DEVELOPER_DIR; };
 		C15759A51628F1A90051A4DF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
 		C15759A71628F1B50051A4DF /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AudioUnit.framework; sourceTree = DEVELOPER_DIR; };
-		C15759A91628F1DE0051A4DF /* SDL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL.framework; path = ../../lib/SDL.framework; sourceTree = "<group>"; };
+		C15759E71628F3CE0051A4DF /* SDL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL.framework; path = ../../lib/SDL.framework; sourceTree = "<group>"; };
+		C15759EC1628F4F50051A4DF /* demoproject.kwl */ = {isa = PBXFileReference; lastKnownFileType = file; name = demoproject.kwl; path = ../../res/demodata/final/demoproject.kwl; sourceTree = "<group>"; };
+		C15759ED1628F4F50051A4DF /* music.kwb */ = {isa = PBXFileReference; lastKnownFileType = file; name = music.kwb; path = ../../res/demodata/final/music.kwb; sourceTree = "<group>"; };
+		C15759EE1628F4F50051A4DF /* notes.kwb */ = {isa = PBXFileReference; lastKnownFileType = file; name = notes.kwb; path = ../../res/demodata/final/notes.kwb; sourceTree = "<group>"; };
+		C15759EF1628F4F50051A4DF /* numbers.kwb */ = {isa = PBXFileReference; lastKnownFileType = file; name = numbers.kwb; path = ../../res/demodata/final/numbers.kwb; sourceTree = "<group>"; };
+		C15759F01628F4F50051A4DF /* sfx.kwb */ = {isa = PBXFileReference; lastKnownFileType = file; name = sfx.kwb; path = ../../res/demodata/final/sfx.kwb; sourceTree = "<group>"; };
+		C15759F71628F4FE0051A4DF /* sine_signed_16bit_mono.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = sine_signed_16bit_mono.aiff; sourceTree = "<group>"; };
+		C15759F81628F4FE0051A4DF /* sine_signed_16bit_mono.au */ = {isa = PBXFileReference; lastKnownFileType = audio.au; path = sine_signed_16bit_mono.au; sourceTree = "<group>"; };
+		C15759F91628F4FE0051A4DF /* sine_signed_16bit_mono.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sine_signed_16bit_mono.wav; sourceTree = "<group>"; };
+		C15759FA1628F4FE0051A4DF /* sine_signed_24bit_mono.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = sine_signed_24bit_mono.aiff; sourceTree = "<group>"; };
+		C15759FB1628F4FE0051A4DF /* sine_signed_24bit_mono.au */ = {isa = PBXFileReference; lastKnownFileType = audio.au; path = sine_signed_24bit_mono.au; sourceTree = "<group>"; };
+		C15759FC1628F4FE0051A4DF /* sine_signed_24bit_mono.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sine_signed_24bit_mono.wav; sourceTree = "<group>"; };
+		C15759FD1628F4FE0051A4DF /* sine_signed_32bit_mono.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = sine_signed_32bit_mono.aiff; sourceTree = "<group>"; };
+		C15759FE1628F4FE0051A4DF /* sine_signed_32bit_mono.au */ = {isa = PBXFileReference; lastKnownFileType = audio.au; path = sine_signed_32bit_mono.au; sourceTree = "<group>"; };
+		C15759FF1628F4FE0051A4DF /* sine_signed_32bit_mono.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sine_signed_32bit_mono.wav; sourceTree = "<group>"; };
+		C1575A001628F4FE0051A4DF /* sine_signed_8bit_mono.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = sine_signed_8bit_mono.aiff; sourceTree = "<group>"; };
+		C1575A011628F4FE0051A4DF /* sine_signed_8bit_mono.au */ = {isa = PBXFileReference; lastKnownFileType = audio.au; path = sine_signed_8bit_mono.au; sourceTree = "<group>"; };
+		C1575A021628F4FE0051A4DF /* sine_unsigned_8bit_mono.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = sine_unsigned_8bit_mono.aiff; sourceTree = "<group>"; };
+		C1575A031628F4FE0051A4DF /* sine_unsigned_8bit_mono.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sine_unsigned_8bit_mono.wav; sourceTree = "<group>"; };
 		C1AD37C61628ED4E00CE9A8B /* kowalski_demo_osx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kowalski_demo_osx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1AD37CA1628ED4E00CE9A8B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		C1AD37CD1628ED4E00CE9A8B /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -148,10 +198,10 @@
 				C15759A81628F1B50051A4DF /* AudioUnit.framework in Frameworks */,
 				C15759A61628F1A90051A4DF /* AudioToolbox.framework in Frameworks */,
 				C15759A41628F19F0051A4DF /* CoreAudio.framework in Frameworks */,
+				C15759E91628F3E60051A4DF /* SDL.framework in Frameworks */,
 				C15759A21628F1930051A4DF /* OpenGL.framework in Frameworks */,
 				C157599D1628F0DA0051A4DF /* libkowalski.dylib in Frameworks */,
 				C1AD37CB1628ED4E00CE9A8B /* Cocoa.framework in Frameworks */,
-				C15759AA1628F1DE0051A4DF /* SDL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,19 +294,62 @@
 			path = osx;
 			sourceTree = "<group>";
 		};
+		C15759EA1628F4B60051A4DF /* res */ = {
+			isa = PBXGroup;
+			children = (
+				C15759F61628F4FE0051A4DF /* freeformeventaudio */,
+				C15759EC1628F4F50051A4DF /* demoproject.kwl */,
+				C15759ED1628F4F50051A4DF /* music.kwb */,
+				C15759EE1628F4F50051A4DF /* notes.kwb */,
+				C15759EF1628F4F50051A4DF /* numbers.kwb */,
+				C15759F01628F4F50051A4DF /* sfx.kwb */,
+			);
+			name = res;
+			sourceTree = "<group>";
+		};
+		C15759EB1628F4BE0051A4DF /* src */ = {
+			isa = PBXGroup;
+			children = (
+				C15758D71628EE7D0051A4DF /* enginedemo */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		C15759F61628F4FE0051A4DF /* freeformeventaudio */ = {
+			isa = PBXGroup;
+			children = (
+				C15759F71628F4FE0051A4DF /* sine_signed_16bit_mono.aiff */,
+				C15759F81628F4FE0051A4DF /* sine_signed_16bit_mono.au */,
+				C15759F91628F4FE0051A4DF /* sine_signed_16bit_mono.wav */,
+				C15759FA1628F4FE0051A4DF /* sine_signed_24bit_mono.aiff */,
+				C15759FB1628F4FE0051A4DF /* sine_signed_24bit_mono.au */,
+				C15759FC1628F4FE0051A4DF /* sine_signed_24bit_mono.wav */,
+				C15759FD1628F4FE0051A4DF /* sine_signed_32bit_mono.aiff */,
+				C15759FE1628F4FE0051A4DF /* sine_signed_32bit_mono.au */,
+				C15759FF1628F4FE0051A4DF /* sine_signed_32bit_mono.wav */,
+				C1575A001628F4FE0051A4DF /* sine_signed_8bit_mono.aiff */,
+				C1575A011628F4FE0051A4DF /* sine_signed_8bit_mono.au */,
+				C1575A021628F4FE0051A4DF /* sine_unsigned_8bit_mono.aiff */,
+				C1575A031628F4FE0051A4DF /* sine_unsigned_8bit_mono.wav */,
+			);
+			name = freeformeventaudio;
+			path = ../../res/demodata/final/freeformeventaudio;
+			sourceTree = "<group>";
+		};
 		C1AD37B91628945E00CE9A8B = {
 			isa = PBXGroup;
 			children = (
-				C15759A91628F1DE0051A4DF /* SDL.framework */,
+				C15758C41628EE6F0051A4DF /* kowalski.xcodeproj */,
+				C15759E71628F3CE0051A4DF /* SDL.framework */,
 				C15759A71628F1B50051A4DF /* AudioUnit.framework */,
 				C15759A51628F1A90051A4DF /* AudioToolbox.framework */,
 				C15759A31628F19F0051A4DF /* CoreAudio.framework */,
 				C15759A11628F1920051A4DF /* OpenGL.framework */,
-				C15758C41628EE6F0051A4DF /* kowalski.xcodeproj */,
 				C157599B1628EEC20051A4DF /* kowalski_demo_osx-Info.plist */,
 				C1AD37C91628ED4E00CE9A8B /* Frameworks */,
 				C1AD37C71628ED4E00CE9A8B /* Products */,
-				C15758D71628EE7D0051A4DF /* enginedemo */,
+				C15759EA1628F4B60051A4DF /* res */,
+				C15759EB1628F4BE0051A4DF /* src */,
 			);
 			sourceTree = "<group>";
 		};
@@ -297,6 +390,7 @@
 				C1AD37C21628ED4E00CE9A8B /* Sources */,
 				C1AD37C31628ED4E00CE9A8B /* Frameworks */,
 				C1AD37C41628ED4E00CE9A8B /* Resources */,
+				C15759E41628F3830051A4DF /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -375,6 +469,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				C157599C1628EEC20051A4DF /* kowalski_demo_osx-Info.plist in Resources */,
+				C15759F11628F4F50051A4DF /* demoproject.kwl in Resources */,
+				C15759F21628F4F50051A4DF /* music.kwb in Resources */,
+				C15759F31628F4F50051A4DF /* notes.kwb in Resources */,
+				C15759F41628F4F50051A4DF /* numbers.kwb in Resources */,
+				C15759F51628F4F50051A4DF /* sfx.kwb in Resources */,
+				C1575A041628F4FE0051A4DF /* sine_signed_16bit_mono.aiff in Resources */,
+				C1575A051628F4FE0051A4DF /* sine_signed_16bit_mono.au in Resources */,
+				C1575A061628F4FE0051A4DF /* sine_signed_16bit_mono.wav in Resources */,
+				C1575A071628F4FE0051A4DF /* sine_signed_24bit_mono.aiff in Resources */,
+				C1575A081628F4FE0051A4DF /* sine_signed_24bit_mono.au in Resources */,
+				C1575A091628F4FE0051A4DF /* sine_signed_24bit_mono.wav in Resources */,
+				C1575A0A1628F4FE0051A4DF /* sine_signed_32bit_mono.aiff in Resources */,
+				C1575A0B1628F4FE0051A4DF /* sine_signed_32bit_mono.au in Resources */,
+				C1575A0C1628F4FE0051A4DF /* sine_signed_32bit_mono.wav in Resources */,
+				C1575A0D1628F4FE0051A4DF /* sine_signed_8bit_mono.aiff in Resources */,
+				C1575A0E1628F4FE0051A4DF /* sine_signed_8bit_mono.au in Resources */,
+				C1575A0F1628F4FE0051A4DF /* sine_unsigned_8bit_mono.aiff in Resources */,
+				C1575A101628F4FE0051A4DF /* sine_unsigned_8bit_mono.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

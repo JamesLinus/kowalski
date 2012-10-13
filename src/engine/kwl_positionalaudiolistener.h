@@ -72,7 +72,7 @@ typedef struct kwlPositionalAudioListener
     float outerConeGain;
 } kwlPositionalAudioListener;
     
-void kwlPositionalAudioListener_init(kwlPositionalAudioListener* listener);
+void kwlPositionalAudioListener_setDefaults(kwlPositionalAudioListener* listener);
     
 #ifdef __cplusplus
 }

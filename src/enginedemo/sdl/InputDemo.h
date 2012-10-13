@@ -27,7 +27,7 @@ freely, subject to the following restrictions:
 #include "DemoBase.h"
 #include "MeterBar.h"
 #include "kowalski.h"
-#include "kowalski_ext.h"
+#include "kowalski.h"
 
 /**
  * This method gets called when it's time to process 

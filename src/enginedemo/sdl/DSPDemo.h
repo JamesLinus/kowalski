@@ -27,7 +27,7 @@ freely, subject to the following restrictions:
 #include "DemoBase.h"
 #include "MeterBar.h"
 #include "kowalski.h"
-#include "kowalski_ext.h"
+#include "kowalski.h"
 
 /** 
  * A struct defining the state of a simple DSP unit 

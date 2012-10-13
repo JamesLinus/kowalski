@@ -24,7 +24,7 @@
 #include "kwl_positionalaudiolistener.h"
 #include "kwl_memory.h"
 
-void kwlPositionalAudioListener_init(kwlPositionalAudioListener* listener)
+void kwlPositionalAudioListener_setDefaults(kwlPositionalAudioListener* listener)
 {
     kwlMemset(listener, 0, sizeof(kwlPositionalAudioListener));
     listener->innerConeCosAngle = 1.0f;

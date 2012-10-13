@@ -22,7 +22,7 @@
  */
 
 #import "EventCallbackDemo.h"
-#import "kowalski_ext.h"
+#import "kowalski.h"
 
 @implementation EventCallbackDemo
 

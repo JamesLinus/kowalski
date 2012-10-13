@@ -23,7 +23,7 @@
 
 #import "DemoBase.h"
 
-#import "kowalski_ext.h"
+#import "kowalski.h"
 
 /**
  * This method gets called when it's time to process 

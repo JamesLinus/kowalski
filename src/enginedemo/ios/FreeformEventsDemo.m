@@ -23,7 +23,7 @@
 
 #import "FreeformEventsDemo.h"
 
-#import "kowalski_ext.h"
+#import "kowalski.h"
 
 @implementation FreeformEventsDemo
 

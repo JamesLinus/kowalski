@@ -150,12 +150,15 @@ void kwlEngine_init(kwlEngine* engine)
     kwlMessageQueue_init(&engine->toMixerQueueShared);
     kwlMessageQueue_init(&engine->fromMixerQueue);
     
+    kwlMessageQueue_init(&engine->wavebankLoadingQueue);
+    kwlMessageQueue_init(&engine->wavebankLoadingQueueShared);
+    
     /*create the software mixer*/
     engine->mixer = kwlMixer_new();
     engine->mixer->engine = engine;
     
     /*init positional audio listener and settings */
-    kwlPositionalAudioListener_init(&engine->listener);
+    kwlPositionalAudioListener_setDefaults(&engine->listener);
     kwlPositionalAudioSettings_setDefaults(&engine->positionalAudioSettings);
     
     engine->engineData.isLoaded = 0;
@@ -175,6 +178,9 @@ void kwlEngine_init(kwlEngine* engine)
     //set up main mutex lock
     kwlMutexLockInit(&engine->mixerEngineMutexLock);
     engine->mixer->mixerEngineMutexLock = &engine->mixerEngineMutexLock;
+    
+    //set up wavebank loading mutex
+    kwlMutexLockInit(&engine->wavebankLoadingMutexLock);
 }
 
 void kwlEngine_free(kwlEngine* engine)
@@ -191,8 +197,7 @@ void kwlEngine_free(kwlEngine* engine)
 kwlError kwlEngine_loadWaveBank(kwlEngine* engine, 
                                      const char* const waveBankPath, 
                                      kwlWaveBankHandle* handle,
-                                     int threaded,
-                                     kwlWaveBankFinishedLoadingCallback callback)
+                                     int threaded)
 {
     if (!engine->engineData.isLoaded)
     {
@@ -214,7 +219,7 @@ kwlError kwlEngine_loadWaveBank(kwlEngine* engine,
 
     /*If we made it this far, the wave bank binary data lines up with a wave
      bank structure of the engine so we're ready to load the audio data.*/
-    kwlError result = kwlWaveBank_loadAudioData(matchingWaveBank, waveBankPath, threaded, callback);
+    kwlError result = kwlWaveBank_loadAudioData(matchingWaveBank, waveBankPath, threaded);
         
     /*Only care about the handle if this is a blocking call. For non-blocking calls,
       it gets passed to the loading finished callback.*/

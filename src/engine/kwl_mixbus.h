@@ -26,7 +26,7 @@ freely, subject to the following restrictions:
 /*! \file */ 
 
 #include "kwl_synchronization.h"
-#include "kowalski_ext.h"
+#include "kowalski.h"
 
 #ifdef __cplusplus
 extern "C"

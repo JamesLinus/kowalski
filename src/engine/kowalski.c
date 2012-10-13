@@ -23,7 +23,7 @@ freely, subject to the following restrictions:
 
 #include "kwl_eventinstance.h"
 #include "kowalski.h"
-#include "kowalski_ext.h"
+#include "kowalski.h"
 #include "kwl_audiofileutil.h"
 #include "kwl_dspunit.h"
 #include "kwl_memory.h"
@@ -608,18 +608,8 @@ kwlWaveBankHandle kwlWaveBankLoad(const char* const path)
         return KWL_INVALID_HANDLE;
     }
     kwlWaveBankHandle handle = 0;
-    kwlSetError(kwlEngine_loadWaveBank(engine, path, &handle, 0, NULL));
+    kwlSetError(kwlEngine_loadWaveBank(engine, path, &handle, 0));
     return handle;
-}
-
-void kwlWaveBankLoadWithCallback(const char* path, kwlWaveBankFinishedLoadingCallback callback)
-{
-    if (engine == NULL)
-    {
-        kwlSetError(KWL_ENGINE_IS_NOT_INITIALIZED);
-    }
-    
-    kwlSetError(kwlEngine_loadWaveBank(engine, path, NULL, 1, callback));
 }
 
 int kwlWaveBankIsLoaded(kwlWaveBankHandle handle)

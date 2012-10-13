@@ -23,7 +23,7 @@ freely, subject to the following restrictions:
 
 #include "assert.h"
 #include "fileutil.h"
-#include "kowalski_ext.h"
+#include "kowalski.h"
 #include "BitmapFont.h"
 #include "FreeformEventsDemo.h"
 #include "KowalskiDemoManager.h"

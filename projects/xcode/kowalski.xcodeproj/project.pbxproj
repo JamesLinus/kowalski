@@ -79,7 +79,6 @@
 		C1AE000E1472B80300AFC66F /* window.h in Headers */ = {isa = PBXBuildFile; fileRef = C1B77F581212AF80008DFEB2 /* window.h */; };
 		C1AEFFA91472B68500AFC66F /* kowalski.h in Headers */ = {isa = PBXBuildFile; fileRef = C127F073117F189400C9A250 /* kowalski.h */; };
 		C1AEFFAA1472B68500AFC66F /* kowalski.c in Sources */ = {isa = PBXBuildFile; fileRef = C127F072117F189400C9A250 /* kowalski.c */; };
-		C1AEFFAB1472B68500AFC66F /* kowalski_ext.h in Headers */ = {isa = PBXBuildFile; fileRef = C1D1C14611B244AE0066C262 /* kowalski_ext.h */; };
 		C1AEFFAC1472B68500AFC66F /* kwl_asm.h in Headers */ = {isa = PBXBuildFile; fileRef = C1CDEF10127AD8090054F870 /* kwl_asm.h */; };
 		C1AEFFAD1472B68500AFC66F /* kwl_assert.h in Headers */ = {isa = PBXBuildFile; fileRef = C13B88B41182DC7400F4F461 /* kwl_assert.h */; };
 		C1AEFFAE1472B68500AFC66F /* kwl_audiodata.h in Headers */ = {isa = PBXBuildFile; fileRef = C127F082117F189400C9A250 /* kwl_audiodata.h */; };
@@ -214,7 +213,6 @@
 		C1DD3C751370D1B600D10AA6 /* kwl_positionalaudiolistener.h in Headers */ = {isa = PBXBuildFile; fileRef = C127F078117F189400C9A250 /* kwl_positionalaudiolistener.h */; };
 		C1DD3C771370D1B700D10AA6 /* kwl_decoder.c in Sources */ = {isa = PBXBuildFile; fileRef = C127F063117F189400C9A250 /* kwl_decoder.c */; };
 		C1DD3C781370D1B700D10AA6 /* kwl_positionalaudiosettings.h in Headers */ = {isa = PBXBuildFile; fileRef = C127F079117F189400C9A250 /* kwl_positionalaudiosettings.h */; };
-		C1DD3C791370D1B800D10AA6 /* kowalski_ext.h in Headers */ = {isa = PBXBuildFile; fileRef = C1D1C14611B244AE0066C262 /* kowalski_ext.h */; };
 		C1DD3C7A1370D1B900D10AA6 /* kwl_audiofileutil.h in Headers */ = {isa = PBXBuildFile; fileRef = C1A77320126C647C00B6B1C4 /* kwl_audiofileutil.h */; };
 		C1DD3C7B1370D1B900D10AA6 /* kwl_wavebank.h in Headers */ = {isa = PBXBuildFile; fileRef = C127F080117F189400C9A250 /* kwl_wavebank.h */; };
 		C1DD3C7C1370D1BA00D10AA6 /* kwl_mixpreset.h in Headers */ = {isa = PBXBuildFile; fileRef = C127F0C7117F1A4600C9A250 /* kwl_mixpreset.h */; };
@@ -227,7 +225,6 @@
 		C1DD3C831370D1C300D10AA6 /* bitwise.c in Sources */ = {isa = PBXBuildFile; fileRef = C1B77F361212AF80008DFEB2 /* bitwise.c */; };
 		C1DD3C841370D1C400D10AA6 /* asm_arm.h in Headers */ = {isa = PBXBuildFile; fileRef = C1B77F351212AF80008DFEB2 /* asm_arm.h */; };
 		C1E86E8B1220E9D600C53E55 /* kowalski.h in Headers */ = {isa = PBXBuildFile; fileRef = C127F073117F189400C9A250 /* kowalski.h */; };
-		C1E86E8C1220E9D600C53E55 /* kowalski_ext.h in Headers */ = {isa = PBXBuildFile; fileRef = C1D1C14611B244AE0066C262 /* kowalski_ext.h */; };
 		C1E86E8D1220E9D600C53E55 /* kwl_audiodata.h in Headers */ = {isa = PBXBuildFile; fileRef = C127F082117F189400C9A250 /* kwl_audiodata.h */; };
 		C1E86E8E1220E9D600C53E55 /* kwl_decoder.h in Headers */ = {isa = PBXBuildFile; fileRef = C127F064117F189400C9A250 /* kwl_decoder.h */; };
 		C1E86E8F1220E9D600C53E55 /* kwl_decoder_imaadpcm.h in Headers */ = {isa = PBXBuildFile; fileRef = C12054C911D223C800BE5628 /* kwl_decoder_imaadpcm.h */; };
@@ -390,9 +387,6 @@
 		C1C25E411263384A007D17F6 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		C1C25E8C12633C6D007D17F6 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		C1CDEF10127AD8090054F870 /* kwl_asm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_asm.h; sourceTree = "<group>"; };
-		C1D1C14611B244AE0066C262 /* kowalski_ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kowalski_ext.h; sourceTree = "<group>"; };
-		C1D6836B13E9900200279CEF /* SDL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDL.h; path = ../../lib/SDL.framework/Versions/A/Headers/SDL.h; sourceTree = SOURCE_ROOT; };
-		C1D6836E13E9901900279CEF /* SDL_opengl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDL_opengl.h; path = ../../lib/SDL.framework/Versions/A/Headers/SDL_opengl.h; sourceTree = SOURCE_ROOT; };
 		C1DD3C2B1370D12B00D10AA6 /* libkowalski_ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libkowalski_ios.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1EDB6C213B742B900CA174A /* kwl_engine_iphone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_engine_iphone.h; sourceTree = "<group>"; };
 		D2AAC046055464E500DB518D /* libkowalski.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libkowalski.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -457,7 +451,6 @@
 			isa = PBXGroup;
 			children = (
 				C127F05E117F189400C9A250 /* engine */,
-				C1D9BD3613E99E6900C3C7DC /* include */,
 				C1760F67161E399E0044204B /* tools */,
 			);
 			name = src;
@@ -481,7 +474,6 @@
 				C1B77F341212AF80008DFEB2 /* tremor */,
 				C127F073117F189400C9A250 /* kowalski.h */,
 				C127F072117F189400C9A250 /* kowalski.c */,
-				C1D1C14611B244AE0066C262 /* kowalski_ext.h */,
 				C1CDEF10127AD8090054F870 /* kwl_asm.h */,
 				C13B88B41182DC7400F4F461 /* kwl_assert.h */,
 				C127F082117F189400C9A250 /* kwl_audiodata.h */,
@@ -622,15 +614,6 @@
 			path = tremor;
 			sourceTree = "<group>";
 		};
-		C1D9BD3613E99E6900C3C7DC /* include */ = {
-			isa = PBXGroup;
-			children = (
-				C1D6836B13E9900200279CEF /* SDL.h */,
-				C1D6836E13E9901900279CEF /* SDL_opengl.h */,
-			);
-			name = include;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -658,7 +641,6 @@
 				C1AE000C1472B80300AFC66F /* window_lookup.h in Headers */,
 				C1AE000E1472B80300AFC66F /* window.h in Headers */,
 				C1AEFFA91472B68500AFC66F /* kowalski.h in Headers */,
-				C1AEFFAB1472B68500AFC66F /* kowalski_ext.h in Headers */,
 				C1AEFFAC1472B68500AFC66F /* kwl_asm.h in Headers */,
 				C1AEFFAD1472B68500AFC66F /* kwl_assert.h in Headers */,
 				C1AEFFAE1472B68500AFC66F /* kwl_audiodata.h in Headers */,
@@ -725,7 +707,6 @@
 				C1DD3C711370D1AE00D10AA6 /* kwl_memory.h in Headers */,
 				C1DD3C751370D1B600D10AA6 /* kwl_positionalaudiolistener.h in Headers */,
 				C1DD3C781370D1B700D10AA6 /* kwl_positionalaudiosettings.h in Headers */,
-				C1DD3C791370D1B800D10AA6 /* kowalski_ext.h in Headers */,
 				C1DD3C7A1370D1B900D10AA6 /* kwl_audiofileutil.h in Headers */,
 				C1DD3C7B1370D1B900D10AA6 /* kwl_wavebank.h in Headers */,
 				C1DD3C7C1370D1BA00D10AA6 /* kwl_mixpreset.h in Headers */,
@@ -746,7 +727,6 @@
 			files = (
 				C1CDEF12127AD8090054F870 /* kwl_asm.h in Headers */,
 				C1E86E8B1220E9D600C53E55 /* kowalski.h in Headers */,
-				C1E86E8C1220E9D600C53E55 /* kowalski_ext.h in Headers */,
 				C1E86E8D1220E9D600C53E55 /* kwl_audiodata.h in Headers */,
 				C1E86E8E1220E9D600C53E55 /* kwl_decoder.h in Headers */,
 				C1E86E8F1220E9D600C53E55 /* kwl_decoder_imaadpcm.h in Headers */,

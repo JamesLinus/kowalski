@@ -68,6 +68,13 @@ typedef struct kwlEngine
      */
     kwlMutexLock mixerEngineMutexLock;
     
+    /**
+     * A mutex lock protecting the queue used for wavebank loading messages.
+     */
+    kwlMutexLock wavebankLoadingMutexLock;
+    kwlMessageQueue wavebankLoadingQueueShared;
+    kwlMessageQueue wavebankLoadingQueue;
+    
     /** A struct containing information about the current 3D audio listener. */
     kwlPositionalAudioListener listener;
     
@@ -304,8 +311,7 @@ kwlError kwlEngine_loadEngineData(kwlEngine* engine, kwlInputStream* stream);
 kwlError kwlEngine_loadWaveBank(kwlEngine* engine, 
                                      const char* const waveBankFile, 
                                      kwlWaveBankHandle* handle,
-                                     int threaded,
-                                     kwlWaveBankFinishedLoadingCallback callback);
+                                     int threaded);
 
 /** */
 kwlError kwlEngine_waveBankIsLoaded(kwlEngine* engine, kwlWaveBankHandle handle, int* isLoaded);

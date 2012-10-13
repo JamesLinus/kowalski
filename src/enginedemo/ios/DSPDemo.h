@@ -23,7 +23,7 @@ freely, subject to the following restrictions:
 
 #import "DemoBase.h"
 
-#import "kowalski_ext.h"
+#import "kowalski.h"
 
 /** 
  * A struct defining the state of a simple DSP unit 

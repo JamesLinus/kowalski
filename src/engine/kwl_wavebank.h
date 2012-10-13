@@ -27,8 +27,9 @@ freely, subject to the following restrictions:
 /*! \file */ 
 
 #include "kowalski.h"
-#include "kowalski_ext.h"
+#include "kowalski.h"
 #include "kwl_inputstream.h"
+#include "kwl_messagequeue.h"
 #include "kwl_synchronization.h"
 
 #ifdef __cplusplus
@@ -49,8 +50,6 @@ static const char KWL_WAVE_BANK_BINARY_FILE_IDENTIFIER[KWL_WAVE_BANK_BINARY_FILE
 {
     0xAB, 'K', 'W', 'B', 0xBB, 0x0D, 0x0A, 0x1A, 0x0A
 };
-
-typedef void (*kwlWaveBankFinishedLoadingCallback)(kwlWaveBankHandle handle, void* userData);
     
 /** 
  * A struct containing everything needed to load
@@ -62,12 +61,12 @@ typedef struct kwlWaveBankLoadingThread
     kwlThread thread;
     /** The wave bank to load */
     struct kwlWaveBank* waveBank;
+    /** */
+    kwlMessageQueue* messageQueue;
+    /** */
+    kwlMutexLock* messageQueueLock;
     /** The input stream to load from.*/
     kwlInputStream inputStream;
-    /** A callback to invoke when loading is done.*/
-    kwlWaveBankFinishedLoadingCallback callback;
-    /** */
-    void* callbackUserData;
 } kwlWaveBankLoadingThread;
     
 /** 
@@ -110,11 +109,10 @@ kwlError kwlWaveBank_loadAudioDataItems(kwlWaveBank* waveBank, kwlInputStream* i
  */
 kwlError kwlWaveBank_loadAudioData(kwlWaveBank* waveBank, 
                                    const char* path, 
-                                   int threaded,
-                                   kwlWaveBankFinishedLoadingCallback callback);
+                                   int threaded);
     
 /** The entry point for the loading thread.*/
-void* kwlWaveBank_loadingThreadEntryPoint(void* userData);
+void* kwlWaveBank_loadingThreadEntryPoint(void* loadingThread);
     
 /** */
 void kwlWaveBank_unload(kwlWaveBank* waveBank);

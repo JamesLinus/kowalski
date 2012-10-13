@@ -137,8 +137,7 @@ kwlError kwlWaveBank_verifyWaveBankBinary(kwlEngine* engine,
 
 kwlError kwlWaveBank_loadAudioData(kwlWaveBank* waveBank, 
                                    const char* path, 
-                                   int threaded,
-                                   kwlWaveBankFinishedLoadingCallback callback)
+                                   int threaded)
 {
     if (threaded == 0)
     {
@@ -152,11 +151,10 @@ kwlError kwlWaveBank_loadAudioData(kwlWaveBank* waveBank,
         /*do asynchronous loading*/
         kwlInputStream_initWithFile(&waveBank->loadingThread.inputStream, path);
         waveBank->loadingThread.waveBank = waveBank;
-        waveBank->loadingThread.callback = callback;
         
         kwlThreadCreate(&waveBank->loadingThread.thread, 
                         kwlWaveBank_loadingThreadEntryPoint, 
-                        waveBank);
+                        &waveBank->loadingThread);
         return KWL_NO_ERROR;
     }
 }
@@ -252,23 +250,19 @@ kwlError kwlWaveBank_loadAudioDataItems(kwlWaveBank* waveBank, kwlInputStream* s
     return KWL_NO_ERROR;
 }
 
-void* kwlWaveBank_loadingThreadEntryPoint(void* userData)
+void* kwlWaveBank_loadingThreadEntryPoint(void* loadingThread)
 {
-    printf("starting threaded wb load\n"); 
-    kwlWaveBank* waveBank = (kwlWaveBank*)userData;
+    printf("starting threaded wb load\n");
+    
+    kwlWaveBankLoadingThread* thread = (kwlWaveBankLoadingThread*)loadingThread;
+    
+    kwlWaveBank* waveBank = thread->waveBank;
     kwlError result = kwlWaveBank_loadAudioDataItems(waveBank->loadingThread.waveBank, 
                                                      &waveBank->loadingThread.inputStream);
     
     //TODO: do something with the result.
     
-    /*invoke the callback*/
-    if (waveBank->loadingThread.callback != NULL)
-    {
-        //TODO: pass proper handle
-        waveBank->loadingThread.callback(KWL_INVALID_HANDLE, waveBank->loadingThread.callbackUserData);
-    }
-    
-    printf("threaded wb done.\n"); 
+    printf("threaded wb done.\n");
     return NULL;
 }
 

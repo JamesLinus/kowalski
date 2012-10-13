@@ -26,7 +26,7 @@ freely, subject to the following restrictions:
 
 /*! \file */ 
 
-#include "kowalski_ext.h"
+#include "kowalski.h"
 
 #ifdef __cplusplus
 extern "C"

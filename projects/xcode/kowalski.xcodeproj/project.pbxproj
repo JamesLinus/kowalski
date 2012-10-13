@@ -316,19 +316,6 @@
 		C13F8D6412CF556300A30996 /* kwl_positionalaudiolistener.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_positionalaudiolistener.c; sourceTree = "<group>"; };
 		C14F85A4120C4C080033D01F /* kwl_messagequeue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_messagequeue.h; sourceTree = "<group>"; };
 		C14F85A5120C4C080033D01F /* kwl_messagequeue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_messagequeue.c; sourceTree = "<group>"; };
-		C15F9A3412A5FDD800CE7829 /* sine_signed_8bit_mono.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; name = sine_signed_8bit_mono.aiff; path = ../../res/demodata/final/freeformeventaudio/sine_signed_8bit_mono.aiff; sourceTree = SOURCE_ROOT; };
-		C15F9A3512A5FDD800CE7829 /* sine_signed_8bit_mono.au */ = {isa = PBXFileReference; lastKnownFileType = audio.au; name = sine_signed_8bit_mono.au; path = ../../res/demodata/final/freeformeventaudio/sine_signed_8bit_mono.au; sourceTree = SOURCE_ROOT; };
-		C15F9A3612A5FDD800CE7829 /* sine_signed_16bit_mono.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; name = sine_signed_16bit_mono.aiff; path = ../../res/demodata/final/freeformeventaudio/sine_signed_16bit_mono.aiff; sourceTree = SOURCE_ROOT; };
-		C15F9A3712A5FDD800CE7829 /* sine_signed_16bit_mono.au */ = {isa = PBXFileReference; lastKnownFileType = audio.au; name = sine_signed_16bit_mono.au; path = ../../res/demodata/final/freeformeventaudio/sine_signed_16bit_mono.au; sourceTree = SOURCE_ROOT; };
-		C15F9A3812A5FDD800CE7829 /* sine_signed_16bit_mono.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = sine_signed_16bit_mono.wav; path = ../../res/demodata/final/freeformeventaudio/sine_signed_16bit_mono.wav; sourceTree = SOURCE_ROOT; };
-		C15F9A3912A5FDD800CE7829 /* sine_signed_24bit_mono.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; name = sine_signed_24bit_mono.aiff; path = ../../res/demodata/final/freeformeventaudio/sine_signed_24bit_mono.aiff; sourceTree = SOURCE_ROOT; };
-		C15F9A3A12A5FDD800CE7829 /* sine_signed_24bit_mono.au */ = {isa = PBXFileReference; lastKnownFileType = audio.au; name = sine_signed_24bit_mono.au; path = ../../res/demodata/final/freeformeventaudio/sine_signed_24bit_mono.au; sourceTree = SOURCE_ROOT; };
-		C15F9A3B12A5FDD800CE7829 /* sine_signed_24bit_mono.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = sine_signed_24bit_mono.wav; path = ../../res/demodata/final/freeformeventaudio/sine_signed_24bit_mono.wav; sourceTree = SOURCE_ROOT; };
-		C15F9A3C12A5FDD800CE7829 /* sine_signed_32bit_mono.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; name = sine_signed_32bit_mono.aiff; path = ../../res/demodata/final/freeformeventaudio/sine_signed_32bit_mono.aiff; sourceTree = SOURCE_ROOT; };
-		C15F9A3D12A5FDD800CE7829 /* sine_signed_32bit_mono.au */ = {isa = PBXFileReference; lastKnownFileType = audio.au; name = sine_signed_32bit_mono.au; path = ../../res/demodata/final/freeformeventaudio/sine_signed_32bit_mono.au; sourceTree = SOURCE_ROOT; };
-		C15F9A3E12A5FDD800CE7829 /* sine_signed_32bit_mono.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = sine_signed_32bit_mono.wav; path = ../../res/demodata/final/freeformeventaudio/sine_signed_32bit_mono.wav; sourceTree = SOURCE_ROOT; };
-		C15F9A4512A5FDD800CE7829 /* sine_unsigned_8bit_mono.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; name = sine_unsigned_8bit_mono.aiff; path = ../../res/demodata/final/freeformeventaudio/sine_unsigned_8bit_mono.aiff; sourceTree = SOURCE_ROOT; };
-		C15F9A4612A5FDD800CE7829 /* sine_unsigned_8bit_mono.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = sine_unsigned_8bit_mono.wav; path = ../../res/demodata/final/freeformeventaudio/sine_unsigned_8bit_mono.wav; sourceTree = SOURCE_ROOT; };
 		C1607718121677F90041FE58 /* kwl_engine_iphone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = kwl_engine_iphone.m; sourceTree = "<group>"; };
 		C1607719121677F90041FE58 /* kwl_decoder_iphone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_decoder_iphone.h; sourceTree = "<group>"; };
 		C160771A121677F90041FE58 /* kwl_decoder_iphone.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_decoder_iphone.c; sourceTree = "<group>"; };
@@ -338,9 +325,6 @@
 		C160EDAC11BA3F1E0047DCD9 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		C160EDAE11BA3F1E0047DCD9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C160EDB011BA3F1E0047DCD9 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
-		C161A23912B4F56500B1E5AD /* music.kwb */ = {isa = PBXFileReference; lastKnownFileType = file; name = music.kwb; path = ../../res/demodata/final/music.kwb; sourceTree = SOURCE_ROOT; };
-		C161A23A12B4F56500B1E5AD /* notes.kwb */ = {isa = PBXFileReference; lastKnownFileType = file; name = notes.kwb; path = ../../res/demodata/final/notes.kwb; sourceTree = SOURCE_ROOT; };
-		C161A23B12B4F56500B1E5AD /* sfx.kwb */ = {isa = PBXFileReference; lastKnownFileType = file; name = sfx.kwb; path = ../../res/demodata/final/sfx.kwb; sourceTree = SOURCE_ROOT; };
 		C1655B891171B705004021DB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		C1655C5D1171B9AE004021DB /* libportaudio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libportaudio.a; path = ../../lib/portaudio/osx/libportaudio.a; sourceTree = SOURCE_ROOT; };
 		C166D352146072F700FB60DD /* kwl_wavebank.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_wavebank.c; sourceTree = "<group>"; };
@@ -368,8 +352,6 @@
 		C1A77321126C647C00B6B1C4 /* kwl_audiofileutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_audiofileutil.c; sourceTree = "<group>"; };
 		C1AD37B61628935400CE9A8B /* kwltools.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = kwltools.1; sourceTree = "<group>"; };
 		C1AD37B71628935400CE9A8B /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
-		C1AD431312B9D1500034B985 /* kowalski_demo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "kowalski_demo-Info.plist"; sourceTree = "<group>"; };
-		C1AD449212B9D4AD0034B985 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = ../../res/artwork/icon.icns; sourceTree = SOURCE_ROOT; };
 		C1B3D57A135B8E880025DD08 /* kowalski_sdl.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = kowalski_sdl.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1B77F351212AF80008DFEB2 /* asm_arm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asm_arm.h; sourceTree = "<group>"; };
 		C1B77F361212AF80008DFEB2 /* bitwise.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bitwise.c; sourceTree = "<group>"; };
@@ -405,8 +387,6 @@
 		C1B77F561212AF80008DFEB2 /* window_lookup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = window_lookup.h; sourceTree = "<group>"; };
 		C1B77F571212AF80008DFEB2 /* window.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = window.c; sourceTree = "<group>"; };
 		C1B77F581212AF80008DFEB2 /* window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
-		C1BB185412A5D04E0006CEA6 /* demoproject.kwl */ = {isa = PBXFileReference; lastKnownFileType = file; name = demoproject.kwl; path = ../../res/demodata/final/demoproject.kwl; sourceTree = SOURCE_ROOT; };
-		C1BB185712A5D04E0006CEA6 /* numbers.kwb */ = {isa = PBXFileReference; lastKnownFileType = file; name = numbers.kwb; path = ../../res/demodata/final/numbers.kwb; sourceTree = SOURCE_ROOT; };
 		C1C25E411263384A007D17F6 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		C1C25E8C12633C6D007D17F6 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		C1CDEF10127AD8090054F870 /* kwl_asm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_asm.h; sourceTree = "<group>"; };
@@ -455,11 +435,7 @@
 		08FB7794FE84155DC02AAC07 /* kowalski */ = {
 			isa = PBXGroup;
 			children = (
-				C1760F8C1620DD5B0044204B /* libxml2.dylib */,
-				C175A29D127AFC92009F60AE /* resources */,
-				C1655C5D1171B9AE004021DB /* libportaudio.a */,
-				08FB7795FE84155DC02AAC07 /* Source */,
-				C6A0FF2B0290797F04C91782 /* Documentation */,
+				08FB7795FE84155DC02AAC07 /* src */,
 				1AB674ADFE9D54B511CA2CBB /* Products */,
 				C1A2605D1170D28E00955BDD /* CoreAudio.framework */,
 				C1A2605F1170D28E00955BDD /* CoreServices.framework */,
@@ -468,22 +444,23 @@
 				C160EDAC11BA3F1E0047DCD9 /* AudioUnit.framework */,
 				C160EDAE11BA3F1E0047DCD9 /* CoreData.framework */,
 				C160EDB011BA3F1E0047DCD9 /* CoreServices.framework */,
+				C1760F8C1620DD5B0044204B /* libxml2.dylib */,
+				C1655C5D1171B9AE004021DB /* libportaudio.a */,
 				C1C25E411263384A007D17F6 /* OpenGL.framework */,
 				C1C25E8C12633C6D007D17F6 /* Cocoa.framework */,
-				C1AD431312B9D1500034B985 /* kowalski_demo-Info.plist */,
 				C167E65C12EF1015002268B1 /* SDL.framework */,
 			);
 			name = kowalski;
 			sourceTree = "<group>";
 		};
-		08FB7795FE84155DC02AAC07 /* Source */ = {
+		08FB7795FE84155DC02AAC07 /* src */ = {
 			isa = PBXGroup;
 			children = (
 				C127F05E117F189400C9A250 /* engine */,
 				C1D9BD3613E99E6900C3C7DC /* include */,
 				C1760F67161E399E0044204B /* tools */,
 			);
-			name = Source;
+			name = src;
 			sourceTree = "<group>";
 		};
 		1AB674ADFE9D54B511CA2CBB /* Products */ = {
@@ -592,32 +569,6 @@
 			path = sdl;
 			sourceTree = "<group>";
 		};
-		C175A29D127AFC92009F60AE /* resources */ = {
-			isa = PBXGroup;
-			children = (
-				C1AD449212B9D4AD0034B985 /* icon.icns */,
-				C15F9A3412A5FDD800CE7829 /* sine_signed_8bit_mono.aiff */,
-				C15F9A3512A5FDD800CE7829 /* sine_signed_8bit_mono.au */,
-				C15F9A3612A5FDD800CE7829 /* sine_signed_16bit_mono.aiff */,
-				C15F9A3712A5FDD800CE7829 /* sine_signed_16bit_mono.au */,
-				C15F9A3812A5FDD800CE7829 /* sine_signed_16bit_mono.wav */,
-				C15F9A3912A5FDD800CE7829 /* sine_signed_24bit_mono.aiff */,
-				C15F9A3A12A5FDD800CE7829 /* sine_signed_24bit_mono.au */,
-				C15F9A3B12A5FDD800CE7829 /* sine_signed_24bit_mono.wav */,
-				C15F9A3C12A5FDD800CE7829 /* sine_signed_32bit_mono.aiff */,
-				C15F9A3D12A5FDD800CE7829 /* sine_signed_32bit_mono.au */,
-				C15F9A3E12A5FDD800CE7829 /* sine_signed_32bit_mono.wav */,
-				C15F9A4512A5FDD800CE7829 /* sine_unsigned_8bit_mono.aiff */,
-				C15F9A4612A5FDD800CE7829 /* sine_unsigned_8bit_mono.wav */,
-				C1BB185412A5D04E0006CEA6 /* demoproject.kwl */,
-				C161A23912B4F56500B1E5AD /* music.kwb */,
-				C161A23A12B4F56500B1E5AD /* notes.kwb */,
-				C161A23B12B4F56500B1E5AD /* sfx.kwb */,
-				C1BB185712A5D04E0006CEA6 /* numbers.kwb */,
-			);
-			name = resources;
-			sourceTree = "<group>";
-		};
 		C1760F67161E399E0044204B /* tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -678,13 +629,6 @@
 				C1D6836E13E9901900279CEF /* SDL_opengl.h */,
 			);
 			name = include;
-			sourceTree = "<group>";
-		};
-		C6A0FF2B0290797F04C91782 /* Documentation */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Documentation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

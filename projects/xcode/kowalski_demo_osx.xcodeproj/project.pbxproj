@@ -231,6 +231,7 @@
 		C157591D1628EE7D0051A4DF /* sdl */ = {
 			isa = PBXGroup;
 			children = (
+				C15759421628EE7D0051A4DF /* osx */,
 				C157591E1628EE7D0051A4DF /* AudioMeteringDemo.cpp */,
 				C157591F1628EE7D0051A4DF /* AudioMeteringDemo.h */,
 				C15759201628EE7D0051A4DF /* AudioTaperDemo.cpp */,
@@ -267,7 +268,6 @@
 				C157593F1628EE7D0051A4DF /* MeterBar.h */,
 				C15759401628EE7D0051A4DF /* MixPresetDemo.cpp */,
 				C15759411628EE7D0051A4DF /* MixPresetDemo.h */,
-				C15759421628EE7D0051A4DF /* osx */,
 				C15759461628EE7D0051A4DF /* PianoDemo.cpp */,
 				C15759471628EE7D0051A4DF /* PianoDemo.h */,
 				C15759481628EE7D0051A4DF /* PositionalAudioDemoBase.cpp */,
@@ -340,11 +340,6 @@
 			isa = PBXGroup;
 			children = (
 				C15758C41628EE6F0051A4DF /* kowalski.xcodeproj */,
-				C15759E71628F3CE0051A4DF /* SDL.framework */,
-				C15759A71628F1B50051A4DF /* AudioUnit.framework */,
-				C15759A51628F1A90051A4DF /* AudioToolbox.framework */,
-				C15759A31628F19F0051A4DF /* CoreAudio.framework */,
-				C15759A11628F1920051A4DF /* OpenGL.framework */,
 				C157599B1628EEC20051A4DF /* kowalski_demo_osx-Info.plist */,
 				C1AD37C91628ED4E00CE9A8B /* Frameworks */,
 				C1AD37C71628ED4E00CE9A8B /* Products */,
@@ -364,6 +359,11 @@
 		C1AD37C91628ED4E00CE9A8B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C15759E71628F3CE0051A4DF /* SDL.framework */,
+				C15759A71628F1B50051A4DF /* AudioUnit.framework */,
+				C15759A51628F1A90051A4DF /* AudioToolbox.framework */,
+				C15759A31628F19F0051A4DF /* CoreAudio.framework */,
+				C15759A11628F1920051A4DF /* OpenGL.framework */,
 				C1AD37CA1628ED4E00CE9A8B /* Cocoa.framework */,
 				C1AD37CC1628ED4E00CE9A8B /* Other Frameworks */,
 			);

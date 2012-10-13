@@ -29,7 +29,7 @@ freely, subject to the following restrictions:
 #include "kwl_asm.h"
 #include "KowalskiDemoManager.h"
 
-#include "SDL_opengl.h"
+#include <SDL/SDL_opengl.h>
 
 void processInputBuffer(float* buffer, int numChannels, 
                         int numFrames, void* data)

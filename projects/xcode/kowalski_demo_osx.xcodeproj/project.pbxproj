@@ -1,0 +1,543 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C15759801628EE7D0051A4DF /* AudioMeteringDemo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C157591E1628EE7D0051A4DF /* AudioMeteringDemo.cpp */; };
+		C15759811628EE7D0051A4DF /* AudioTaperDemo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C15759201628EE7D0051A4DF /* AudioTaperDemo.cpp */; };
+		C15759821628EE7D0051A4DF /* BalanceAndPanDemo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C15759221628EE7D0051A4DF /* BalanceAndPanDemo.cpp */; };
+		C15759831628EE7D0051A4DF /* BitmapFont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C15759241628EE7D0051A4DF /* BitmapFont.cpp */; };
+		C15759841628EE7D0051A4DF /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C15759261628EE7D0051A4DF /* Camera.cpp */; };
+		C15759851628EE7D0051A4DF /* ComplexSoundsDemo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C15759281628EE7D0051A4DF /* ComplexSoundsDemo.cpp */; };
+		C15759861628EE7D0051A4DF /* ConeAttenuationDemo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C157592A1628EE7D0051A4DF /* ConeAttenuationDemo.cpp */; };
+		C15759871628EE7D0051A4DF /* DemoBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C157592C1628EE7D0051A4DF /* DemoBase.cpp */; };
+		C15759881628EE7D0051A4DF /* DistanceAttenuationDemo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C157592E1628EE7D0051A4DF /* DistanceAttenuationDemo.cpp */; };
+		C15759891628EE7D0051A4DF /* DopplerShiftDemo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C15759301628EE7D0051A4DF /* DopplerShiftDemo.cpp */; };
+		C157598A1628EE7D0051A4DF /* DSPDemo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C15759321628EE7D0051A4DF /* DSPDemo.cpp */; };
+		C157598B1628EE7D0051A4DF /* EmitterSwarmDemo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C15759341628EE7D0051A4DF /* EmitterSwarmDemo.cpp */; };
+		C157598C1628EE7D0051A4DF /* FreeformEventsDemo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C15759371628EE7D0051A4DF /* FreeformEventsDemo.cpp */; };
+		C157598D1628EE7D0051A4DF /* InputDemo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C15759391628EE7D0051A4DF /* InputDemo.cpp */; };
+		C157598E1628EE7D0051A4DF /* KowalskiDemoManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C157593B1628EE7D0051A4DF /* KowalskiDemoManager.cpp */; };
+		C157598F1628EE7D0051A4DF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C157593D1628EE7D0051A4DF /* main.cpp */; };
+		C15759901628EE7D0051A4DF /* MeterBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C157593E1628EE7D0051A4DF /* MeterBar.cpp */; };
+		C15759911628EE7D0051A4DF /* MixPresetDemo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C15759401628EE7D0051A4DF /* MixPresetDemo.cpp */; };
+		C15759921628EE7D0051A4DF /* fileutil.mm in Sources */ = {isa = PBXBuildFile; fileRef = C15759431628EE7D0051A4DF /* fileutil.mm */; };
+		C15759931628EE7D0051A4DF /* SDLMain.m in Sources */ = {isa = PBXBuildFile; fileRef = C15759451628EE7D0051A4DF /* SDLMain.m */; };
+		C15759941628EE7D0051A4DF /* PianoDemo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C15759461628EE7D0051A4DF /* PianoDemo.cpp */; };
+		C15759951628EE7D0051A4DF /* PositionalAudioDemoBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C15759481628EE7D0051A4DF /* PositionalAudioDemoBase.cpp */; };
+		C15759961628EE7D0051A4DF /* SafeWaveBankUnloadingDemo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C157594A1628EE7D0051A4DF /* SafeWaveBankUnloadingDemo.cpp */; };
+		C15759971628EE7D0051A4DF /* SampleClockDemo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C157594C1628EE7D0051A4DF /* SampleClockDemo.cpp */; };
+		C15759981628EE7D0051A4DF /* SeamlessPitchDemo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C157594E1628EE7D0051A4DF /* SeamlessPitchDemo.cpp */; };
+		C15759991628EE7D0051A4DF /* SoundEmitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C15759501628EE7D0051A4DF /* SoundEmitter.cpp */; };
+		C157599C1628EEC20051A4DF /* kowalski_demo_osx-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C157599B1628EEC20051A4DF /* kowalski_demo_osx-Info.plist */; };
+		C157599D1628F0DA0051A4DF /* libkowalski.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C15758D01628EE6F0051A4DF /* libkowalski.dylib */; };
+		C15759A21628F1930051A4DF /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C15759A11628F1920051A4DF /* OpenGL.framework */; };
+		C15759A41628F19F0051A4DF /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C15759A31628F19F0051A4DF /* CoreAudio.framework */; };
+		C15759A61628F1A90051A4DF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C15759A51628F1A90051A4DF /* AudioToolbox.framework */; };
+		C15759A81628F1B50051A4DF /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C15759A71628F1B50051A4DF /* AudioUnit.framework */; };
+		C15759AA1628F1DE0051A4DF /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C15759A91628F1DE0051A4DF /* SDL.framework */; };
+		C1AD37CB1628ED4E00CE9A8B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1AD37CA1628ED4E00CE9A8B /* Cocoa.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C15758CF1628EE6F0051A4DF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C15758C41628EE6F0051A4DF /* kowalski.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC046055464E500DB518D;
+			remoteInfo = kowalski_portaudio;
+		};
+		C15758D11628EE6F0051A4DF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C15758C41628EE6F0051A4DF /* kowalski.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C1B3D57A135B8E880025DD08;
+			remoteInfo = kowalski_sdl;
+		};
+		C15758D31628EE6F0051A4DF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C15758C41628EE6F0051A4DF /* kowalski.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C1DD3C2B1370D12B00D10AA6;
+			remoteInfo = kowalski_ios;
+		};
+		C15758D51628EE6F0051A4DF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C15758C41628EE6F0051A4DF /* kowalski.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C1760F7B1620D6160044204B;
+			remoteInfo = kwltools;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C15758C41628EE6F0051A4DF /* kowalski.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = kowalski.xcodeproj; sourceTree = "<group>"; };
+		C157591E1628EE7D0051A4DF /* AudioMeteringDemo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioMeteringDemo.cpp; sourceTree = "<group>"; };
+		C157591F1628EE7D0051A4DF /* AudioMeteringDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioMeteringDemo.h; sourceTree = "<group>"; };
+		C15759201628EE7D0051A4DF /* AudioTaperDemo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioTaperDemo.cpp; sourceTree = "<group>"; };
+		C15759211628EE7D0051A4DF /* AudioTaperDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioTaperDemo.h; sourceTree = "<group>"; };
+		C15759221628EE7D0051A4DF /* BalanceAndPanDemo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BalanceAndPanDemo.cpp; sourceTree = "<group>"; };
+		C15759231628EE7D0051A4DF /* BalanceAndPanDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalanceAndPanDemo.h; sourceTree = "<group>"; };
+		C15759241628EE7D0051A4DF /* BitmapFont.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BitmapFont.cpp; sourceTree = "<group>"; };
+		C15759251628EE7D0051A4DF /* BitmapFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitmapFont.h; sourceTree = "<group>"; };
+		C15759261628EE7D0051A4DF /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
+		C15759271628EE7D0051A4DF /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
+		C15759281628EE7D0051A4DF /* ComplexSoundsDemo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ComplexSoundsDemo.cpp; sourceTree = "<group>"; };
+		C15759291628EE7D0051A4DF /* ComplexSoundsDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComplexSoundsDemo.h; sourceTree = "<group>"; };
+		C157592A1628EE7D0051A4DF /* ConeAttenuationDemo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConeAttenuationDemo.cpp; sourceTree = "<group>"; };
+		C157592B1628EE7D0051A4DF /* ConeAttenuationDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConeAttenuationDemo.h; sourceTree = "<group>"; };
+		C157592C1628EE7D0051A4DF /* DemoBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoBase.cpp; sourceTree = "<group>"; };
+		C157592D1628EE7D0051A4DF /* DemoBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoBase.h; sourceTree = "<group>"; };
+		C157592E1628EE7D0051A4DF /* DistanceAttenuationDemo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DistanceAttenuationDemo.cpp; sourceTree = "<group>"; };
+		C157592F1628EE7D0051A4DF /* DistanceAttenuationDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistanceAttenuationDemo.h; sourceTree = "<group>"; };
+		C15759301628EE7D0051A4DF /* DopplerShiftDemo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DopplerShiftDemo.cpp; sourceTree = "<group>"; };
+		C15759311628EE7D0051A4DF /* DopplerShiftDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DopplerShiftDemo.h; sourceTree = "<group>"; };
+		C15759321628EE7D0051A4DF /* DSPDemo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DSPDemo.cpp; sourceTree = "<group>"; };
+		C15759331628EE7D0051A4DF /* DSPDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSPDemo.h; sourceTree = "<group>"; };
+		C15759341628EE7D0051A4DF /* EmitterSwarmDemo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EmitterSwarmDemo.cpp; sourceTree = "<group>"; };
+		C15759351628EE7D0051A4DF /* EmitterSwarmDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmitterSwarmDemo.h; sourceTree = "<group>"; };
+		C15759361628EE7D0051A4DF /* fileutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fileutil.h; sourceTree = "<group>"; };
+		C15759371628EE7D0051A4DF /* FreeformEventsDemo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FreeformEventsDemo.cpp; sourceTree = "<group>"; };
+		C15759381628EE7D0051A4DF /* FreeformEventsDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeformEventsDemo.h; sourceTree = "<group>"; };
+		C15759391628EE7D0051A4DF /* InputDemo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InputDemo.cpp; sourceTree = "<group>"; };
+		C157593A1628EE7D0051A4DF /* InputDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputDemo.h; sourceTree = "<group>"; };
+		C157593B1628EE7D0051A4DF /* KowalskiDemoManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KowalskiDemoManager.cpp; sourceTree = "<group>"; };
+		C157593C1628EE7D0051A4DF /* KowalskiDemoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KowalskiDemoManager.h; sourceTree = "<group>"; };
+		C157593D1628EE7D0051A4DF /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		C157593E1628EE7D0051A4DF /* MeterBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MeterBar.cpp; sourceTree = "<group>"; };
+		C157593F1628EE7D0051A4DF /* MeterBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeterBar.h; sourceTree = "<group>"; };
+		C15759401628EE7D0051A4DF /* MixPresetDemo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MixPresetDemo.cpp; sourceTree = "<group>"; };
+		C15759411628EE7D0051A4DF /* MixPresetDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixPresetDemo.h; sourceTree = "<group>"; };
+		C15759431628EE7D0051A4DF /* fileutil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = fileutil.mm; sourceTree = "<group>"; };
+		C15759441628EE7D0051A4DF /* SDLMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLMain.h; sourceTree = "<group>"; };
+		C15759451628EE7D0051A4DF /* SDLMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLMain.m; sourceTree = "<group>"; };
+		C15759461628EE7D0051A4DF /* PianoDemo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PianoDemo.cpp; sourceTree = "<group>"; };
+		C15759471628EE7D0051A4DF /* PianoDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PianoDemo.h; sourceTree = "<group>"; };
+		C15759481628EE7D0051A4DF /* PositionalAudioDemoBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PositionalAudioDemoBase.cpp; sourceTree = "<group>"; };
+		C15759491628EE7D0051A4DF /* PositionalAudioDemoBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositionalAudioDemoBase.h; sourceTree = "<group>"; };
+		C157594A1628EE7D0051A4DF /* SafeWaveBankUnloadingDemo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SafeWaveBankUnloadingDemo.cpp; sourceTree = "<group>"; };
+		C157594B1628EE7D0051A4DF /* SafeWaveBankUnloadingDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafeWaveBankUnloadingDemo.h; sourceTree = "<group>"; };
+		C157594C1628EE7D0051A4DF /* SampleClockDemo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SampleClockDemo.cpp; sourceTree = "<group>"; };
+		C157594D1628EE7D0051A4DF /* SampleClockDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleClockDemo.h; sourceTree = "<group>"; };
+		C157594E1628EE7D0051A4DF /* SeamlessPitchDemo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SeamlessPitchDemo.cpp; sourceTree = "<group>"; };
+		C157594F1628EE7D0051A4DF /* SeamlessPitchDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeamlessPitchDemo.h; sourceTree = "<group>"; };
+		C15759501628EE7D0051A4DF /* SoundEmitter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundEmitter.cpp; sourceTree = "<group>"; };
+		C15759511628EE7D0051A4DF /* SoundEmitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundEmitter.h; sourceTree = "<group>"; };
+		C157599B1628EEC20051A4DF /* kowalski_demo_osx-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "kowalski_demo_osx-Info.plist"; path = "../../src/enginedemo/sdl/osx/kowalski_demo_osx-Info.plist"; sourceTree = "<group>"; };
+		C15759A11628F1920051A4DF /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/OpenGL.framework; sourceTree = DEVELOPER_DIR; };
+		C15759A31628F19F0051A4DF /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreAudio.framework; sourceTree = DEVELOPER_DIR; };
+		C15759A51628F1A90051A4DF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
+		C15759A71628F1B50051A4DF /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AudioUnit.framework; sourceTree = DEVELOPER_DIR; };
+		C15759A91628F1DE0051A4DF /* SDL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL.framework; path = ../../lib/SDL.framework; sourceTree = "<group>"; };
+		C1AD37C61628ED4E00CE9A8B /* kowalski_demo_osx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kowalski_demo_osx.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1AD37CA1628ED4E00CE9A8B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		C1AD37CD1628ED4E00CE9A8B /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		C1AD37CE1628ED4E00CE9A8B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		C1AD37CF1628ED4E00CE9A8B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C1AD37C31628ED4E00CE9A8B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C15759A81628F1B50051A4DF /* AudioUnit.framework in Frameworks */,
+				C15759A61628F1A90051A4DF /* AudioToolbox.framework in Frameworks */,
+				C15759A41628F19F0051A4DF /* CoreAudio.framework in Frameworks */,
+				C15759A21628F1930051A4DF /* OpenGL.framework in Frameworks */,
+				C157599D1628F0DA0051A4DF /* libkowalski.dylib in Frameworks */,
+				C1AD37CB1628ED4E00CE9A8B /* Cocoa.framework in Frameworks */,
+				C15759AA1628F1DE0051A4DF /* SDL.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C15758C51628EE6F0051A4DF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C15758D01628EE6F0051A4DF /* libkowalski.dylib */,
+				C15758D21628EE6F0051A4DF /* kowalski_sdl.dylib */,
+				C15758D41628EE6F0051A4DF /* libkowalski_ios.a */,
+				C15758D61628EE6F0051A4DF /* kwltools */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C15758D71628EE7D0051A4DF /* enginedemo */ = {
+			isa = PBXGroup;
+			children = (
+				C157591D1628EE7D0051A4DF /* sdl */,
+			);
+			name = enginedemo;
+			path = ../../src/enginedemo;
+			sourceTree = "<group>";
+		};
+		C157591D1628EE7D0051A4DF /* sdl */ = {
+			isa = PBXGroup;
+			children = (
+				C157591E1628EE7D0051A4DF /* AudioMeteringDemo.cpp */,
+				C157591F1628EE7D0051A4DF /* AudioMeteringDemo.h */,
+				C15759201628EE7D0051A4DF /* AudioTaperDemo.cpp */,
+				C15759211628EE7D0051A4DF /* AudioTaperDemo.h */,
+				C15759221628EE7D0051A4DF /* BalanceAndPanDemo.cpp */,
+				C15759231628EE7D0051A4DF /* BalanceAndPanDemo.h */,
+				C15759241628EE7D0051A4DF /* BitmapFont.cpp */,
+				C15759251628EE7D0051A4DF /* BitmapFont.h */,
+				C15759261628EE7D0051A4DF /* Camera.cpp */,
+				C15759271628EE7D0051A4DF /* Camera.h */,
+				C15759281628EE7D0051A4DF /* ComplexSoundsDemo.cpp */,
+				C15759291628EE7D0051A4DF /* ComplexSoundsDemo.h */,
+				C157592A1628EE7D0051A4DF /* ConeAttenuationDemo.cpp */,
+				C157592B1628EE7D0051A4DF /* ConeAttenuationDemo.h */,
+				C157592C1628EE7D0051A4DF /* DemoBase.cpp */,
+				C157592D1628EE7D0051A4DF /* DemoBase.h */,
+				C157592E1628EE7D0051A4DF /* DistanceAttenuationDemo.cpp */,
+				C157592F1628EE7D0051A4DF /* DistanceAttenuationDemo.h */,
+				C15759301628EE7D0051A4DF /* DopplerShiftDemo.cpp */,
+				C15759311628EE7D0051A4DF /* DopplerShiftDemo.h */,
+				C15759321628EE7D0051A4DF /* DSPDemo.cpp */,
+				C15759331628EE7D0051A4DF /* DSPDemo.h */,
+				C15759341628EE7D0051A4DF /* EmitterSwarmDemo.cpp */,
+				C15759351628EE7D0051A4DF /* EmitterSwarmDemo.h */,
+				C15759361628EE7D0051A4DF /* fileutil.h */,
+				C15759371628EE7D0051A4DF /* FreeformEventsDemo.cpp */,
+				C15759381628EE7D0051A4DF /* FreeformEventsDemo.h */,
+				C15759391628EE7D0051A4DF /* InputDemo.cpp */,
+				C157593A1628EE7D0051A4DF /* InputDemo.h */,
+				C157593B1628EE7D0051A4DF /* KowalskiDemoManager.cpp */,
+				C157593C1628EE7D0051A4DF /* KowalskiDemoManager.h */,
+				C157593D1628EE7D0051A4DF /* main.cpp */,
+				C157593E1628EE7D0051A4DF /* MeterBar.cpp */,
+				C157593F1628EE7D0051A4DF /* MeterBar.h */,
+				C15759401628EE7D0051A4DF /* MixPresetDemo.cpp */,
+				C15759411628EE7D0051A4DF /* MixPresetDemo.h */,
+				C15759421628EE7D0051A4DF /* osx */,
+				C15759461628EE7D0051A4DF /* PianoDemo.cpp */,
+				C15759471628EE7D0051A4DF /* PianoDemo.h */,
+				C15759481628EE7D0051A4DF /* PositionalAudioDemoBase.cpp */,
+				C15759491628EE7D0051A4DF /* PositionalAudioDemoBase.h */,
+				C157594A1628EE7D0051A4DF /* SafeWaveBankUnloadingDemo.cpp */,
+				C157594B1628EE7D0051A4DF /* SafeWaveBankUnloadingDemo.h */,
+				C157594C1628EE7D0051A4DF /* SampleClockDemo.cpp */,
+				C157594D1628EE7D0051A4DF /* SampleClockDemo.h */,
+				C157594E1628EE7D0051A4DF /* SeamlessPitchDemo.cpp */,
+				C157594F1628EE7D0051A4DF /* SeamlessPitchDemo.h */,
+				C15759501628EE7D0051A4DF /* SoundEmitter.cpp */,
+				C15759511628EE7D0051A4DF /* SoundEmitter.h */,
+			);
+			path = sdl;
+			sourceTree = "<group>";
+		};
+		C15759421628EE7D0051A4DF /* osx */ = {
+			isa = PBXGroup;
+			children = (
+				C15759431628EE7D0051A4DF /* fileutil.mm */,
+				C15759441628EE7D0051A4DF /* SDLMain.h */,
+				C15759451628EE7D0051A4DF /* SDLMain.m */,
+			);
+			path = osx;
+			sourceTree = "<group>";
+		};
+		C1AD37B91628945E00CE9A8B = {
+			isa = PBXGroup;
+			children = (
+				C15759A91628F1DE0051A4DF /* SDL.framework */,
+				C15759A71628F1B50051A4DF /* AudioUnit.framework */,
+				C15759A51628F1A90051A4DF /* AudioToolbox.framework */,
+				C15759A31628F19F0051A4DF /* CoreAudio.framework */,
+				C15759A11628F1920051A4DF /* OpenGL.framework */,
+				C15758C41628EE6F0051A4DF /* kowalski.xcodeproj */,
+				C157599B1628EEC20051A4DF /* kowalski_demo_osx-Info.plist */,
+				C1AD37C91628ED4E00CE9A8B /* Frameworks */,
+				C1AD37C71628ED4E00CE9A8B /* Products */,
+				C15758D71628EE7D0051A4DF /* enginedemo */,
+			);
+			sourceTree = "<group>";
+		};
+		C1AD37C71628ED4E00CE9A8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C1AD37C61628ED4E00CE9A8B /* kowalski_demo_osx.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C1AD37C91628ED4E00CE9A8B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C1AD37CA1628ED4E00CE9A8B /* Cocoa.framework */,
+				C1AD37CC1628ED4E00CE9A8B /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C1AD37CC1628ED4E00CE9A8B /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C1AD37CD1628ED4E00CE9A8B /* AppKit.framework */,
+				C1AD37CE1628ED4E00CE9A8B /* CoreData.framework */,
+				C1AD37CF1628ED4E00CE9A8B /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C1AD37C51628ED4E00CE9A8B /* kowalski_demo_osx */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C1AD37E21628ED4F00CE9A8B /* Build configuration list for PBXNativeTarget "kowalski_demo_osx" */;
+			buildPhases = (
+				C1AD37C21628ED4E00CE9A8B /* Sources */,
+				C1AD37C31628ED4E00CE9A8B /* Frameworks */,
+				C1AD37C41628ED4E00CE9A8B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = kowalski_demo_osx;
+			productName = kowalski_demo_osx;
+			productReference = C1AD37C61628ED4E00CE9A8B /* kowalski_demo_osx.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C1AD37BB1628945E00CE9A8B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+			};
+			buildConfigurationList = C1AD37BE1628945E00CE9A8B /* Build configuration list for PBXProject "kowalski_demo_osx" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C1AD37B91628945E00CE9A8B;
+			productRefGroup = C1AD37C71628ED4E00CE9A8B /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = C15758C51628EE6F0051A4DF /* Products */;
+					ProjectRef = C15758C41628EE6F0051A4DF /* kowalski.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				C1AD37C51628ED4E00CE9A8B /* kowalski_demo_osx */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		C15758D01628EE6F0051A4DF /* libkowalski.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libkowalski.dylib;
+			remoteRef = C15758CF1628EE6F0051A4DF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C15758D21628EE6F0051A4DF /* kowalski_sdl.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = kowalski_sdl.dylib;
+			remoteRef = C15758D11628EE6F0051A4DF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C15758D41628EE6F0051A4DF /* libkowalski_ios.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libkowalski_ios.a;
+			remoteRef = C15758D31628EE6F0051A4DF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C15758D61628EE6F0051A4DF /* kwltools */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = kwltools;
+			remoteRef = C15758D51628EE6F0051A4DF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C1AD37C41628ED4E00CE9A8B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C157599C1628EEC20051A4DF /* kowalski_demo_osx-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C1AD37C21628ED4E00CE9A8B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C15759801628EE7D0051A4DF /* AudioMeteringDemo.cpp in Sources */,
+				C15759811628EE7D0051A4DF /* AudioTaperDemo.cpp in Sources */,
+				C15759821628EE7D0051A4DF /* BalanceAndPanDemo.cpp in Sources */,
+				C15759831628EE7D0051A4DF /* BitmapFont.cpp in Sources */,
+				C15759841628EE7D0051A4DF /* Camera.cpp in Sources */,
+				C15759851628EE7D0051A4DF /* ComplexSoundsDemo.cpp in Sources */,
+				C15759861628EE7D0051A4DF /* ConeAttenuationDemo.cpp in Sources */,
+				C15759871628EE7D0051A4DF /* DemoBase.cpp in Sources */,
+				C15759881628EE7D0051A4DF /* DistanceAttenuationDemo.cpp in Sources */,
+				C15759891628EE7D0051A4DF /* DopplerShiftDemo.cpp in Sources */,
+				C157598A1628EE7D0051A4DF /* DSPDemo.cpp in Sources */,
+				C157598B1628EE7D0051A4DF /* EmitterSwarmDemo.cpp in Sources */,
+				C157598C1628EE7D0051A4DF /* FreeformEventsDemo.cpp in Sources */,
+				C157598D1628EE7D0051A4DF /* InputDemo.cpp in Sources */,
+				C157598E1628EE7D0051A4DF /* KowalskiDemoManager.cpp in Sources */,
+				C157598F1628EE7D0051A4DF /* main.cpp in Sources */,
+				C15759901628EE7D0051A4DF /* MeterBar.cpp in Sources */,
+				C15759911628EE7D0051A4DF /* MixPresetDemo.cpp in Sources */,
+				C15759921628EE7D0051A4DF /* fileutil.mm in Sources */,
+				C15759931628EE7D0051A4DF /* SDLMain.m in Sources */,
+				C15759941628EE7D0051A4DF /* PianoDemo.cpp in Sources */,
+				C15759951628EE7D0051A4DF /* PositionalAudioDemoBase.cpp in Sources */,
+				C15759961628EE7D0051A4DF /* SafeWaveBankUnloadingDemo.cpp in Sources */,
+				C15759971628EE7D0051A4DF /* SampleClockDemo.cpp in Sources */,
+				C15759981628EE7D0051A4DF /* SeamlessPitchDemo.cpp in Sources */,
+				C15759991628EE7D0051A4DF /* SoundEmitter.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		C1AD37C01628945E00CE9A8B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		C1AD37C11628945E00CE9A8B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		C1AD37E31628ED4F00CE9A8B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../lib\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "../../src/enginedemo/sdl/osx/kowalski_demo_osx-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../include/SDL,
+					../../src/engine,
+				);
+				INFOPLIST_FILE = "../../src/enginedemo/sdl/osx/kowalski_demo_osx-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../lib/SDL\"",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C1AD37E41628ED4F00CE9A8B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../lib\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "../../src/enginedemo/sdl/osx/kowalski_demo_osx-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../include/SDL,
+					../../src/engine,
+				);
+				INFOPLIST_FILE = "../../src/enginedemo/sdl/osx/kowalski_demo_osx-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../lib/SDL\"",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C1AD37BE1628945E00CE9A8B /* Build configuration list for PBXProject "kowalski_demo_osx" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1AD37C01628945E00CE9A8B /* Debug */,
+				C1AD37C11628945E00CE9A8B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C1AD37E21628ED4F00CE9A8B /* Build configuration list for PBXNativeTarget "kowalski_demo_osx" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1AD37E31628ED4F00CE9A8B /* Debug */,
+				C1AD37E41628ED4F00CE9A8B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C1AD37BB1628945E00CE9A8B /* Project object */;
+}

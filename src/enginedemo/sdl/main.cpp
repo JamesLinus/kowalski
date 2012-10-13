@@ -20,7 +20,7 @@ freely, subject to the following restrictions:
    3. This notice may not be removed or altered from any source
    distribution.
 */
-#include "SDL.h"
+#include <SDL/SDL.h>
 #include "KowalskiDemoManager.h"
 
 int SDL_main(int argc, char *argv[])

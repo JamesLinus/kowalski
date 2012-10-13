@@ -28,7 +28,7 @@ freely, subject to the following restrictions:
 #include "FreeformEventsDemo.h"
 #include "KowalskiDemoManager.h"
 #include <math.h>
-#include "SDL_opengl.h"
+#include <SDL/SDL_opengl.h>
 
 const char* const FreeformEventsDemo::m_fileNames[NUM_EVENTS] = 
 {

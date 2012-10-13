@@ -23,7 +23,7 @@ freely, subject to the following restrictions:
 
 #include "BitmapFont.h"
 #include "ConeAttenuationDemo.h"
-#include "SDL_opengl.h"
+#include <SDL/SDL_opengl.h>
 #include "fileutil.h"
 
 ConeAttenuationDemo::ConeAttenuationDemo() :

@@ -21,7 +21,7 @@ freely, subject to the following restrictions:
    distribution.
 */
 #include "DemoBase.h"
-#include "SDL_opengl.h"
+#include <SDL/SDL_opengl.h>
 
 DemoBase::DemoBase()
 {

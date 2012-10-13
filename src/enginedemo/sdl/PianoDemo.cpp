@@ -26,7 +26,7 @@ freely, subject to the following restrictions:
 #include "kowalski.h"
 #include "KowalskiDemoManager.h"
 #include "PianoDemo.h"
-#include "SDL_opengl.h"
+#include <SDL/SDL_opengl.h>
 
 PianoDemo::PianoDemo() :
     m_keyEventHandles(),

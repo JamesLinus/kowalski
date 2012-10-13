@@ -24,7 +24,7 @@ freely, subject to the following restrictions:
 #include "../../kwl_memory.h"
 #include "../../kwl_engine.h"
 #include "../../kwl_mixer.h"
-#include "SDL.h"
+#include <SDL/SDL.h>
 
 void kwlSDLAudioCallback(void *userData, Uint8 *stream, int numBytes)
 {   

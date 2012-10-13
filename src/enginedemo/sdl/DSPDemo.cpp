@@ -28,7 +28,7 @@ freely, subject to the following restrictions:
 #include "DSPDemo.h"
 #include "KowalskiDemoManager.h"
 
-#include "SDL_opengl.h"
+#include <SDL/SDL_opengl.h>
 
 void processBuffer(float* buffer, int numChannels, 
                    int numFrames, void* data)

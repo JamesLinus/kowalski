@@ -24,7 +24,7 @@ freely, subject to the following restrictions:
 #ifndef KOWALSKI_DEMO_BASE_H
 #define KOWALSKI_DEMO_BASE_H
 
-#include "SDL.h"
+#include <SDL/SDL.h>
 
 /** 
  * An abstract base class for demos managed by a KowalskiDemoManager instance. 

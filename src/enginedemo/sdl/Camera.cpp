@@ -24,7 +24,7 @@ freely, subject to the following restrictions:
 #include "Camera.h"
 #include "kowalski.h"
 #include "math.h"
-#include "SDL_opengl.h"
+#include "SDL/SDL_opengl.h"
 
 Camera::Camera() :
     m_rollAngle(0),

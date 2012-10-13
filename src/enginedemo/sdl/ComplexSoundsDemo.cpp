@@ -26,7 +26,7 @@ freely, subject to the following restrictions:
 #include "BitmapFont.h"
 #include "KowalskiDemoManager.h"
 #include "ComplexSoundsDemo.h"
-#include "SDL_opengl.h"
+#include <SDL/SDL_opengl.h>
 
 const char* ComplexSoundsDemo::m_eventIDs[COMPLEX_SOUNDS_DEMO_NUM_EVENTS] = 
 {

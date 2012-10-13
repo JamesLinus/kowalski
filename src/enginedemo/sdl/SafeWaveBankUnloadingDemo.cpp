@@ -26,7 +26,7 @@ freely, subject to the following restrictions:
 #include "BitmapFont.h"
 #include "KowalskiDemoManager.h"
 #include "SafeWaveBankUnloadingDemo.h"
-#include "SDL_opengl.h"
+#include <SDL/SDL_opengl.h>
 
 SafeWaveBankUnloadingDemo::SafeWaveBankUnloadingDemo()
 {

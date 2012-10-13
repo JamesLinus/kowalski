@@ -27,7 +27,7 @@ freely, subject to the following restrictions:
 #include "fileutil.h"
 #include "assert.h"
 #include "math.h"
-#include "SDL_opengl.h"
+#include <SDL/SDL_opengl.h>
 
 AudioTaperDemo::AudioTaperDemo() : 
     m_eventHandle(KWL_INVALID_HANDLE),

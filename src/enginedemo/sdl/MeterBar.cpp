@@ -1,6 +1,6 @@
 #include "assert.h"
 #include "MeterBar.h"
-#include "SDL_opengl.h"
+#include <SDL/SDL_opengl.h>
 
 MeterBar::MeterBar(float minValue, float maxValue, bool gradientFill) :
     m_doGradientFill(gradientFill),

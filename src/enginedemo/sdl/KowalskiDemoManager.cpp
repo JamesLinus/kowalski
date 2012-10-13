@@ -42,8 +42,8 @@ freely, subject to the following restrictions:
 #include "kowalski.h"
 #include "assert.h"
 #include "fileutil.h"
-#include "SDL.h"
-#include "SDL_opengl.h"
+#include <SDL/SDL.h>
+#include <SDL/SDL_opengl.h>
 
 #include "kwl_memory.h"
 

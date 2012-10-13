@@ -27,7 +27,7 @@ freely, subject to the following restrictions:
 #include "KowalskiDemoManager.h"
 #include "math.h"
 
-#include "SDL_opengl.h"
+#include <SDL/SDL_opengl.h>
 
 DopplerShiftDemo::DopplerShiftDemo() :
     //PositionalAudioDemoBase::PositionalAudioDemoBase(),

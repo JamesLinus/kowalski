@@ -28,7 +28,7 @@ freely, subject to the following restrictions:
 #include "math.h"
 #include "stdlib.h"
 
-#include "SDL_opengl.h"
+#include <SDL/SDL_opengl.h>
 
 SoundEmitter::SoundEmitter():
     m_position(),

@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    jaxb:version="1.0"
+    xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://www.w3.org/2001/XMLSchema.xsd"
+    
+    version="1.0"
+    xml:lang="en">
+    <!--
+    TODO:
+        range constants
+        forbid < and > in comment nodes.
+    -->
+
+    <xs:element name="KowalskiProject">
+        <xs:complexType>
+            <xs:annotation>
+                <xs:documentation>The root node of a Kowalski XML data document. </xs:documentation>
+            </xs:annotation>
+            <xs:all>
+                <xs:element name="WaveBankGroup" type="WaveBankGroup" minOccurs="1" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <jaxb:property name="waveBankRootGroup"/>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="SoundGroup" type="SoundGroup" minOccurs="1" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <jaxb:property name="SoundRootGroup"/>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="EventGroup" type="EventGroup" minOccurs="1" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <jaxb:property name="EventRootGroup"/>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="MixBus" type="MixBus" minOccurs="1" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <jaxb:property name="MasterMixBus"/>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="MixPresetGroup" type="MixPresetGroup" minOccurs="1" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <jaxb:property name="MixPresetRootGroup"/>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+            </xs:all>
+            <xs:attribute name="audioFileRootDirectory" use="optional" default="">
+                <xs:annotation>
+                    <xs:documentation>The directory to which audio file paths in the project are relative.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="audioFileRootDirectoryRelative" type="xs:boolean" use="optional" default="true">
+                <xs:annotation>
+                    <xs:documentation>Specifies if the audio file root directory is absolute or relative to the project
+                                    file location.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="latestWaveBankDataBuildDirectory" use="optional" />
+            <xs:attribute name="latestEngineDataBuildDirectory" use="optional" />
+            <xs:attribute name="speedOfSound" type="xs:float" use="optional" default="340"/>
+            <xs:attribute name="distanceAttenuationModel" type="DistanceAttenuationModel" use="optional" default="INVERSE_DISTANCE_CLAMPED"/>
+            <xs:attribute name="version" type="xs:string" use="required" fixed="1.0">
+                <xs:annotation>
+                    <xs:documentation>The data format version.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- An identifier string used for mix buses, events, sounds etc -->
+    <xs:simpleType name="identifierString">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[A-Za-z_0-9.\-#]*"/>
+            <xs:minLength value="1"/>
+            <xs:maxLength value="255"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- A reference string in the form of / separated identifierStrings -->
+    <xs:simpleType name="referenceString">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[A-Za-z_0-9./\-#]*"/>
+            <xs:minLength value="1"/>
+            <xs:maxLength value="4095"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Non-negative int -->
+    <xs:simpleType name="nonNegativeInt">
+        <xs:restriction base="xs:int">
+            <xs:minInclusive value="0"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- An integer describing a playback count value-->
+    <xs:simpleType name="playbackCountInt">
+        <xs:restriction base="xs:int">
+            <xs:minInclusive value="-1"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- A float describing a gain value -->
+    <xs:simpleType name="gainFloat">
+        <xs:restriction base="xs:float">
+            <xs:minInclusive value="0.0"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- A float describing a pitch value -->
+    <xs:simpleType name="pitchFloat">
+        <xs:restriction base="xs:float">
+            <xs:minInclusive value="0.0"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- A float describing a time value in seconds -->
+    <xs:simpleType name="coneAngleFloat">
+        <xs:restriction base="xs:float">
+            <xs:minInclusive value="0.0"/>
+            <xs:maxInclusive value="360.0"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- A float describing a time value in seconds -->
+    <xs:simpleType name="timeFloat">
+        <xs:restriction base="xs:float">
+            <xs:minInclusive value="0.0"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- A restricted string type used in Comments elements.-->
+    <xs:simpleType name="commentString">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="SoundPlaybackMode">
+        <xs:annotation>
+            <xs:documentation>An enumeration of valid Sound playback modes.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="RANDOM"/>
+            <xs:enumeration value="RANDOM_NO_REPEAT"/>
+            <xs:enumeration value="SEQUENTIAL"/>
+            <xs:enumeration value="SEQUENTIAL_NO_RESET"/>
+            <xs:enumeration value="IN_RANDOM_OUT"/>
+            <xs:enumeration value="IN_RANDOM_NO_REPEAT_OUT"/>
+            <xs:enumeration value="IN_SEQUENTIAL_OUT"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="EventRetriggerMode">
+        <xs:annotation>
+            <xs:documentation>An enumeration of valid Event retrigger modes.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="RETRIGGER"/>
+            <xs:enumeration value="NO_RETRIGGER"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="EventInstanceStealingMode">
+        <xs:annotation>
+            <xs:documentation>An enumeration of valid Event instance stealing modes.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="STEAL_QUIETEST"/>
+            <xs:enumeration value="STEAL_RANDOM"/>
+            <xs:enumeration value="DONT_STEAL"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <xs:simpleType name="DistanceAttenuationModel">
+        <xs:annotation>
+            <xs:documentation>An enumeration of distance attenuation models.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="INVERSE_DISTANCE_CLAMPED"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="NodeWithExpansionState">
+        <xs:annotation>
+            <xs:documentation>Base type for nodes that are viewed in a tree.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="expanded" type="xs:boolean" use="optional" default="true">
+            <xs:annotation>
+            <xs:documentation>The expansions state of the node in a tree visualizing project data, used to maintain the expansion
+            state of a GUI project tree. Note that this
+            value only affects the GUI presentation of project data.</xs:documentation>
+        </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="NodeWithIDAndComments">
+        <xs:annotation>
+            <xs:documentation>Base type for nodes with an ID attribute and a Comments element.</xs:documentation>
+        </xs:annotation>
+         <xs:complexContent>
+            <xs:extension base="NodeWithExpansionState">
+                <xs:sequence>
+                    <xs:element name="Comments" type="commentString" minOccurs="0" maxOccurs="1"/>
+                </xs:sequence>
+                <xs:attribute name="id" type="identifierString" use="required">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <jaxb:property name="ID"/>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+         </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="Event">
+        <xs:annotation>
+            <xs:documentation>An event, using a Sound or AudioData as its sound source.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="NodeWithIDAndComments">
+                <xs:choice maxOccurs="1" minOccurs="0">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <jaxb:property name="audioDataReferenceOrSoundReference"/>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:element ref="AudioDataReference"/>
+                    <xs:element ref="SoundReference"/>
+                </xs:choice>
+                
+                <xs:attribute name="positional" type="xs:boolean" use="optional" default="true"/>
+                <xs:attribute name="bus" type="identifierString" use="required"/>
+                <xs:attribute name="pitch" type="pitchFloat" default="1.0" use="optional"/>
+                <xs:attribute name="gain" type="gainFloat" default="1.0" use="optional"/>
+                <xs:attribute name="innerConeAngle" type="coneAngleFloat" default="0" use="optional"/>
+                <xs:attribute name="outerConeAngle" type="coneAngleFloat" default="360" use="optional"/>
+                <xs:attribute name="outerConeGain" type="gainFloat" default="1.0" use="optional"/>
+                <xs:attribute name="retriggerMode" type="EventRetriggerMode" default="RETRIGGER" use="optional"/>
+                <xs:attribute name="istanceStealingMode" type="EventInstanceStealingMode" default="STEAL_QUIETEST" use="optional"/>
+                <xs:attribute name="instanceCount" type="nonNegativeInt" default="1" use="optional"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="EventGroup">
+        <xs:complexContent>
+            <xs:annotation>
+                <xs:documentation></xs:documentation>
+            </xs:annotation>
+            <xs:extension base="NodeWithIDAndComments">
+                <xs:sequence>
+                     <xs:element name="EventGroup" type="EventGroup" minOccurs="0" maxOccurs="unbounded">
+                         <xs:annotation>
+                             <xs:appinfo>
+                                 <jaxb:property name="subGroups"/>
+                             </xs:appinfo>
+                         </xs:annotation>
+                     </xs:element>
+
+                     <xs:choice maxOccurs="unbounded" minOccurs="0">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <jaxb:property name="events"/>
+                            </xs:appinfo>
+                        </xs:annotation>
+                        <xs:element name="Event" type="Event"/>
+                    </xs:choice>
+
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="Sound">
+        <xs:complexContent>
+            <xs:annotation>
+                <xs:documentation>A sound source defined by a set of PCM audio files along with a set of playback behavior parameters.</xs:documentation>
+            </xs:annotation>
+            <xs:extension base="NodeWithIDAndComments">
+                <xs:sequence>
+                    <xs:element ref="AudioDataReference" minOccurs="0" maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <jaxb:property name="audioDataReferences"/>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+
+                <xs:attribute name="playbackCount" type="playbackCountInt" use="optional" default="1">
+                    <xs:annotation>
+                        <xs:documentation>The number of audio data items to play.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="deferStop" type="xs:boolean" use="optional" default="false">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Indicates if playback should stop immediately when the referencing event stops
+                            or if the stopping should be deferred until the end of the current audio
+                            data item is reached.
+                         </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="playbackMode" type="SoundPlaybackMode" use="optional" default="SEQUENTIAL">
+                    <xs:annotation>
+                        <xs:documentation>Describes how audio data items are selected for playback.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="gain" type="gainFloat" use="optional" default="1.0">
+                    <xs:annotation>
+                        <xs:documentation>The gain of the sound.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="gainVariationPercent" type="xs:float" use="optional" default="0.0">
+                    <xs:annotation>
+                        <xs:documentation>The amount of random gain variation.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="pitch" type="pitchFloat" use="optional" default="1.0">
+                    <xs:annotation>
+                        <xs:documentation>The pitch of the sound.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="pitchVariationPercent" type="xs:float" use="optional" default="0.0">
+                    <xs:annotation>
+                        <xs:documentation>The amount of random pitch variation.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="SoundGroup">
+        <xs:complexContent>
+            <xs:annotation>
+                <xs:documentation>A group of sound definitions, ie a branch node in a sound group hierarchy.</xs:documentation>
+            </xs:annotation>
+            <xs:extension base="NodeWithIDAndComments">
+            <xs:sequence>
+                 <xs:element name="SoundGroup" type="SoundGroup" minOccurs="0" maxOccurs="unbounded">
+                     <xs:annotation>
+                             <xs:appinfo>
+                                 <jaxb:property name="subGroups"/>
+                             </xs:appinfo>
+                         </xs:annotation>
+                 </xs:element>
+                 <xs:element name="Sound" type="Sound" minOccurs="0" maxOccurs="unbounded" >
+                     <xs:annotation>
+                             <xs:appinfo>
+                                 <jaxb:property name="sounds"/>
+                             </xs:appinfo>
+                         </xs:annotation>
+                 </xs:element>
+            </xs:sequence>
+
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MixBus">
+        <xs:complexContent>
+            <xs:annotation>
+                <xs:documentation>A node in a mix bus hierarchy. Note that this element is only used to define the structure of the hierarcy, mix bus parameters (e.g pitch and gain) are stored in mix presets.</xs:documentation>
+            </xs:annotation>
+            <xs:extension base="NodeWithIDAndComments">
+                <xs:sequence>
+                    <xs:element name="MixBus" type="MixBus" minOccurs="0" maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <jaxb:property name="subBuses"/>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MixPresetGroup">
+        <xs:complexContent>
+            <xs:annotation>
+                <xs:documentation>A group of mix presets, ie a branch node in a sound group hierarchy.</xs:documentation>
+            </xs:annotation>
+            <xs:extension base="NodeWithIDAndComments">
+            <xs:sequence>
+                 <xs:element name="MixPresetGroup" type="MixPresetGroup" minOccurs="0" maxOccurs="unbounded">
+                     <xs:annotation>
+                             <xs:appinfo>
+                                 <jaxb:property name="subGroups"/>
+                             </xs:appinfo>
+                         </xs:annotation>
+                 </xs:element>
+                 <xs:element name="MixPreset" type="MixPreset" minOccurs="0" maxOccurs="unbounded" >
+                     <xs:annotation>
+                             <xs:appinfo>
+                                 <jaxb:property name="mixPresets"/>
+                             </xs:appinfo>
+                         </xs:annotation>
+                 </xs:element>
+            </xs:sequence>
+
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MixPreset">
+        <xs:complexContent>
+            <xs:annotation>
+                <xs:documentation>A named collection of mix bus parameter sets defining the state of the mix bus hierarcy.</xs:documentation>
+            </xs:annotation>
+            <xs:extension base="NodeWithIDAndComments">
+                <xs:sequence>
+                     <xs:element ref="MixBusParameters" minOccurs="1" maxOccurs="unbounded">
+                         <xs:annotation>
+                            <xs:appinfo>
+                                <jaxb:property name="mixBusParameterList"/>
+                            </xs:appinfo>
+                         </xs:annotation>
+                     </xs:element>
+                </xs:sequence>
+                <xs:attribute name="default" type="xs:boolean" use="optional" default="false">
+                    <xs:annotation>
+                        <xs:documentation>Indicates if this mix preset is automatically set when initializing the Kowalski engine.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="MixBusParameters">
+        <xs:complexType>
+            <xs:annotation>
+                <xs:documentation>A set of mix bus parameters, one per mix bus in the project.</xs:documentation>
+            </xs:annotation>
+            <xs:attribute name="mixBus" type="identifierString" use="required"/>
+            <xs:attribute name="leftGain" type="gainFloat" use="required" />
+            <xs:attribute name="rightGain" type="gainFloat" use="required" />
+            <xs:attribute name="pitch" type="pitchFloat" use="required" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="WaveBankGroup">
+        <xs:complexContent>
+            <xs:annotation>
+                <xs:documentation></xs:documentation>
+            </xs:annotation>
+            <xs:extension base="NodeWithIDAndComments">
+            <xs:sequence>
+                 <xs:element name="WaveBankGroup" type="WaveBankGroup" minOccurs="0" maxOccurs="unbounded">
+                     <xs:annotation>
+                             <xs:appinfo>
+                                 <jaxb:property name="subGroups"/>
+                             </xs:appinfo>
+                         </xs:annotation>
+                 </xs:element>
+                 <xs:element name="WaveBank" type="WaveBank" minOccurs="0" maxOccurs="unbounded" >
+                     <xs:annotation>
+                             <xs:appinfo>
+                                 <jaxb:property name="waveBanks"/>
+                             </xs:appinfo>
+                         </xs:annotation>
+                 </xs:element>
+            </xs:sequence>
+
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="WaveBank">
+        <xs:complexContent>
+            <xs:annotation>
+                <xs:documentation>A named collection of audio data items corresponding to audio files.</xs:documentation>
+            </xs:annotation>
+            <xs:extension base="NodeWithIDAndComments">
+                <xs:sequence>
+                     <xs:element ref="AudioData" minOccurs="0" maxOccurs="unbounded">
+                         <xs:annotation>
+                             <xs:appinfo>
+                                 <jaxb:property name="audioDataList"/>
+                             </xs:appinfo>
+                         </xs:annotation>
+                     </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="AudioData">
+        <xs:complexType>
+            <xs:annotation>
+                <xs:documentation>A reference to a file containing audio data. The location is given as path relative to the audio file root directory of the project.</xs:documentation>
+            </xs:annotation>
+            <xs:attribute name="relativePath" type="xs:string" use="required"/>
+            <xs:attribute name="streamFromDisk" type="xs:boolean" use="optional" default="false"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="AudioDataReference">
+        <xs:complexType>
+            <xs:annotation>
+                <xs:documentation>A reference to an AudioData element located in a given wave bank.</xs:documentation>
+            </xs:annotation>
+            <xs:attribute name="waveBank" type="referenceString" use="required">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:property name="waveBank"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="relativePath" type="referenceString" use="required"/>
+            <xs:attribute name="probabilityWeight" type="xs:float" use="optional" default="1.0">
+                <xs:annotation>
+                    <xs:documentation>Only used when the audio data reference is the child of a Sound.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="loop" type="xs:boolean" use="optional" default="false">
+                <xs:annotation>
+                    <xs:documentation>Only used when the audio data reference is the child of an Event.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="SoundReference">
+        <xs:complexType>
+            <xs:annotation>
+                <xs:documentation>A reference to a Sound located in the project SoundGroup hierarcy. The reference is of the form soundgroupID/..../soundID.</xs:documentation>
+            </xs:annotation>
+            <xs:attribute name="sound" type="referenceString" use="required">
+                <xs:annotation>
+                        <xs:appinfo>
+                            <jaxb:property name="referenceString"/>
+                        </xs:appinfo>
+                    </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

@@ -85,7 +85,7 @@ void kwlEngineData_unload(kwlEngineData* data)
 
 kwlError kwlEngineData_loadMixBusData(kwlEngineData* data, kwlInputStream* stream)
 {
-    kwlEngineData_seekToEngineDataChunk(stream, KWL_MIX_BUSES_CHUNK_ID);
+    kwlInputStream_seekToEngineDataChunk(stream, KWL_MIX_BUSES_CHUNK_ID);
     KWL_ASSERT(data->mixBuses == NULL);
     
     /*allocate memory for the mix bus data*/
@@ -165,7 +165,7 @@ void kwlEngineData_freeMixBusData(kwlEngineData* data)
 
 kwlError kwlEngineData_loadMixPresetData(kwlEngineData* data, kwlInputStream* stream)
 {
-    kwlEngineData_seekToEngineDataChunk(stream, KWL_MIX_PRESETS_CHUNK_ID);
+    kwlInputStream_seekToEngineDataChunk(stream, KWL_MIX_PRESETS_CHUNK_ID);
     KWL_ASSERT(data->mixBuses != 0); /*needed for mix bus lookup per param set*/
     
     /*allocate memory for the mix preset data*/
@@ -241,7 +241,7 @@ void kwlEngineData_freeMixPresetData(kwlEngineData* data)
 
 kwlError kwlEngineData_loadWaveBankData(kwlEngineData* data, kwlInputStream* stream)
 {
-    kwlEngineData_seekToEngineDataChunk(stream, KWL_WAVE_BANKS_CHUNK_ID);
+    kwlInputStream_seekToEngineDataChunk(stream, KWL_WAVE_BANKS_CHUNK_ID);
     
     /*deserialize wave bank structures*/
     const int totalnumAudioDataEntries = kwlInputStream_readIntBE(stream);
@@ -308,7 +308,7 @@ void kwlEngineData_freeWaveBankData(kwlEngineData* data)
 
 kwlError kwlEngineData_loadSoundData(kwlEngineData* data, kwlInputStream* stream)
 {
-    kwlEngineData_seekToEngineDataChunk(stream, KWL_SOUNDS_CHUNK_ID);
+    kwlInputStream_seekToEngineDataChunk(stream, KWL_SOUNDS_CHUNK_ID);
     
     /*allocate memory for sound definitions*/
     const int numSoundDefinitions = kwlInputStream_readIntBE(stream);
@@ -374,7 +374,7 @@ void kwlEngineData_freeSoundData(kwlEngineData* data)
 
 kwlError kwlEngineData_loadEventData(kwlEngineData* data, kwlInputStream* stream)
 {
-    kwlEngineData_seekToEngineDataChunk(stream, KWL_EVENTS_CHUNK_ID);
+    kwlInputStream_seekToEngineDataChunk(stream, KWL_EVENTS_CHUNK_ID);
     KWL_ASSERT(data->sounds != NULL);
     KWL_ASSERT(data->events == NULL);
     KWL_ASSERT(data->eventDefinitions == NULL);
@@ -508,28 +508,4 @@ void kwlEngineData_freeEventData(kwlEngineData* data)
     KWL_FREE(data->eventDefinitions);
     data->eventDefinitions = NULL;
     data->numEventDefinitions = 0;
-}
-
-void kwlEngineData_seekToEngineDataChunk(kwlInputStream* stream, int chunkId)
-{
-    /*move to the start of the stream*/
-    kwlInputStream_reset(stream);
-    /*move to first chunk*/
-    kwlInputStream_skip(stream, KWL_ENGINE_DATA_BINARY_FILE_IDENTIFIER_LENGTH);
-    
-    while (!kwlInputStream_isAtEndOfStream(stream))
-    {
-        const int currentChunkId = kwlInputStream_readIntBE(stream);
-        const int chunkSize = kwlInputStream_readIntBE(stream);
-        if (currentChunkId == chunkId)
-        {
-            return;
-        }
-        else
-        {
-            kwlInputStream_skip(stream, chunkSize);
-        }
-    }
-    
-    KWL_ASSERT(0 && "no matching chunk id found");
 }

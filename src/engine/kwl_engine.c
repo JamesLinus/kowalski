@@ -1346,12 +1346,12 @@ kwlError kwlEngine_eventStart(kwlEngine* engine, const int handle, float fadeInT
     
 }
 
-kwlError kwlEngine_eventStartOneShot(kwlEngine* engine, 
-                                          kwlEventDefinitionHandle handle, 
-                                          float x, float y, float z, 
-                                          int startAtPosition,
-                                          kwlEventStoppedCallack stoppedCallback,
-                                          void* stoppedCallbackUserData)
+kwlError kwlEngine_eventStartOneShot(kwlEngine* engine,
+                                     kwlEventDefinitionHandle handle,
+                                     float x, float y, float z,
+                                     int startAtPosition,
+                                     kwlEventStoppedCallack stoppedCallback,
+                                     void* stoppedCallbackUserData)
 {
     /* Check handle*/
     if (handle == KWL_INVALID_HANDLE ||

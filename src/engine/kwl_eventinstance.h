@@ -67,19 +67,13 @@ typedef struct kwlEventInstance
 {
     
     //engine->mixer
+    //TODO: kwlEventParameters
     /** The effective left gain value. */
     kwlSharedFloat gainLeft;
     /** The effective right gain value. */
     kwlSharedFloat gainRight;
     /** The effective pitch value. */
     kwlSharedFloat pitch;
-
-    
-    
-    
-    
-    
-    //mixer->engine
     /** The DSP unit that the output of this event is fed through. Ignored if NULL.*/
     kwlSharedVoidPointer dspUnit;
 

@@ -37,6 +37,13 @@ void* kwlMemset(void* location, int value, size_t size)
     return memset(location, value, size);
 }
 
+void* kwlMallocAndZero(size_t size)
+{
+    void* ptr = kwlMalloc(size);
+    kwlMemset(ptr, 0, size);
+    return ptr;
+}
+
 void* kwlMalloc(size_t size)
 {
     return malloc(size);
@@ -50,6 +57,14 @@ void kwlFree(void* pointer)
 #ifdef KWL_DEBUG_MEMORY
 int liveBytes = 0;
 int totalBytes = 0;
+
+void* kwlDebugMallocAndZero(size_t size, const char* const tag)
+{
+    void* ptr = kwlDebugMalloc(size, tag);
+    kwlMemset(ptr, 0, size);
+    return ptr;
+}
+
 void* kwlDebugMalloc(size_t size, const char* const tag)
 {
     KWL_ASSERT(size > 0 && "zero size allocation detected");
@@ -122,12 +137,12 @@ void kwlDebugFree(void* pointer)
     free(pointer);
 }
 
-int kwlDebugGetLiveBytes()
+int kwlDebugGetLiveBytes(void)
 {
     return liveBytes;
 }
 
-int kwlDebugGetTotalBytes()
+int kwlDebugGetTotalBytes(void)
 {
     return totalBytes;
 }

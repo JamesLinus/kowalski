@@ -37,6 +37,7 @@ extern "C"
 void* kwlMemcpy(void* to, const void* from, size_t size);
 /** */
 void* kwlMemset(void* location, int value, size_t size);
+void* kwlMallocAndZero(size_t size);
 void* kwlMalloc(size_t size);
 void kwlFree(void* pointer);
 
@@ -51,6 +52,7 @@ void kwlFree(void* pointer);
  * The tag parameter is a const* char const string identifying the allocation.
  */
 #define KWL_MALLOC(size, tag) kwlMalloc(size)
+#define KWL_MALLOCANDZERO(size, tag) kwlMallocAndZero(size)
 /**
  * This macro should be used for all memory deletions in the Kowalski Engine.
  * If the symbol KWL_DEBUG_MEMORY is not defined, KWL_FREE reduces to a call
@@ -62,6 +64,7 @@ void kwlFree(void* pointer);
 #else
 
 #define KWL_MALLOC(size, tag) kwlDebugMalloc(size, tag)
+#define KWL_MALLOCANDZERO(size, tag) kwlDebugMallocAndZero(size, tag)
 #define KWL_FREE(ptr) kwlDebugFree(ptr)
 /** The size of the debug allocation tracking table.*/
 #define KWL_DEBUG_ALLOCATION_TABLE_SIZE 1000
@@ -78,13 +81,15 @@ int kwlDebugAllocationSizes[KWL_DEBUG_ALLOCATION_TABLE_SIZE];
 char kwlDebugAllocationTags[KWL_DEBUG_ALLOCATION_TABLE_SIZE][KWL_DEBUG_ALLOCATION_TAG_SIZE];
     
 /** Prints all recorded allocations that have not been deleted.*/    
-void kwlDebugPrintAllocationReport();
+void kwlDebugPrintAllocationReport(void);
     
 /** Returns the number of currently allocated bytes.*/    
-int kwlDebugGetLiveBytes();
+int kwlDebugGetLiveBytes(void);
     
 /** Returns the total number of bytes allocated in this run, including freed blocks.*/    
-int kwlDebugGetTotalBytes();
+int kwlDebugGetTotalBytes(void);
+
+void* kwlDebugMallocAndZero(size_t size, const char* const tag);
     
 /** Allocates a block of memory and records the allocation. */
 void* kwlDebugMalloc(size_t size, const char* const tag);

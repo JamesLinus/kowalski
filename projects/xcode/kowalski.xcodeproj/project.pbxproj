@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C11CEBE9162F176600B5B075 /* kwl_memory.c in Sources */ = {isa = PBXBuildFile; fileRef = C195518511C8FD8F00FE59BA /* kwl_memory.c */; };
 		C123314612445213001796D2 /* asm_arm.h in Headers */ = {isa = PBXBuildFile; fileRef = C1B77F351212AF80008DFEB2 /* asm_arm.h */; };
 		C123314712445213001796D2 /* bitwise.c in Sources */ = {isa = PBXBuildFile; fileRef = C1B77F361212AF80008DFEB2 /* bitwise.c */; };
 		C123314812445213001796D2 /* backends.h in Headers */ = {isa = PBXBuildFile; fileRef = C1B77F371212AF80008DFEB2 /* backends.h */; };
@@ -45,11 +46,16 @@
 		C136324213851FA9002CD5C2 /* kwl_dspunit.h in Headers */ = {isa = PBXBuildFile; fileRef = C136324013851FA9002CD5C2 /* kwl_dspunit.h */; };
 		C166D353146072F700FB60DD /* kwl_wavebank.c in Sources */ = {isa = PBXBuildFile; fileRef = C166D352146072F700FB60DD /* kwl_wavebank.c */; };
 		C166D355146072F700FB60DD /* kwl_wavebank.c in Sources */ = {isa = PBXBuildFile; fileRef = C166D352146072F700FB60DD /* kwl_wavebank.c */; };
+		C166E383162F23870068C846 /* libkowalski.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC046055464E500DB518D /* libkowalski.dylib */; };
+		C166E386162F248C0068C846 /* kwl_binaryviewing.c in Sources */ = {isa = PBXBuildFile; fileRef = C166E384162F248C0068C846 /* kwl_binaryviewing.c */; };
+		C166E389162F26F80068C846 /* kwl_binarybuilding.c in Sources */ = {isa = PBXBuildFile; fileRef = C166E387162F26F80068C846 /* kwl_binarybuilding.c */; };
+		C166E38C162F28940068C846 /* kwl_toolsutil.c in Sources */ = {isa = PBXBuildFile; fileRef = C166E38B162F28940068C846 /* kwl_toolsutil.c */; };
+		C166E38F162F41E00068C846 /* kwl_projectdatabinary.c in Sources */ = {isa = PBXBuildFile; fileRef = C166E38D162F41E00068C846 /* kwl_projectdatabinary.c */; };
 		C1702E5B1461645B00ADE4F7 /* kwl_enginedata.h in Headers */ = {isa = PBXBuildFile; fileRef = C1702E571461645B00ADE4F7 /* kwl_enginedata.h */; };
 		C1702E5C1461645B00ADE4F7 /* kwl_enginedata.c in Sources */ = {isa = PBXBuildFile; fileRef = C1702E581461645B00ADE4F7 /* kwl_enginedata.c */; };
 		C1702E5D1461645B00ADE4F7 /* kwl_enginedata.h in Headers */ = {isa = PBXBuildFile; fileRef = C1702E571461645B00ADE4F7 /* kwl_enginedata.h */; };
 		C1702E5E1461645B00ADE4F7 /* kwl_enginedata.c in Sources */ = {isa = PBXBuildFile; fileRef = C1702E581461645B00ADE4F7 /* kwl_enginedata.c */; };
-		C1760F871620D6BD0044204B /* kwl_datavalidation.c in Sources */ = {isa = PBXBuildFile; fileRef = C1760F861620D6BD0044204B /* kwl_datavalidation.c */; };
+		C1760F871620D6BD0044204B /* kwl_xmlvalidation.c in Sources */ = {isa = PBXBuildFile; fileRef = C1760F861620D6BD0044204B /* kwl_xmlvalidation.c */; };
 		C1760F8D1620DD5B0044204B /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C1760F8C1620DD5B0044204B /* libxml2.dylib */; };
 		C186B33511C3F225003D0013 /* libportaudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1655C5D1171B9AE004021DB /* libportaudio.a */; };
 		C192DBB21274391100852CBC /* kwl_audiodata.c in Sources */ = {isa = PBXBuildFile; fileRef = C192DBB01274391100852CBC /* kwl_audiodata.c */; };
@@ -260,6 +266,16 @@
 		C1EDB6C313B742B900CA174A /* kwl_engine_iphone.h in Headers */ = {isa = PBXBuildFile; fileRef = C1EDB6C213B742B900CA174A /* kwl_engine_iphone.h */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		C166E380162F235F0068C846 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC045055464E500DB518D;
+			remoteInfo = kowalski_portaudio;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		C1760F791620D6160044204B /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -325,14 +341,22 @@
 		C1655B891171B705004021DB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		C1655C5D1171B9AE004021DB /* libportaudio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libportaudio.a; path = ../../lib/portaudio/osx/libportaudio.a; sourceTree = SOURCE_ROOT; };
 		C166D352146072F700FB60DD /* kwl_wavebank.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_wavebank.c; sourceTree = "<group>"; };
+		C166E384162F248C0068C846 /* kwl_binaryviewing.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_binaryviewing.c; sourceTree = "<group>"; };
+		C166E385162F248C0068C846 /* kwl_binaryviewing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_binaryviewing.h; sourceTree = "<group>"; };
+		C166E387162F26F80068C846 /* kwl_binarybuilding.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_binarybuilding.c; sourceTree = "<group>"; };
+		C166E388162F26F80068C846 /* kwl_binarybuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_binarybuilding.h; sourceTree = "<group>"; };
+		C166E38A162F27C70068C846 /* kwl_toolsutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_toolsutil.h; sourceTree = "<group>"; };
+		C166E38B162F28940068C846 /* kwl_toolsutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_toolsutil.c; sourceTree = "<group>"; };
+		C166E38D162F41E00068C846 /* kwl_projectdatabinary.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_projectdatabinary.c; sourceTree = "<group>"; };
+		C166E38E162F41E00068C846 /* kwl_projectdatabinary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_projectdatabinary.h; sourceTree = "<group>"; };
 		C16747CF11A9595D000A2D70 /* kwl_synchronization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_synchronization.h; sourceTree = "<group>"; };
 		C16747D011A9595D000A2D70 /* kwl_synchronization_pthread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_synchronization_pthread.c; sourceTree = "<group>"; };
 		C167E65C12EF1015002268B1 /* SDL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = SDL.framework; path = ../../lib/SDL.framework; sourceTree = SOURCE_ROOT; };
 		C1702E571461645B00ADE4F7 /* kwl_enginedata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_enginedata.h; sourceTree = "<group>"; };
 		C1702E581461645B00ADE4F7 /* kwl_enginedata.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_enginedata.c; sourceTree = "<group>"; };
-		C1760F68161E399E0044204B /* kwl_datavalidation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = kwl_datavalidation.h; sourceTree = "<group>"; };
+		C1760F68161E399E0044204B /* kwl_xmlvalidation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = kwl_xmlvalidation.h; sourceTree = "<group>"; };
 		C1760F7B1620D6160044204B /* kwltools */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = kwltools; sourceTree = BUILT_PRODUCTS_DIR; };
-		C1760F861620D6BD0044204B /* kwl_datavalidation.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_datavalidation.c; sourceTree = "<group>"; };
+		C1760F861620D6BD0044204B /* kwl_xmlvalidation.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_xmlvalidation.c; sourceTree = "<group>"; };
 		C1760F8C1620DD5B0044204B /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/usr/lib/libxml2.dylib; sourceTree = DEVELOPER_DIR; };
 		C1820E2F12E9621B00E1BD7A /* kwl_positionalaudiosettings.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_positionalaudiosettings.c; sourceTree = "<group>"; };
 		C192DBB01274391100852CBC /* kwl_audiodata.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_audiodata.c; sourceTree = "<group>"; };
@@ -397,6 +421,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C166E383162F23870068C846 /* libkowalski.dylib in Frameworks */,
 				C1760F8D1620DD5B0044204B /* libxml2.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -566,8 +591,16 @@
 			children = (
 				C1AD37B61628935400CE9A8B /* kwltools.1 */,
 				C1AD37B71628935400CE9A8B /* main.c */,
-				C1760F68161E399E0044204B /* kwl_datavalidation.h */,
-				C1760F861620D6BD0044204B /* kwl_datavalidation.c */,
+				C166E387162F26F80068C846 /* kwl_binarybuilding.c */,
+				C166E388162F26F80068C846 /* kwl_binarybuilding.h */,
+				C166E384162F248C0068C846 /* kwl_binaryviewing.c */,
+				C166E385162F248C0068C846 /* kwl_binaryviewing.h */,
+				C166E38D162F41E00068C846 /* kwl_projectdatabinary.c */,
+				C166E38E162F41E00068C846 /* kwl_projectdatabinary.h */,
+				C166E38B162F28940068C846 /* kwl_toolsutil.c */,
+				C166E38A162F27C70068C846 /* kwl_toolsutil.h */,
+				C1760F68161E399E0044204B /* kwl_xmlvalidation.h */,
+				C1760F861620D6BD0044204B /* kwl_xmlvalidation.c */,
 			);
 			name = tools;
 			path = ../../src/tools;
@@ -786,6 +819,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				C166E381162F235F0068C846 /* PBXTargetDependency */,
 			);
 			name = kwltools;
 			productName = kwltools;
@@ -849,8 +883,11 @@
 /* Begin PBXProject section */
 		08FB7793FE84155DC02AAC07 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+			};
 			buildConfigurationList = 1DEB91EF08733DB70010E9CD /* Build configuration list for PBXProject "kowalski" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -876,8 +913,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1760F871620D6BD0044204B /* kwl_datavalidation.c in Sources */,
+				C1760F871620D6BD0044204B /* kwl_xmlvalidation.c in Sources */,
 				C1AD37B81628935400CE9A8B /* main.c in Sources */,
+				C11CEBE9162F176600B5B075 /* kwl_memory.c in Sources */,
+				C166E386162F248C0068C846 /* kwl_binaryviewing.c in Sources */,
+				C166E389162F26F80068C846 /* kwl_binarybuilding.c in Sources */,
+				C166E38C162F28940068C846 /* kwl_toolsutil.c in Sources */,
+				C166E38F162F41E00068C846 /* kwl_projectdatabinary.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1016,6 +1058,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		C166E381162F235F0068C846 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D2AAC045055464E500DB518D /* kowalski_portaudio */;
+			targetProxy = C166E380162F235F0068C846 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
 		1DEB91EC08733DB70010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1023,12 +1073,12 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APPLY_RULES_IN_COPY_FILES = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				EXECUTABLE_EXTENSION = dylib;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = "";
@@ -1060,6 +1110,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APPLY_RULES_IN_COPY_FILES = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				EXECUTABLE_EXTENSION = dylib;
 				FRAMEWORK_SEARCH_PATHS = "";
@@ -1130,8 +1181,7 @@
 				HEADER_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-falign-loops=16";
-				PREBINDING = NO;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -1175,8 +1225,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = NO;
-				PREBINDING = NO;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
@@ -1230,11 +1279,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INSTALL_PATH = /usr/local/lib;
@@ -1244,7 +1293,6 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = kowalski_sdl;
 			};
 			name = Debug;
@@ -1253,11 +1301,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = /usr/local/lib;
 				OTHER_LDFLAGS = (
@@ -1266,7 +1314,6 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = kowalski_sdl;
 				ZERO_LINK = NO;
 			};
@@ -1283,7 +1330,6 @@
 				GCC_PREPROCESSOR_DEFINITIONS = KWL_IPHONE;
 				GCC_THUMB_SUPPORT = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
-				PREBINDING = NO;
 				PRODUCT_NAME = kowalski_ios;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1297,11 +1343,9 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = KWL_IPHONE;
 				GCC_THUMB_SUPPORT = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
-				PREBINDING = NO;
 				PRODUCT_NAME = kowalski_ios;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;

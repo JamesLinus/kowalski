@@ -21,19 +21,20 @@ freely, subject to the following restrictions:
    distribution.
 */
 
-#ifndef KWL_DATA_VALIDATION_H
-#define KWL_DATA_VALIDATION_H
+#include <stdio.h>
+#include <stdarg.h>
 
-#ifdef __cplusplus
-extern "C"
+#include "kwl_toolsutil.h"
+
+void kwlDefaultLogCallback(const char* format, ...)
 {
-#endif /* __cplusplus */
-
-void kwlValidateProjectData(const char* xmlPath);
-    
-#ifdef __cplusplus
+    va_list args;
+    va_start(args, format);
+    vprintf(format, args);
+    va_end(args);
 }
-#endif /* __cplusplus */
 
-
-#endif /*KWL_DATA_VALIDATION_H*/
+void kwlSilentLogCallback(const char* format, ...)
+{
+    //silent
+}

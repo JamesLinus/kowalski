@@ -55,6 +55,7 @@ extern "C"
         
         
         //engine -> mixer
+        //TODO kwlMixerParameters
         /** Non-zero if the mixer is paused, zero otherwise*/
         kwlSharedChar isPaused;
         /** Non-zero if level metering is enabled, zero otherwise.*/
@@ -68,6 +69,7 @@ extern "C"
         
         
         //mixer <- engine
+        //TODO kwlMixerState
         /** The number of frames mixed since the mixer was initialized. */
         kwlSharedLongLong numFramesMixed;
         /** */

@@ -25,47 +25,7 @@ freely, subject to the following restrictions:
 
 #include <libxml/parser.h>
 #include <libxml/tree.h>
+#include <libxml/xmlschemas.h>
 
-#include "kwl_datavalidation.h"
 
-/**
- * example1Func:
- * @filename: a filename or an URL
- *
- * Parse the resource and free the resulting tree
- */
-static void example1Func(const char *filename)
-{
-    xmlDocPtr doc; /* the resulting document tree */
-    
-    doc = xmlReadFile(filename, NULL, 0);
-    if (doc == NULL)
-    {
-        
-        fprintf(stderr, "Failed to parse %s\n", filename);
-        return;
-    }
-    xmlFreeDoc(doc);
-}
 
-void kwlValidateProjectData(const char* xmlPath)
-{
-    /*
-     * this initialize the library and check potential ABI mismatches
-     * between the version it was compiled for and the actual shared
-     * library used.
-     */
-    LIBXML_TEST_VERSION
-    
-    example1Func(xmlPath);
-    
-    /*
-     * Cleanup function for the XML library.
-     */
-    xmlCleanupParser();
-    /*
-     * this is to debug memory for regression tests
-     */
-    xmlMemoryDump();
-    
-}

@@ -145,8 +145,6 @@ kwlError kwlEngineData_loadEventData(kwlEngineData* data, kwlInputStream* stream
 /** */
 void kwlEngineData_freeEventData(kwlEngineData* data);
 
-/** */
-void kwlEngineData_seekToEngineDataChunk(kwlInputStream* stream, int chunkId);
 
 #ifdef __cplusplus
 }

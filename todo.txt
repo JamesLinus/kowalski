@@ -1,26 +1,58 @@
 engine:
-- mmap if supported, per audio data item
+
+unload wb:
+e		m
+----------------------------
+[unload req]->  stop events
+unload	    <-	[unload wb]
+
+unload ed:
+e		m
+----------------------------
+[unload req]->  stop events
+unload	    <-	[unload wb]
+
+release freeform event:
+e		m
+----------------------------
+[unload req]->  stop event
+release	    <-	[release]
+
+- degToRad
+- mmap if supported, per audio data item?
+- use message queue mechanism to attach/remove dsp units?
+- kwlDSPUnitIsAttached
 - dsp node graphs
-- skip _ext? (check how to exclude swig functions)
+- remove blocking unloading from API
 - skip crossfade weighting
 - unify lots of kwlSharedXXX into state structs
 - refactor pitch shifting
+- retriggerMode not used atm
 - better freeform event API
-- move kowalski cpp demo to its own Xcode project
 - threaded wavebank loading (w progress)
 - mixed message param types as union?
-- disconnect dap units properly (poll to see if still connected)
+- disconnect dsp units properly (poll to see if still connected)
+- kwlInitialize() arguments, (buffer size etc)
+- move event linked list manipulation to kwl_event.c
+- kwlSound -> kwlSoundDefinition
+
 
 tools
-- xpath cross referencing between nodes
-- define structure as DTD?
-- binary visualizer CLI
+- binary visualizer CLI w hooks for other binary viewing tools
 - libsndfile? no (lgpl)?
 - xml -> bin C api
 - xml validation C api (skip schema?)
 - take audio file dir out of xml?
 - use xmlHashTable etc?
 - kwlFileOutputStream
+- remove expanded attribute from groups
+- shorten attribute names
+- remove NodeWithExpansionState
+- don't store mix bus index per parameter set but rely on same order as mix buses
+- bin rep struct hierarchy:
+    view: file -> bin rep
+    validate: file -> bin rep
+    serialize: xml -> bin rep -> file
 
 bindings:
 - skip for now

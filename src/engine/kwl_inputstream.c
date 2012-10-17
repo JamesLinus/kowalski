@@ -416,3 +416,28 @@ void kwlInputStream_close(kwlInputStream* const stream)
     stream->buffer = NULL;
     stream->file = NULL;
 }
+
+int kwlInputStream_seekToEngineDataChunk(kwlInputStream* stream, int chunkId)
+{
+    /*move to the start of the stream*/
+    kwlInputStream_reset(stream);
+    /*move to first chunk*/
+    kwlInputStream_skip(stream, /*KWL_ENGINE_DATA_BINARY_FILE_IDENTIFIER_LENGTH*/9); //TODO: don't hardcode this
+    
+    while (!kwlInputStream_isAtEndOfStream(stream))
+    {
+        const int currentChunkId = kwlInputStream_readIntBE(stream);
+        const int chunkSize = kwlInputStream_readIntBE(stream);
+        if (currentChunkId == chunkId)
+        {
+            return chunkSize;
+        }
+        else
+        {
+            kwlInputStream_skip(stream, chunkSize);
+        }
+    }
+    
+    KWL_ASSERT(0 && "no matching chunk id found");
+    return 0;
+}

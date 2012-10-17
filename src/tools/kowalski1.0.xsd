@@ -20,41 +20,11 @@
                 <xs:documentation>The root node of a Kowalski XML data document. </xs:documentation>
             </xs:annotation>
             <xs:all>
-                <xs:element name="WaveBankGroup" type="WaveBankGroup" minOccurs="1" maxOccurs="1">
-                    <xs:annotation>
-                        <xs:appinfo>
-                            <jaxb:property name="waveBankRootGroup"/>
-                        </xs:appinfo>
-                    </xs:annotation>
-                </xs:element>
-                <xs:element name="SoundGroup" type="SoundGroup" minOccurs="1" maxOccurs="1">
-                    <xs:annotation>
-                        <xs:appinfo>
-                            <jaxb:property name="SoundRootGroup"/>
-                        </xs:appinfo>
-                    </xs:annotation>
-                </xs:element>
-                <xs:element name="EventGroup" type="EventGroup" minOccurs="1" maxOccurs="1">
-                    <xs:annotation>
-                        <xs:appinfo>
-                            <jaxb:property name="EventRootGroup"/>
-                        </xs:appinfo>
-                    </xs:annotation>
-                </xs:element>
-                <xs:element name="MixBus" type="MixBus" minOccurs="1" maxOccurs="1">
-                    <xs:annotation>
-                        <xs:appinfo>
-                            <jaxb:property name="MasterMixBus"/>
-                        </xs:appinfo>
-                    </xs:annotation>
-                </xs:element>
-                <xs:element name="MixPresetGroup" type="MixPresetGroup" minOccurs="1" maxOccurs="1">
-                    <xs:annotation>
-                        <xs:appinfo>
-                            <jaxb:property name="MixPresetRootGroup"/>
-                        </xs:appinfo>
-                    </xs:annotation>
-                </xs:element>
+                <xs:element name="WaveBankGroup" type="WaveBankGroup" minOccurs="1" maxOccurs="1" />
+                <xs:element name="SoundGroup" type="SoundGroup" minOccurs="1" maxOccurs="1" />
+                <xs:element name="EventGroup" type="EventGroup" minOccurs="1" maxOccurs="1" />
+                <xs:element name="MixBus" type="MixBus" minOccurs="1" maxOccurs="1" />
+                <xs:element name="MixPresetGroup" type="MixPresetGroup" minOccurs="1" maxOccurs="1" />
             </xs:all>
             <xs:attribute name="audioFileRootDirectory" use="optional" default="">
                 <xs:annotation>
@@ -213,13 +183,7 @@
                 <xs:sequence>
                     <xs:element name="Comments" type="commentString" minOccurs="0" maxOccurs="1"/>
                 </xs:sequence>
-                <xs:attribute name="id" type="identifierString" use="required">
-                    <xs:annotation>
-                        <xs:appinfo>
-                            <jaxb:property name="ID"/>
-                        </xs:appinfo>
-                    </xs:annotation>
-                </xs:attribute>
+                <xs:attribute name="id" type="identifierString" use="required" />
             </xs:extension>
          </xs:complexContent>
     </xs:complexType>
@@ -231,11 +195,6 @@
         <xs:complexContent>
             <xs:extension base="NodeWithIDAndComments">
                 <xs:choice maxOccurs="1" minOccurs="0">
-                    <xs:annotation>
-                        <xs:appinfo>
-                            <jaxb:property name="audioDataReferenceOrSoundReference"/>
-                        </xs:appinfo>
-                    </xs:annotation>
                     <xs:element ref="AudioDataReference"/>
                     <xs:element ref="SoundReference"/>
                 </xs:choice>
@@ -262,23 +221,10 @@
             </xs:annotation>
             <xs:extension base="NodeWithIDAndComments">
                 <xs:sequence>
-                     <xs:element name="EventGroup" type="EventGroup" minOccurs="0" maxOccurs="unbounded">
-                         <xs:annotation>
-                             <xs:appinfo>
-                                 <jaxb:property name="subGroups"/>
-                             </xs:appinfo>
-                         </xs:annotation>
-                     </xs:element>
-
+                     <xs:element name="EventGroup" type="EventGroup" minOccurs="0" maxOccurs="unbounded" />
                      <xs:choice maxOccurs="unbounded" minOccurs="0">
-                        <xs:annotation>
-                            <xs:appinfo>
-                                <jaxb:property name="events"/>
-                            </xs:appinfo>
-                        </xs:annotation>
                         <xs:element name="Event" type="Event"/>
                     </xs:choice>
-
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>

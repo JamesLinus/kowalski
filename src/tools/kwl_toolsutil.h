@@ -25,6 +25,8 @@ freely, subject to the following restrictions:
 #define KWL_TOOLS_H
 
 #define KWL_XML_MIX_BUS_NAME "MixBus"
+#define KWL_XML_ATTR_MIX_BUS_ID "id"
+
 #define KWL_XML_WAVE_BANK_GROUP_NAME "WaveBankGroup"
 #define KWL_XML_AUDIO_DATA_ITEM_NAME "AudioData"
 
@@ -51,7 +53,14 @@ freely, subject to the following restrictions:
 #define KWL_XML_ATTR_PLAYBACK_MODE "playbackMode"
 
 #define KWL_XML_EVENT_GROUP_NAME "EventGroup"
+
 #define KWL_XML_EVENT_NAME "Event"
+#define KWL_XML_ATTR_EVENT_OUTER_ANGLE "outerConeAngle"
+#define KWL_XML_ATTR_EVENT_INNER_ANGLE "innerConeAngle"
+#define KWL_XML_ATTR_EVENT_GAIN "gain"
+#define KWL_XML_ATTR_EVENT_PITCH "pitch"
+#define KWL_XML_ATTR_EVENT_INSTANCE_COUNT "instanceCount"
+#define KWL_XML_ATTR_EVENT_IS_POSITIONAL "positional"
 
 #define KWL_XML_PROJECT_NODE_NAME "KowalskiProject"
 

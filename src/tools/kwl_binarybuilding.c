@@ -209,7 +209,7 @@ static void kwlGatherSubBusesCallback(xmlNode* node, void* b)
     for (int i = 0; i < bin->mixBusChunk.numMixBuses; i++)
     {
         kwlMixBusChunk* mbi = &bin->mixBusChunk.mixBuses[i];
-        if (strcmp(mbi->id, kwlGetAttributeValue(node, "id")) == 0)
+        if (strcmp(mbi->id, kwlGetAttributeValue(node, KWL_XML_ATTR_MIX_BUS_ID)) == 0)
         {
             mb = mbi;
             break;
@@ -487,14 +487,13 @@ static void kwlGatherEventsCallback(xmlNode* node, void* b)
     kwlEventChunk* c = &bin->eventChunk.eventDefinitions[bin->eventChunk.numEventDefinitions - 1];
     c->id = kwlGetNodePath(node);
     
-    /*
     c->outerConeAngleDeg = kwlGetFloatAttributeValue(node, KWL_XML_ATTR_EVENT_OUTER_ANGLE);
     c->innerConeAngleDeg = kwlGetFloatAttributeValue(node, KWL_XML_ATTR_EVENT_INNER_ANGLE);
     c->gain = kwlGetFloatAttributeValue(node, KWL_XML_ATTR_EVENT_GAIN);
     c->pitch = kwlGetFloatAttributeValue(node, KWL_XML_ATTR_EVENT_PITCH);
     c->instanceCount = kwlGetFloatAttributeValue(node, KWL_XML_ATTR_EVENT_INSTANCE_COUNT);
     c->isPositional = kwlGetBoolAttributeValue(node, KWL_XML_ATTR_EVENT_IS_POSITIONAL);
-    c->loopIfStreaming = kwlGetBoolAttributeValue(node, KWL_XML_ATTR_EVENT_LOOP_IF_STREAMING);
+    
     c->mixBusIndex = 0;//TODO
     c->numReferencedWaveBanks = 0; //TODO*/
     //TODO

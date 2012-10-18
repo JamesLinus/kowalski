@@ -26,10 +26,14 @@ freely, subject to the following restrictions:
 
 #define KWL_XML_MIX_BUS_NAME "MixBus"
 #define KWL_XML_WAVE_BANK_GROUP_NAME "WaveBankGroup"
+#define KWL_XML_AUDIO_DATA_ITEM_NAME "AudioDataItem"
+#define KWL_XML_WAVE_BANK_NAME "WaveBank"
 #define KWL_XML_MIX_PRESET_GROUP_NAME "MixPresetGroup"
+#define KWL_XML_MIX_PRESET_NAME "MixPreset"
 #define KWL_XML_SOUND_GROUP_NAME "SoundGroup"
 #define KWL_XML_EVENT_GROUP_NAME "EventGroup"
-#define KWL_XML_PROJECT_NODE_NAME "KowalskiProjectData"
+#define KWL_XML_EVENT_NAME "Event"
+#define KWL_XML_PROJECT_NODE_NAME "KowalskiProject"
 
 #ifdef __cplusplus
 extern "C"

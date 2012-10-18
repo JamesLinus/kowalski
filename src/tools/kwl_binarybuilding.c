@@ -34,6 +34,8 @@ freely, subject to the following restrictions:
 #include "kwl_memory.h"
 #include "kwl_toolsutil.h"
 
+#define KWL_TEMP_STRING_LENGTH 1024
+
 typedef void (*kwlNodeTraversalCallback)(xmlNode* currentNode, void* userData);
 
 static int kwlGetChildCount(xmlNode* node, const char* childName)
@@ -51,7 +53,7 @@ static int kwlGetChildCount(xmlNode* node, const char* childName)
     return count;
 }
 
-static char* kwlGetAttributeValue(xmlNode* node, const char* name)
+static xmlChar* kwlGetAttributeValue(xmlNode* node, const char* name)
 {
     xmlAttr* attr = node->properties;
     while (attr)
@@ -72,10 +74,39 @@ static char* kwlGetAttributeValue(xmlNode* node, const char* name)
 /**
  * returns the path up to the top group
  */
-static const char* kwlGetNodePath(xmlNode* currentNode)
+static const xmlChar* kwlGetNodePath(xmlNode* currentNode)
 {
+    xmlNode* path[KWL_TEMP_STRING_LENGTH];
+    memset(path, 0, KWL_TEMP_STRING_LENGTH * sizeof(xmlNode*));
+
     xmlNode* n = currentNode;
+    int idx = 0;
+    while (!xmlStrEqual(n->parent->name, (xmlChar*)KWL_XML_PROJECT_NODE_NAME))
+    {
+        path[idx] = n;
+        idx++;
+        KWL_ASSERT(idx < KWL_TEMP_STRING_LENGTH);
+        n = n->parent;
+    }
     
+    int numChars = 0;
+    xmlChar tempStr[KWL_TEMP_STRING_LENGTH];
+    kwlMemset(tempStr, 0, sizeof(xmlChar) * KWL_TEMP_STRING_LENGTH);
+    for (int i = idx - 1; i >= 0; i--)
+    {
+        //id gets freed along with the xml structure
+        xmlChar* id = kwlGetAttributeValue(path[i], "id");
+        tempStr[numChars] = '/';
+        memcpy(&tempStr[numChars + 1], id, xmlStrlen(id));
+        numChars += xmlStrlen(id) + 1;
+        KWL_ASSERT(numChars < KWL_TEMP_STRING_LENGTH);
+    }
+    tempStr[numChars] = '\0';
+    
+    xmlChar* pathStr = KWL_MALLOCANDZERO(numChars, "path string");
+    memcpy(pathStr, &tempStr[1], numChars); //remove leading slash
+    pathStr[numChars - 1] = '\0';
+    return pathStr;
 }
 
 void kwlTraverseNodeTree(xmlNode* root,
@@ -199,14 +230,59 @@ static void kwlMixBusRootXMLToBin(xmlNode* projectRoot, kwlProjectDataBinaryRepr
     kwlProjectDataBinaryRepresentation_dump(bin, kwlDefaultLogCallback);
 }
 
-static void kwlMixPresetRootXMLToBin(xmlNode* root, kwlProjectDataBinaryRepresentation* bin)
+/**
+ * Gather mix presets
+ */
+static void kwlGatherMixPresetsCallback(xmlNode* currentNode, void* b)
+{
+    kwlProjectDataBinaryRepresentation* bin = (kwlProjectDataBinaryRepresentation*)b;
+    bin->mixPresetChunk.numMixPresets += 1;
+    bin->mixPresetChunk.mixPresets = realloc(bin->mixPresetChunk.mixPresets,
+                                        sizeof(kwlMixPresetChunk) * bin->mixPresetChunk.numMixPresets);
+    kwlMixPresetChunk* c = &bin->mixPresetChunk.mixPresets[bin->mixPresetChunk.numMixPresets - 1];
+    c->id = kwlGetNodePath(currentNode);
+    printf("mix preset path %s\n", c->id);
+    KWL_ASSERT(c->id != NULL);
+}
+
+static void kwlMixPresetRootXMLToBin(xmlNode* projectRoot, kwlProjectDataBinaryRepresentation* bin)
+{
+    kwlTraverseNodeTree(projectRoot,
+                        KWL_XML_MIX_PRESET_GROUP_NAME,
+                        KWL_XML_MIX_PRESET_NAME,
+                        kwlGatherMixPresetsCallback,
+                        bin);
+}
+
+static void kwlGatherWaveBankItemsCallback(xmlNode* currentNode, void* b)
 {
     
 }
 
-static void kwlWaveBankRootXMLToBin(xmlNode* root, kwlProjectDataBinaryRepresentation* bin)
+static void kwlGatherWaveBanksCallback(xmlNode* currentNode, void* b)
 {
+    /*
+    kwlProjectDataBinaryRepresentation* bin = (kwlProjectDataBinaryRepresentation*)b;
+    bin->waveBankChunk.numWaveBanks += 1;
+    bin->mixPresetChunk.mixPresets = realloc(bin->mixPresetChunk.mixPresets,
+                                             sizeof(kwlMixPresetChunk) * bin->mixPresetChunk.numMixPresets);
+    kwlMixPresetChunk* c = &bin->mixPresetChunk.mixPresets[bin->mixPresetChunk.numMixPresets - 1];*/
+    const xmlChar* path = kwlGetNodePath(currentNode);
+    printf("wave bank path %s\n", path);
+    KWL_ASSERT(path != NULL);
+}
+
+static void kwlWaveBankRootXMLToBin(xmlNode* projectRoot, kwlProjectDataBinaryRepresentation* bin)
+{
+    const int numAudioDataItems = kwlGetNumChildrenWithName(projectRoot,
+                                                            KWL_XML_WAVE_BANK_GROUP_NAME,
+                                                            KWL_XML_AUDIO_DATA_ITEM_NAME);
     
+    kwlTraverseNodeTree(projectRoot,
+                        KWL_XML_WAVE_BANK_GROUP_NAME,
+                        KWL_XML_WAVE_BANK_NAME,
+                        kwlGatherWaveBanksCallback,
+                        bin);
 }
 
 static void kwlSoundRootXMLToBin(xmlNode* root, kwlProjectDataBinaryRepresentation* bin)
@@ -214,9 +290,27 @@ static void kwlSoundRootXMLToBin(xmlNode* root, kwlProjectDataBinaryRepresentati
     
 }
 
-static void kwlEventRootXMLToBin(xmlNode* root, kwlProjectDataBinaryRepresentation* bin)
+
+static void kwlGatherEventsCallback(xmlNode* currentNode, void* b)
 {
-    
+    /*
+     kwlProjectDataBinaryRepresentation* bin = (kwlProjectDataBinaryRepresentation*)b;
+     bin->waveBankChunk.numWaveBanks += 1;
+     bin->mixPresetChunk.mixPresets = realloc(bin->mixPresetChunk.mixPresets,
+     sizeof(kwlMixPresetChunk) * bin->mixPresetChunk.numMixPresets);
+     kwlMixPresetChunk* c = &bin->mixPresetChunk.mixPresets[bin->mixPresetChunk.numMixPresets - 1];*/
+    const xmlChar* path = kwlGetNodePath(currentNode);
+    printf("event path %s\n", path);
+    KWL_ASSERT(path != NULL);
+}
+
+static void kwlEventRootXMLToBin(xmlNode* projectRoot, kwlProjectDataBinaryRepresentation* bin)
+{
+    kwlTraverseNodeTree(projectRoot,
+                        KWL_XML_EVENT_GROUP_NAME,
+                        KWL_XML_EVENT_NAME,
+                        kwlGatherEventsCallback,
+                        bin);
 }
 
 void kwlBuildEngineData(const char* xmlPath, const char* targetFile)

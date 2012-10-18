@@ -63,8 +63,7 @@
 		C192DBB21274391100852CBC /* kwl_audiodata.c in Sources */ = {isa = PBXBuildFile; fileRef = C192DBB01274391100852CBC /* kwl_audiodata.c */; };
 		C19BB8601630C1E9000F1BE7 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C19BB85F1630C1E9000F1BE7 /* SenTestingKit.framework */; };
 		C19BB8621630C1E9000F1BE7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C19BB8611630C1E9000F1BE7 /* Cocoa.framework */; };
-		C19BB86C1630C1EA000F1BE7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C19BB86A1630C1EA000F1BE7 /* InfoPlist.strings */; };
-		C19BB86F1630C1EA000F1BE7 /* kowalski_test.m in Sources */ = {isa = PBXBuildFile; fileRef = C19BB86E1630C1EA000F1BE7 /* kowalski_test.m */; };
+		C19BB87A1630C359000F1BE7 /* kowalski_test.m in Sources */ = {isa = PBXBuildFile; fileRef = C19BB8791630C359000F1BE7 /* kowalski_test.m */; };
 		C19FD680141AC72900B836F5 /* kwl_decoder_pcm.h in Headers */ = {isa = PBXBuildFile; fileRef = C19FD67E141AC72900B836F5 /* kwl_decoder_pcm.h */; };
 		C19FD681141AC72900B836F5 /* kwl_decoder_pcm.c in Sources */ = {isa = PBXBuildFile; fileRef = C19FD67F141AC72900B836F5 /* kwl_decoder_pcm.c */; };
 		C19FD682141AC72900B836F5 /* kwl_decoder_pcm.h in Headers */ = {isa = PBXBuildFile; fileRef = C19FD67E141AC72900B836F5 /* kwl_decoder_pcm.h */; };
@@ -379,11 +378,9 @@
 		C19BB8641630C1E9000F1BE7 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		C19BB8651630C1E9000F1BE7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C19BB8661630C1E9000F1BE7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		C19BB8691630C1EA000F1BE7 /* kowalski_test-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "kowalski_test-Info.plist"; sourceTree = "<group>"; };
-		C19BB86B1630C1EA000F1BE7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		C19BB86D1630C1EA000F1BE7 /* kowalski_test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = kowalski_test.h; sourceTree = "<group>"; };
-		C19BB86E1630C1EA000F1BE7 /* kowalski_test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = kowalski_test.m; sourceTree = "<group>"; };
-		C19BB8701630C1EA000F1BE7 /* kowalski_test-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "kowalski_test-Prefix.pch"; sourceTree = "<group>"; };
+		C19BB8771630C359000F1BE7 /* kowalski_test-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "kowalski_test-Prefix.pch"; sourceTree = "<group>"; };
+		C19BB8781630C359000F1BE7 /* kowalski_test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kowalski_test.h; sourceTree = "<group>"; };
+		C19BB8791630C359000F1BE7 /* kowalski_test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = kowalski_test.m; sourceTree = "<group>"; };
 		C19FD67E141AC72900B836F5 /* kwl_decoder_pcm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_decoder_pcm.h; sourceTree = "<group>"; };
 		C19FD67F141AC72900B836F5 /* kwl_decoder_pcm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_decoder_pcm.c; sourceTree = "<group>"; };
 		C1A018C11265EF120039DB22 /* kwl_eventdefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_eventdefinition.h; sourceTree = "<group>"; };
@@ -485,7 +482,6 @@
 			isa = PBXGroup;
 			children = (
 				08FB7795FE84155DC02AAC07 /* src */,
-				C19BB8671630C1E9000F1BE7 /* kowalski_test */,
 				C19BB85E1630C1E9000F1BE7 /* Frameworks */,
 				1AB674ADFE9D54B511CA2CBB /* Products */,
 				C1A2605D1170D28E00955BDD /* CoreAudio.framework */,
@@ -508,6 +504,7 @@
 			isa = PBXGroup;
 			children = (
 				C127F05E117F189400C9A250 /* engine */,
+				C19BB8751630C359000F1BE7 /* test */,
 				C1760F67161E399E0044204B /* tools */,
 			);
 			name = src;
@@ -663,24 +660,23 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		C19BB8671630C1E9000F1BE7 /* kowalski_test */ = {
+		C19BB8751630C359000F1BE7 /* test */ = {
 			isa = PBXGroup;
 			children = (
-				C19BB86D1630C1EA000F1BE7 /* kowalski_test.h */,
-				C19BB86E1630C1EA000F1BE7 /* kowalski_test.m */,
-				C19BB8681630C1EA000F1BE7 /* Supporting Files */,
+				C19BB8761630C359000F1BE7 /* osx */,
 			);
-			path = kowalski_test;
+			name = test;
+			path = ../../src/test;
 			sourceTree = "<group>";
 		};
-		C19BB8681630C1EA000F1BE7 /* Supporting Files */ = {
+		C19BB8761630C359000F1BE7 /* osx */ = {
 			isa = PBXGroup;
 			children = (
-				C19BB8691630C1EA000F1BE7 /* kowalski_test-Info.plist */,
-				C19BB86A1630C1EA000F1BE7 /* InfoPlist.strings */,
-				C19BB8701630C1EA000F1BE7 /* kowalski_test-Prefix.pch */,
+				C19BB8771630C359000F1BE7 /* kowalski_test-Prefix.pch */,
+				C19BB8781630C359000F1BE7 /* kowalski_test.h */,
+				C19BB8791630C359000F1BE7 /* kowalski_test.m */,
 			);
-			name = "Supporting Files";
+			path = osx;
 			sourceTree = "<group>";
 		};
 		C1B77F341212AF80008DFEB2 /* tremor */ = {
@@ -1010,7 +1006,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C19BB86C1630C1EA000F1BE7 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1053,7 +1048,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C19BB86F1630C1EA000F1BE7 /* kowalski_test.m in Sources */,
+				C19BB87A1630C359000F1BE7 /* kowalski_test.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1199,17 +1194,6 @@
 			targetProxy = C166E380162F235F0068C846 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		C19BB86A1630C1EA000F1BE7 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C19BB86B1630C1EA000F1BE7 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1DEB91EC08733DB70010E9CD /* Debug */ = {
@@ -1435,14 +1419,14 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "kowalski_test/kowalski_test-Prefix.pch";
+				GCC_PREFIX_HEADER = "../../src/test/osx/kowalski_test-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				INFOPLIST_FILE = "kowalski_test/kowalski_test-Info.plist";
+				INFOPLIST_FILE = "kowalski_test-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1464,9 +1448,9 @@
 				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "kowalski_test/kowalski_test-Prefix.pch";
+				GCC_PREFIX_HEADER = "../../src/test/osx/kowalski_test-Prefix.pch";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				INFOPLIST_FILE = "kowalski_test/kowalski_test-Info.plist";
+				INFOPLIST_FILE = "kowalski_test-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;

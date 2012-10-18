@@ -110,7 +110,7 @@ extern "C"
         float gainVariation;
         float pitch;
         float pitchVariation;
-        float playbackMode;
+        int playbackMode;
         
         int numWaveReferences;
         int* waveBankIndices;
@@ -163,7 +163,7 @@ extern "C"
     } kwlEventDataChunk;
     
     /**
-     *
+     * 
      */
     typedef struct kwlProjectDataBinaryRepresentation
     {

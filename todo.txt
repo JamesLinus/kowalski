@@ -41,6 +41,7 @@ release	    <-	[release]
 tools
 - use strlen in kwlFileOutputStream_writeASCIIString
 - binary visualizer CLI w hooks for other binary viewing tools
+- remove default values from xdd
 - libsndfile? no (lgpl)?
 - xml -> bin C api
 - xml validation C api (skip schema?)
@@ -54,6 +55,8 @@ tools
     view: file -> bin rep
     validate: file -> bin rep
     serialize: xml -> bin rep -> file
+- kwlGetAttributeValue returns strings owned by libxml. not always desired
+- mix preset default "true" and "false" to 1 and 0 conversion
 
 bindings:
 - skip for now

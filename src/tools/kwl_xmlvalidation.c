@@ -93,26 +93,11 @@ static void example1Func(const char *filename)
 
 void kwlValidateProjectData(const char* xmlPath, kwlLogCallback errorCallback)
 {
+    //check valid xml structure
     
+    //validate against project data schema
     
-    
-    /*
-     * this initialize the library and check potential ABI mismatches
-     * between the version it was compiled for and the actual shared
-     * library used.
-     */
-    LIBXML_TEST_VERSION
-    
-    example1Func(xmlPath);
-    
-    /*
-     * Cleanup function for the XML library.
-     */
-    xmlCleanupParser();
-    /*
-     * this is to debug memory for regression tests
-     */
-    xmlMemoryDump();
+    //create binary representation and check references etc
     
 }
 

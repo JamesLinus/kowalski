@@ -368,7 +368,7 @@ void kwlProjectDataBinaryRepresentation_dump(kwlProjectDataBinaryRepresentation*
     for (int i = 0; i < bin->mixPresetChunk.numMixPresets; i++)
     {
         kwlMixPresetChunk* mpi = &bin->mixPresetChunk.mixPresets[i];
-        logCallback("        %s\n", mpi->id);
+        logCallback("        %s (default %d)\n", mpi->id, mpi->isDefault);
         for (int j = 0; j < bin->mixBusChunk.numMixBuses; j++)
         {
             logCallback("            bus idx %d: gain left %f, gain right %f, pitch %f\n",
@@ -380,9 +380,10 @@ void kwlProjectDataBinaryRepresentation_dump(kwlProjectDataBinaryRepresentation*
     }
     
     logCallback("\n");
-    logCallback("    Wave bank chunk (ID %d, %d bytes, %d wave banks):\n",
+    logCallback("    Wave bank chunk (ID %d, %d bytes, %d items total, %d wave banks):\n",
                 bin->waveBankChunk.chunkId,
                 bin->waveBankChunk.chunkSize,
+                bin->waveBankChunk.numAudioDataItemsTotal,
                 bin->waveBankChunk.numWaveBanks);
     for (int i = 0; i < bin->waveBankChunk.numWaveBanks; i++)
     {

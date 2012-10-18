@@ -23,18 +23,26 @@ freely, subject to the following restrictions:
 
 #include <stdio.h>
 
-#include "kwl_projectdatabinary.h"
+#include "kwl_projectdatabinaryrepresentation.h"
 #include "kwl_inputstream.h"
 #include "kwl_memory.h"
 #include "kwl_sound.h"
 #include "kwl_toolsutil.h"
 
-void kwlProjectDataBinary_load(kwlProjectDataBinary* bin, const char* engineDataPath)
+void kwlProjectDataBinaryRepresentation_serialize(kwlProjectDataBinaryRepresentation* bin,
+                                                  const char* path)
 {
-    kwlProjectDataBinary binaryRep;
-    kwlMemset(&binaryRep, 0, sizeof(kwlProjectDataBinary));
     
-    kwlLogCallback errorLogCallback = kwlDefaultLogCallback;
+}
+
+void kwlProjectDataBinaryRepresentation_deserialize(kwlProjectDataBinaryRepresentation* binaryRep,
+                                             const char* engineDataPath,
+                                             kwlLogCallback errorLogCallbackIn)
+{
+
+    kwlMemset(binaryRep, 0, sizeof(kwlProjectDataBinaryRepresentation));
+    
+    kwlLogCallback errorLogCallback = errorLogCallbackIn == NULL ? kwlSilentLogCallback : errorLogCallbackIn;
     
     kwlInputStream is;
     kwlError result = kwlInputStream_initWithFile(&is, engineDataPath);
@@ -49,7 +57,7 @@ void kwlProjectDataBinary_load(kwlProjectDataBinary* bin, const char* engineData
     for (int i = 0; i < KWL_ENGINE_DATA_BINARY_FILE_IDENTIFIER_LENGTH; i++)
     {
         const char identifierChari = kwlInputStream_readChar(&is);
-        binaryRep.fileIdentifier[i] = identifierChari;
+        binaryRep->fileIdentifier[i] = identifierChari;
         if (identifierChari != KWL_ENGINE_DATA_BINARY_FILE_IDENTIFIER[i])
         {
             //invalid file format
@@ -61,19 +69,19 @@ void kwlProjectDataBinary_load(kwlProjectDataBinary* bin, const char* engineData
     
     //mix buses
     {
-        binaryRep.mixBusChunk.chunkId = KWL_MIX_BUSES_CHUNK_ID;
-        binaryRep.mixBusChunk.chunkSize = kwlInputStream_seekToEngineDataChunk(&is, KWL_MIX_BUSES_CHUNK_ID);
+        binaryRep->mixBusChunk.chunkId = KWL_MIX_BUSES_CHUNK_ID;
+        binaryRep->mixBusChunk.chunkSize = kwlInputStream_seekToEngineDataChunk(&is, KWL_MIX_BUSES_CHUNK_ID);
         
         //allocate memory for the mix bus data
-        binaryRep.mixBusChunk.numMixBuses = kwlInputStream_readIntBE(&is);
-        binaryRep.mixBusChunk.mixBuses = KWL_MALLOCANDZERO(binaryRep.mixBusChunk.numMixBuses * sizeof(kwlMixBusChunk),
+        binaryRep->mixBusChunk.numMixBuses = kwlInputStream_readIntBE(&is);
+        binaryRep->mixBusChunk.mixBuses = KWL_MALLOCANDZERO(binaryRep->mixBusChunk.numMixBuses * sizeof(kwlMixBusChunk),
                                                            "bin mix buses");
         
         
         //read mix bus data
-        for (int i = 0; i < binaryRep.mixBusChunk.numMixBuses; i++)
+        for (int i = 0; i < binaryRep->mixBusChunk.numMixBuses; i++)
         {
-            kwlMixBusChunk* mi = &binaryRep.mixBusChunk.mixBuses[i];
+            kwlMixBusChunk* mi = &binaryRep->mixBusChunk.mixBuses[i];
             mi->id = kwlInputStream_readASCIIString(&is);
             mi->numSubBuses = kwlInputStream_readIntBE(&is);
             mi->subBusIndices = NULL;
@@ -84,10 +92,10 @@ void kwlProjectDataBinary_load(kwlProjectDataBinary* bin, const char* engineData
                 for (int j = 0; j < mi->numSubBuses; j++)
                 {
                     const int subBusIndexj = kwlInputStream_readIntBE(&is);
-                    if(subBusIndexj < 0 || subBusIndexj >= binaryRep.mixBusChunk.numMixBuses)
+                    if(subBusIndexj < 0 || subBusIndexj >= binaryRep->mixBusChunk.numMixBuses)
                     {
                         errorLogCallback("Mix bus %s sub bus index at %d is %d. Expected value in [0, %d]\n",
-                                         mi->id, j, subBusIndexj, binaryRep.mixBusChunk.numMixBuses - 1);
+                                         mi->id, j, subBusIndexj, binaryRep->mixBusChunk.numMixBuses - 1);
                         goto onDataError;
                     }
                     mi->subBusIndices[j] = subBusIndexj;
@@ -99,20 +107,20 @@ void kwlProjectDataBinary_load(kwlProjectDataBinary* bin, const char* engineData
     
     //mix presets
     {
-        binaryRep.mixPresetChunk.chunkId = KWL_MIX_PRESETS_CHUNK_ID;
-        binaryRep.mixPresetChunk.chunkSize = kwlInputStream_seekToEngineDataChunk(&is, KWL_MIX_PRESETS_CHUNK_ID);
+        binaryRep->mixPresetChunk.chunkId = KWL_MIX_PRESETS_CHUNK_ID;
+        binaryRep->mixPresetChunk.chunkSize = kwlInputStream_seekToEngineDataChunk(&is, KWL_MIX_PRESETS_CHUNK_ID);
         
         //allocate memory for the mix preset data
-        binaryRep.mixPresetChunk.numMixPresets = kwlInputStream_readIntBE(&is);
-        binaryRep.mixPresetChunk.mixPresets = KWL_MALLOCANDZERO(binaryRep.mixPresetChunk.numMixPresets * sizeof(kwlMixPresetChunk), "bin mix presets");
+        binaryRep->mixPresetChunk.numMixPresets = kwlInputStream_readIntBE(&is);
+        binaryRep->mixPresetChunk.mixPresets = KWL_MALLOCANDZERO(binaryRep->mixPresetChunk.numMixPresets * sizeof(kwlMixPresetChunk), "bin mix presets");
         
-        const int numParameterSets = binaryRep.mixBusChunk.numMixBuses;
+        const int numParameterSets = binaryRep->mixBusChunk.numMixBuses;
         int defaultPresetIndex = -1;
         
         //read data
-        for (int i = 0; i < binaryRep.mixPresetChunk.numMixPresets; i++)
+        for (int i = 0; i < binaryRep->mixPresetChunk.numMixPresets; i++)
         {
-            kwlMixPresetChunk* mpi = &binaryRep.mixPresetChunk.mixPresets[i];
+            kwlMixPresetChunk* mpi = &binaryRep->mixPresetChunk.mixPresets[i];
             
             mpi->id = kwlInputStream_readASCIIString(&is);
             mpi->isDefault = kwlInputStream_readIntBE(&is);
@@ -138,7 +146,7 @@ void kwlProjectDataBinary_load(kwlProjectDataBinary* bin, const char* engineData
                 if (mpi->mixBusIndices[j] < 0 ||  mpi->mixBusIndices[j] >= numParameterSets)
                 {
                     errorLogCallback("Mix preset %s references out of bounds index %d (mix bus count is %d)\n",
-                                     mpi->id, mpi->mixBusIndices[j], binaryRep.mixBusChunk.numMixBuses);
+                                     mpi->id, mpi->mixBusIndices[j], binaryRep->mixBusChunk.numMixBuses);
                     goto onDataError;
                 }
                 mpi->gainLeft[j] = kwlInputStream_readFloatBE(&is);
@@ -156,36 +164,38 @@ void kwlProjectDataBinary_load(kwlProjectDataBinary* bin, const char* engineData
     
     //wave bank data
     {
-        binaryRep.waveBankChunk.chunkId = KWL_WAVE_BANKS_CHUNK_ID;
-        binaryRep.waveBankChunk.chunkSize = kwlInputStream_seekToEngineDataChunk(&is, KWL_WAVE_BANKS_CHUNK_ID);
+        binaryRep->waveBankChunk.chunkId = KWL_WAVE_BANKS_CHUNK_ID;
+        binaryRep->waveBankChunk.chunkSize = kwlInputStream_seekToEngineDataChunk(&is, KWL_WAVE_BANKS_CHUNK_ID);
         
         /*deserialize wave bank structures*/
-        binaryRep.waveBankChunk.numAudioDataItemsTotal = kwlInputStream_readIntBE(&is);
-        if (binaryRep.waveBankChunk.numAudioDataItemsTotal < 0)
+        binaryRep->waveBankChunk.numAudioDataItemsTotal = kwlInputStream_readIntBE(&is);
+        if (binaryRep->waveBankChunk.numAudioDataItemsTotal < 0)
         {
-            errorLogCallback("Expected at least one audio data entry, found %d", binaryRep.waveBankChunk.numAudioDataItemsTotal);
+            errorLogCallback("Expected at least one audio data entry, found %d", binaryRep->waveBankChunk.numAudioDataItemsTotal);
             goto onDataError;
         }
         
-        binaryRep.waveBankChunk.numWaveBanks = kwlInputStream_readIntBE(&is);
-        if (binaryRep.waveBankChunk.numWaveBanks < 0)
+        binaryRep->waveBankChunk.numWaveBanks = kwlInputStream_readIntBE(&is);
+        if (binaryRep->waveBankChunk.numWaveBanks < 0)
         {
-            errorLogCallback("Expected at least one wave bank, found %d", binaryRep.waveBankChunk.numWaveBanks);
+            errorLogCallback("Expected at least one wave bank, found %d", binaryRep->waveBankChunk.numWaveBanks);
             goto onDataError;
         }
         
-        binaryRep.waveBankChunk.waveBanks = KWL_MALLOCANDZERO(binaryRep.waveBankChunk.numWaveBanks * sizeof(kwlWaveBankChunk),
+        binaryRep->waveBankChunk.waveBanks = KWL_MALLOCANDZERO(binaryRep->waveBankChunk.numWaveBanks * sizeof(kwlWaveBankChunk),
                                                               "bin wbs");
         
         int audioDataItemIdx = 0;
-        for (int i = 0; i < binaryRep.waveBankChunk.numWaveBanks; i++)
+        for (int i = 0; i < binaryRep->waveBankChunk.numWaveBanks; i++)
         {
-            kwlWaveBankChunk* wbi = &binaryRep.waveBankChunk.waveBanks[i];
+            kwlWaveBankChunk* wbi = &binaryRep->waveBankChunk.waveBanks[i];
             wbi->id = kwlInputStream_readASCIIString(&is);
             wbi->numAudioDataEntries = kwlInputStream_readIntBE(&is);
             if (wbi->numAudioDataEntries < 0)
             {
-                errorLogCallback("Wave bank %s has %d audio data items. Expected at least 1.", wbi->id, wbi->numAudioDataEntries);
+                errorLogCallback("Wave bank %s has %d audio data items. Expected at least 1.",
+                                 wbi->id,
+                                 wbi->numAudioDataEntries);
                 goto onDataError;
             }
             
@@ -201,18 +211,18 @@ void kwlProjectDataBinary_load(kwlProjectDataBinary* bin, const char* engineData
     
     //sound data
     {
-        binaryRep.soundChunk.chunkId = KWL_SOUNDS_CHUNK_ID;
-        binaryRep.soundChunk.chunkSize = kwlInputStream_seekToEngineDataChunk(&is, KWL_SOUNDS_CHUNK_ID);
+        binaryRep->soundChunk.chunkId = KWL_SOUNDS_CHUNK_ID;
+        binaryRep->soundChunk.chunkSize = kwlInputStream_seekToEngineDataChunk(&is, KWL_SOUNDS_CHUNK_ID);
         
         /*allocate memory for sound definitions*/
-        binaryRep.soundChunk.numSoundDefinitions = kwlInputStream_readIntBE(&is);
-        binaryRep.soundChunk.soundDefinitions = KWL_MALLOCANDZERO(binaryRep.soundChunk.numSoundDefinitions * sizeof(kwlSoundChunk),
+        binaryRep->soundChunk.numSoundDefinitions = kwlInputStream_readIntBE(&is);
+        binaryRep->soundChunk.soundDefinitions = KWL_MALLOCANDZERO(binaryRep->soundChunk.numSoundDefinitions * sizeof(kwlSoundChunk),
                                                                   "bin sound defs");
         
         /*read sound definitions*/
-        for (int i = 0; i < binaryRep.soundChunk.numSoundDefinitions; i++)
+        for (int i = 0; i < binaryRep->soundChunk.numSoundDefinitions; i++)
         {
-            kwlSoundChunk* si = & binaryRep.soundChunk.soundDefinitions[i];
+            kwlSoundChunk* si = & binaryRep->soundChunk.soundDefinitions[i];
             si->playbackCount = kwlInputStream_readIntBE(&is);
             si->deferStop = kwlInputStream_readIntBE(&is);
             si->gain = kwlInputStream_readFloatBE(&is);
@@ -241,23 +251,24 @@ void kwlProjectDataBinary_load(kwlProjectDataBinary* bin, const char* engineData
 
     //event data
     {
-        binaryRep.eventChunk.chunkId = KWL_EVENTS_CHUNK_ID;
-        binaryRep.eventChunk.chunkSize = kwlInputStream_seekToEngineDataChunk(&is, KWL_EVENTS_CHUNK_ID);
+        binaryRep->eventChunk.chunkId = KWL_EVENTS_CHUNK_ID;
+        binaryRep->eventChunk.chunkSize = kwlInputStream_seekToEngineDataChunk(&is, KWL_EVENTS_CHUNK_ID);
         
         /*read the total number of event definitions*/
-        binaryRep.eventChunk.numEventDefinitions = kwlInputStream_readIntBE(&is);
-        if (binaryRep.eventChunk.numEventDefinitions <= 0)
+        binaryRep->eventChunk.numEventDefinitions = kwlInputStream_readIntBE(&is);
+        if (binaryRep->eventChunk.numEventDefinitions <= 0)
         {
-            errorLogCallback("Found %d event definitions. Expected at least 1.", binaryRep.eventChunk.numEventDefinitions);
+            errorLogCallback("Found %d event definitions. Expected at least 1.",
+                             binaryRep->eventChunk.numEventDefinitions);
             goto onDataError;
         }
         
-        binaryRep.eventChunk.eventDefinitions = KWL_MALLOCANDZERO(binaryRep.eventChunk.numEventDefinitions * sizeof(kwlEventChunk),
+        binaryRep->eventChunk.eventDefinitions = KWL_MALLOCANDZERO(binaryRep->eventChunk.numEventDefinitions * sizeof(kwlEventChunk),
                                                                   "bin ev defs");
 
-        for (int i = 0; i < binaryRep.eventChunk.numEventDefinitions; i++)
+        for (int i = 0; i < binaryRep->eventChunk.numEventDefinitions; i++)
         {
-            kwlEventChunk* ei = &binaryRep.eventChunk.eventDefinitions[i];
+            kwlEventChunk* ei = &binaryRep->eventChunk.eventDefinitions[i];
             
             /*read the id of this event definition*/
             ei->id = kwlInputStream_readASCIIString(&is);
@@ -273,7 +284,7 @@ void kwlProjectDataBinary_load(kwlProjectDataBinary* bin, const char* engineData
 
             /*read the index of the mix bus that this event belongs to*/
             ei->mixBusIndex = kwlInputStream_readIntBE(&is);
-            KWL_ASSERT(ei->mixBusIndex >= 0 && ei->mixBusIndex < binaryRep.mixBusChunk.numMixBuses);
+            KWL_ASSERT(ei->mixBusIndex >= 0 && ei->mixBusIndex < binaryRep->mixBusChunk.numMixBuses);
             ei->isPositional = kwlInputStream_readIntBE(&is);
 
             /*read the index of the sound referenced by this event (ignored for streaming events)*/
@@ -303,12 +314,12 @@ void kwlProjectDataBinary_load(kwlProjectDataBinary* bin, const char* engineData
             for (int j = 0; j < ei->numReferencedWaveBanks; j++)
             {
                 ei->waveBankIndices[j] = kwlInputStream_readIntBE(&is);
-                if (ei->waveBankIndices[j] < 0 || ei->waveBankIndices[j] >= binaryRep.waveBankChunk.numWaveBanks)
+                if (ei->waveBankIndices[j] < 0 || ei->waveBankIndices[j] >= binaryRep->waveBankChunk.numWaveBanks)
                 {
                     errorLogCallback("Invalid wave bank index index %d in event definition %s. Wave bank count is %d",
                                      ei->waveBankIndices[j],
                                      ei->id,
-                                     binaryRep.waveBankChunk.numWaveBanks);
+                                     binaryRep->waveBankChunk.numWaveBanks);
                     goto onDataError;
                 }
             }
@@ -316,74 +327,129 @@ void kwlProjectDataBinary_load(kwlProjectDataBinary* bin, const char* engineData
     }
     
     kwlInputStream_close(&is);
-    kwlProjectDataBinary_dump(&binaryRep, errorLogCallback);
     return;
     
     onDataError:
     kwlInputStream_close(&is);
-    kwlProjectDataBinary_free(&binaryRep);
+    kwlProjectDataBinaryRepresentation_free(binaryRep);
     return;
 }
 
-void kwlProjectDataBinary_dump(kwlProjectDataBinary* bin, kwlLogCallback logCallback)
+void kwlProjectDataBinaryRepresentation_dump(kwlProjectDataBinaryRepresentation* bin, kwlLogCallback logCallback)
 {
-    logCallback("Mix bus chunk (ID %d, %d bytes, %d mix buses):\n",
+    logCallback("Kowalski project data binary (");
+    logCallback("file ID: ");
+    for (int i = 0; i < KWL_ENGINE_DATA_BINARY_FILE_IDENTIFIER_LENGTH; i++)
+    {
+        logCallback("%d ", (int)bin->fileIdentifier[i]);
+    }
+    logCallback(")\n");
+    
+    logCallback("    Mix bus chunk (ID %d, %d bytes, %d mix buses):\n",
                 bin->mixBusChunk.chunkId,
                 bin->mixBusChunk.chunkSize,
                 bin->mixBusChunk.numMixBuses);
     for (int i = 0; i < bin->mixBusChunk.numMixBuses; i++)
     {
         kwlMixBusChunk* mbi = &bin->mixBusChunk.mixBuses[i];
-        logCallback("    %s (%d sub buses)\n", mbi->id, mbi->numSubBuses);
+        logCallback("        %s (%d sub buses", mbi->id, mbi->numSubBuses);
         for (int j = 0; j < mbi->numSubBuses; j++)
         {
-            logCallback("        %d\n", mbi->subBusIndices[j]);
+            logCallback("%s%d%s", j == 0 ? ": " : "", mbi->subBusIndices[j], j < mbi->numSubBuses - 1 ? ", " : "");
         }
+        logCallback(")\n");
     }
     
     logCallback("\n");
-    logCallback("Mix preset chunk (ID %d, %d bytes, %d mix presets):\n",
+    logCallback("    Mix preset chunk (ID %d, %d bytes, %d mix presets):\n",
                 bin->mixPresetChunk.chunkId,
                 bin->mixPresetChunk.chunkSize,
                 bin->mixPresetChunk.numMixPresets);
     for (int i = 0; i < bin->mixPresetChunk.numMixPresets; i++)
     {
         kwlMixPresetChunk* mpi = &bin->mixPresetChunk.mixPresets[i];
-        logCallback("    %s\n", mpi->id);
+        logCallback("        %s\n", mpi->id);
+        for (int j = 0; j < bin->mixBusChunk.numMixBuses; j++)
+        {
+            logCallback("            bus idx %d: gain left %f, gain right %f, pitch %f\n",
+                        mpi->mixBusIndices[j],
+                        mpi->gainLeft[j],
+                        mpi->gainRight[j],
+                        mpi->pitch[j]);
+        }
     }
     
     logCallback("\n");
-    logCallback("Wave bank chunk (ID %d, %d bytes, %d wave banks):\n",
+    logCallback("    Wave bank chunk (ID %d, %d bytes, %d wave banks):\n",
                 bin->waveBankChunk.chunkId,
                 bin->waveBankChunk.chunkSize,
                 bin->waveBankChunk.numWaveBanks);
     for (int i = 0; i < bin->waveBankChunk.numWaveBanks; i++)
     {
-        
+        kwlWaveBankChunk* wbi = &bin->waveBankChunk.waveBanks[i];
+        logCallback("        %s (%d entries)\n", wbi->id, wbi->numAudioDataEntries);
+        for (int j = 0; j < wbi->numAudioDataEntries; j++)
+        {
+            logCallback("            %s\n", wbi->audioDataEntries[j]);
+        }
     }
     
     logCallback("\n");
-    logCallback("Sound chunk (ID %d, %d bytes, %d sound definitions):\n",
+    logCallback("    Sound chunk (ID %d, %d bytes, %d sound definitions):\n",
                 bin->soundChunk.chunkId,
                 bin->soundChunk.chunkSize,
                 bin->soundChunk.numSoundDefinitions);
     for (int i = 0; i < bin->soundChunk.numSoundDefinitions; i++)
     {
-        
+        kwlSoundChunk* si = &bin->soundChunk.soundDefinitions[i];
+        logCallback("        %d%s: defer stop %d, playback count %d, num wave refs %d\n",
+                    i, i < 10 ? " " : "", si->deferStop, si->playbackCount, si->numWaveReferences);
+        logCallback("            gain (var) %f (%f), pitch (var) %f (%f)\n",
+                    si->gain, si->gainVariation, si->pitch, si->pitchVariation);
+        for (int j = 0; j < si->numWaveReferences; j++)
+        {
+            logCallback("                wave bank idx %d, item idx %d\n",
+                        si->waveBankIndices[j],
+                        si->audioDataIndices[j]);
+        }
     }
     
     logCallback("\n");
-    logCallback("Event chunk (ID %d, %d bytes, %d event definitions):\n",
+    logCallback("    Event chunk (ID %d, %d bytes, %d event definitions):\n",
                 bin->eventChunk.chunkId,
                 bin->eventChunk.chunkSize,
                 bin->eventChunk.numEventDefinitions);
     for (int i = 0; i < bin->eventChunk.numEventDefinitions; i++)
     {
-        
+        kwlEventChunk* ei = &bin->eventChunk.eventDefinitions[i];
+        logCallback("        %s\n", ei->id);
     }
 }
 
-void kwlProjectDataBinary_free(kwlProjectDataBinary* bin)
+void kwlProjectDataBinaryRepresentation_free(kwlProjectDataBinaryRepresentation* bin)
 {
-    //TODO
+    if (bin->mixBusChunk.numMixBuses > 0)
+    {
+    
+    }
+    
+    if (bin->mixPresetChunk.numMixPresets > 0)
+    {
+    
+    }
+    
+    if (bin->waveBankChunk.numWaveBanks > 0)
+    {
+    
+    }
+    
+    if (bin->soundChunk.numSoundDefinitions > 0)
+    {
+    
+    }
+    
+    if (bin->eventChunk.numEventDefinitions > 0)
+    {
+        
+    }
 }

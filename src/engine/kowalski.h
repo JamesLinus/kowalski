@@ -126,7 +126,7 @@ extern "C"
         /** The event is positional but is required to be non-positional.*/
         KWL_EVENT_IS_NOT_NONPOSITIONAL,
         /** The positional freeform event cannot be created from a stereo file.*/
-        KWL_POSITIONAL_EVENT_MUST_BE_MONO
+        KWL_POSITIONAL_EVENT_MUST_BE_MONO,
     } kwlError;
     /** @} */
     
@@ -1024,7 +1024,7 @@ extern "C"
      * @return The number of frames of audio mixed since the mixer started.
      * @see kwlGetError()
      */
-    unsigned int kwlGetNumFramesMixed();
+    unsigned int kwlGetNumFramesMixed(void);
     
     /** @} */
     
@@ -1155,7 +1155,7 @@ extern "C"
      * @see kwlInitialize
      * @see kwlGetError
      */
-    int kwlIsEngineInitialized();
+    int kwlIsEngineInitialized(void);
     
     /**
      * <p>Unloads any currently loaded engine data and wave banks and shuts
@@ -1170,7 +1170,7 @@ extern "C"
      * @see kwlIsEngineInitialized
      * @see kwlGetError
      */
-    void kwlDeinitialize();
+    void kwlDeinitialize(void);
     
     /**
      * <p>Initializes the Kowalski Engine and starts up the underlying sound system.</p>
@@ -1251,7 +1251,7 @@ extern "C"
      * </p>
      * @see kwlDSPUnitAttachToInput
      */
-    int kwlIsInputEnabled();
+    int kwlIsInputEnabled(void);
     
     /**
      * <p>Resume the Kowalski engine mixer. If the mixer is not paused, this method does nothing.<p>

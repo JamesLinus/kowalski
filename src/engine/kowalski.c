@@ -658,7 +658,7 @@ void kwlWaveBankUnloadBlocking(kwlWaveBankHandle waveBankHandle)
     kwlSetError(kwlEngine_requestUnloadWaveBank(engine, waveBankHandle, 1));
 }
 
-unsigned int kwlGetNumFramesMixed()
+unsigned int kwlGetNumFramesMixed(void)
 {
     if (engine == NULL)
     {
@@ -671,7 +671,7 @@ unsigned int kwlGetNumFramesMixed()
     return numFramesMixed;
 }
 
-int kwlIsEngineInitialized()
+int kwlIsEngineInitialized(void)
 {
     return engine != NULL;
 }
@@ -751,7 +751,7 @@ int kwlEngineDataIsLoaded()
 }
 
 /** */
-void kwlDeinitialize()
+void kwlDeinitialize(void)
 {
     if (engine == NULL)
     {
@@ -812,7 +812,7 @@ void kwlDSPUnitAttachToOutput(kwlDSPUnit* dspUnit)
     kwlSetError(kwlEngine_attachDSPUnitToOutput(engine, dspUnit));
 }
 
-int kwlIsInputEnabled()
+int kwlIsInputEnabled(void)
 {
     if (engine == NULL)
     {

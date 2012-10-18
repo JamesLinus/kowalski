@@ -50,7 +50,7 @@ static const char KWL_WAVE_BANK_BINARY_FILE_IDENTIFIER[KWL_WAVE_BANK_BINARY_FILE
 {
     0xAB, 'K', 'W', 'B', 0xBB, 0x0D, 0x0A, 0x1A, 0x0A
 };
-    
+
 /** 
  * A struct containing everything needed to load
  * a wave bank on a separate thread.

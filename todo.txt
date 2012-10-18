@@ -35,16 +35,17 @@ release	    <-	[release]
 - kwlInitialize() arguments, (buffer size etc)
 - move event linked list manipulation to kwl_event.c
 - kwlSound -> kwlSoundDefinition
+- sort functions to match h and c files
 
 
 tools
+- use strlen in kwlFileOutputStream_writeASCIIString
 - binary visualizer CLI w hooks for other binary viewing tools
 - libsndfile? no (lgpl)?
 - xml -> bin C api
 - xml validation C api (skip schema?)
 - take audio file dir out of xml?
 - use xmlHashTable etc?
-- kwlFileOutputStream
 - remove expanded attribute from groups
 - shorten attribute names
 - remove NodeWithExpansionState

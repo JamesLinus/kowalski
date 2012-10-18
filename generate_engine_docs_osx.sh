@@ -1,2 +1,3 @@
 doxygen engine_full_doxyfile
+doxygen tools_doxyfile
 doxygen engine_public_api_doxyfile

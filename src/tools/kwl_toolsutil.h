@@ -24,6 +24,13 @@ freely, subject to the following restrictions:
 #ifndef KWL_TOOLS_H
 #define KWL_TOOLS_H
 
+#define KWL_XML_MIX_BUS_NAME "MixBus"
+#define KWL_XML_WAVE_BANK_GROUP_NAME "WaveBankGroup"
+#define KWL_XML_MIX_PRESET_GROUP_NAME "MixPresetGroup"
+#define KWL_XML_SOUND_GROUP_NAME "SoundGroup"
+#define KWL_XML_EVENT_GROUP_NAME "EventGroup"
+#define KWL_XML_PROJECT_NODE_NAME "KowalskiProjectData"
+
 #ifdef __cplusplus
 extern "C"
 {

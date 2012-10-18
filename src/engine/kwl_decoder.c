@@ -32,7 +32,7 @@ freely, subject to the following restrictions:
 #include "kwl_decoder_oggvorbis.h"
 #include "kwl_memory.h"
 
-void kwlDecoder_swapBuffers(kwlDecoder* decoder)
+static void kwlDecoder_swapBuffers(kwlDecoder* decoder)
 {
     short* temp = decoder->currentDecodedBufferFront;
     decoder->currentDecodedBufferFront = decoder->currentDecodedBuffer;

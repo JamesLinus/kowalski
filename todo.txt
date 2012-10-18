@@ -41,7 +41,6 @@ release	    <-	[release]
 tools
 - use strlen in kwlFileOutputStream_writeASCIIString
 - binary visualizer CLI w hooks for other binary viewing tools
-- remove default values from xdd
 - libsndfile? no (lgpl)?
 - xml -> bin C api
 - xml validation C api (skip schema?)

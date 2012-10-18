@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <KowalskiProject version="1.0" audioFileRootDirectory="">
-    <WaveBankGroup id="root" expanded="true">
-        <WaveBank id="music" expanded="true">
+    <WaveBankGroup id="root">
+        <WaveBank id="music">
             <AudioData relativePath="music/i_cant_wait.ogg"/>
             <AudioData relativePath="music/oneone.ogg" streamFromDisk="true"/>
             <AudioData relativePath="music/la_romance_quoi.wav"/>
@@ -12,7 +12,7 @@
             <AudioData relativePath="music/tonight_thats_allright_loop.mp3"/>
             <AudioData relativePath="music/particular_clouds_imaadpcm.wav"/>
         </WaveBank>
-        <WaveBank id="notes" expanded="true">
+        <WaveBank id="notes">
             <AudioData relativePath="notes/a-1.aiff"/>
             <AudioData relativePath="notes/b-1.aiff"/>
             <AudioData relativePath="notes/c#-1.aiff"/>
@@ -27,14 +27,14 @@
             <AudioData relativePath="notes/g-1.aiff"/>
             <AudioData relativePath="notes/h-1.aiff"/>
         </WaveBank>
-        <WaveBank id="numbers" expanded="true">
+        <WaveBank id="numbers">
             <AudioData relativePath="numbers/five.wav"/>
             <AudioData relativePath="numbers/four.wav"/>
             <AudioData relativePath="numbers/one.wav"/>
             <AudioData relativePath="numbers/three.wav"/>
             <AudioData relativePath="numbers/two.wav"/>
         </WaveBank>
-        <WaveBank id="sfx" expanded="true">
+        <WaveBank id="sfx">
             <AudioData relativePath="sfx/100hzsine.au"/>
             <AudioData relativePath="sfx/1ksine.au"/>
             <AudioData relativePath="sfx/chirp.wav"/>
@@ -48,8 +48,8 @@
             <AudioData relativePath="sfx/noiselefttoneright.wav"/>
         </WaveBank>
     </WaveBankGroup>
-    <SoundGroup id="root" expanded="true">
-        <SoundGroup id="complexsounds" expanded="true">
+    <SoundGroup id="root">
+        <SoundGroup id="complexsounds">
             <Sound playbackMode="IN_RANDOM_NO_REPEAT_OUT" gainVariationPercent="50" pitchVariationPercent="20" playbackCount="5" id="in_random_no_repeat_out">
                 <AudioDataReference relativePath="numbers/one.wav" waveBank="numbers"/>
                 <AudioDataReference relativePath="numbers/two.wav" waveBank="numbers"/>
@@ -149,13 +149,13 @@
                 <AudioDataReference relativePath="numbers/five.wav" waveBank="numbers"/>
             </Sound>
         </SoundGroup>
-        <SoundGroup id="balancedemo" expanded="true">
+        <SoundGroup id="balancedemo">
             <Sound playbackMode="SEQUENTIAL" playbackCount="-1" id="mono_and_stereo">
                 <AudioDataReference relativePath="sfx/noiselefttoneright.wav" waveBank="sfx"/>
                 <AudioDataReference relativePath="sfx/chirp.wav" waveBank="sfx"/>
             </Sound>
         </SoundGroup>
-        <SoundGroup id="dspdemo" expanded="true">
+        <SoundGroup id="dspdemo">
             <Sound playbackMode="SEQUENTIAL" playbackCount="-1" id="infinite_loop">
                 <AudioDataReference relativePath="numbers/one.wav" waveBank="numbers"/>
 				<AudioDataReference relativePath="numbers/two.wav" waveBank="numbers"/>
@@ -164,7 +164,7 @@
 				<AudioDataReference relativePath="numbers/five.wav" waveBank="numbers"/>
             </Sound>
         </SoundGroup>
-        <SoundGroup id="mixpresetdemo" expanded="true">
+        <SoundGroup id="mixpresetdemo">
             <Sound playbackMode="SEQUENTIAL" playbackCount="-1" id="chirp">
                 <AudioDataReference relativePath="sfx/chirp.wav" waveBank="sfx"/>
             </Sound>
@@ -175,17 +175,17 @@
                 <AudioDataReference relativePath="sfx/tone.wav" waveBank="sfx"/>
             </Sound>
         </SoundGroup>
-        <SoundGroup id="music" expanded="true">
+        <SoundGroup id="music">
             <Sound playbackMode="SEQUENTIAL" playbackCount="-1" id="la_romance_quoi_120bpm_loop">
                 <AudioDataReference relativePath="music/la_romance_quoi.wav" waveBank="music"/>
             </Sound>
         </SoundGroup>
-        <SoundGroup id="pitchdemo" expanded="true">
+        <SoundGroup id="pitchdemo">
             <Sound playbackMode="SEQUENTIAL" playbackCount="-1" id="cosineloop">
                 <AudioDataReference relativePath="sfx/cosine.wav" waveBank="sfx"/>
             </Sound>
         </SoundGroup>
-        <SoundGroup id="sfx" expanded="true">
+        <SoundGroup id="sfx">
             <Sound playbackMode="SEQUENTIAL" playbackCount="-1" id="noise_fade_out">
                 <AudioDataReference relativePath="sfx/noise_fade_out.au" waveBank="sfx"/>
             </Sound>
@@ -203,8 +203,8 @@
             </Sound>
         </SoundGroup>
     </SoundGroup>
-    <EventGroup id="root" expanded="true">
-        <EventGroup id="complexevents" expanded="false">
+    <EventGroup id="root">
+        <EventGroup id="complexevents">
             <Event bus="sfx" id="in_random_no_repeat_out">
                 <SoundReference sound="complexsounds/in_random_no_repeat_out"/>
             </Event>
@@ -248,12 +248,12 @@
                 <SoundReference sound="complexsounds/sequential_no_reset_2"/>
             </Event>
         </EventGroup>
-        <EventGroup id="balancedemo" expanded="false">
+        <EventGroup id="balancedemo">
             <Event bus="sfx" positional="false" id="mono_and_stereo" gain="0.5">
                 <SoundReference sound="balancedemo/mono_and_stereo"/>
             </Event>
         </EventGroup>
-        <EventGroup id="distanceattenuationdemo" expanded="false">
+        <EventGroup id="distanceattenuationdemo">
             <Event bus="sfx" id="100hzsine">
                 <AudioDataReference relativePath="sfx/100hzsine.au" waveBank="sfx"/>
             </Event>
@@ -273,17 +273,17 @@
                 <AudioDataReference relativePath="sfx/square_fade_out.au" waveBank="sfx"/>
             </Event>
         </EventGroup>
-        <EventGroup id="dopplerdemo" expanded="false">
+        <EventGroup id="dopplerdemo">
             <Event bus="sfx" id="note_loop" gain="0.6">
                 <SoundReference sound="sfx/note_loop"/>
             </Event>
         </EventGroup>
-        <EventGroup id="dspdemo" expanded="true">
+        <EventGroup id="dspdemo">
             <Event bus="sfx" id="infinite_loop">
                 <SoundReference sound="dspdemo/infinite_loop"/>
             </Event>
         </EventGroup>
-        <EventGroup id="mixpresetdemo" expanded="true">
+        <EventGroup id="mixpresetdemo">
             <Event bus="chirps" id="chirploop">
                 <SoundReference sound="mixpresetdemo/chirp"/>
             </Event>
@@ -294,7 +294,7 @@
                 <SoundReference sound="mixpresetdemo/tone"/>
             </Event>
         </EventGroup>
-        <EventGroup id="music" expanded="false">
+        <EventGroup id="music">
             <Event bus="music" positional="false" id="la_romance_quoi_120bpm_loop">
                 <SoundReference sound="music/la_romance_quoi_120bpm_loop"/>
             </Event>
@@ -323,12 +323,12 @@
                 <AudioDataReference relativePath="music/particular_clouds_imaadpcm.wav" waveBank="music"/>
             </Event>
         </EventGroup>
-        <EventGroup id="oneshotdemo" expanded="false">
+        <EventGroup id="oneshotdemo">
             <Event instanceCount="3" pitch="0.3" bus="sfx" id="square_fade_out">
                 <SoundReference sound="sfx/square_fade_out_pitch_var"/>
             </Event>
         </EventGroup>
-        <EventGroup id="pianodemo" expanded="false">
+        <EventGroup id="pianodemo">
             <Event bus="notes" id="a-1">
                 <AudioDataReference relativePath="notes/a-1.aiff" waveBank="notes"/>
             </Event>
@@ -369,17 +369,17 @@
                 <AudioDataReference relativePath="notes/h-1.aiff" waveBank="notes"/>
             </Event>
         </EventGroup>
-        <EventGroup id="pitchdemo" expanded="false">
+        <EventGroup id="pitchdemo">
             <Event bus="sfx" id="cosineloop">
                 <SoundReference sound="pitchdemo/cosineloop"/>
             </Event>
         </EventGroup>
-        <EventGroup id="coneattenuationdemo" expanded="false">
+        <EventGroup id="coneattenuationdemo">
             <Event bus="sfx" id="tone" innerConeAngle="60.0" gain="0.5" outerConeAngle="140.0" outerConeGain="0.1">
                 <SoundReference sound="pitchdemo/cosineloop"/>
             </Event>
         </EventGroup>
-        <EventGroup id="sfx" expanded="false">
+        <EventGroup id="sfx">
             <Event bus="chirps" id="chirp">
                 <AudioDataReference relativePath="sfx/chirp.wav" waveBank="sfx"/>
             </Event>
@@ -391,17 +391,17 @@
             </Event>
         </EventGroup>
     </EventGroup>
-    <MixBus id="master" expanded="true">
+    <MixBus id="master">
         <MixBus id="music"/>
-        <MixBus id="notes" expanded="true"/>
-        <MixBus id="sfx" expanded="true">
-            <MixBus id="chirps" expanded="true"/>
-            <MixBus id="noise" expanded="true"/>
-            <MixBus id="tones" expanded="true"/>
+        <MixBus id="notes"/>
+        <MixBus id="sfx">
+            <MixBus id="chirps"/>
+            <MixBus id="noise"/>
+            <MixBus id="tones"/>
         </MixBus>
     </MixBus>
-    <MixPresetGroup id="root" expanded="true">
-        <MixPresetGroup id="mixpresetdemo" expanded="true">
+    <MixPresetGroup id="root">
+        <MixPresetGroup id="mixpresetdemo">
             <MixPreset default="false" id="chirps">
                 <MixBusParameters pitch="1.0" rightGain="1.0" leftGain="1.0" mixBus="master"/>
                 <MixBusParameters pitch="1.0" rightGain="0.0" leftGain="0.0" mixBus="music"/>

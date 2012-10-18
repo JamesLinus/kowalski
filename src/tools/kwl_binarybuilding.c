@@ -33,6 +33,7 @@ freely, subject to the following restrictions:
 #include "kwl_projectdatabinaryrepresentation.h"
 #include "kwl_memory.h"
 #include "kwl_toolsutil.h"
+#include "kwl_xmlvalidation.h"
 
 #define KWL_TEMP_STRING_LENGTH 1024
 
@@ -419,8 +420,6 @@ static int kwlGetAudioDataIndex(kwlWaveBankChunk* wb, const char* id)
 }
 
 
-
-
 static void kwlGatherSoundsCallback(xmlNode* node, void* b)
 {
     kwlProjectDataBinaryRepresentation* bin = (kwlProjectDataBinaryRepresentation*)b;
@@ -428,14 +427,14 @@ static void kwlGatherSoundsCallback(xmlNode* node, void* b)
     bin->soundChunk.soundDefinitions = realloc(bin->soundChunk.soundDefinitions,
                                                sizeof(kwlSoundChunk) * bin->soundChunk.numSoundDefinitions);
     kwlSoundChunk* c = &bin->soundChunk.soundDefinitions[bin->soundChunk.numSoundDefinitions - 1];
-    /*
+
     c->gain = kwlGetFloatAttributeValue(node, KWL_XML_ATTR_SOUND_GAIN);
     c->gainVariation = kwlGetFloatAttributeValue(node, KWL_XML_ATTR_SOUND_GAIN_VAR);
     c->pitch = kwlGetFloatAttributeValue(node, KWL_XML_ATTR_PITCH);
     c->pitchVariation = kwlGetFloatAttributeValue(node, KWL_XML_ATTR_PITCH_VAR);
     c->deferStop = kwlGetIntAttributeValue(node, KWL_XML_ATTR_DEFER_STOP);
     c->playbackCount = kwlGetIntAttributeValue(node, KWL_XML_ATTR_PLAYBACK_COUNT);
-    c->playbackMode = kwlGetIntAttributeValue(node, KWL_XML_ATTR_PLAYBACK_MODE);*/
+    c->playbackMode = kwlGetIntAttributeValue(node, KWL_XML_ATTR_PLAYBACK_MODE);
     c->numWaveReferences = kwlGetChildCount(node, KWL_XML_AUDIO_DATA_REFERENCE_NAME);
     KWL_ASSERT(c->numWaveReferences > 0);
     
@@ -466,10 +465,6 @@ static void kwlGatherSoundsCallback(xmlNode* node, void* b)
     }
     
     KWL_ASSERT(refIdx == c->numWaveReferences);
-    
-    //const xmlChar* path = kwlGetNodePath(currentNode);
-    //printf("sound path %s\n", path);
-    //KWL_ASSERT(path != NULL);
 }
 
 static void kwlSoundRootXMLToBin(xmlNode* projectRoot, kwlProjectDataBinaryRepresentation* bin)
@@ -483,18 +478,26 @@ static void kwlSoundRootXMLToBin(xmlNode* projectRoot, kwlProjectDataBinaryRepre
                         bin);
 }
 
-
-static void kwlGatherEventsCallback(xmlNode* currentNode, void* b)
+static void kwlGatherEventsCallback(xmlNode* node, void* b)
 {
+    kwlProjectDataBinaryRepresentation* bin = (kwlProjectDataBinaryRepresentation*)b;
+    bin->eventChunk.numEventDefinitions += 1;
+    bin->eventChunk.eventDefinitions = realloc(bin->eventChunk.eventDefinitions,
+                                               sizeof(kwlEventChunk) * bin->eventChunk.numEventDefinitions);
+    kwlEventChunk* c = &bin->eventChunk.eventDefinitions[bin->eventChunk.numEventDefinitions - 1];
+    c->id = kwlGetNodePath(node);
+    
     /*
-     kwlProjectDataBinaryRepresentation* bin = (kwlProjectDataBinaryRepresentation*)b;
-     bin->waveBankChunk.numWaveBanks += 1;
-     bin->mixPresetChunk.mixPresets = realloc(bin->mixPresetChunk.mixPresets,
-     sizeof(kwlMixPresetChunk) * bin->mixPresetChunk.numMixPresets);
-     kwlMixPresetChunk* c = &bin->mixPresetChunk.mixPresets[bin->mixPresetChunk.numMixPresets - 1];*/
-    const xmlChar* path = kwlGetNodePath(currentNode);
-    //printf("event path %s\n", path);
-    KWL_ASSERT(path != NULL);
+    c->outerConeAngleDeg = kwlGetFloatAttributeValue(node, KWL_XML_ATTR_EVENT_OUTER_ANGLE);
+    c->innerConeAngleDeg = kwlGetFloatAttributeValue(node, KWL_XML_ATTR_EVENT_INNER_ANGLE);
+    c->gain = kwlGetFloatAttributeValue(node, KWL_XML_ATTR_EVENT_GAIN);
+    c->pitch = kwlGetFloatAttributeValue(node, KWL_XML_ATTR_EVENT_PITCH);
+    c->instanceCount = kwlGetFloatAttributeValue(node, KWL_XML_ATTR_EVENT_INSTANCE_COUNT);
+    c->isPositional = kwlGetBoolAttributeValue(node, KWL_XML_ATTR_EVENT_IS_POSITIONAL);
+    c->loopIfStreaming = kwlGetBoolAttributeValue(node, KWL_XML_ATTR_EVENT_LOOP_IF_STREAMING);
+    c->mixBusIndex = 0;//TODO
+    c->numReferencedWaveBanks = 0; //TODO*/
+    //TODO
 }
 
 static void kwlEventRootXMLToBin(xmlNode* projectRoot, kwlProjectDataBinaryRepresentation* bin)
@@ -511,12 +514,20 @@ static void kwlEventRootXMLToBin(xmlNode* projectRoot, kwlProjectDataBinaryRepre
 void kwlBuildEngineData(const char* xmlPath, const char* targetFile)
 {
     xmlDoc *doc = NULL;
-    /*parse the file and get the node tree */
-    doc = xmlReadFile(xmlPath, NULL, 0);
-    
-    if (doc == NULL) {
-        printf("error: could not parse file %s\n", xmlPath);
-        return;
+    if (0)
+    {
+        
+        /*parse the file and get the node tree */
+        doc = xmlReadFile(xmlPath, NULL, 0);
+        
+        if (doc == NULL) {
+            printf("error: could not parse file %s\n", xmlPath);
+            return;
+        }
+    }
+    else
+    {
+        doc = kwlLoadAndValidateProjectData(xmlPath);
     }
     
     /*Get the root element node */

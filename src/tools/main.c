@@ -5,10 +5,14 @@
 #include "kwl_projectdatabinaryrepresentation.h"
 #include "kwl_wavebankbinaryrepresentation.h"
 #include "kwl_binarybuilding.h"
+#include "kwl_xmlvalidation.h"
 #include "kwl_toolsutil.h"
 
 int main(int argc, const char * argv[])
 {
+    kwlValidateProjectData("/Users/perarne/code/kowalski/res/demodata/master/demoproject.xml", NULL);
+    
+    
     kwlProjectDataBinaryRepresentation pdb;
     kwlProjectDataBinaryRepresentation_deserialize(&pdb,
                                                    "/Users/perarne/code/kowalski/res/demodata/final/demoproject.kwl",

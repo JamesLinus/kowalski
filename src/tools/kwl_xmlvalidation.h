@@ -25,6 +25,7 @@ freely, subject to the following restrictions:
 #define KWL_XML_VALIDATION_H
 
 #include "kwl_toolsutil.h"
+#include <libxml/tree.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -61,6 +62,8 @@ extern "C"
      *
      */
     void kwlBuildWaveBank(const char* xmlPath, const char* waveBankId, const char* targetDir);
+    
+    xmlDocPtr kwlLoadAndValidateProjectData(const char* xmlPath);
 
     
 #ifdef __cplusplus

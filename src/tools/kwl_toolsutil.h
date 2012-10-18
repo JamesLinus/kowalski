@@ -41,10 +41,11 @@ freely, subject to the following restrictions:
 #define KWL_XML_SOUND_GROUP_NAME "SoundGroup"
 
 #define KWL_XML_SOUND_NAME "Sound"
+
 #define KWL_XML_ATTR_SOUND_GAIN "gain"
-#define KWL_XML_ATTR_SOUND_GAIN_VAR "gainVariation"
+#define KWL_XML_ATTR_SOUND_GAIN_VAR "gainVariationPercent"
 #define KWL_XML_ATTR_PITCH "pitch"
-#define KWL_XML_ATTR_PITCH_VAR "pitchVariation"
+#define KWL_XML_ATTR_PITCH_VAR "pitchVariationPercent"
 #define KWL_XML_ATTR_DEFER_STOP "deferStop"
 #define KWL_XML_ATTR_PLAYBACK_COUNT "playbackCount"
 #define KWL_XML_ATTR_PLAYBACK_MODE "playbackMode"

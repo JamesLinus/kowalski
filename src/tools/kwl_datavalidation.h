@@ -24,7 +24,7 @@ freely, subject to the following restrictions:
 #ifndef KWL_XML_VALIDATION_H
 #define KWL_XML_VALIDATION_H
 
-#include "kwl_toolsutil.h"
+#include "kwl_logging.h"
 
 #ifdef __cplusplus
 extern "C"

@@ -21,29 +21,20 @@ freely, subject to the following restrictions:
    distribution.
 */
 
-#ifndef KWL_TOOLS_H
-#define KWL_TOOLS_H
+#include <stdio.h>
+#include <stdarg.h>
 
+#include "kwl_logging.h"
 
-
-#ifdef __cplusplus
-extern "C"
+void kwlDefaultLogCallback(const char* format, ...)
 {
-#endif /* __cplusplus */
-
-    
-    /**
-     *
-     */
-    typedef void (*kwlLogCallback)(const char* message, ...);
-
-    void kwlDefaultLogCallback(const char* format, ...);
-    
-    void kwlSilentLogCallback(const char* format, ...);
-    
-#ifdef __cplusplus
+    va_list args;
+    va_start(args, format);
+    vprintf(format, args);
+    va_end(args);
 }
-#endif /* __cplusplus */
 
-
-#endif /*KWL_XML_VALIDATION_H*/
+void kwlSilentLogCallback(const char* format, ...)
+{
+    //silent
+}

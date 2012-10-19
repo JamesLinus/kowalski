@@ -24,7 +24,7 @@
 #ifndef KWL_PROJECT_DATA_BINARY_REPRESENTATION_H
 #define KWL_PROJECT_DATA_BINARY_REPRESENTATION_H
 
-#include "kwl_toolsutil.h"
+#include "kwl_logging.h"
 #include "kwl_enginedata.h"
 
 #ifdef __cplusplus

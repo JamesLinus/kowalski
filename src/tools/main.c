@@ -6,7 +6,7 @@
 #include "kwl_wavebankbinaryrepresentation.h"
 #include "kwl_binarybuilding.h"
 #include "kwl_datavalidation.h"
-#include "kwl_toolsutil.h"
+#include "kwl_logging.h"
 
 int main(int argc, const char * argv[])
 {

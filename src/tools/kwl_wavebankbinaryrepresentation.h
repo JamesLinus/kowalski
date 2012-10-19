@@ -24,7 +24,7 @@ freely, subject to the following restrictions:
 #ifndef KWL_WAVE_BANK_BINARY_REPRESENTATION_H
 #define KWL_WAVE_BANK_BINARY_REPRESENTATION_H
 
-#include "kwl_toolsutil.h"
+#include "kwl_logging.h"
 #include "kwl_wavebank.h"
 
 #ifdef __cplusplus

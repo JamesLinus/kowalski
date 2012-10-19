@@ -114,7 +114,10 @@ void* kwlDebugRealloc(void* ptr, size_t size, const char* const tag)
 
 void* kwlDebugMalloc(size_t size, const char* const tag)
 {
-    KWL_ASSERT(size > 0 && "zero size allocation detected");
+    if (size == 0)
+    {
+        return NULL;
+    }
     
     /*find a free slot in the allocation table*/
     int allocationSlotIndex = -1;
@@ -141,6 +144,7 @@ void* kwlDebugMalloc(size_t size, const char* const tag)
             break;
         }
     }
+    
     kwlDebugAllocationTags[allocationSlotIndex][KWL_DEBUG_ALLOCATION_TAG_SIZE - 1] = '\0';
     kwlDebugAllocationSizes[allocationSlotIndex] = size;
     liveBytes += size;
@@ -152,7 +156,10 @@ void* kwlDebugMalloc(size_t size, const char* const tag)
 
 void kwlDebugFree(void* pointer)
 {
-    KWL_ASSERT(pointer != NULL && "warning: freeing null pointer");
+    if (pointer == NULL)
+    {
+        return;
+    }
     
     /*record the deletion*/
     int allocationSlotIndex = -1;

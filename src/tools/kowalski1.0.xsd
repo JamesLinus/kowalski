@@ -26,12 +26,12 @@
                 <xs:element name="MixBus" type="MixBus" minOccurs="1" maxOccurs="1" />
                 <xs:element name="MixPresetGroup" type="MixPresetGroup" minOccurs="1" maxOccurs="1" />
             </xs:all>
-            <xs:attribute name="audioFileRootDirectory" use="optional" default="">
+            <xs:attribute name="audioFileRootPath" use="optional" default="">
                 <xs:annotation>
                     <xs:documentation>The directory to which audio file paths in the project are relative.</xs:documentation>
                 </xs:annotation>
             </xs:attribute>
-            <xs:attribute name="audioFileRootDirectoryRelative" type="xs:boolean" use="optional" default="true">
+            <xs:attribute name="audioFileRootPathIsRelative" type="xs:boolean" use="optional" default="true">
                 <xs:annotation>
                     <xs:documentation>Specifies if the audio file root directory is absolute or relative to the project
                                     file location.</xs:documentation>

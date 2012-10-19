@@ -22,18 +22,50 @@
  */
 
 #include <stdio.h>
+#include <string.h>
 
+#include "kwl_fileoutputstream.h"
+#include "kwl_projectdatabinaryrepresentation.h"
 #include "kwl_wavebankbinaryrepresentation.h"
+#include "kwl_xmlutil.h"
 
-void kwlWaveBankBinaryRepresentation_saveToBinary(kwlWaveBankBinaryRepresentation* bin,
-                                               const char* path)
+void kwlWaveBankBinaryRepresentation_writeToBinary(kwlWaveBankBinaryRepresentation* bin,
+                                                   const char* path)
 {
+    kwlFileOutputStream fos;
+    int success = kwlFileOutputStream_initWithPath(&fos, path);
+    if (!success)
+    {
+        KWL_ASSERT(0 && "could not open file for writing. TODO: proper error handling here");
+        return;
+    }
     
+    /*write file identifier*/
+    kwlFileOutputStream_write(&fos, bin->fileIdentifier, KWL_WAVE_BANK_BINARY_FILE_IDENTIFIER_LENGTH);
+    
+    /*write id and entry count*/
+    kwlFileOutputStream_writeASCIIString(&fos, bin->id);
+    kwlFileOutputStream_writeInt32BE(&fos, bin->numEntries);
+    
+    /*write entries*/
+    for (int i = 0; i < bin->numEntries; i++)
+    {
+        kwlWaveBankEntryChunk* ei = &bin->entries[i];
+        kwlFileOutputStream_writeASCIIString(&fos, ei->fileName);
+        kwlFileOutputStream_writeInt32BE(&fos, ei->encoding);
+        kwlFileOutputStream_writeInt32BE(&fos, ei->isStreaming);
+        kwlFileOutputStream_writeInt32BE(&fos, ei->numChannels);
+        kwlFileOutputStream_writeInt32BE(&fos, ei->numBytes);
+        kwlFileOutputStream_write(&fos, ei->data, ei->numBytes);
+    }
+    
+    /*done*/
+    kwlFileOutputStream_close(&fos);
 }
 
 void kwlWaveBankBinaryRepresentation_loadFromBinary(kwlWaveBankBinaryRepresentation* binaryRep,
-                                                 const char* path,
-                                                 kwlLogCallback errorLogCallback)
+                                                    const char* path,
+                                                    kwlLogCallback errorLogCallback)
 {
     kwlLogCallback errorCallback = errorLogCallback == NULL ? kwlSilentLogCallback : errorLogCallback;
     
@@ -74,7 +106,9 @@ void kwlWaveBankBinaryRepresentation_loadFromBinary(kwlWaveBankBinaryRepresentat
         ei->isStreaming = kwlInputStream_readIntBE(&stream);
         ei->numChannels = kwlInputStream_readIntBE(&stream);
         ei->numBytes = kwlInputStream_readIntBE(&stream);
-        kwlInputStream_skip(&stream, ei->numBytes);
+        KWL_ASSERT(ei->numBytes >= 0);
+        ei->data = KWL_MALLOC(ei->numBytes, "bin wb audio data entry");
+        kwlInputStream_read(&stream, ei->data, ei->numBytes);
     }
     
     kwlInputStream_close(&stream);
@@ -84,6 +118,90 @@ onDataError:
     kwlInputStream_close(&stream);
     kwlWaveBankBinaryRepresentation_free(binaryRep);
     return;
+}
+
+static const char* kwlGetAudioFilePath(const char* xmlPath,
+                                       const char* rootDir,
+                                       int rootIsRelative,
+                                       const char* relPath)
+{
+    //TODO:
+    return relPath;
+}
+
+static char* kwlDuplicateString(const char* str)
+{
+    size_t len = strlen(str);
+    char* copy = KWL_MALLOC(len + 1, "string copy");
+    kwlMemcpy(copy, str, len);
+    copy[len] = '\0';
+    return copy;
+}
+
+void kwlWaveBankBinaryRepresentation_loadFromXML(kwlWaveBankBinaryRepresentation* bin,
+                                                 const char* xmlPath,
+                                                 const char* xsdPath,
+                                                 const char* waveBankId,
+                                                 kwlLogCallback errorLogCallback)
+{
+    /*grab the audio file root path*/
+    xmlDocPtr doc = kwlLoadAndValidateProjectDataDoc(xmlPath, xsdPath);
+    if (doc == NULL)
+    {
+        KWL_ASSERT(0 && "error loading project xml. TODO: proper error handling");
+        return;
+    }
+    xmlNode* projNode = xmlDocGetRootElement(doc);
+    char* audioFileRoot = kwlGetAttributeValueCopy(projNode, KWL_XML_ATTR_PROJECT_AUDIO_FILE_ROOT);
+    int rootIsRelative = kwlGetBoolAttributeValue(projNode, KWL_XML_ATTR_PROJECT_AUDIO_FILE_ROOT_IS_RELATIVE);
+    xmlFreeDoc(doc);
+    
+    /*load project data*/
+    kwlProjectDataBinary projBin;
+    kwlProjectDataBinary_loadFromXML(&projBin,
+                                     xmlPath,
+                                     xsdPath,
+                                     errorLogCallback);
+    
+    /*find the wavebank*/
+    kwlWaveBankChunk* waveBank = NULL;
+    for (int i = 0; i < projBin.waveBankChunk.numWaveBanks; i++)
+    {
+        kwlWaveBankChunk* wbi = &projBin.waveBankChunk.waveBanks[i];
+        if (strcmp(wbi->id, waveBankId) == 0)
+        {
+            waveBank = wbi;
+            break;
+        }
+    }
+    
+    if (waveBank == NULL)
+    {
+        KWL_ASSERT(0 && "could not find wave bank. TODO: proper error handling");
+        return;
+    }
+    
+    /*create wave bank binary struct and populate it using the corresponding
+     wave bank from project data and the contents of the referenecd audio files*/
+    kwlMemset(bin, 0, sizeof(kwlWaveBankBinaryRepresentation));
+    bin->numEntries = waveBank->numAudioDataEntries;
+    for (int i = 0; i < KWL_WAVE_BANK_BINARY_FILE_IDENTIFIER_LENGTH; i++)
+    {
+        bin->fileIdentifier[i] = KWL_WAVE_BANK_BINARY_FILE_IDENTIFIER[i];
+    }
+
+    bin->id = kwlDuplicateString(waveBank->id);
+    bin->entries = KWL_MALLOC(waveBank->numAudioDataEntries * sizeof(kwlWaveBankEntryChunk), "bin wb entries");
+    for (int i = 0; i < waveBank->numAudioDataEntries; i++)
+    {
+        kwlWaveBankEntryChunk* ei = &bin->entries[i];
+        ei->fileName = kwlDuplicateString(waveBank->audioDataEntries[i]);
+        const char* audioFilePath = kwlGetAudioFilePath(xmlPath, audioFileRoot, rootIsRelative, ei->fileName);
+        //TODO
+    }
+    
+    /*clean up*/
+    kwlProjectDataBinary_free(&projBin);
 }
 
 void kwlWaveBankBinaryRepresentation_dump(kwlWaveBankBinaryRepresentation* bin,
@@ -111,5 +229,16 @@ void kwlWaveBankBinaryRepresentation_dump(kwlWaveBankBinaryRepresentation* bin,
 
 void kwlWaveBankBinaryRepresentation_free(kwlWaveBankBinaryRepresentation* bin)
 {
+    KWL_FREE(bin->id);
     
+    for (int i = 0; i < bin->numEntries; i++)
+    {
+        kwlWaveBankEntryChunk* ei = &bin->entries[i];
+        KWL_FREE(ei->fileName);
+        KWL_FREE(ei->data);
+    }
+    
+    KWL_FREE(bin->entries);
+    
+    kwlMemset(bin, 0, sizeof(kwlWaveBankBinaryRepresentation));
 }

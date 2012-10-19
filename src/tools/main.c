@@ -15,38 +15,55 @@ int main(int argc, const char * argv[])
     const char* kwlPath = "/Users/perarne/code/kowalski/res/demodata/final/demoproject.kwl";
     const char* kwbPath = "/Users/perarne/code/kowalski/res/demodata/final/numbers.kwb";
     
+    const char* waveBankId = "music";
     const char* wbId = "";
     const char* wbTargetDir = "";
     const char* wbTargetFile = "";
-    const char* binTargetFile = "";
+    const char* binTargetFile = "/Users/perarne/code/kowalski/res/demodata/final/demoproject_testwrite.kwl";
     
     kwlProjectDataBinary pdb;
     kwlMemset(&pdb, 0, sizeof(kwlProjectDataBinary));
     
     //load kwl from xml
-    if (1)
+    if (0)
     {
         kwlProjectDataBinary_loadFromXML(&pdb,
                                          xmlPath,
                                          xsdPath,
                                          kwlDefaultLogCallback);
-        kwlProjectDataBinary_dump(&pdb, kwlDefaultLogCallback);
+        //kwlProjectDataBinary_dump(&pdb, kwlDefaultLogCallback);
+        kwlProjectDataBinary_writeToBinary(&pdb, binTargetFile);
         kwlProjectDataBinary_free(&pdb);
         
+        kwlProjectDataBinary_loadFromBinary(&pdb, binTargetFile, kwlDefaultLogCallback);
+        //kwlProjectDataBinary_dump(&pdb, kwlDefaultLogCallback);
+        kwlProjectDataBinary_free(&pdb);
+        //kwlDebugPrintAllocationReport();
     }
     
     //load kwl from bin
-    if (1)
+    if (0)
     {
-        kwlDebugPrintAllocationReport();
         kwlProjectDataBinary_loadFromBinary(&pdb,
                                             kwlPath,
                                             kwlDefaultLogCallback);
         //kwlProjectDataBinary_dump(&pdb, kwlDefaultLogCallback);
         kwlProjectDataBinary_free(&pdb);
-        kwlDebugPrintAllocationReport();
     }
 
+    //load kwb from xml
+    if (1)
+    {
+        kwlWaveBankBinaryRepresentation wbb;
+        kwlWaveBankBinaryRepresentation_loadFromXML(&wbb,
+                                                    xmlPath,
+                                                    xsdPath,
+                                                    waveBankId,
+                                                    kwlDefaultLogCallback);
+        kwlWaveBankBinaryRepresentation_dump(&wbb, kwlDefaultLogCallback);
+        kwlWaveBankBinaryRepresentation_free(&wbb);
+    }
+    
     //load kwb from bin
     if (0)
     {

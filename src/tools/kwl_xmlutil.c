@@ -103,8 +103,19 @@ int kwlGetIntAttributeValue(xmlNode* node, const char* attribute)
 
 int kwlGetBoolAttributeValue(xmlNode* node, const char* attribute)
 {
-    //TODO
-    return strtof(kwlGetAttributeValue(node, attribute), NULL);
+    char* trueVals[3] = {"true", "True", "TRUE"};
+
+    const xmlChar* val = kwlGetAttributeValue(node, attribute);
+
+    for (int i = 0; i < 3; i++)
+    {
+        if (xmlStrEqual(val, (xmlChar*)trueVals[i]))
+        {
+            return 1;
+        }
+    }
+    
+    return 0;
 }
 
 
@@ -141,7 +152,6 @@ xmlDocPtr kwlLoadAndValidateProjectDataDoc(const char* xmlPath, const char* sche
         return NULL;
     }
     
-    
     xmlSchemaParserCtxtPtr parser_ctxt = xmlSchemaNewDocParserCtxt(schema_doc);
     if (parser_ctxt == NULL) {
         /* unable to create a parser context for the schema */
@@ -170,6 +180,6 @@ xmlDocPtr kwlLoadAndValidateProjectDataDoc(const char* xmlPath, const char* sche
     xmlSchemaFree(schema);
     xmlSchemaFreeParserCtxt(parser_ctxt);
     xmlFreeDoc(schema_doc);
-    /* force the return value to be non-negative on success */
+ 
     return is_valid ? doc : NULL;
 }

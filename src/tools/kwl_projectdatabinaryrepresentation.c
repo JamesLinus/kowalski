@@ -29,16 +29,12 @@ freely, subject to the following restrictions:
 #include "kwl_datavalidation.h"
 #include "kwl_inputstream.h"
 #include "kwl_memory.h"
+#include "kwl_fileoutputstream.h"
 #include "kwl_projectdatabinaryrepresentation.h"
 #include "kwl_sound.h"
 #include "kwl_xmlutil.h"
 
 #define KWL_TEMP_STRING_LENGTH 1024
-
-
-
-
-
 
 
 /**
@@ -197,7 +193,7 @@ static void kwlGatherMixPresetsCallback(xmlNode* node, void* b)
                                                  "xml 2 bin mix preset realloc");
     kwlMixPresetChunk* c = &bin->mixPresetChunk.mixPresets[bin->mixPresetChunk.numMixPresets - 1];
     c->id = kwlGetNodePath(node);
-    c->isDefault = kwlGetIntAttributeValue(node, KWL_XML_ATTR_MIX_PRESET_IS_DEFAULT);
+    c->isDefault = kwlGetBoolAttributeValue(node, KWL_XML_ATTR_MIX_PRESET_IS_DEFAULT);
     c->mixBusIndices = KWL_MALLOCANDZERO(numMixBuses * sizeof(int), "xml 2 bin mix preset bus indices");
     c->gainLeft = KWL_MALLOCANDZERO(numMixBuses * sizeof(int), "xml 2 bin mix preset bus gain l");
     c->gainRight = KWL_MALLOCANDZERO(numMixBuses * sizeof(int), "xml 2 bin mix preset bus gain r");
@@ -475,7 +471,11 @@ void kwlProjectDataBinary_loadFromXML(kwlProjectDataBinary* bin,
     kwlSoundRootXMLToBin(soundRootNode, bin);
     kwlEventRootXMLToBin(eventRootNode, bin);
     
-    //kwlProjectDataBinary_dump(bin, kwlDefaultLogCallback);
+    /*finally, write file identifier*/
+    for (int i = 0; i < KWL_ENGINE_DATA_BINARY_FILE_IDENTIFIER_LENGTH; i++)
+    {
+        bin->fileIdentifier[i] = KWL_ENGINE_DATA_BINARY_FILE_IDENTIFIER[i];
+    }
     
     /*free the document */
     xmlFreeDoc(doc);
@@ -488,15 +488,174 @@ void kwlProjectDataBinary_loadFromXML(kwlProjectDataBinary* bin,
 }
 
 
-void kwlProjectDataBinary_saveToBinary(kwlProjectDataBinary* bin,
-                                                     const char* path)
+void kwlProjectDataBinary_writeToBinary(kwlProjectDataBinary* bin,
+                                        const char* path)
 {
-    KWL_ASSERT(0 && "TODO");
+    kwlFileOutputStream fos;
+    int success = kwlFileOutputStream_initWithPath(&fos, path);
+    if (!success)
+    {
+        KWL_ASSERT(0 && "could not open file for writing. TODO: proper error handling here");
+        return;
+    }
+
+    /*write file identifier*/
+    kwlFileOutputStream_write(&fos, bin->fileIdentifier, KWL_ENGINE_DATA_BINARY_FILE_IDENTIFIER_LENGTH);
+    
+    long chunkStartPositions[5] = {0, 0, 0, 0, 0};
+    long chunkEndPositions[5] = {0, 0, 0, 0, 0};
+    
+    /*write wave banks chunk*/
+    {
+        kwlWaveBankDataChunk* wbc = &bin->waveBankChunk;
+        kwlFileOutputStream_writeInt32BE(&fos, KWL_WAVE_BANKS_CHUNK_ID);
+        kwlFileOutputStream_writeInt32BE(&fos, 0); /*size*/
+        chunkStartPositions[0] = ftell(fos.file);
+        kwlFileOutputStream_writeInt32BE(&fos, wbc->numAudioDataItemsTotal);
+        kwlFileOutputStream_writeInt32BE(&fos, wbc->numWaveBanks);
+        
+        for (int i = 0; i < wbc->numWaveBanks; i++)
+        {
+            kwlWaveBankChunk* wbi = &wbc->waveBanks[i];
+            kwlFileOutputStream_writeASCIIString(&fos, wbi->id);
+            kwlFileOutputStream_writeInt32BE(&fos, wbi->numAudioDataEntries);
+            for (int j = 0; j < wbi->numAudioDataEntries; j++)
+            {
+                kwlFileOutputStream_writeASCIIString(&fos, wbi->audioDataEntries[i]);
+            }
+        }
+        chunkEndPositions[0] = ftell(fos.file);
+    }
+    
+    /*mix bus chunk*/
+    {
+        kwlMixBusDataChunk* mbc = &bin->mixBusChunk;
+        kwlFileOutputStream_writeInt32BE(&fos, KWL_MIX_BUSES_CHUNK_ID);
+        kwlFileOutputStream_writeInt32BE(&fos, 0); /*size*/
+        chunkStartPositions[1] = ftell(fos.file);
+        kwlFileOutputStream_writeInt32BE(&fos, mbc->numMixBuses);
+        
+        for (int i = 0; i < mbc->numMixBuses; i++)
+        {
+            kwlMixBusChunk* mbi = &mbc->mixBuses[i];
+            kwlFileOutputStream_writeASCIIString(&fos, mbi->id);
+            kwlFileOutputStream_writeInt32BE(&fos, mbi->numSubBuses);
+            for (int j = 0; j < mbi->numSubBuses; j++)
+            {
+                kwlFileOutputStream_writeInt32BE(&fos, mbi->subBusIndices[j]);
+            }
+        }
+        chunkEndPositions[1] = ftell(fos.file);
+    }
+    
+    /*mix preset chunk*/
+    {
+        const int numMixBuses = bin->mixBusChunk.numMixBuses;
+        KWL_ASSERT(numMixBuses > 0);
+        kwlMixPresetDataChunk * mpc = &bin->mixPresetChunk;
+        kwlFileOutputStream_writeInt32BE(&fos, KWL_MIX_PRESETS_CHUNK_ID);
+        kwlFileOutputStream_writeInt32BE(&fos, 0); /*size*/
+        chunkStartPositions[2] = ftell(fos.file);
+        kwlFileOutputStream_writeInt32BE(&fos, mpc->numMixPresets);
+        
+        for (int i = 0; i < mpc->numMixPresets; i++)
+        {
+            kwlMixPresetChunk* mpi = &mpc->mixPresets[i];
+            kwlFileOutputStream_writeASCIIString(&fos, mpi->id);
+            kwlFileOutputStream_writeInt32BE(&fos, mpi->isDefault);
+            
+            for (int j = 0; j < numMixBuses; j++)
+            {
+                kwlFileOutputStream_writeInt32BE(&fos, mpi->mixBusIndices[j]);
+                kwlFileOutputStream_writeFloat32BE(&fos, mpi->gainLeft[j]);
+                kwlFileOutputStream_writeFloat32BE(&fos, mpi->gainRight[j]);
+                kwlFileOutputStream_writeFloat32BE(&fos, mpi->pitch[j]);
+            }
+        }
+        chunkEndPositions[2] = ftell(fos.file);
+    }
+    
+    /*sound chunk*/
+    {
+        kwlSoundDataChunk * sdc = &bin->soundChunk;
+        kwlFileOutputStream_writeInt32BE(&fos, KWL_SOUNDS_CHUNK_ID);
+        kwlFileOutputStream_writeInt32BE(&fos, 0); /*size*/
+        chunkStartPositions[3] = ftell(fos.file);
+        kwlFileOutputStream_writeInt32BE(&fos, sdc->numSoundDefinitions);
+        
+        for (int i = 0; i < sdc->numSoundDefinitions; i++)
+        {
+            kwlSoundChunk* si = &sdc->soundDefinitions[i];
+            kwlFileOutputStream_writeInt32BE(&fos, si->playbackCount);
+            kwlFileOutputStream_writeInt32BE(&fos, si->deferStop);
+            kwlFileOutputStream_writeFloat32BE(&fos, si->gain);
+            kwlFileOutputStream_writeFloat32BE(&fos, si->gainVariation);
+            kwlFileOutputStream_writeFloat32BE(&fos, si->pitch);
+            kwlFileOutputStream_writeFloat32BE(&fos, si->pitchVariation);
+            kwlFileOutputStream_writeInt32BE(&fos, si->playbackMode);
+            kwlFileOutputStream_writeInt32BE(&fos, si->numWaveReferences);
+            
+            for (int j = 0; j < si->numWaveReferences; j++)
+            {
+                kwlFileOutputStream_writeInt32BE(&fos, si->waveBankIndices[j]);
+                kwlFileOutputStream_writeInt32BE(&fos, si->audioDataIndices[j]);
+            }
+        }
+        chunkEndPositions[3] = ftell(fos.file);
+    }
+    
+    /*event chunk*/
+    {
+        kwlEventDataChunk * edc = &bin->eventChunk;
+        kwlFileOutputStream_writeInt32BE(&fos, KWL_EVENTS_CHUNK_ID);
+        kwlFileOutputStream_writeInt32BE(&fos, 0); /*size*/
+        chunkStartPositions[4] = ftell(fos.file);
+        kwlFileOutputStream_writeInt32BE(&fos, edc->numEventDefinitions);
+        
+        for (int i = 0; i < edc->numEventDefinitions; i++)
+        {
+            kwlEventChunk* ei = &edc->eventDefinitions[i];
+            kwlFileOutputStream_writeASCIIString(&fos, ei->id);
+            kwlFileOutputStream_writeInt32BE(&fos, ei->instanceCount);
+            kwlFileOutputStream_writeFloat32BE(&fos, ei->gain);
+            kwlFileOutputStream_writeFloat32BE(&fos, ei->pitch);
+            kwlFileOutputStream_writeFloat32BE(&fos, ei->innerConeAngleDeg);
+            kwlFileOutputStream_writeFloat32BE(&fos, ei->innerConeGain);
+            kwlFileOutputStream_writeFloat32BE(&fos, ei->outerConeAngleDeg);
+            kwlFileOutputStream_writeFloat32BE(&fos, ei->outerConeGain);
+            kwlFileOutputStream_writeInt32BE(&fos, ei->mixBusIndex);
+            kwlFileOutputStream_writeInt32BE(&fos, ei->isPositional);
+            kwlFileOutputStream_writeInt32BE(&fos, ei->retriggerMode);
+            kwlFileOutputStream_writeInt32BE(&fos, ei->waveBankIndex);
+            kwlFileOutputStream_writeInt32BE(&fos, ei->audioDataIndex);
+            kwlFileOutputStream_writeInt32BE(&fos, ei->loopIfStreaming);
+            kwlFileOutputStream_writeInt32BE(&fos, ei->numReferencedWaveBanks);
+            for (int j = 0; j < ei->numReferencedWaveBanks; j++)
+            {
+                kwlFileOutputStream_writeInt32BE(&fos, ei->waveBankIndices[j]);
+            }
+        }
+        
+        chunkEndPositions[4] = ftell(fos.file);
+    }
+    
+    /*finally write the chunk sizes*/
+    for (int i = 0; i < 5; i++)
+    {
+        fseek(fos.file,
+              chunkStartPositions[i] - 4,
+              SEEK_SET);
+        const long size = chunkEndPositions[i] - chunkStartPositions[i];
+        kwlFileOutputStream_writeInt32BE(&fos, (int)size);
+    }
+    
+    /*done*/
+    kwlFileOutputStream_close(&fos);
 }
 
 void kwlProjectDataBinary_loadFromBinary(kwlProjectDataBinary* binaryRep,
-                                                       const char* binaryPath,
-                                                       kwlLogCallback errorLogCallbackIn)
+                                         const char* binaryPath,
+                                         kwlLogCallback errorLogCallbackIn)
 {
 
     kwlMemset(binaryRep, 0, sizeof(kwlProjectDataBinary));
@@ -535,7 +694,6 @@ void kwlProjectDataBinary_loadFromBinary(kwlProjectDataBinary* binaryRep,
         binaryRep->mixBusChunk.numMixBuses = kwlInputStream_readIntBE(&is);
         binaryRep->mixBusChunk.mixBuses = KWL_MALLOCANDZERO(binaryRep->mixBusChunk.numMixBuses * sizeof(kwlMixBusChunk),
                                                            "bin mix buses");
-        
         
         //read mix bus data
         for (int i = 0; i < binaryRep->mixBusChunk.numMixBuses; i++)
@@ -588,7 +746,7 @@ void kwlProjectDataBinary_loadFromBinary(kwlProjectDataBinary* binaryRep,
             {
                 if(defaultPresetIndex != -1)
                 {
-                    errorLogCallback("Multiple default mix presets found");
+                    errorLogCallback("Multiple default mix presets found\n");
                     goto onDataError;
                 }
                 defaultPresetIndex = i;
@@ -605,7 +763,8 @@ void kwlProjectDataBinary_loadFromBinary(kwlProjectDataBinary* binaryRep,
                 if (mpi->mixBusIndices[j] < 0 ||  mpi->mixBusIndices[j] >= numParameterSets)
                 {
                     errorLogCallback("Mix preset %s references out of bounds index %d (mix bus count is %d)\n",
-                                     mpi->id, mpi->mixBusIndices[j], binaryRep->mixBusChunk.numMixBuses);
+                                     mpi->id, mpi->mixBusIndices[j],
+                                     binaryRep->mixBusChunk.numMixBuses);
                     goto onDataError;
                 }
                 mpi->gainLeft[j] = kwlInputStream_readFloatBE(&is);
@@ -616,7 +775,7 @@ void kwlProjectDataBinary_loadFromBinary(kwlProjectDataBinary* binaryRep,
         
         if (defaultPresetIndex < 0)
         {
-            errorLogCallback("No default mix preset found");
+            errorLogCallback("No default mix preset found\n");
             goto onDataError;
         }
     }
@@ -630,14 +789,16 @@ void kwlProjectDataBinary_loadFromBinary(kwlProjectDataBinary* binaryRep,
         binaryRep->waveBankChunk.numAudioDataItemsTotal = kwlInputStream_readIntBE(&is);
         if (binaryRep->waveBankChunk.numAudioDataItemsTotal < 0)
         {
-            errorLogCallback("Expected at least one audio data entry, found %d", binaryRep->waveBankChunk.numAudioDataItemsTotal);
+            errorLogCallback("Expected at least one audio data entry, found %d\n",
+                             binaryRep->waveBankChunk.numAudioDataItemsTotal);
             goto onDataError;
         }
         
         binaryRep->waveBankChunk.numWaveBanks = kwlInputStream_readIntBE(&is);
         if (binaryRep->waveBankChunk.numWaveBanks < 0)
         {
-            errorLogCallback("Expected at least one wave bank, found %d", binaryRep->waveBankChunk.numWaveBanks);
+            errorLogCallback("Expected at least one wave bank, found %d\n",
+                             binaryRep->waveBankChunk.numWaveBanks);
             goto onDataError;
         }
         
@@ -652,13 +813,14 @@ void kwlProjectDataBinary_loadFromBinary(kwlProjectDataBinary* binaryRep,
             wbi->numAudioDataEntries = kwlInputStream_readIntBE(&is);
             if (wbi->numAudioDataEntries < 0)
             {
-                errorLogCallback("Wave bank %s has %d audio data items. Expected at least 1.",
+                errorLogCallback("Wave bank %s has %d audio data items. Expected at least 1.\n",
                                  wbi->id,
                                  wbi->numAudioDataEntries);
                 goto onDataError;
             }
             
-            wbi->audioDataEntries = KWL_MALLOCANDZERO(wbi->numAudioDataEntries * sizeof(char*), "bin wb audio data list");
+            wbi->audioDataEntries = KWL_MALLOCANDZERO(wbi->numAudioDataEntries * sizeof(char*),
+                                                      "bin wb audio data list");
             
             for (int j = 0; j < wbi->numAudioDataEntries; j++)
             {
@@ -693,7 +855,7 @@ void kwlProjectDataBinary_loadFromBinary(kwlProjectDataBinary* binaryRep,
             si->numWaveReferences = kwlInputStream_readIntBE(&is);
             if (si->numWaveReferences < 0)
             {
-                errorLogCallback("Sound with index %d has %d audio data items. Expected at least 1.", i, si->numWaveReferences);
+                errorLogCallback("Sound with index %d has %d audio data items. Expected at least 1.\n", i, si->numWaveReferences);
                 goto onDataError;
             }
             
@@ -717,13 +879,14 @@ void kwlProjectDataBinary_loadFromBinary(kwlProjectDataBinary* binaryRep,
         binaryRep->eventChunk.numEventDefinitions = kwlInputStream_readIntBE(&is);
         if (binaryRep->eventChunk.numEventDefinitions <= 0)
         {
-            errorLogCallback("Found %d event definitions. Expected at least 1.",
+            errorLogCallback("Found %d event definitions. Expected at least 1.\n",
                              binaryRep->eventChunk.numEventDefinitions);
             goto onDataError;
         }
         
-        binaryRep->eventChunk.eventDefinitions = KWL_MALLOCANDZERO(binaryRep->eventChunk.numEventDefinitions * sizeof(kwlEventChunk),
-                                                                  "bin ev defs");
+        binaryRep->eventChunk.eventDefinitions =
+                KWL_MALLOCANDZERO(binaryRep->eventChunk.numEventDefinitions * sizeof(kwlEventChunk),
+                                  "bin ev defs");
 
         for (int i = 0; i < binaryRep->eventChunk.numEventDefinitions; i++)
         {
@@ -751,7 +914,7 @@ void kwlProjectDataBinary_loadFromBinary(kwlProjectDataBinary* binaryRep,
             
             if (ei->soundIndex < -1)
             {
-                errorLogCallback("Invalid sound index %d in event definition %s.", ei->soundIndex, ei->id);
+                errorLogCallback("Invalid sound index %d in event definition %s.\n", ei->soundIndex, ei->id);
                 goto onDataError;
             }
             
@@ -775,7 +938,7 @@ void kwlProjectDataBinary_loadFromBinary(kwlProjectDataBinary* binaryRep,
                 ei->waveBankIndices[j] = kwlInputStream_readIntBE(&is);
                 if (ei->waveBankIndices[j] < 0 || ei->waveBankIndices[j] >= binaryRep->waveBankChunk.numWaveBanks)
                 {
-                    errorLogCallback("Invalid wave bank index index %d in event definition %s. Wave bank count is %d",
+                    errorLogCallback("Invalid wave bank index index %d in event definition %s. Wave bank count is %d\n",
                                      ei->waveBankIndices[j],
                                      ei->id,
                                      binaryRep->waveBankChunk.numWaveBanks);

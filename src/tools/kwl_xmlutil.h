@@ -71,6 +71,8 @@ extern "C"
 #define KWL_XML_ATTR_EVENT_BUS "bus"
     
 #define KWL_XML_PROJECT_NODE_NAME "KowalskiProject"
+#define KWL_XML_ATTR_PROJECT_AUDIO_FILE_ROOT "audioFileRootPath"   
+#define KWL_XML_ATTR_PROJECT_AUDIO_FILE_ROOT_IS_RELATIVE "audioFileRootPathIsRelative"
     
 #define KWL_XML_PARAM_SET_NAME "MixBusParameters"
 #define KWL_XML_ATTR_PARAM_SET_GAIN_L "leftGain"

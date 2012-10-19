@@ -56,11 +56,6 @@ void kwlFileOutputStream_write(kwlFileOutputStream* stream, const void* data, in
     fwrite(data, 1, numBytes, stream->file);
 }
 
-void kwlFileOutputStream_writeInt32LE(kwlFileOutputStream* stream, int val)
-{
-    kwlFileOutputStream_write(stream, &val, 4);
-}
-
 void kwlFileOutputStream_writeInt32BE(kwlFileOutputStream* stream, int val)
 {
     char c[4] =
@@ -75,12 +70,7 @@ void kwlFileOutputStream_writeInt32BE(kwlFileOutputStream* stream, int val)
 }
 
 
-void kwlFileOutputStream_writeFloat32LE(kwlFileOutputStream* stream, float val)
+void kwlFileOutputStream_writeFloat32BE(kwlFileOutputStream* stream, float val)
 {
-    kwlFileOutputStream_write(stream, &val, 4);
-}
-
-void kwlFileOutputStream_writeInt16LE(kwlFileOutputStream* stream, short val)
-{
-    kwlFileOutputStream_write(stream, &val, 2);
+    kwlFileOutputStream_writeInt32BE(stream, *((int*)(&val)));
 }

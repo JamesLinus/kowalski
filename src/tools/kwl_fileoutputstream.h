@@ -39,22 +39,13 @@ extern "C"
     /**
      *
      */
-    void kwlFileOutputStream_writeInt32LE(kwlFileOutputStream* stream, int val);
-    
-    /**
-     *
-     */
     void kwlFileOutputStream_writeInt32BE(kwlFileOutputStream* stream, int val);
     
     /**
      *
      */
-    void kwlFileOutputStream_writeFloat32LE(kwlFileOutputStream* stream, float val);
+    void kwlFileOutputStream_writeFloat32BE(kwlFileOutputStream* stream, float val);
     
-    /**
-     *
-     */
-    void kwlFileOutputStream_writeInt16LE(kwlFileOutputStream* stream, short val);
     
 #ifdef __cplusplus
 }

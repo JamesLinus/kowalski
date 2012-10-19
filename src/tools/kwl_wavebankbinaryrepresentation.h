@@ -42,6 +42,7 @@ extern "C"
         int isStreaming;
         int numChannels;
         int numBytes;
+        void* data;
     } kwlWaveBankEntryChunk;
     
     /**
@@ -59,15 +60,24 @@ extern "C"
     /**
      *
      */
-    void kwlWaveBankBinaryRepresentation_saveToBinary(kwlWaveBankBinaryRepresentation* bin,
+    void kwlWaveBankBinaryRepresentation_writeToBinary(kwlWaveBankBinaryRepresentation* bin,
                                                       const char* path);
     
     /**
-     *
+     * 
      */
     void kwlWaveBankBinaryRepresentation_loadFromBinary(kwlWaveBankBinaryRepresentation* bin,
                                                         const char* path,
                                                         kwlLogCallback errorLogCallback);
+    
+    /**
+     *
+     */
+    void kwlWaveBankBinaryRepresentation_loadFromXML(kwlWaveBankBinaryRepresentation* bin,
+                                                     const char* xmlPath,
+                                                     const char* xsdPath,
+                                                     const char* waveBankId,
+                                                     kwlLogCallback errorLogCallback);
     
     /**
      *

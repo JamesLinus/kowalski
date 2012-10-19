@@ -22,14 +22,14 @@ freely, subject to the following restrictions:
 */
 
 #include "kwl_memory.h"
-#include "kwl_sound.h"
+#include "kwl_sounddefinition.h"
 
 #include "kwl_assert.h"
 #include <stdlib.h>
 
-void kwlSound_init(kwlSound* sound)
+void kwlSoundDefinition_init(kwlSoundDefinition* sound)
 {
-    kwlMemset(sound, 0, sizeof(kwlSound));
+    kwlMemset(sound, 0, sizeof(kwlSoundDefinition));
     
     sound->audioDataEntries = NULL;
     sound->numAudioDataEntries = 0;
@@ -41,7 +41,7 @@ void kwlSound_init(kwlSound* sound)
     sound->pitchVariation = 0;
 }
 
-int kwlSound_pickNextBufferForEvent(kwlSound* sound, kwlEventInstance* event, int firstBuffer)
+int kwlSoundDefinition_pickNextBufferForEvent(kwlSoundDefinition* sound, kwlEventInstance* event, int firstBuffer)
 {
     KWL_ASSERT(event->currentPCMFrameIndex >= 0);
     

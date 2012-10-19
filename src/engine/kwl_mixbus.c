@@ -25,7 +25,7 @@ freely, subject to the following restrictions:
 #include "kwl_eventinstance.h"
 #include "kwl_memory.h"
 #include "kwl_mixbus.h"
-#include "kwl_sound.h"
+#include "kwl_sounddefinition.h"
 
 kwlMixBus* kwlMixBus_alloc()
 {

@@ -34,7 +34,7 @@ extern "C"
 #endif /* __cplusplus */
     
     /**
-     *
+     * A single mix bus in the mix bus chunk of an engine data binary.
      */
     typedef struct kwlMixBusChunk
     {
@@ -44,7 +44,7 @@ extern "C"
     } kwlMixBusChunk;
     
     /**
-     *
+     * The mix bus chunk of an engine data binary.
      */
     typedef struct kwlMixBusDataChunk
     {
@@ -55,7 +55,7 @@ extern "C"
     } kwlMixBusDataChunk;
     
     /**
-     *
+     * A single mix preset in the mix   chunk of an engine data binary.
      */
     typedef struct kwlMixPresetChunk
     {
@@ -68,7 +68,7 @@ extern "C"
     } kwlMixPresetChunk;
     
     /**
-     *
+     * The mix preset chunk of an engine data binary.
      */
     typedef struct kwlMixPresetDataChunk
     {
@@ -79,7 +79,7 @@ extern "C"
     } kwlMixPresetDataChunk;
     
     /**
-     *
+     * A single wave bank in the wave bank chunk of an engine data binary.
      */
     typedef struct kwlWaveBankChunk
     {
@@ -89,7 +89,7 @@ extern "C"
     } kwlWaveBankChunk;
     
     /**
-     *
+     * The wave bank chunk of an engine data binary.
      */
     typedef struct kwlWaveBankDataChunk
     {
@@ -101,7 +101,7 @@ extern "C"
     } kwlWaveBankDataChunk;
     
     /**
-     *
+     * A single sound definition in the sound chunk of an engine data binary.
      */
     typedef struct kwlSoundChunk
     {
@@ -119,7 +119,7 @@ extern "C"
     } kwlSoundChunk;
     
     /**
-     *
+     * The sound chunk of an engine data binary.
      */
     typedef struct kwlSoundDataChunk
     {
@@ -130,7 +130,7 @@ extern "C"
     } kwlSoundDataChunk;
     
     /**
-     *
+     * A single event definition in the event chunk of an engine data binary.
      */
     typedef struct kwlEventChunk
     {
@@ -154,7 +154,7 @@ extern "C"
     } kwlEventChunk;
     
     /**
-     *
+     * The event chunk of an engine data binary.
      */
     typedef struct kwlEventDataChunk
     {
@@ -165,9 +165,9 @@ extern "C"
     } kwlEventDataChunk;
     
     /**
-     * 
+     *
      */
-    typedef struct kwlProjectDataBinary
+    typedef struct kwlEngineDataBinary
     {
         char fileIdentifier[KWL_ENGINE_DATA_BINARY_FILE_IDENTIFIER_LENGTH];
         kwlMixPresetDataChunk mixPresetChunk;
@@ -176,39 +176,39 @@ extern "C"
         kwlSoundDataChunk soundChunk;
         kwlEventDataChunk eventChunk;
         
-    } kwlProjectDataBinary;
+    } kwlEngineDataBinary;
     
     /**
      *
      */
-    void kwlProjectDataBinary_writeToBinary(kwlProjectDataBinary* bin,
-                                            const char* binPath);
+    void kwlEngineDataBinary_writeToFile(kwlEngineDataBinary* bin,
+                                         const char* binPath);
     
     /**
      *
      */
-    kwlDataValidationResult kwlProjectDataBinary_loadFromXML(kwlProjectDataBinary* bin,
-                                                             const char* xmlPath,
-                                                             const char* xsdPath,
-                                                             kwlLogCallback errorLogCallback);
+    kwlDataValidationResult kwlEngineDataBinary_loadFromXML(kwlEngineDataBinary* bin,
+                                                            const char* xmlPath,
+                                                            const char* xsdPath,
+                                                            kwlLogCallback errorLogCallback);
     
     /**
      *
      */
-    kwlDataValidationResult kwlProjectDataBinary_loadFromBinary(kwlProjectDataBinary* bin,
-                                                                const char* binPath,
-                                                                kwlLogCallback errorLogCallback);
+    kwlDataValidationResult kwlEngineDataBinary_loadFromBinaryFile(kwlEngineDataBinary* bin,
+                                                                   const char* binPath,
+                                                                   kwlLogCallback errorLogCallback);
     
     /**
      *
      */
-    void kwlProjectDataBinary_free(kwlProjectDataBinary* bin);
+    void kwlEngineDataBinary_free(kwlEngineDataBinary* bin);
     
     /**
      *
      */
-    void kwlProjectDataBinary_dump(kwlProjectDataBinary* bin,
-                                                 kwlLogCallback logCallback);
+    void kwlEngineDataBinary_dump(kwlEngineDataBinary* bin,
+                                  kwlLogCallback logCallback);
     
     
     

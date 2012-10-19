@@ -24,8 +24,6 @@ freely, subject to the following restrictions:
 #ifndef KWL_LOGGING_H
 #define KWL_LOGGING_H
 
-
-
 #ifdef __cplusplus
 extern "C"
 {

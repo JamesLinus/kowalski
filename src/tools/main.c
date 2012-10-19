@@ -2,8 +2,8 @@
 
 #include <stdio.h>
 
-#include "kwl_projectdatabinaryrepresentation.h"
-#include "kwl_wavebankbinaryrepresentation.h"
+#include "kwl_enginedatabinary.h"
+#include "kwl_wavebankbinary.h"
 #include "kwl_binarybuilding.h"
 #include "kwl_datavalidation.h"
 #include "kwl_logging.h"
@@ -21,45 +21,45 @@ int main(int argc, const char * argv[])
     const char* wbTargetFile = "";
     const char* binTargetFile = "/Users/perarne/code/kowalski/res/demodata/final/demoproject_testwrite.kwl";
     
-    kwlProjectDataBinary pdb;
-    kwlMemset(&pdb, 0, sizeof(kwlProjectDataBinary));
+    kwlEngineDataBinary pdb;
+    kwlMemset(&pdb, 0, sizeof(kwlEngineDataBinary));
     
     //load kwl from xml
     if (0)
     {
-        kwlProjectDataBinary_loadFromXML(&pdb,
-                                         xmlPath,
-                                         xsdPath,
-                                         kwlDefaultLogCallback);
-        //kwlProjectDataBinary_dump(&pdb, kwlDefaultLogCallback);
-        kwlProjectDataBinary_writeToBinary(&pdb, binTargetFile);
-        kwlProjectDataBinary_free(&pdb);
+        kwlEngineDataBinary_loadFromXML(&pdb,
+                                        xmlPath,
+                                        xsdPath,
+                                        kwlDefaultLogCallback);
+        //kwlEngineDataBinary_dump(&pdb, kwlDefaultLogCallback);
+        kwlEngineDataBinary_writeToFile(&pdb, binTargetFile);
+        kwlEngineDataBinary_free(&pdb);
         
-        kwlProjectDataBinary_loadFromBinary(&pdb, binTargetFile, kwlDefaultLogCallback);
-        //kwlProjectDataBinary_dump(&pdb, kwlDefaultLogCallback);
-        kwlProjectDataBinary_free(&pdb);
+        kwlEngineDataBinary_loadFromBinaryFile(&pdb, binTargetFile, kwlDefaultLogCallback);
+        //kwlEngineDataBinary_dump(&pdb, kwlDefaultLogCallback);
+        kwlEngineDataBinary_free(&pdb);
         //kwlDebugPrintAllocationReport();
     }
     
     //load kwl from bin
     if (0)
     {
-        kwlProjectDataBinary_loadFromBinary(&pdb,
-                                            kwlPath,
-                                            kwlDefaultLogCallback);
-        //kwlProjectDataBinary_dump(&pdb, kwlDefaultLogCallback);
-        kwlProjectDataBinary_free(&pdb);
+        kwlEngineDataBinary_loadFromBinaryFile(&pdb,
+                                           kwlPath,
+                                           kwlDefaultLogCallback);
+        //kwlEngineDataBinary_dump(&pdb, kwlDefaultLogCallback);
+        kwlEngineDataBinary_free(&pdb);
     }
-
+    
     //load kwb from xml
-    if (0)
+    if (1)
     {
         kwlWaveBankBinary wbb;
         kwlWaveBankBinary_loadFromXML(&wbb,
-                                                    xmlPath,
-                                                    xsdPath,
-                                                    waveBankId,
-                                                    kwlDefaultLogCallback);
+                                      xmlPath,
+                                      xsdPath,
+                                      waveBankId,
+                                      kwlDefaultLogCallback);
         kwlWaveBankBinary_dump(&wbb, kwlDefaultLogCallback);
         kwlWaveBankBinary_free(&wbb);
     }
@@ -68,9 +68,9 @@ int main(int argc, const char * argv[])
     if (0)
     {
         kwlWaveBankBinary wbb;
-        kwlWaveBankBinary_loadFromBinary(&wbb,
-                                                       kwbPath,
-                                                       kwlDefaultLogCallback);
+        kwlWaveBankBinary_loadFromBinaryFile(&wbb,
+                                         kwbPath,
+                                         kwlDefaultLogCallback);
         kwlWaveBankBinary_dump(&wbb, kwlDefaultLogCallback);
         kwlWaveBankBinary_free(&wbb);
     }
@@ -105,7 +105,7 @@ int main(int argc, const char * argv[])
     if (0)
     {
         kwlBuildWaveBank(xmlPath, xsdPath, wbId, wbTargetDir);
-        kwlBuildWaveBanks(xmlPath, xsdPath, wbTargetFile);
+        //kwlBuildWaveBanks(xmlPath, xsdPath, wbTargetFile);
     }
     
     return 0;

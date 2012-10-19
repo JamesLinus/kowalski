@@ -26,7 +26,7 @@ freely, subject to the following restrictions:
 #include "../../kwl_memory.h"
 #include "kwl_asm.h"
 #include "kwl_engine.h"
-#include "kwl_engine_iphone.h"
+#include "kwl_engine_ios.h"
 #include "kwl_mixer.h"
 
 #include <AudioToolbox/AudioToolbox.h>

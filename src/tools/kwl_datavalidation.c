@@ -28,15 +28,48 @@ freely, subject to the following restrictions:
 #include <libxml/xmlschemas.h>
 
 #include "kwl_datavalidation.h"
+#include "kwl_enginedatabinary.h"
+
+static kwlDataValidationResult validateEngineDataBinaryStructure(kwlEngineDataBinary* bin, kwlLogCallback errorCallback)
+{
+    return 0;
+}
 
 kwlDataValidationResult kwlValidateProjectData(const char* xmlPath, const char* xsdPath, kwlLogCallback errorCallback)
 {
     
-    //check valid xml structure
+
+    kwlEngineDataBinary bin;
+    kwlMemset(&bin, 0, sizeof(kwlEngineDataBinary));
     
-    //validate against project data schema
+    /*xml syntax and schema validation*/
+    {
+        kwlDataValidationResult result = kwlEngineDataBinary_loadFromXML(&bin,
+                                                                         xmlPath,
+                                                                         xsdPath,
+                                                                         errorCallback);
+        if (result != KWL_DATA_IS_VALID)
+        {
+            return result;
+        }
+    }
     
-    //create binary representation and check references etc
+    /*check structure*/
+    {
+        kwlDataValidationResult result = validateEngineDataBinaryStructure(&bin, errorCallback);
+        
+        if (result != KWL_DATA_IS_VALID)
+        {
+            kwlEngineDataBinary_free(&bin);
+            return result;
+            
+        }
+    }
+    
+    /*clean up*/
+    kwlEngineDataBinary_free(&bin);
+    
+    return KWL_DATA_IS_VALID;
     
 }
 

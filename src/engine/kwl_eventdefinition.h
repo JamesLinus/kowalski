@@ -27,7 +27,7 @@ freely, subject to the following restrictions:
 /*! \file */ 
 
 #include "kwl_decoder.h"
-#include "kwl_sound.h"
+#include "kwl_sounddefinition.h"
 
 #ifdef __cplusplus
 extern "C"
@@ -91,7 +91,7 @@ typedef struct kwlEventDefinition
     /** The mix bus this event is fed through. */
     struct kwlMixBus* mixBus;
     /** The sound determining the playback behaviour of the event. Used for non-streaming PCM events only.*/
-    struct kwlSound* sound;
+    struct kwlSoundDefinition* sound;
     /** The number of wave banks indirectly referenced by this event definition. Accessed from the mixer thread.*/
     int numReferencedWaveBanks;
     /** 

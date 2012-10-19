@@ -40,7 +40,7 @@ extern "C"
  * when the current item has finished playing.</p>
  * The behaviour when the referencing event is stopped is determined
  * by the combination of the playback mode and the value of the \c deferStop
- * flag of the \c kwlSound struct. The following timeline diagram shows the behaviour
+ * flag of the \c kwlSoundDefinition struct. The following timeline diagram shows the behaviour
  * for different combinations of playback modes and \deferStop values.
  * A sound with five audio data items, each one second long, is used in this example.
  * The \c playbackCount is -1, which means new items are selected until the referencing
@@ -144,7 +144,7 @@ typedef enum
  * A sound definition associated with an non-streaming event. Defines
  * a set of PCM waveforms and how they should be played back.
  */
-typedef struct kwlSound
+typedef struct kwlSoundDefinition
 {
     /** The audio data entries associated with this sound*/
     kwlAudioData** audioDataEntries;
@@ -167,16 +167,16 @@ typedef struct kwlSound
     float pitch;
     /** The current random variation of the pitch factor */
     float pitchVariation;
-} kwlSound;
+} kwlSoundDefinition;
 
 /** */
-void kwlSound_init(kwlSound* sound);
+void kwlSoundDefinition_init(kwlSoundDefinition* sound);
 
 /**
  * Initializes a given event according to a sound definition.
  * @return Non-zero if the event should stop playing, zero otherwise.
  */
-int kwlSound_pickNextBufferForEvent(kwlSound* sound, struct kwlEventInstance* event, int firstBuffer);
+int kwlSoundDefinition_pickNextBufferForEvent(kwlSoundDefinition* sound, struct kwlEventInstance* event, int firstBuffer);
 
 
 #ifdef __cplusplus

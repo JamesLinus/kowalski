@@ -158,7 +158,7 @@ extern "C"
     
     /**
      * Loads an XML document at a given path and validates it with a given schema. 
-     * Any omitted optional attributes will be added assigned their default values.
+     * Any omitted optional attributes will be added and assigned their default values.
      * @param xmlPath The path of the XML document.
      * @param schemaPath The path of the XML schema.
      * @param docPtr The loaded document on success, NULL on failure.

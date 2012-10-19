@@ -23,7 +23,7 @@ freely, subject to the following restrictions:
 
 #ifdef KWL_IPHONE
 
-#include "kwl_decoder_iphone.h"
+#include "kwl_decoder_ios.h"
 #include "kwl_inputstream.h"
 #include "kwl_memory.h"
 

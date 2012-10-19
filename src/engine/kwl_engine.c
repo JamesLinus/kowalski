@@ -32,7 +32,7 @@ freely, subject to the following restrictions:
 #include "kwl_messagequeue.h"
 #include "kwl_positionalaudiolistener.h"
 #include "kwl_mixer.h"
-#include "kwl_sound.h"
+#include "kwl_sounddefinition.h"
 #include "kwl_engine.h"
 #include "kwl_wavebank.h"
 
@@ -432,8 +432,9 @@ void kwlEngine_addFreeformEvent(kwlEngine* engine, kwlEventInstance* event, kwlE
         /*no free slots, reallocate the array 
          and pick the newly allocated slot*/
         engine->freeformEventArraySize++;
-        engine->freeformEvents = (kwlEventInstance**)realloc(engine->freeformEvents, 
-                                                     engine->freeformEventArraySize * sizeof(kwlEventInstance*));
+        engine->freeformEvents = (kwlEventInstance**)KWL_REALLOC(engine->freeformEvents,
+                                                                 engine->freeformEventArraySize * sizeof(kwlEventInstance*),
+                                                                 "freeform event array");
         engine->freeformEvents[engine->freeformEventArraySize - 1] = NULL;
         
         slotIdx = engine->freeformEventArraySize - 1;

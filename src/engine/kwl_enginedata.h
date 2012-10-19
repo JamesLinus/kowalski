@@ -105,7 +105,7 @@ typedef struct kwlEngineData
     /** The number of sound definitions currently loaded from engine data.*/
     int numSoundDefinitions;
     /** An array of sound definitions. */
-    struct kwlSound* sounds;
+    struct kwlSoundDefinition* sounds;
     
 } kwlEngineData;
 

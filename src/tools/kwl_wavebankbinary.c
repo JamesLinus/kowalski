@@ -25,12 +25,12 @@
 #include <string.h>
 
 #include "kwl_fileoutputstream.h"
-#include "kwl_projectdatabinaryrepresentation.h"
-#include "kwl_wavebankbinaryrepresentation.h"
+#include "kwl_enginedatabinary.h"
+#include "kwl_wavebankbinary.h"
 #include "kwl_xmlutil.h"
 
-void kwlWaveBankBinary_writeToBinary(kwlWaveBankBinary* bin,
-                                                   const char* path)
+void kwlWaveBankBinary_writeToFile(kwlWaveBankBinary* bin,
+                                   const char* path)
 {
     kwlFileOutputStream fos;
     int success = kwlFileOutputStream_initWithPath(&fos, path);
@@ -63,9 +63,9 @@ void kwlWaveBankBinary_writeToBinary(kwlWaveBankBinary* bin,
     kwlFileOutputStream_close(&fos);
 }
 
-kwlDataValidationResult kwlWaveBankBinary_loadFromBinary(kwlWaveBankBinary* binaryRep,
-                                                                       const char* path,
-                                                                       kwlLogCallback errorLogCallback)
+kwlDataValidationResult kwlWaveBankBinary_loadFromBinaryFile(kwlWaveBankBinary* binaryRep,
+                                                         const char* path,
+                                                         kwlLogCallback errorLogCallback)
 {
     kwlLogCallback errorCallback = errorLogCallback == NULL ? kwlSilentLogCallback : errorLogCallback;
     
@@ -142,10 +142,10 @@ static char* kwlDuplicateString(const char* str)
 }
 
 kwlDataValidationResult kwlWaveBankBinary_loadFromXML(kwlWaveBankBinary* bin,
-                                                                    const char* xmlPath,
-                                                                    const char* xsdPath,
-                                                                    const char* waveBankId,
-                                                                    kwlLogCallback errorLogCallback)
+                                                      const char* xmlPath,
+                                                      const char* xsdPath,
+                                                      const char* waveBankId,
+                                                      kwlLogCallback errorLogCallback)
 {
     /*grab the audio file root path*/
     xmlDocPtr doc = NULL;
@@ -161,11 +161,11 @@ kwlDataValidationResult kwlWaveBankBinary_loadFromXML(kwlWaveBankBinary* bin,
     xmlFreeDoc(doc);
     
     /*load project data*/
-    kwlProjectDataBinary projBin;
-    kwlProjectDataBinary_loadFromXML(&projBin,
-                                     xmlPath,
-                                     xsdPath,
-                                     errorLogCallback);
+    kwlEngineDataBinary projBin;
+    kwlEngineDataBinary_loadFromXML(&projBin,
+                                    xmlPath,
+                                    xsdPath,
+                                    errorLogCallback);
     
     /*find the wavebank*/
     kwlWaveBankChunk* waveBank = NULL;
@@ -181,7 +181,7 @@ kwlDataValidationResult kwlWaveBankBinary_loadFromXML(kwlWaveBankBinary* bin,
     
     if (waveBank == NULL)
     {
-        errorLogCallback("The wave bank id '%s' could not be found in project data file %s\n",
+        errorLogCallback("The wave bank '%s' could not be found in project data file %s\n",
                          waveBankId, xmlPath);
         return KWL_WAVE_BANK_ID_NOT_FOUND;
     }
@@ -194,7 +194,7 @@ kwlDataValidationResult kwlWaveBankBinary_loadFromXML(kwlWaveBankBinary* bin,
     {
         bin->fileIdentifier[i] = KWL_WAVE_BANK_BINARY_FILE_IDENTIFIER[i];
     }
-
+    
     bin->id = kwlDuplicateString(waveBank->id);
     bin->entries = KWL_MALLOC(waveBank->numAudioDataEntries * sizeof(kwlWaveBankEntryChunk), "bin wb entries");
     for (int i = 0; i < waveBank->numAudioDataEntries; i++)
@@ -206,13 +206,13 @@ kwlDataValidationResult kwlWaveBankBinary_loadFromXML(kwlWaveBankBinary* bin,
     }
     
     /*clean up*/
-    kwlProjectDataBinary_free(&projBin);
+    kwlEngineDataBinary_free(&projBin);
     
     return KWL_DATA_IS_VALID;
 }
 
 void kwlWaveBankBinary_dump(kwlWaveBankBinary* bin,
-                                          kwlLogCallback lcb)
+                            kwlLogCallback lcb)
 {
     kwlLogCallback logCallback = lcb == NULL ? kwlSilentLogCallback : lcb;
     

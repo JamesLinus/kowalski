@@ -28,7 +28,7 @@ freely, subject to the following restrictions:
 #include "kwl_messagequeue.h"
 #include "kwl_mixbus.h"
 #include "kwl_mixer.h"
-#include "kwl_sound.h"
+#include "kwl_sounddefinition.h"
 #include "kwl_engine.h"
 
 #include "kwl_assert.h"
@@ -220,7 +220,7 @@ void kwlMixer_processMessages(kwlMixer* const mixer)
             if (streamFromDisk == 0)
             {
                 KWL_ASSERT(event->definition_mixer->streamAudioData == NULL);
-                shouldStop = kwlSound_pickNextBufferForEvent(event->definition_mixer->sound, event, 1);
+                shouldStop = kwlSoundDefinition_pickNextBufferForEvent(event->definition_mixer->sound, event, 1);
                 /*KWL_ASSERT(result == 0 && "event should not signal stop on picking first buffer");*/
             }
             else 

@@ -33,7 +33,7 @@ extern "C"
 #endif /* __cplusplus */
     
     /**
-     * A wave bank binary entry, corresponding to a pice of audio data. 
+     * A wave bank binary entry, corresponding to a pice of audio data.
      */
     typedef struct kwlWaveBankEntryChunk
     {
@@ -62,8 +62,8 @@ extern "C"
      * @param bin The wave bank binary to write.
      * @param path The path of the target file.
      */
-    void kwlWaveBankBinary_writeToBinary(kwlWaveBankBinary* bin,
-                                         const char* path);
+    void kwlWaveBankBinary_writeToFile(kwlWaveBankBinary* bin,
+                                       const char* path);
     
     /**
      * Creates a wave bank binary corresponding to a wave bank binary file.
@@ -72,7 +72,7 @@ extern "C"
      * @param errorCallback A callback used for logging any error messages.
      * @return An error code.
      */
-    kwlDataValidationResult kwlWaveBankBinary_loadFromBinary(kwlWaveBankBinary* bin,
+    kwlDataValidationResult kwlWaveBankBinary_loadFromBinaryFile(kwlWaveBankBinary* bin,
                                                              const char* path,
                                                              kwlLogCallback errorLogCallback);
     

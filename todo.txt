@@ -34,9 +34,7 @@ release	    <-	[release]
 - disconnect dsp units properly (poll to see if still connected)
 - kwlInitialize() arguments, (buffer size etc)
 - move event linked list manipulation to kwl_event.c
-- kwlSound -> kwlSoundDefinition
 - sort functions to match h and c files
-- rename iPhone host folder to iOS
 - kwl_iphone -> kwl_ios or use standard check?
 
 tools
@@ -47,4 +45,7 @@ tools
 - use xmlHashTable etc?
 - shorten attribute names
 - don't store mix bus index per parameter set but rely on same order as mix buses
-- mix preset default "true" and "false" to 1 and 0 conversion
+- chunk struct misnomer
+- skip top bus "master" name constraint
+- make top MixPresetGroup optional
+- allow empty wavebanks etc in binaries.

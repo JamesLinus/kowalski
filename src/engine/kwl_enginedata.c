@@ -27,7 +27,7 @@
 #include "kwl_assert.h"
 #include "kwl_enginedata.h"
 #include "kwl_memory.h"
-#include "kwl_sound.h"
+#include "kwl_sounddefinition.h"
 
 kwlError kwlEngineData_load(kwlEngineData* data, kwlInputStream* stream)
 {
@@ -314,14 +314,14 @@ kwlError kwlEngineData_loadSoundData(kwlEngineData* data, kwlInputStream* stream
     const int numSoundDefinitions = kwlInputStream_readIntBE(stream);
     KWL_ASSERT(numSoundDefinitions >= 0 && "the number of sound definitions must be non-negative");
     data->numSoundDefinitions = numSoundDefinitions;
-    data->sounds = (kwlSound*)KWL_MALLOC(numSoundDefinitions * sizeof(kwlSound), "sound definitions");
-    kwlMemset(data->sounds, 0, numSoundDefinitions * sizeof(kwlSound));
+    data->sounds = (kwlSoundDefinition*)KWL_MALLOC(numSoundDefinitions * sizeof(kwlSoundDefinition), "sound definitions");
+    kwlMemset(data->sounds, 0, numSoundDefinitions * sizeof(kwlSoundDefinition));
     
     /*read sound definitions*/
     int i;
     for (i = 0; i < numSoundDefinitions; i++)
     {
-        kwlSound_init(&data->sounds[i]);
+        kwlSoundDefinition_init(&data->sounds[i]);
         data->sounds[i].playbackCount = kwlInputStream_readIntBE(stream);
         data->sounds[i].deferStop = kwlInputStream_readIntBE(stream);
         data->sounds[i].gain = kwlInputStream_readFloatBE(stream);

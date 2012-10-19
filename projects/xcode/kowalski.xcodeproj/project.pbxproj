@@ -45,13 +45,17 @@
 		C123316712445213001796D2 /* window.h in Headers */ = {isa = PBXBuildFile; fileRef = C1B77F581212AF80008DFEB2 /* window.h */; };
 		C136324113851FA9002CD5C2 /* kwl_dspunit.h in Headers */ = {isa = PBXBuildFile; fileRef = C136324013851FA9002CD5C2 /* kwl_dspunit.h */; };
 		C136324213851FA9002CD5C2 /* kwl_dspunit.h in Headers */ = {isa = PBXBuildFile; fileRef = C136324013851FA9002CD5C2 /* kwl_dspunit.h */; };
+		C1636D3A163217D200D186E1 /* kwl_decoder_ios.c in Sources */ = {isa = PBXBuildFile; fileRef = C1636D36163217D200D186E1 /* kwl_decoder_ios.c */; };
+		C1636D3B163217D200D186E1 /* kwl_decoder_ios.h in Headers */ = {isa = PBXBuildFile; fileRef = C1636D37163217D200D186E1 /* kwl_decoder_ios.h */; };
+		C1636D3C163217D200D186E1 /* kwl_engine_ios.h in Headers */ = {isa = PBXBuildFile; fileRef = C1636D38163217D200D186E1 /* kwl_engine_ios.h */; };
+		C1636D3D163217D200D186E1 /* kwl_engine_ios.m in Sources */ = {isa = PBXBuildFile; fileRef = C1636D39163217D200D186E1 /* kwl_engine_ios.m */; };
 		C166D353146072F700FB60DD /* kwl_wavebank.c in Sources */ = {isa = PBXBuildFile; fileRef = C166D352146072F700FB60DD /* kwl_wavebank.c */; };
 		C166D355146072F700FB60DD /* kwl_wavebank.c in Sources */ = {isa = PBXBuildFile; fileRef = C166D352146072F700FB60DD /* kwl_wavebank.c */; };
 		C166E383162F23870068C846 /* libkowalski.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC046055464E500DB518D /* libkowalski.dylib */; };
 		C166E386162F248C0068C846 /* kwl_xmlutil.c in Sources */ = {isa = PBXBuildFile; fileRef = C166E384162F248C0068C846 /* kwl_xmlutil.c */; };
 		C166E389162F26F80068C846 /* kwl_binarybuilding.c in Sources */ = {isa = PBXBuildFile; fileRef = C166E387162F26F80068C846 /* kwl_binarybuilding.c */; };
 		C166E38C162F28940068C846 /* kwl_logging.c in Sources */ = {isa = PBXBuildFile; fileRef = C166E38B162F28940068C846 /* kwl_logging.c */; };
-		C166E38F162F41E00068C846 /* kwl_projectdatabinary.c in Sources */ = {isa = PBXBuildFile; fileRef = C166E38D162F41E00068C846 /* kwl_projectdatabinary.c */; };
+		C166E38F162F41E00068C846 /* kwl_enginedatabinary.c in Sources */ = {isa = PBXBuildFile; fileRef = C166E38D162F41E00068C846 /* kwl_enginedatabinary.c */; };
 		C166E392162F5AE80068C846 /* kwl_wavebankbinary.c in Sources */ = {isa = PBXBuildFile; fileRef = C166E390162F5AE70068C846 /* kwl_wavebankbinary.c */; };
 		C1702E5B1461645B00ADE4F7 /* kwl_enginedata.h in Headers */ = {isa = PBXBuildFile; fileRef = C1702E571461645B00ADE4F7 /* kwl_enginedata.h */; };
 		C1702E5C1461645B00ADE4F7 /* kwl_enginedata.c in Sources */ = {isa = PBXBuildFile; fileRef = C1702E581461645B00ADE4F7 /* kwl_enginedata.c */; };
@@ -60,13 +64,28 @@
 		C1760F871620D6BD0044204B /* kwl_datavalidation.c in Sources */ = {isa = PBXBuildFile; fileRef = C1760F861620D6BD0044204B /* kwl_datavalidation.c */; };
 		C1760F8D1620DD5B0044204B /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C1760F8C1620DD5B0044204B /* libxml2.dylib */; };
 		C186B33511C3F225003D0013 /* libportaudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1655C5D1171B9AE004021DB /* libportaudio.a */; };
+		C18CC37B163206860037E220 /* duplicate_event_group_ids_1.xml in Resources */ = {isa = PBXBuildFile; fileRef = C18CC318163206860037E220 /* duplicate_event_group_ids_1.xml */; };
+		C18CC37C163206860037E220 /* duplicate_event_group_ids_2.xml in Resources */ = {isa = PBXBuildFile; fileRef = C18CC319163206860037E220 /* duplicate_event_group_ids_2.xml */; };
+		C18CC37D163206860037E220 /* duplicate_event_ids_1.xml in Resources */ = {isa = PBXBuildFile; fileRef = C18CC31A163206860037E220 /* duplicate_event_ids_1.xml */; };
+		C18CC37E163206860037E220 /* duplicate_event_ids_2.xml in Resources */ = {isa = PBXBuildFile; fileRef = C18CC31B163206860037E220 /* duplicate_event_ids_2.xml */; };
+		C18CC37F163206860037E220 /* duplicate_mix_bus_ids.xml in Resources */ = {isa = PBXBuildFile; fileRef = C18CC31C163206860037E220 /* duplicate_mix_bus_ids.xml */; };
+		C18CC380163206860037E220 /* duplicate_sound_group_ids_1.xml in Resources */ = {isa = PBXBuildFile; fileRef = C18CC31D163206860037E220 /* duplicate_sound_group_ids_1.xml */; };
+		C18CC381163206860037E220 /* duplicate_sound_group_ids_2.xml in Resources */ = {isa = PBXBuildFile; fileRef = C18CC31E163206860037E220 /* duplicate_sound_group_ids_2.xml */; };
+		C18CC382163206860037E220 /* duplicate_sound_ids_1.xml in Resources */ = {isa = PBXBuildFile; fileRef = C18CC31F163206860037E220 /* duplicate_sound_ids_1.xml */; };
+		C18CC383163206860037E220 /* duplicate_sound_ids_2.xml in Resources */ = {isa = PBXBuildFile; fileRef = C18CC320163206860037E220 /* duplicate_sound_ids_2.xml */; };
+		C18CC384163206860037E220 /* duplicate_wave_bank_ids.xml in Resources */ = {isa = PBXBuildFile; fileRef = C18CC321163206860037E220 /* duplicate_wave_bank_ids.xml */; };
+		C18CC385163206860037E220 /* invalid_audio_data_reference.xml in Resources */ = {isa = PBXBuildFile; fileRef = C18CC322163206860037E220 /* invalid_audio_data_reference.xml */; };
+		C18CC386163206860037E220 /* invalid_mix_bus_reference.xml in Resources */ = {isa = PBXBuildFile; fileRef = C18CC323163206860037E220 /* invalid_mix_bus_reference.xml */; };
+		C18CC387163206860037E220 /* invalid_sound_reference.xml in Resources */ = {isa = PBXBuildFile; fileRef = C18CC324163206860037E220 /* invalid_sound_reference.xml */; };
+		C18CC388163206860037E220 /* minimal_valid_project.xml in Resources */ = {isa = PBXBuildFile; fileRef = C18CC325163206860037E220 /* minimal_valid_project.xml */; };
+		C18CC389163206860037E220 /* missing_default_mix_preset.xml in Resources */ = {isa = PBXBuildFile; fileRef = C18CC326163206860037E220 /* missing_default_mix_preset.xml */; };
+		C18CC38A163206860037E220 /* multiple_default_mix_presets.xml in Resources */ = {isa = PBXBuildFile; fileRef = C18CC327163206860037E220 /* multiple_default_mix_presets.xml */; };
+		C18CC38C163206E40037E220 /* xml_syntax_error.xml in Resources */ = {isa = PBXBuildFile; fileRef = C18CC38B163206E40037E220 /* xml_syntax_error.xml */; };
 		C192DBB21274391100852CBC /* kwl_audiodata.c in Sources */ = {isa = PBXBuildFile; fileRef = C192DBB01274391100852CBC /* kwl_audiodata.c */; };
 		C19BB8601630C1E9000F1BE7 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C19BB85F1630C1E9000F1BE7 /* SenTestingKit.framework */; };
 		C19BB8621630C1E9000F1BE7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C19BB8611630C1E9000F1BE7 /* Cocoa.framework */; };
 		C19BB87A1630C359000F1BE7 /* kowalski_test.m in Sources */ = {isa = PBXBuildFile; fileRef = C19BB8791630C359000F1BE7 /* kowalski_test.m */; };
-		C19BB8811630D9B5000F1BE7 /* structure_validation.c in Sources */ = {isa = PBXBuildFile; fileRef = C19BB87B1630D9B4000F1BE7 /* structure_validation.c */; };
-		C19BB8821630D9B5000F1BE7 /* xml_validation.c in Sources */ = {isa = PBXBuildFile; fileRef = C19BB87D1630D9B4000F1BE7 /* xml_validation.c */; };
-		C19BB8831630D9B5000F1BE7 /* xsd_validation.c in Sources */ = {isa = PBXBuildFile; fileRef = C19BB87F1630D9B4000F1BE7 /* xsd_validation.c */; };
+		C19BB8831630D9B5000F1BE7 /* test_datavalidation.c in Sources */ = {isa = PBXBuildFile; fileRef = C19BB87F1630D9B4000F1BE7 /* test_datavalidation.c */; };
 		C19FD680141AC72900B836F5 /* kwl_decoder_pcm.h in Headers */ = {isa = PBXBuildFile; fileRef = C19FD67E141AC72900B836F5 /* kwl_decoder_pcm.h */; };
 		C19FD681141AC72900B836F5 /* kwl_decoder_pcm.c in Sources */ = {isa = PBXBuildFile; fileRef = C19FD67F141AC72900B836F5 /* kwl_decoder_pcm.c */; };
 		C19FD682141AC72900B836F5 /* kwl_decoder_pcm.h in Headers */ = {isa = PBXBuildFile; fileRef = C19FD67E141AC72900B836F5 /* kwl_decoder_pcm.h */; };
@@ -129,8 +148,8 @@
 		C1AEFFCD1472B68500AFC66F /* kwl_positionalaudiosettings.c in Sources */ = {isa = PBXBuildFile; fileRef = C1820E2F12E9621B00E1BD7A /* kwl_positionalaudiosettings.c */; };
 		C1AEFFCE1472B68500AFC66F /* kwl_mixer.c in Sources */ = {isa = PBXBuildFile; fileRef = C127F07A117F189400C9A250 /* kwl_mixer.c */; };
 		C1AEFFCF1472B68500AFC66F /* kwl_mixer.h in Headers */ = {isa = PBXBuildFile; fileRef = C127F07B117F189400C9A250 /* kwl_mixer.h */; };
-		C1AEFFD01472B68500AFC66F /* kwl_sound.c in Sources */ = {isa = PBXBuildFile; fileRef = C127F07C117F189400C9A250 /* kwl_sound.c */; };
-		C1AEFFD11472B68500AFC66F /* kwl_sound.h in Headers */ = {isa = PBXBuildFile; fileRef = C127F07D117F189400C9A250 /* kwl_sound.h */; };
+		C1AEFFD01472B68500AFC66F /* kwl_sounddefinition.c in Sources */ = {isa = PBXBuildFile; fileRef = C127F07C117F189400C9A250 /* kwl_sounddefinition.c */; };
+		C1AEFFD11472B68500AFC66F /* kwl_sounddefinition.h in Headers */ = {isa = PBXBuildFile; fileRef = C127F07D117F189400C9A250 /* kwl_sounddefinition.h */; };
 		C1AEFFD21472B68500AFC66F /* kwl_engine.c in Sources */ = {isa = PBXBuildFile; fileRef = C127F07E117F189400C9A250 /* kwl_engine.c */; };
 		C1AEFFD31472B68500AFC66F /* kwl_engine.h in Headers */ = {isa = PBXBuildFile; fileRef = C127F068117F189400C9A250 /* kwl_engine.h */; };
 		C1AEFFD41472B68500AFC66F /* kwl_synchronization.h in Headers */ = {isa = PBXBuildFile; fileRef = C16747CF11A9595D000A2D70 /* kwl_synchronization.h */; };
@@ -161,9 +180,6 @@
 		C1CC927E13702AC600C41B6A /* kwl_positionalaudiosettings.c in Sources */ = {isa = PBXBuildFile; fileRef = C1820E2F12E9621B00E1BD7A /* kwl_positionalaudiosettings.c */; };
 		C1CDEF12127AD8090054F870 /* kwl_asm.h in Headers */ = {isa = PBXBuildFile; fileRef = C1CDEF10127AD8090054F870 /* kwl_asm.h */; };
 		C1CF01FB1171D1A1007D7ACC /* libkowalski.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2AAC046055464E500DB518D /* libkowalski.dylib */; };
-		C1DD3C301370D14800D10AA6 /* kwl_decoder_iphone.c in Sources */ = {isa = PBXBuildFile; fileRef = C160771A121677F90041FE58 /* kwl_decoder_iphone.c */; };
-		C1DD3C311370D14800D10AA6 /* kwl_decoder_iphone.h in Headers */ = {isa = PBXBuildFile; fileRef = C1607719121677F90041FE58 /* kwl_decoder_iphone.h */; };
-		C1DD3C321370D14900D10AA6 /* kwl_engine_iphone.m in Sources */ = {isa = PBXBuildFile; fileRef = C1607718121677F90041FE58 /* kwl_engine_iphone.m */; };
 		C1DD3C331370D15100D10AA6 /* window_lookup.h in Headers */ = {isa = PBXBuildFile; fileRef = C1B77F561212AF80008DFEB2 /* window_lookup.h */; };
 		C1DD3C351370D15300D10AA6 /* window.c in Sources */ = {isa = PBXBuildFile; fileRef = C1B77F571212AF80008DFEB2 /* window.c */; };
 		C1DD3C361370D15C00D10AA6 /* window.h in Headers */ = {isa = PBXBuildFile; fileRef = C1B77F581212AF80008DFEB2 /* window.h */; };
@@ -202,9 +218,9 @@
 		C1DD3C5A1370D19100D10AA6 /* kwl_messagequeue.h in Headers */ = {isa = PBXBuildFile; fileRef = C14F85A4120C4C080033D01F /* kwl_messagequeue.h */; };
 		C1DD3C5B1370D19100D10AA6 /* kwl_audiodata.h in Headers */ = {isa = PBXBuildFile; fileRef = C127F082117F189400C9A250 /* kwl_audiodata.h */; };
 		C1DD3C5D1370D19300D10AA6 /* kwl_decoder_oggvorbis.h in Headers */ = {isa = PBXBuildFile; fileRef = C12054BA11D2233E00BE5628 /* kwl_decoder_oggvorbis.h */; };
-		C1DD3C5E1370D19300D10AA6 /* kwl_sound.c in Sources */ = {isa = PBXBuildFile; fileRef = C127F07C117F189400C9A250 /* kwl_sound.c */; };
+		C1DD3C5E1370D19300D10AA6 /* kwl_sounddefinition.c in Sources */ = {isa = PBXBuildFile; fileRef = C127F07C117F189400C9A250 /* kwl_sounddefinition.c */; };
 		C1DD3C5F1370D19F00D10AA6 /* kwl_decoder_imaadpcm.h in Headers */ = {isa = PBXBuildFile; fileRef = C12054C911D223C800BE5628 /* kwl_decoder_imaadpcm.h */; };
-		C1DD3C601370D19F00D10AA6 /* kwl_sound.h in Headers */ = {isa = PBXBuildFile; fileRef = C127F07D117F189400C9A250 /* kwl_sound.h */; };
+		C1DD3C601370D19F00D10AA6 /* kwl_sounddefinition.h in Headers */ = {isa = PBXBuildFile; fileRef = C127F07D117F189400C9A250 /* kwl_sounddefinition.h */; };
 		C1DD3C611370D1A300D10AA6 /* kwl_mixer.h in Headers */ = {isa = PBXBuildFile; fileRef = C127F07B117F189400C9A250 /* kwl_mixer.h */; };
 		C1DD3C631370D1A400D10AA6 /* kwl_assert.h in Headers */ = {isa = PBXBuildFile; fileRef = C13B88B41182DC7400F4F461 /* kwl_assert.h */; };
 		C1DD3C641370D1A500D10AA6 /* kwl_inputstream.h in Headers */ = {isa = PBXBuildFile; fileRef = C127F067117F189400C9A250 /* kwl_inputstream.h */; };
@@ -254,7 +270,7 @@
 		C1E86E9B1220E9D600C53E55 /* kwl_positionalaudiolistener.h in Headers */ = {isa = PBXBuildFile; fileRef = C127F078117F189400C9A250 /* kwl_positionalaudiolistener.h */; };
 		C1E86E9C1220E9D600C53E55 /* kwl_positionalaudiosettings.h in Headers */ = {isa = PBXBuildFile; fileRef = C127F079117F189400C9A250 /* kwl_positionalaudiosettings.h */; };
 		C1E86E9D1220E9D600C53E55 /* kwl_mixer.h in Headers */ = {isa = PBXBuildFile; fileRef = C127F07B117F189400C9A250 /* kwl_mixer.h */; };
-		C1E86E9E1220E9D600C53E55 /* kwl_sound.h in Headers */ = {isa = PBXBuildFile; fileRef = C127F07D117F189400C9A250 /* kwl_sound.h */; };
+		C1E86E9E1220E9D600C53E55 /* kwl_sounddefinition.h in Headers */ = {isa = PBXBuildFile; fileRef = C127F07D117F189400C9A250 /* kwl_sounddefinition.h */; };
 		C1E86E9F1220E9D600C53E55 /* kwl_engine.h in Headers */ = {isa = PBXBuildFile; fileRef = C127F068117F189400C9A250 /* kwl_engine.h */; };
 		C1E86EA01220E9D600C53E55 /* kwl_wavebank.h in Headers */ = {isa = PBXBuildFile; fileRef = C127F080117F189400C9A250 /* kwl_wavebank.h */; };
 		C1E86EA11220E9FA00C53E55 /* kwl_engine_portaudio.c in Sources */ = {isa = PBXBuildFile; fileRef = C160771D121677F90041FE58 /* kwl_engine_portaudio.c */; };
@@ -269,9 +285,8 @@
 		C1E86EAD1220E9FA00C53E55 /* kwl_messagequeue.c in Sources */ = {isa = PBXBuildFile; fileRef = C14F85A5120C4C080033D01F /* kwl_messagequeue.c */; };
 		C1E86EAE1220E9FA00C53E55 /* kwl_mixbus.c in Sources */ = {isa = PBXBuildFile; fileRef = C127F076117F189400C9A250 /* kwl_mixbus.c */; };
 		C1E86EAF1220E9FA00C53E55 /* kwl_mixer.c in Sources */ = {isa = PBXBuildFile; fileRef = C127F07A117F189400C9A250 /* kwl_mixer.c */; };
-		C1E86EB01220E9FA00C53E55 /* kwl_sound.c in Sources */ = {isa = PBXBuildFile; fileRef = C127F07C117F189400C9A250 /* kwl_sound.c */; };
+		C1E86EB01220E9FA00C53E55 /* kwl_sounddefinition.c in Sources */ = {isa = PBXBuildFile; fileRef = C127F07C117F189400C9A250 /* kwl_sounddefinition.c */; };
 		C1E86EB11220E9FA00C53E55 /* kwl_engine.c in Sources */ = {isa = PBXBuildFile; fileRef = C127F07E117F189400C9A250 /* kwl_engine.c */; };
-		C1EDB6C313B742B900CA174A /* kwl_engine_iphone.h in Headers */ = {isa = PBXBuildFile; fileRef = C1EDB6C213B742B900CA174A /* kwl_engine_iphone.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -328,8 +343,8 @@
 		C127F079117F189400C9A250 /* kwl_positionalaudiosettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_positionalaudiosettings.h; sourceTree = "<group>"; };
 		C127F07A117F189400C9A250 /* kwl_mixer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_mixer.c; sourceTree = "<group>"; };
 		C127F07B117F189400C9A250 /* kwl_mixer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_mixer.h; sourceTree = "<group>"; };
-		C127F07C117F189400C9A250 /* kwl_sound.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_sound.c; sourceTree = "<group>"; };
-		C127F07D117F189400C9A250 /* kwl_sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_sound.h; sourceTree = "<group>"; };
+		C127F07C117F189400C9A250 /* kwl_sounddefinition.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_sounddefinition.c; sourceTree = "<group>"; };
+		C127F07D117F189400C9A250 /* kwl_sounddefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_sounddefinition.h; sourceTree = "<group>"; };
 		C127F07E117F189400C9A250 /* kwl_engine.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_engine.c; sourceTree = "<group>"; };
 		C127F080117F189400C9A250 /* kwl_wavebank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_wavebank.h; sourceTree = "<group>"; };
 		C127F082117F189400C9A250 /* kwl_audiodata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_audiodata.h; sourceTree = "<group>"; };
@@ -339,15 +354,16 @@
 		C13F8D6412CF556300A30996 /* kwl_positionalaudiolistener.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_positionalaudiolistener.c; sourceTree = "<group>"; };
 		C14F85A4120C4C080033D01F /* kwl_messagequeue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_messagequeue.h; sourceTree = "<group>"; };
 		C14F85A5120C4C080033D01F /* kwl_messagequeue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_messagequeue.c; sourceTree = "<group>"; };
-		C1607718121677F90041FE58 /* kwl_engine_iphone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = kwl_engine_iphone.m; sourceTree = "<group>"; };
-		C1607719121677F90041FE58 /* kwl_decoder_iphone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_decoder_iphone.h; sourceTree = "<group>"; };
-		C160771A121677F90041FE58 /* kwl_decoder_iphone.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_decoder_iphone.c; sourceTree = "<group>"; };
 		C160771D121677F90041FE58 /* kwl_engine_portaudio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_engine_portaudio.c; sourceTree = "<group>"; };
 		C1607734121678350041FE58 /* kwl_engine_sdl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_engine_sdl.c; sourceTree = "<group>"; };
 		C160EDAA11BA3F1E0047DCD9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		C160EDAC11BA3F1E0047DCD9 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		C160EDAE11BA3F1E0047DCD9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C160EDB011BA3F1E0047DCD9 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		C1636D36163217D200D186E1 /* kwl_decoder_ios.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_decoder_ios.c; sourceTree = "<group>"; };
+		C1636D37163217D200D186E1 /* kwl_decoder_ios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_decoder_ios.h; sourceTree = "<group>"; };
+		C1636D38163217D200D186E1 /* kwl_engine_ios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_engine_ios.h; sourceTree = "<group>"; };
+		C1636D39163217D200D186E1 /* kwl_engine_ios.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = kwl_engine_ios.m; sourceTree = "<group>"; };
 		C1655B891171B705004021DB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		C1655C5D1171B9AE004021DB /* libportaudio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libportaudio.a; path = ../../lib/portaudio/osx/libportaudio.a; sourceTree = SOURCE_ROOT; };
 		C166D352146072F700FB60DD /* kwl_wavebank.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_wavebank.c; sourceTree = "<group>"; };
@@ -357,8 +373,8 @@
 		C166E388162F26F80068C846 /* kwl_binarybuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_binarybuilding.h; sourceTree = "<group>"; };
 		C166E38A162F27C70068C846 /* kwl_logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_logging.h; sourceTree = "<group>"; };
 		C166E38B162F28940068C846 /* kwl_logging.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_logging.c; sourceTree = "<group>"; };
-		C166E38D162F41E00068C846 /* kwl_projectdatabinary.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_projectdatabinary.c; sourceTree = "<group>"; };
-		C166E38E162F41E00068C846 /* kwl_projectdatabinary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_projectdatabinary.h; sourceTree = "<group>"; };
+		C166E38D162F41E00068C846 /* kwl_enginedatabinary.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_enginedatabinary.c; sourceTree = "<group>"; };
+		C166E38E162F41E00068C846 /* kwl_enginedatabinary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_enginedatabinary.h; sourceTree = "<group>"; };
 		C166E390162F5AE70068C846 /* kwl_wavebankbinary.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_wavebankbinary.c; sourceTree = "<group>"; };
 		C166E391162F5AE80068C846 /* kwl_wavebankbinary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_wavebankbinary.h; sourceTree = "<group>"; };
 		C16747CF11A9595D000A2D70 /* kwl_synchronization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_synchronization.h; sourceTree = "<group>"; };
@@ -371,6 +387,23 @@
 		C1760F861620D6BD0044204B /* kwl_datavalidation.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_datavalidation.c; sourceTree = "<group>"; };
 		C1760F8C1620DD5B0044204B /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/usr/lib/libxml2.dylib; sourceTree = DEVELOPER_DIR; };
 		C1820E2F12E9621B00E1BD7A /* kwl_positionalaudiosettings.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_positionalaudiosettings.c; sourceTree = "<group>"; };
+		C18CC318163206860037E220 /* duplicate_event_group_ids_1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = duplicate_event_group_ids_1.xml; sourceTree = "<group>"; };
+		C18CC319163206860037E220 /* duplicate_event_group_ids_2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = duplicate_event_group_ids_2.xml; sourceTree = "<group>"; };
+		C18CC31A163206860037E220 /* duplicate_event_ids_1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = duplicate_event_ids_1.xml; sourceTree = "<group>"; };
+		C18CC31B163206860037E220 /* duplicate_event_ids_2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = duplicate_event_ids_2.xml; sourceTree = "<group>"; };
+		C18CC31C163206860037E220 /* duplicate_mix_bus_ids.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = duplicate_mix_bus_ids.xml; sourceTree = "<group>"; };
+		C18CC31D163206860037E220 /* duplicate_sound_group_ids_1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = duplicate_sound_group_ids_1.xml; sourceTree = "<group>"; };
+		C18CC31E163206860037E220 /* duplicate_sound_group_ids_2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = duplicate_sound_group_ids_2.xml; sourceTree = "<group>"; };
+		C18CC31F163206860037E220 /* duplicate_sound_ids_1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = duplicate_sound_ids_1.xml; sourceTree = "<group>"; };
+		C18CC320163206860037E220 /* duplicate_sound_ids_2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = duplicate_sound_ids_2.xml; sourceTree = "<group>"; };
+		C18CC321163206860037E220 /* duplicate_wave_bank_ids.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = duplicate_wave_bank_ids.xml; sourceTree = "<group>"; };
+		C18CC322163206860037E220 /* invalid_audio_data_reference.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = invalid_audio_data_reference.xml; sourceTree = "<group>"; };
+		C18CC323163206860037E220 /* invalid_mix_bus_reference.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = invalid_mix_bus_reference.xml; sourceTree = "<group>"; };
+		C18CC324163206860037E220 /* invalid_sound_reference.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = invalid_sound_reference.xml; sourceTree = "<group>"; };
+		C18CC325163206860037E220 /* minimal_valid_project.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = minimal_valid_project.xml; sourceTree = "<group>"; };
+		C18CC326163206860037E220 /* missing_default_mix_preset.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = missing_default_mix_preset.xml; sourceTree = "<group>"; };
+		C18CC327163206860037E220 /* multiple_default_mix_presets.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = multiple_default_mix_presets.xml; sourceTree = "<group>"; };
+		C18CC38B163206E40037E220 /* xml_syntax_error.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = xml_syntax_error.xml; sourceTree = "<group>"; };
 		C192DBB01274391100852CBC /* kwl_audiodata.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_audiodata.c; sourceTree = "<group>"; };
 		C195518511C8FD8F00FE59BA /* kwl_memory.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_memory.c; sourceTree = "<group>"; };
 		C195518611C8FD8F00FE59BA /* kwl_memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_memory.h; sourceTree = "<group>"; };
@@ -384,12 +417,8 @@
 		C19BB8771630C359000F1BE7 /* kowalski_test-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "kowalski_test-Prefix.pch"; sourceTree = "<group>"; };
 		C19BB8781630C359000F1BE7 /* kowalski_test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kowalski_test.h; sourceTree = "<group>"; };
 		C19BB8791630C359000F1BE7 /* kowalski_test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = kowalski_test.m; sourceTree = "<group>"; };
-		C19BB87B1630D9B4000F1BE7 /* structure_validation.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = structure_validation.c; sourceTree = "<group>"; };
-		C19BB87C1630D9B4000F1BE7 /* structure_validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = structure_validation.h; sourceTree = "<group>"; };
-		C19BB87D1630D9B4000F1BE7 /* xml_validation.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xml_validation.c; sourceTree = "<group>"; };
-		C19BB87E1630D9B4000F1BE7 /* xml_validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xml_validation.h; sourceTree = "<group>"; };
-		C19BB87F1630D9B4000F1BE7 /* xsd_validation.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xsd_validation.c; sourceTree = "<group>"; };
-		C19BB8801630D9B5000F1BE7 /* xsd_validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xsd_validation.h; sourceTree = "<group>"; };
+		C19BB87F1630D9B4000F1BE7 /* test_datavalidation.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test_datavalidation.c; sourceTree = "<group>"; };
+		C19BB8801630D9B5000F1BE7 /* test_datavalidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = test_datavalidation.h; sourceTree = "<group>"; };
 		C19FD67E141AC72900B836F5 /* kwl_decoder_pcm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_decoder_pcm.h; sourceTree = "<group>"; };
 		C19FD67F141AC72900B836F5 /* kwl_decoder_pcm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_decoder_pcm.c; sourceTree = "<group>"; };
 		C1A018C11265EF120039DB22 /* kwl_eventdefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_eventdefinition.h; sourceTree = "<group>"; };
@@ -439,7 +468,6 @@
 		C1C25E8C12633C6D007D17F6 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		C1CDEF10127AD8090054F870 /* kwl_asm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_asm.h; sourceTree = "<group>"; };
 		C1DD3C2B1370D12B00D10AA6 /* libkowalski_ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libkowalski_ios.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		C1EDB6C213B742B900CA174A /* kwl_engine_iphone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_engine_iphone.h; sourceTree = "<group>"; };
 		D2AAC046055464E500DB518D /* libkowalski.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libkowalski.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -490,6 +518,7 @@
 		08FB7794FE84155DC02AAC07 /* kowalski */ = {
 			isa = PBXGroup;
 			children = (
+				C18CC2B9163206860037E220 /* res */,
 				08FB7795FE84155DC02AAC07 /* src */,
 				C19BB85E1630C1E9000F1BE7 /* Frameworks */,
 				1AB674ADFE9D54B511CA2CBB /* Products */,
@@ -576,8 +605,8 @@
 				C13F8D6412CF556300A30996 /* kwl_positionalaudiolistener.c */,
 				C127F079117F189400C9A250 /* kwl_positionalaudiosettings.h */,
 				C1820E2F12E9621B00E1BD7A /* kwl_positionalaudiosettings.c */,
-				C127F07C117F189400C9A250 /* kwl_sound.c */,
-				C127F07D117F189400C9A250 /* kwl_sound.h */,
+				C127F07C117F189400C9A250 /* kwl_sounddefinition.c */,
+				C127F07D117F189400C9A250 /* kwl_sounddefinition.h */,
 				C16747CF11A9595D000A2D70 /* kwl_synchronization.h */,
 				C16747D011A9595D000A2D70 /* kwl_synchronization_pthread.c */,
 				C1988DCA1411006E00E5A561 /* kwl_synchronization_win.c */,
@@ -591,22 +620,11 @@
 		C1607716121677F90041FE58 /* hosts */ = {
 			isa = PBXGroup;
 			children = (
-				C1607717121677F90041FE58 /* iphone */,
+				C1636D35163217D200D186E1 /* ios */,
 				C160771B121677F90041FE58 /* portaudio */,
 				C1607733121678350041FE58 /* sdl */,
 			);
 			path = hosts;
-			sourceTree = "<group>";
-		};
-		C1607717121677F90041FE58 /* iphone */ = {
-			isa = PBXGroup;
-			children = (
-				C1607719121677F90041FE58 /* kwl_decoder_iphone.h */,
-				C160771A121677F90041FE58 /* kwl_decoder_iphone.c */,
-				C1EDB6C213B742B900CA174A /* kwl_engine_iphone.h */,
-				C1607718121677F90041FE58 /* kwl_engine_iphone.m */,
-			);
-			path = iphone;
 			sourceTree = "<group>";
 		};
 		C160771B121677F90041FE58 /* portaudio */ = {
@@ -625,6 +643,17 @@
 			path = sdl;
 			sourceTree = "<group>";
 		};
+		C1636D35163217D200D186E1 /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				C1636D36163217D200D186E1 /* kwl_decoder_ios.c */,
+				C1636D37163217D200D186E1 /* kwl_decoder_ios.h */,
+				C1636D38163217D200D186E1 /* kwl_engine_ios.h */,
+				C1636D39163217D200D186E1 /* kwl_engine_ios.m */,
+			);
+			path = ios;
+			sourceTree = "<group>";
+		};
 		C1760F67161E399E0044204B /* tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -638,8 +667,8 @@
 				C107AB15162F6E7700A12FD7 /* kwl_fileoutputstream.h */,
 				C166E38B162F28940068C846 /* kwl_logging.c */,
 				C166E38A162F27C70068C846 /* kwl_logging.h */,
-				C166E38D162F41E00068C846 /* kwl_projectdatabinary.c */,
-				C166E38E162F41E00068C846 /* kwl_projectdatabinary.h */,
+				C166E38D162F41E00068C846 /* kwl_enginedatabinary.c */,
+				C166E38E162F41E00068C846 /* kwl_enginedatabinary.h */,
 				C166E390162F5AE70068C846 /* kwl_wavebankbinary.c */,
 				C166E391162F5AE80068C846 /* kwl_wavebankbinary.h */,
 				C166E384162F248C0068C846 /* kwl_xmlutil.c */,
@@ -647,6 +676,39 @@
 			);
 			name = tools;
 			path = ../../src/tools;
+			sourceTree = "<group>";
+		};
+		C18CC2B9163206860037E220 /* res */ = {
+			isa = PBXGroup;
+			children = (
+				C18CC317163206860037E220 /* test */,
+			);
+			name = res;
+			path = ../../res;
+			sourceTree = "<group>";
+		};
+		C18CC317163206860037E220 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				C18CC318163206860037E220 /* duplicate_event_group_ids_1.xml */,
+				C18CC319163206860037E220 /* duplicate_event_group_ids_2.xml */,
+				C18CC31A163206860037E220 /* duplicate_event_ids_1.xml */,
+				C18CC31B163206860037E220 /* duplicate_event_ids_2.xml */,
+				C18CC31C163206860037E220 /* duplicate_mix_bus_ids.xml */,
+				C18CC31D163206860037E220 /* duplicate_sound_group_ids_1.xml */,
+				C18CC31E163206860037E220 /* duplicate_sound_group_ids_2.xml */,
+				C18CC31F163206860037E220 /* duplicate_sound_ids_1.xml */,
+				C18CC320163206860037E220 /* duplicate_sound_ids_2.xml */,
+				C18CC321163206860037E220 /* duplicate_wave_bank_ids.xml */,
+				C18CC322163206860037E220 /* invalid_audio_data_reference.xml */,
+				C18CC323163206860037E220 /* invalid_mix_bus_reference.xml */,
+				C18CC324163206860037E220 /* invalid_sound_reference.xml */,
+				C18CC325163206860037E220 /* minimal_valid_project.xml */,
+				C18CC326163206860037E220 /* missing_default_mix_preset.xml */,
+				C18CC327163206860037E220 /* multiple_default_mix_presets.xml */,
+				C18CC38B163206E40037E220 /* xml_syntax_error.xml */,
+			);
+			path = test;
 			sourceTree = "<group>";
 		};
 		C19BB85E1630C1E9000F1BE7 /* Frameworks */ = {
@@ -673,12 +735,8 @@
 			isa = PBXGroup;
 			children = (
 				C19BB8761630C359000F1BE7 /* osx */,
-				C19BB87B1630D9B4000F1BE7 /* structure_validation.c */,
-				C19BB87C1630D9B4000F1BE7 /* structure_validation.h */,
-				C19BB87D1630D9B4000F1BE7 /* xml_validation.c */,
-				C19BB87E1630D9B4000F1BE7 /* xml_validation.h */,
-				C19BB87F1630D9B4000F1BE7 /* xsd_validation.c */,
-				C19BB8801630D9B5000F1BE7 /* xsd_validation.h */,
+				C19BB87F1630D9B4000F1BE7 /* test_datavalidation.c */,
+				C19BB8801630D9B5000F1BE7 /* test_datavalidation.h */,
 			);
 			name = test;
 			path = ../../src/test;
@@ -782,7 +840,7 @@
 				C1AEFFCA1472B68500AFC66F /* kwl_positionalaudiolistener.h in Headers */,
 				C1AEFFCC1472B68500AFC66F /* kwl_positionalaudiosettings.h in Headers */,
 				C1AEFFCF1472B68500AFC66F /* kwl_mixer.h in Headers */,
-				C1AEFFD11472B68500AFC66F /* kwl_sound.h in Headers */,
+				C1AEFFD11472B68500AFC66F /* kwl_sounddefinition.h in Headers */,
 				C1AEFFD31472B68500AFC66F /* kwl_engine.h in Headers */,
 				C1AEFFD41472B68500AFC66F /* kwl_synchronization.h in Headers */,
 				C1AEFFD71472B68500AFC66F /* kwl_wavebank.h in Headers */,
@@ -793,7 +851,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1DD3C311370D14800D10AA6 /* kwl_decoder_iphone.h in Headers */,
 				C1DD3C331370D15100D10AA6 /* window_lookup.h in Headers */,
 				C1DD3C361370D15C00D10AA6 /* window.h in Headers */,
 				C1DD3C381370D15D00D10AA6 /* tremor_block.h in Headers */,
@@ -817,7 +874,7 @@
 				C1DD3C5B1370D19100D10AA6 /* kwl_audiodata.h in Headers */,
 				C1DD3C5D1370D19300D10AA6 /* kwl_decoder_oggvorbis.h in Headers */,
 				C1DD3C5F1370D19F00D10AA6 /* kwl_decoder_imaadpcm.h in Headers */,
-				C1DD3C601370D19F00D10AA6 /* kwl_sound.h in Headers */,
+				C1DD3C601370D19F00D10AA6 /* kwl_sounddefinition.h in Headers */,
 				C1DD3C611370D1A300D10AA6 /* kwl_mixer.h in Headers */,
 				C1DD3C631370D1A400D10AA6 /* kwl_assert.h in Headers */,
 				C1DD3C641370D1A500D10AA6 /* kwl_inputstream.h in Headers */,
@@ -836,9 +893,10 @@
 				C1DD3C7F1370D1BD00D10AA6 /* kwl_asm.h in Headers */,
 				C1DD3C841370D1C400D10AA6 /* asm_arm.h in Headers */,
 				C136324113851FA9002CD5C2 /* kwl_dspunit.h in Headers */,
-				C1EDB6C313B742B900CA174A /* kwl_engine_iphone.h in Headers */,
 				C19FD680141AC72900B836F5 /* kwl_decoder_pcm.h in Headers */,
 				C1702E5B1461645B00ADE4F7 /* kwl_enginedata.h in Headers */,
+				C1636D3B163217D200D186E1 /* kwl_decoder_ios.h in Headers */,
+				C1636D3C163217D200D186E1 /* kwl_engine_ios.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -863,7 +921,7 @@
 				C1E86E9B1220E9D600C53E55 /* kwl_positionalaudiolistener.h in Headers */,
 				C1E86E9C1220E9D600C53E55 /* kwl_positionalaudiosettings.h in Headers */,
 				C1E86E9D1220E9D600C53E55 /* kwl_mixer.h in Headers */,
-				C1E86E9E1220E9D600C53E55 /* kwl_sound.h in Headers */,
+				C1E86E9E1220E9D600C53E55 /* kwl_sounddefinition.h in Headers */,
 				C1E86E9F1220E9D600C53E55 /* kwl_engine.h in Headers */,
 				C1E86EA01220E9D600C53E55 /* kwl_wavebank.h in Headers */,
 				C123314612445213001796D2 /* asm_arm.h in Headers */,
@@ -1021,6 +1079,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C18CC37B163206860037E220 /* duplicate_event_group_ids_1.xml in Resources */,
+				C18CC37C163206860037E220 /* duplicate_event_group_ids_2.xml in Resources */,
+				C18CC37D163206860037E220 /* duplicate_event_ids_1.xml in Resources */,
+				C18CC37E163206860037E220 /* duplicate_event_ids_2.xml in Resources */,
+				C18CC37F163206860037E220 /* duplicate_mix_bus_ids.xml in Resources */,
+				C18CC380163206860037E220 /* duplicate_sound_group_ids_1.xml in Resources */,
+				C18CC381163206860037E220 /* duplicate_sound_group_ids_2.xml in Resources */,
+				C18CC382163206860037E220 /* duplicate_sound_ids_1.xml in Resources */,
+				C18CC383163206860037E220 /* duplicate_sound_ids_2.xml in Resources */,
+				C18CC384163206860037E220 /* duplicate_wave_bank_ids.xml in Resources */,
+				C18CC385163206860037E220 /* invalid_audio_data_reference.xml in Resources */,
+				C18CC386163206860037E220 /* invalid_mix_bus_reference.xml in Resources */,
+				C18CC387163206860037E220 /* invalid_sound_reference.xml in Resources */,
+				C18CC388163206860037E220 /* minimal_valid_project.xml in Resources */,
+				C18CC389163206860037E220 /* missing_default_mix_preset.xml in Resources */,
+				C18CC38A163206860037E220 /* multiple_default_mix_presets.xml in Resources */,
+				C18CC38C163206E40037E220 /* xml_syntax_error.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1053,7 +1128,7 @@
 				C166E386162F248C0068C846 /* kwl_xmlutil.c in Sources */,
 				C166E389162F26F80068C846 /* kwl_binarybuilding.c in Sources */,
 				C166E38C162F28940068C846 /* kwl_logging.c in Sources */,
-				C166E38F162F41E00068C846 /* kwl_projectdatabinary.c in Sources */,
+				C166E38F162F41E00068C846 /* kwl_enginedatabinary.c in Sources */,
 				C166E392162F5AE80068C846 /* kwl_wavebankbinary.c in Sources */,
 				C107AB16162F6E7700A12FD7 /* kwl_fileoutputstream.c in Sources */,
 			);
@@ -1064,9 +1139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C19BB87A1630C359000F1BE7 /* kowalski_test.m in Sources */,
-				C19BB8811630D9B5000F1BE7 /* structure_validation.c in Sources */,
-				C19BB8821630D9B5000F1BE7 /* xml_validation.c in Sources */,
-				C19BB8831630D9B5000F1BE7 /* xsd_validation.c in Sources */,
+				C19BB8831630D9B5000F1BE7 /* test_datavalidation.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1106,7 +1179,7 @@
 				C1AEFFCB1472B68500AFC66F /* kwl_positionalaudiolistener.c in Sources */,
 				C1AEFFCD1472B68500AFC66F /* kwl_positionalaudiosettings.c in Sources */,
 				C1AEFFCE1472B68500AFC66F /* kwl_mixer.c in Sources */,
-				C1AEFFD01472B68500AFC66F /* kwl_sound.c in Sources */,
+				C1AEFFD01472B68500AFC66F /* kwl_sounddefinition.c in Sources */,
 				C1AEFFD21472B68500AFC66F /* kwl_engine.c in Sources */,
 				C1AEFFD51472B68500AFC66F /* kwl_synchronization_pthread.c in Sources */,
 				C1AEFFD81472B68500AFC66F /* kwl_wavebank.c in Sources */,
@@ -1118,8 +1191,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1DD3C301370D14800D10AA6 /* kwl_decoder_iphone.c in Sources */,
-				C1DD3C321370D14900D10AA6 /* kwl_engine_iphone.m in Sources */,
 				C1DD3C351370D15300D10AA6 /* window.c in Sources */,
 				C1DD3C371370D15D00D10AA6 /* vorbisfile.c in Sources */,
 				C1DD3C391370D15E00D10AA6 /* synthesis.c in Sources */,
@@ -1136,7 +1207,7 @@
 				C1DD3C561370D18F00D10AA6 /* kwl_engine.c in Sources */,
 				C1DD3C571370D19000D10AA6 /* kowalski.c in Sources */,
 				C1DD3C591370D19100D10AA6 /* kwl_mixer.c in Sources */,
-				C1DD3C5E1370D19300D10AA6 /* kwl_sound.c in Sources */,
+				C1DD3C5E1370D19300D10AA6 /* kwl_sounddefinition.c in Sources */,
 				C1DD3C671370D1A700D10AA6 /* kwl_synchronization_pthread.c in Sources */,
 				C1DD3C681370D1A700D10AA6 /* kwl_decoder_imaadpcm.c in Sources */,
 				C1DD3C691370D1A800D10AA6 /* kwl_decoder_oggvorbis.c in Sources */,
@@ -1156,6 +1227,8 @@
 				C19FD681141AC72900B836F5 /* kwl_decoder_pcm.c in Sources */,
 				C166D353146072F700FB60DD /* kwl_wavebank.c in Sources */,
 				C1702E5C1461645B00ADE4F7 /* kwl_enginedata.c in Sources */,
+				C1636D3A163217D200D186E1 /* kwl_decoder_ios.c in Sources */,
+				C1636D3D163217D200D186E1 /* kwl_engine_ios.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1177,7 +1250,7 @@
 				C1E86EAD1220E9FA00C53E55 /* kwl_messagequeue.c in Sources */,
 				C1E86EAE1220E9FA00C53E55 /* kwl_mixbus.c in Sources */,
 				C1E86EAF1220E9FA00C53E55 /* kwl_mixer.c in Sources */,
-				C1E86EB01220E9FA00C53E55 /* kwl_sound.c in Sources */,
+				C1E86EB01220E9FA00C53E55 /* kwl_sounddefinition.c in Sources */,
 				C1E86EB11220E9FA00C53E55 /* kwl_engine.c in Sources */,
 				C123314712445213001796D2 /* bitwise.c in Sources */,
 				C123314912445213001796D2 /* block.c in Sources */,

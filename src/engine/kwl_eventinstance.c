@@ -25,7 +25,7 @@ freely, subject to the following restrictions:
 #include "kwl_audiofileutil.h"
 #include "kwl_eventinstance.h"
 #include "kwl_synchronization.h"
-#include "kwl_sound.h"
+#include "kwl_sounddefinition.h"
 
 #include "kwl_assert.h"
 #include <math.h>
@@ -138,14 +138,14 @@ kwlError kwlEventInstance_createFreeformEventFromAudioData(kwlEventInstance** ev
     kwlEventInstance* createdEvent = (kwlEventInstance*)KWL_MALLOC(sizeof(kwlEventInstance), "freeform event instance");
     kwlEventInstance_init(createdEvent);
     
-    kwlSound* sound = NULL;
+    kwlSoundDefinition* sound = NULL;
     kwlAudioData* streamAudioData = NULL;
     
     /*create a sound if we loaded a PCM file.*/
     if (audioData->encoding == KWL_ENCODING_SIGNED_16BIT_PCM)
     {
-        sound = (kwlSound*)KWL_MALLOC(sizeof(kwlSound), "freeform event: sound");
-        kwlSound_init(sound);
+        sound = (kwlSoundDefinition*)KWL_MALLOC(sizeof(kwlSoundDefinition), "freeform event: sound");
+        kwlSoundDefinition_init(sound);
         sound->audioDataEntries = (kwlAudioData**)KWL_MALLOC(sizeof(kwlAudioData*), 
                                                              "freeform event: sound audio data array list");
         sound->audioDataEntries[0] = audioData;
@@ -283,7 +283,7 @@ int kwlEventInstance_render(kwlEventInstance* event,
                 event->definition_mixer->sound->deferStop == 0 : 1;
             if (allowsImmediateStop != 0)
             {
-                kwlSound_pickNextBufferForEvent(event->definition_mixer->sound, 
+                kwlSoundDefinition_pickNextBufferForEvent(event->definition_mixer->sound, 
                                                 event, 0);
             }
         }        
@@ -437,7 +437,7 @@ int kwlEventInstance_render(kwlEventInstance* event,
             else
             {
                 /*get another pcm buffer from the event's sound*/
-                donePlaying = kwlSound_pickNextBufferForEvent(event->definition_mixer->sound, event, 0);
+                donePlaying = kwlSoundDefinition_pickNextBufferForEvent(event->definition_mixer->sound, event, 0);
             }
             
             if (donePlaying != 0)

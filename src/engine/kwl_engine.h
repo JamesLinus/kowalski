@@ -36,7 +36,7 @@ freely, subject to the following restrictions:
 #include "kwl_positionalaudiolistener.h"
 #include "kwl_positionalaudiosettings.h"
 #include "kwl_mixer.h"
-#include "kwl_sound.h"
+#include "kwl_sounddefinition.h"
 #include "kwl_wavebank.h"
 
 #ifdef __cplusplus

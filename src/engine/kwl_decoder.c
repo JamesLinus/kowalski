@@ -27,7 +27,7 @@ freely, subject to the following restrictions:
 #include "kwl_decoder_imaadpcm.h"
 #include "kwl_decoder_pcm.h"
 #ifdef KWL_IPHONE
-#include "kwl_decoder_iphone.h"
+#include "kwl_decoder_ios.h"
 #endif /*KWL_IPHONE*/
 #include "kwl_decoder_oggvorbis.h"
 #include "kwl_memory.h"

@@ -65,6 +65,24 @@
 		C1F0460113EC00C90078EE79 /* emittericon.png in Resources */ = {isa = PBXBuildFile; fileRef = C1F0460013EC00C90078EE79 /* emittericon.png */; };
 		C1F0463313EC023D0078EE79 /* DopplerShiftDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F0463213EC023D0078EE79 /* DopplerShiftDemo.m */; };
 		C1F0463813EC027B0078EE79 /* DopplerShiftDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1F0463713EC027B0078EE79 /* DopplerShiftDemo.xib */; };
+		C1F44F6D163218D200644E23 /* demoproject.kwl in Resources */ = {isa = PBXBuildFile; fileRef = C1F44F5A163218D200644E23 /* demoproject.kwl */; };
+		C1F44F6E163218D200644E23 /* sine_signed_16bit_mono.aiff in Resources */ = {isa = PBXBuildFile; fileRef = C1F44F5C163218D200644E23 /* sine_signed_16bit_mono.aiff */; };
+		C1F44F6F163218D200644E23 /* sine_signed_16bit_mono.au in Resources */ = {isa = PBXBuildFile; fileRef = C1F44F5D163218D200644E23 /* sine_signed_16bit_mono.au */; };
+		C1F44F70163218D200644E23 /* sine_signed_16bit_mono.wav in Resources */ = {isa = PBXBuildFile; fileRef = C1F44F5E163218D200644E23 /* sine_signed_16bit_mono.wav */; };
+		C1F44F71163218D200644E23 /* sine_signed_24bit_mono.aiff in Resources */ = {isa = PBXBuildFile; fileRef = C1F44F5F163218D200644E23 /* sine_signed_24bit_mono.aiff */; };
+		C1F44F72163218D200644E23 /* sine_signed_24bit_mono.au in Resources */ = {isa = PBXBuildFile; fileRef = C1F44F60163218D200644E23 /* sine_signed_24bit_mono.au */; };
+		C1F44F73163218D200644E23 /* sine_signed_24bit_mono.wav in Resources */ = {isa = PBXBuildFile; fileRef = C1F44F61163218D200644E23 /* sine_signed_24bit_mono.wav */; };
+		C1F44F74163218D200644E23 /* sine_signed_32bit_mono.aiff in Resources */ = {isa = PBXBuildFile; fileRef = C1F44F62163218D200644E23 /* sine_signed_32bit_mono.aiff */; };
+		C1F44F75163218D200644E23 /* sine_signed_32bit_mono.au in Resources */ = {isa = PBXBuildFile; fileRef = C1F44F63163218D200644E23 /* sine_signed_32bit_mono.au */; };
+		C1F44F76163218D200644E23 /* sine_signed_32bit_mono.wav in Resources */ = {isa = PBXBuildFile; fileRef = C1F44F64163218D200644E23 /* sine_signed_32bit_mono.wav */; };
+		C1F44F77163218D200644E23 /* sine_signed_8bit_mono.aiff in Resources */ = {isa = PBXBuildFile; fileRef = C1F44F65163218D200644E23 /* sine_signed_8bit_mono.aiff */; };
+		C1F44F78163218D200644E23 /* sine_signed_8bit_mono.au in Resources */ = {isa = PBXBuildFile; fileRef = C1F44F66163218D200644E23 /* sine_signed_8bit_mono.au */; };
+		C1F44F79163218D200644E23 /* sine_unsigned_8bit_mono.aiff in Resources */ = {isa = PBXBuildFile; fileRef = C1F44F67163218D200644E23 /* sine_unsigned_8bit_mono.aiff */; };
+		C1F44F7A163218D200644E23 /* sine_unsigned_8bit_mono.wav in Resources */ = {isa = PBXBuildFile; fileRef = C1F44F68163218D200644E23 /* sine_unsigned_8bit_mono.wav */; };
+		C1F44F7B163218D200644E23 /* music.kwb in Resources */ = {isa = PBXBuildFile; fileRef = C1F44F69163218D200644E23 /* music.kwb */; };
+		C1F44F7C163218D200644E23 /* notes.kwb in Resources */ = {isa = PBXBuildFile; fileRef = C1F44F6A163218D200644E23 /* notes.kwb */; };
+		C1F44F7D163218D200644E23 /* numbers.kwb in Resources */ = {isa = PBXBuildFile; fileRef = C1F44F6B163218D200644E23 /* numbers.kwb */; };
+		C1F44F7E163218D200644E23 /* sfx.kwb in Resources */ = {isa = PBXBuildFile; fileRef = C1F44F6C163218D200644E23 /* sfx.kwb */; };
 		C1F5EA201416B5C300825765 /* EventCallbackDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F5EA1E1416B5C300825765 /* EventCallbackDemo.m */; };
 		C1F5EA211416B5C300825765 /* EventCallbackDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1F5EA1F1416B5C300825765 /* EventCallbackDemo.xib */; };
 		C1F5EBC21417B6F100825765 /* listenericon.png in Resources */ = {isa = PBXBuildFile; fileRef = C1F5EBC11417B6F100825765 /* listenericon.png */; };
@@ -89,13 +107,6 @@
 			remoteGlobalIDString = C1B3D57A135B8E880025DD08;
 			remoteInfo = kowalski_sdl;
 		};
-		C1064EC613DA3AC9001DA332 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C1064EB813DA3AC8001DA332 /* kowalski.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C1AD431112B9D14F0034B985;
-			remoteInfo = kowalski_demo;
-		};
 		C1064EC813DA3AC9001DA332 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C1064EB813DA3AC8001DA332 /* kowalski.xcodeproj */;
@@ -117,6 +128,13 @@
 			remoteGlobalIDString = C1DD3C2A1370D12B00D10AA6;
 			remoteInfo = kowalski_ios;
 		};
+		C1F44E831632185A00644E23 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1064EB813DA3AC8001DA332 /* kowalski.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C19BB85D1630C1E9000F1BE7;
+			remoteInfo = kowalski_test;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -135,7 +153,6 @@
 		C1064E8113DA369D001DA332 /* sfx.kwb */ = {isa = PBXFileReference; lastKnownFileType = file; name = sfx.kwb; path = ../../res/demodata/final/sfx.kwb; sourceTree = SOURCE_ROOT; };
 		C1064EB813DA3AC8001DA332 /* kowalski.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = kowalski.xcodeproj; sourceTree = "<group>"; };
 		C1064ECD13DA3AEB001DA332 /* kowalski.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kowalski.h; path = ../../src/engine/kowalski.h; sourceTree = SOURCE_ROOT; };
-		C1064ECE13DA3AF4001DA332 /* kowalski_ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kowalski_ext.h; path = ../../src/engine/kowalski_ext.h; sourceTree = SOURCE_ROOT; };
 		C1064ED813DA3BCD001DA332 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		C1064EDA13DA3BCD001DA332 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		C1309E1B13E33D63000796BD /* DemoBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoBase.m; sourceTree = "<group>"; };
@@ -204,6 +221,24 @@
 		C1F0463113EC023D0078EE79 /* DopplerShiftDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DopplerShiftDemo.h; sourceTree = "<group>"; };
 		C1F0463213EC023D0078EE79 /* DopplerShiftDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DopplerShiftDemo.m; sourceTree = "<group>"; };
 		C1F0463713EC027B0078EE79 /* DopplerShiftDemo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DopplerShiftDemo.xib; sourceTree = "<group>"; };
+		C1F44F5A163218D200644E23 /* demoproject.kwl */ = {isa = PBXFileReference; lastKnownFileType = file; name = demoproject.kwl; path = demodata/final/demoproject.kwl; sourceTree = "<group>"; };
+		C1F44F5C163218D200644E23 /* sine_signed_16bit_mono.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = sine_signed_16bit_mono.aiff; sourceTree = "<group>"; };
+		C1F44F5D163218D200644E23 /* sine_signed_16bit_mono.au */ = {isa = PBXFileReference; lastKnownFileType = audio.au; path = sine_signed_16bit_mono.au; sourceTree = "<group>"; };
+		C1F44F5E163218D200644E23 /* sine_signed_16bit_mono.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sine_signed_16bit_mono.wav; sourceTree = "<group>"; };
+		C1F44F5F163218D200644E23 /* sine_signed_24bit_mono.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = sine_signed_24bit_mono.aiff; sourceTree = "<group>"; };
+		C1F44F60163218D200644E23 /* sine_signed_24bit_mono.au */ = {isa = PBXFileReference; lastKnownFileType = audio.au; path = sine_signed_24bit_mono.au; sourceTree = "<group>"; };
+		C1F44F61163218D200644E23 /* sine_signed_24bit_mono.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sine_signed_24bit_mono.wav; sourceTree = "<group>"; };
+		C1F44F62163218D200644E23 /* sine_signed_32bit_mono.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = sine_signed_32bit_mono.aiff; sourceTree = "<group>"; };
+		C1F44F63163218D200644E23 /* sine_signed_32bit_mono.au */ = {isa = PBXFileReference; lastKnownFileType = audio.au; path = sine_signed_32bit_mono.au; sourceTree = "<group>"; };
+		C1F44F64163218D200644E23 /* sine_signed_32bit_mono.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sine_signed_32bit_mono.wav; sourceTree = "<group>"; };
+		C1F44F65163218D200644E23 /* sine_signed_8bit_mono.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = sine_signed_8bit_mono.aiff; sourceTree = "<group>"; };
+		C1F44F66163218D200644E23 /* sine_signed_8bit_mono.au */ = {isa = PBXFileReference; lastKnownFileType = audio.au; path = sine_signed_8bit_mono.au; sourceTree = "<group>"; };
+		C1F44F67163218D200644E23 /* sine_unsigned_8bit_mono.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = sine_unsigned_8bit_mono.aiff; sourceTree = "<group>"; };
+		C1F44F68163218D200644E23 /* sine_unsigned_8bit_mono.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sine_unsigned_8bit_mono.wav; sourceTree = "<group>"; };
+		C1F44F69163218D200644E23 /* music.kwb */ = {isa = PBXFileReference; lastKnownFileType = file; name = music.kwb; path = demodata/final/music.kwb; sourceTree = "<group>"; };
+		C1F44F6A163218D200644E23 /* notes.kwb */ = {isa = PBXFileReference; lastKnownFileType = file; name = notes.kwb; path = demodata/final/notes.kwb; sourceTree = "<group>"; };
+		C1F44F6B163218D200644E23 /* numbers.kwb */ = {isa = PBXFileReference; lastKnownFileType = file; name = numbers.kwb; path = demodata/final/numbers.kwb; sourceTree = "<group>"; };
+		C1F44F6C163218D200644E23 /* sfx.kwb */ = {isa = PBXFileReference; lastKnownFileType = file; name = sfx.kwb; path = demodata/final/sfx.kwb; sourceTree = "<group>"; };
 		C1F5EA1D1416B5C300825765 /* EventCallbackDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventCallbackDemo.h; sourceTree = "<group>"; };
 		C1F5EA1E1416B5C300825765 /* EventCallbackDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventCallbackDemo.m; sourceTree = "<group>"; };
 		C1F5EA1F1416B5C300825765 /* EventCallbackDemo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventCallbackDemo.xib; sourceTree = "<group>"; };
@@ -247,6 +282,7 @@
 				C1064ED813DA3BCD001DA332 /* AudioToolbox.framework */,
 				C1064EDA13DA3BCD001DA332 /* CoreAudio.framework */,
 				C1064ECA13DA3AD4001DA332 /* include */,
+				C1F44E86163218BA00644E23 /* res */,
 				C1C0FD7813DCB09D009769E7 /* src */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -293,9 +329,9 @@
 			children = (
 				C1064EC313DA3AC9001DA332 /* libkowalski.dylib */,
 				C1064EC513DA3AC9001DA332 /* kowalski_sdl.dylib */,
-				C1064EC713DA3AC9001DA332 /* Kowalski Demo.app */,
 				C1064EC913DA3AC9001DA332 /* libkowalski_ios.a */,
 				C1760F9D1620E91F0044204B /* kwltools */,
+				C1F44E841632185A00644E23 /* kowalski_test.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -304,7 +340,6 @@
 			isa = PBXGroup;
 			children = (
 				C1064ECD13DA3AEB001DA332 /* kowalski.h */,
-				C1064ECE13DA3AF4001DA332 /* kowalski_ext.h */,
 			);
 			name = include;
 			sourceTree = "<group>";
@@ -385,6 +420,41 @@
 			path = ../../src/enginedemo/ios;
 			sourceTree = SOURCE_ROOT;
 		};
+		C1F44E86163218BA00644E23 /* res */ = {
+			isa = PBXGroup;
+			children = (
+				C1F44F5A163218D200644E23 /* demoproject.kwl */,
+				C1F44F5B163218D200644E23 /* freeformeventaudio */,
+				C1F44F69163218D200644E23 /* music.kwb */,
+				C1F44F6A163218D200644E23 /* notes.kwb */,
+				C1F44F6B163218D200644E23 /* numbers.kwb */,
+				C1F44F6C163218D200644E23 /* sfx.kwb */,
+			);
+			name = res;
+			path = ../../res;
+			sourceTree = "<group>";
+		};
+		C1F44F5B163218D200644E23 /* freeformeventaudio */ = {
+			isa = PBXGroup;
+			children = (
+				C1F44F5C163218D200644E23 /* sine_signed_16bit_mono.aiff */,
+				C1F44F5D163218D200644E23 /* sine_signed_16bit_mono.au */,
+				C1F44F5E163218D200644E23 /* sine_signed_16bit_mono.wav */,
+				C1F44F5F163218D200644E23 /* sine_signed_24bit_mono.aiff */,
+				C1F44F60163218D200644E23 /* sine_signed_24bit_mono.au */,
+				C1F44F61163218D200644E23 /* sine_signed_24bit_mono.wav */,
+				C1F44F62163218D200644E23 /* sine_signed_32bit_mono.aiff */,
+				C1F44F63163218D200644E23 /* sine_signed_32bit_mono.au */,
+				C1F44F64163218D200644E23 /* sine_signed_32bit_mono.wav */,
+				C1F44F65163218D200644E23 /* sine_signed_8bit_mono.aiff */,
+				C1F44F66163218D200644E23 /* sine_signed_8bit_mono.au */,
+				C1F44F67163218D200644E23 /* sine_unsigned_8bit_mono.aiff */,
+				C1F44F68163218D200644E23 /* sine_unsigned_8bit_mono.wav */,
+			);
+			name = freeformeventaudio;
+			path = demodata/final/freeformeventaudio;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -452,13 +522,6 @@
 			remoteRef = C1064EC413DA3AC9001DA332 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		C1064EC713DA3AC9001DA332 /* Kowalski Demo.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "Kowalski Demo.app";
-			remoteRef = C1064EC613DA3AC9001DA332 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		C1064EC913DA3AC9001DA332 /* libkowalski_ios.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -471,6 +534,13 @@
 			fileType = "compiled.mach-o.executable";
 			path = kwltools;
 			remoteRef = C1760F9C1620E91F0044204B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C1F44E841632185A00644E23 /* kowalski_test.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = kowalski_test.octest;
+			remoteRef = C1F44E831632185A00644E23 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -514,6 +584,24 @@
 				C1F5EC871417C8E100825765 /* ConeAttenuationDemo.xib in Resources */,
 				C1F5ECB21417D2FA00825765 /* emittericon90degcone.png in Resources */,
 				C1F5ECB31417D2FA00825765 /* listenericon90degcone.png in Resources */,
+				C1F44F6D163218D200644E23 /* demoproject.kwl in Resources */,
+				C1F44F6E163218D200644E23 /* sine_signed_16bit_mono.aiff in Resources */,
+				C1F44F6F163218D200644E23 /* sine_signed_16bit_mono.au in Resources */,
+				C1F44F70163218D200644E23 /* sine_signed_16bit_mono.wav in Resources */,
+				C1F44F71163218D200644E23 /* sine_signed_24bit_mono.aiff in Resources */,
+				C1F44F72163218D200644E23 /* sine_signed_24bit_mono.au in Resources */,
+				C1F44F73163218D200644E23 /* sine_signed_24bit_mono.wav in Resources */,
+				C1F44F74163218D200644E23 /* sine_signed_32bit_mono.aiff in Resources */,
+				C1F44F75163218D200644E23 /* sine_signed_32bit_mono.au in Resources */,
+				C1F44F76163218D200644E23 /* sine_signed_32bit_mono.wav in Resources */,
+				C1F44F77163218D200644E23 /* sine_signed_8bit_mono.aiff in Resources */,
+				C1F44F78163218D200644E23 /* sine_signed_8bit_mono.au in Resources */,
+				C1F44F79163218D200644E23 /* sine_unsigned_8bit_mono.aiff in Resources */,
+				C1F44F7A163218D200644E23 /* sine_unsigned_8bit_mono.wav in Resources */,
+				C1F44F7B163218D200644E23 /* music.kwb in Resources */,
+				C1F44F7C163218D200644E23 /* notes.kwb in Resources */,
+				C1F44F7D163218D200644E23 /* numbers.kwb in Resources */,
+				C1F44F7E163218D200644E23 /* sfx.kwb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,11 +659,11 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = kowalski_demo_ios_Prefix.pch;
+				GCC_PREFIX_HEADER = ../../src/enginedemo/ios/kowalski_demo_ios_Prefix.pch;
 				INFOPLIST_FILE = "kowalski_demo_ios-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = kowalski_demo_ios;
-				SDKROOT = iphoneos5.0;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -585,11 +673,11 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = kowalski_demo_ios_Prefix.pch;
+				GCC_PREFIX_HEADER = ../../src/enginedemo/ios/kowalski_demo_ios_Prefix.pch;
 				INFOPLIST_FILE = "kowalski_demo_ios-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = kowalski_demo_ios;
-				SDKROOT = iphoneos5.0;
+				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

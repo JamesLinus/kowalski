@@ -29,7 +29,7 @@ freely, subject to the following restrictions:
 #include "kwl_decoder.h"
 #include "kwl_eventdefinition.h"
 #include "kwl_synchronization.h"
-#include "kwl_sound.h"
+#include "kwl_sounddefinition.h"
 #include "kwl_engine.h"
 
 #ifdef __cplusplus

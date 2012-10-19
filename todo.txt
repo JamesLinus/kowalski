@@ -22,7 +22,7 @@ release	    <-	[release]
 - mmap if supported, per audio data item?
 - use message queue mechanism to attach/remove dsp units?
 - kwlDSPUnitIsAttached
-- dsp node graphs
+- dsp node graphs?
 - remove blocking unloading from API
 - skip crossfade weighting
 - unify lots of kwlSharedXXX into state structs
@@ -36,6 +36,8 @@ release	    <-	[release]
 - move event linked list manipulation to kwl_event.c
 - kwlSound -> kwlSoundDefinition
 - sort functions to match h and c files
+- rename iPhone host folder to iOS
+- kwl_iphone -> kwl_ios or use standard check?
 
 
 tools

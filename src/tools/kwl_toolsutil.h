@@ -61,6 +61,7 @@ freely, subject to the following restrictions:
 #define KWL_XML_ATTR_EVENT_PITCH "pitch"
 #define KWL_XML_ATTR_EVENT_INSTANCE_COUNT "instanceCount"
 #define KWL_XML_ATTR_EVENT_IS_POSITIONAL "positional"
+#define KWL_XML_ATTR_EVENT_BUS "bus"
 
 #define KWL_XML_PROJECT_NODE_NAME "KowalskiProject"
 

@@ -39,6 +39,7 @@ release	    <-	[release]
 
 
 tools
+- assume unit params if mixbusparameter set is missing from preset?
 - use strlen in kwlFileOutputStream_writeASCIIString
 - binary visualizer CLI w hooks for other binary viewing tools
 - libsndfile? no (lgpl)?
@@ -48,7 +49,6 @@ tools
 - use xmlHashTable etc?
 - remove expanded attribute from groups
 - shorten attribute names
-- remove NodeWithExpansionState
 - don't store mix bus index per parameter set but rely on same order as mix buses
 - bin rep struct hierarchy:
     view: file -> bin rep

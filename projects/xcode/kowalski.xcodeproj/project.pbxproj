@@ -64,6 +64,9 @@
 		C19BB8601630C1E9000F1BE7 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C19BB85F1630C1E9000F1BE7 /* SenTestingKit.framework */; };
 		C19BB8621630C1E9000F1BE7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C19BB8611630C1E9000F1BE7 /* Cocoa.framework */; };
 		C19BB87A1630C359000F1BE7 /* kowalski_test.m in Sources */ = {isa = PBXBuildFile; fileRef = C19BB8791630C359000F1BE7 /* kowalski_test.m */; };
+		C19BB8811630D9B5000F1BE7 /* structure_validation.c in Sources */ = {isa = PBXBuildFile; fileRef = C19BB87B1630D9B4000F1BE7 /* structure_validation.c */; };
+		C19BB8821630D9B5000F1BE7 /* xml_validation.c in Sources */ = {isa = PBXBuildFile; fileRef = C19BB87D1630D9B4000F1BE7 /* xml_validation.c */; };
+		C19BB8831630D9B5000F1BE7 /* xsd_validation.c in Sources */ = {isa = PBXBuildFile; fileRef = C19BB87F1630D9B4000F1BE7 /* xsd_validation.c */; };
 		C19FD680141AC72900B836F5 /* kwl_decoder_pcm.h in Headers */ = {isa = PBXBuildFile; fileRef = C19FD67E141AC72900B836F5 /* kwl_decoder_pcm.h */; };
 		C19FD681141AC72900B836F5 /* kwl_decoder_pcm.c in Sources */ = {isa = PBXBuildFile; fileRef = C19FD67F141AC72900B836F5 /* kwl_decoder_pcm.c */; };
 		C19FD682141AC72900B836F5 /* kwl_decoder_pcm.h in Headers */ = {isa = PBXBuildFile; fileRef = C19FD67E141AC72900B836F5 /* kwl_decoder_pcm.h */; };
@@ -381,6 +384,12 @@
 		C19BB8771630C359000F1BE7 /* kowalski_test-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "kowalski_test-Prefix.pch"; sourceTree = "<group>"; };
 		C19BB8781630C359000F1BE7 /* kowalski_test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kowalski_test.h; sourceTree = "<group>"; };
 		C19BB8791630C359000F1BE7 /* kowalski_test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = kowalski_test.m; sourceTree = "<group>"; };
+		C19BB87B1630D9B4000F1BE7 /* structure_validation.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = structure_validation.c; sourceTree = "<group>"; };
+		C19BB87C1630D9B4000F1BE7 /* structure_validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = structure_validation.h; sourceTree = "<group>"; };
+		C19BB87D1630D9B4000F1BE7 /* xml_validation.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xml_validation.c; sourceTree = "<group>"; };
+		C19BB87E1630D9B4000F1BE7 /* xml_validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xml_validation.h; sourceTree = "<group>"; };
+		C19BB87F1630D9B4000F1BE7 /* xsd_validation.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xsd_validation.c; sourceTree = "<group>"; };
+		C19BB8801630D9B5000F1BE7 /* xsd_validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xsd_validation.h; sourceTree = "<group>"; };
 		C19FD67E141AC72900B836F5 /* kwl_decoder_pcm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_decoder_pcm.h; sourceTree = "<group>"; };
 		C19FD67F141AC72900B836F5 /* kwl_decoder_pcm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_decoder_pcm.c; sourceTree = "<group>"; };
 		C1A018C11265EF120039DB22 /* kwl_eventdefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_eventdefinition.h; sourceTree = "<group>"; };
@@ -663,6 +672,12 @@
 		C19BB8751630C359000F1BE7 /* test */ = {
 			isa = PBXGroup;
 			children = (
+				C19BB87B1630D9B4000F1BE7 /* structure_validation.c */,
+				C19BB87C1630D9B4000F1BE7 /* structure_validation.h */,
+				C19BB87D1630D9B4000F1BE7 /* xml_validation.c */,
+				C19BB87E1630D9B4000F1BE7 /* xml_validation.h */,
+				C19BB87F1630D9B4000F1BE7 /* xsd_validation.c */,
+				C19BB8801630D9B5000F1BE7 /* xsd_validation.h */,
 				C19BB8761630C359000F1BE7 /* osx */,
 			);
 			name = test;
@@ -1049,6 +1064,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C19BB87A1630C359000F1BE7 /* kowalski_test.m in Sources */,
+				C19BB8811630D9B5000F1BE7 /* structure_validation.c in Sources */,
+				C19BB8821630D9B5000F1BE7 /* xml_validation.c in Sources */,
+				C19BB8831630D9B5000F1BE7 /* xsd_validation.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

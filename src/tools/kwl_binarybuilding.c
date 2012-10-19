@@ -493,8 +493,9 @@ static void kwlGatherEventsCallback(xmlNode* node, void* b)
     c->pitch = kwlGetFloatAttributeValue(node, KWL_XML_ATTR_EVENT_PITCH);
     c->instanceCount = kwlGetFloatAttributeValue(node, KWL_XML_ATTR_EVENT_INSTANCE_COUNT);
     c->isPositional = kwlGetBoolAttributeValue(node, KWL_XML_ATTR_EVENT_IS_POSITIONAL);
+    c->mixBusIndex = kwlGetMixBusIndex(bin, kwlGetAttributeValue(node, KWL_XML_ATTR_EVENT_BUS));
+    c->waveBankIndex
     
-    c->mixBusIndex = 0;//TODO
     c->numReferencedWaveBanks = 0; //TODO*/
     //TODO
 }

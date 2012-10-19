@@ -37,6 +37,7 @@ extern "C"
 void* kwlMemcpy(void* to, const void* from, size_t size);
 /** */
 void* kwlMemset(void* location, int value, size_t size);
+void* kwlRealloc(void* ptr, size_t size);
 void* kwlMallocAndZero(size_t size);
 void* kwlMalloc(size_t size);
 void kwlFree(void* pointer);
@@ -51,6 +52,7 @@ void kwlFree(void* pointer);
  * KWL_DEBUG_MEMORY is defined) and to make it easy to use custom allocators if need be.
  * The tag parameter is a const* char const string identifying the allocation.
  */
+#define KWL_REALLOC(ptr, size, tag) kwlRealloc(ptr, size)
 #define KWL_MALLOC(size, tag) kwlMalloc(size)
 #define KWL_MALLOCANDZERO(size, tag) kwlMallocAndZero(size)
 /**
@@ -63,11 +65,12 @@ void kwlFree(void* pointer);
 
 #else
 
+#define KWL_REALLOC(ptr, size, tag) kwlDebugRealloc(ptr, size, tag)
 #define KWL_MALLOC(size, tag) kwlDebugMalloc(size, tag)
 #define KWL_MALLOCANDZERO(size, tag) kwlDebugMallocAndZero(size, tag)
 #define KWL_FREE(ptr) kwlDebugFree(ptr)
 /** The size of the debug allocation tracking table.*/
-#define KWL_DEBUG_ALLOCATION_TABLE_SIZE 1000
+#define KWL_DEBUG_ALLOCATION_TABLE_SIZE 16000
 /** The max length of an allocation tag.*/
 #define KWL_DEBUG_ALLOCATION_TAG_SIZE 50
     
@@ -90,6 +93,8 @@ int kwlDebugGetLiveBytes(void);
 int kwlDebugGetTotalBytes(void);
 
 void* kwlDebugMallocAndZero(size_t size, const char* const tag);
+
+void* kwlDebugRealloc(void* ptr, size_t size, const char* const tag);
     
 /** Allocates a block of memory and records the allocation. */
 void* kwlDebugMalloc(size_t size, const char* const tag);

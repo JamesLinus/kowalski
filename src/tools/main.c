@@ -20,28 +20,31 @@ int main(int argc, const char * argv[])
     const char* wbTargetFile = "";
     const char* binTargetFile = "";
     
-    kwlProjectDataBinaryRepresentation pdb;
-    kwlMemset(&pdb, 0, sizeof(kwlProjectDataBinaryRepresentation));
+    kwlProjectDataBinary pdb;
+    kwlMemset(&pdb, 0, sizeof(kwlProjectDataBinary));
     
     //load kwl from xml
     if (1)
     {
-        kwlProjectDataBinaryRepresentation_loadFromXML(&pdb,
-                                                       xmlPath,
-                                                       xsdPath,
-                                                       kwlDefaultLogCallback);
-        kwlProjectDataBinaryRepresentation_dump(&pdb, kwlDefaultLogCallback);
-        kwlProjectDataBinaryRepresentation_free(&pdb);
+        kwlProjectDataBinary_loadFromXML(&pdb,
+                                         xmlPath,
+                                         xsdPath,
+                                         kwlDefaultLogCallback);
+        kwlProjectDataBinary_dump(&pdb, kwlDefaultLogCallback);
+        kwlProjectDataBinary_free(&pdb);
+        
     }
     
     //load kwl from bin
-    if (0)
+    if (1)
     {
-        kwlProjectDataBinaryRepresentation_loadFromBinary(&pdb,
-                                                          kwlPath,
-                                                          kwlDefaultLogCallback);
-        kwlProjectDataBinaryRepresentation_dump(&pdb, kwlDefaultLogCallback);
-        kwlProjectDataBinaryRepresentation_free(&pdb);
+        kwlDebugPrintAllocationReport();
+        kwlProjectDataBinary_loadFromBinary(&pdb,
+                                            kwlPath,
+                                            kwlDefaultLogCallback);
+        //kwlProjectDataBinary_dump(&pdb, kwlDefaultLogCallback);
+        kwlProjectDataBinary_free(&pdb);
+        kwlDebugPrintAllocationReport();
     }
 
     //load kwb from bin

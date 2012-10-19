@@ -39,28 +39,12 @@ release	    <-	[release]
 - rename iPhone host folder to iOS
 - kwl_iphone -> kwl_ios or use standard check?
 
-
 tools
 - assume unit params if mixbusparameter set is missing from preset?
 - use strlen in kwlFileOutputStream_writeASCIIString
-- binary visualizer CLI w hooks for other binary viewing tools
 - libsndfile? no (lgpl)?
-- xml -> bin C api
-- xml validation C api (skip schema?)
 - take audio file dir out of xml?
 - use xmlHashTable etc?
-- remove expanded attribute from groups
 - shorten attribute names
 - don't store mix bus index per parameter set but rely on same order as mix buses
-- bin rep struct hierarchy:
-    view: file -> bin rep
-    validate: file -> bin rep
-    serialize: xml -> bin rep -> file
-- kwlGetAttributeValue returns strings owned by libxml. not always desired
 - mix preset default "true" and "false" to 1 and 0 conversion
-
-bindings:
-- skip for now
-
-editor:
-- skip

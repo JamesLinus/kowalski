@@ -27,6 +27,26 @@ freely, subject to the following restrictions:
 #include "kwl_memory.h"
 #include "kwl_xmlutil.h"
 
+void kwlTraverseNodeTree(xmlNode* root,
+                         const char* branchNodeName,
+                         const char* leafNodeName,
+                         kwlNodeTraversalCallback callback,
+                         void* userData)
+{
+    for (xmlNode* curr = root->children; curr != NULL; curr = curr->next)
+    {
+        if (xmlStrEqual(curr->name, (xmlChar*)branchNodeName))
+        {
+            kwlTraverseNodeTree(curr, branchNodeName, leafNodeName, callback, userData);
+        }
+        if (xmlStrEqual(curr->name, (xmlChar*)leafNodeName))
+        {
+            callback(curr, userData);
+        }
+    }
+}
+
+
 xmlChar* kwlGetAttributeValue(xmlNode* node, const char* name)
 {
     xmlAttr* attr = node->properties;

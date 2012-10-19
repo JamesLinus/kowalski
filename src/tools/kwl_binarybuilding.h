@@ -42,7 +42,8 @@ extern "C"
     /**
      *
      */
-    void kwlBuildWaveBank(const char* xmlPath, const char* xsdPath, const char* waveBankId, const char* targetDir);
+    void kwlBuildWaveBank(const char* xmlPath, const char* xsdPath,
+                          const char* waveBankId, const char* targetDir);
 
     
 #ifdef __cplusplus

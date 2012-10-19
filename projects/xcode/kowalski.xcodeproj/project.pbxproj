@@ -672,13 +672,13 @@
 		C19BB8751630C359000F1BE7 /* test */ = {
 			isa = PBXGroup;
 			children = (
+				C19BB8761630C359000F1BE7 /* osx */,
 				C19BB87B1630D9B4000F1BE7 /* structure_validation.c */,
 				C19BB87C1630D9B4000F1BE7 /* structure_validation.h */,
 				C19BB87D1630D9B4000F1BE7 /* xml_validation.c */,
 				C19BB87E1630D9B4000F1BE7 /* xml_validation.h */,
 				C19BB87F1630D9B4000F1BE7 /* xsd_validation.c */,
 				C19BB8801630D9B5000F1BE7 /* xsd_validation.h */,
-				C19BB8761630C359000F1BE7 /* osx */,
 			);
 			name = test;
 			path = ../../src/test;

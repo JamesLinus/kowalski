@@ -79,34 +79,16 @@ static const xmlChar* kwlGetNodePath(xmlNode* currentNode)
     return pathStr;
 }
 
-static void kwlTraverseNodeTree(xmlNode* root,
-                         const char* branchNodeName,
-                         const char* leafNodeName,
-                         kwlNodeTraversalCallback callback,
-                         void* userData)
-{
-    for (xmlNode* curr = root->children; curr != NULL; curr = curr->next)
-    {
-        if (xmlStrEqual(curr->name, (xmlChar*)branchNodeName))
-        {
-            kwlTraverseNodeTree(curr, branchNodeName, leafNodeName, callback, userData);
-        }
-        if (xmlStrEqual(curr->name, (xmlChar*)leafNodeName))
-        {
-            callback(curr, userData);
-        }
-    }
-}
-
 /**
  * Gather mix buses excluding sub buses
  */
 static void kwlGatherMixBusesCallback(xmlNode* currentNode, void* b)
 {
-    kwlProjectDataBinaryRepresentation* bin = (kwlProjectDataBinaryRepresentation*)b;
+    kwlProjectDataBinary* bin = (kwlProjectDataBinary*)b;
     bin->mixBusChunk.numMixBuses += 1;
-    bin->mixBusChunk.mixBuses = realloc(bin->mixBusChunk.mixBuses,
-                                        sizeof(kwlMixBusChunk) * bin->mixBusChunk.numMixBuses);
+    bin->mixBusChunk.mixBuses = KWL_REALLOC(bin->mixBusChunk.mixBuses,
+                                            sizeof(kwlMixBusChunk) * bin->mixBusChunk.numMixBuses,
+                                            "xml 2 bin mix bus realloc");
     kwlMixBusChunk* c = &bin->mixBusChunk.mixBuses[bin->mixBusChunk.numMixBuses - 1];
     c->id = kwlGetAttributeValueCopy(currentNode, "id");
     KWL_ASSERT(c->id != NULL);
@@ -122,7 +104,7 @@ static void kwlGatherMixBusesCallback(xmlNode* currentNode, void* b)
  */
 static void kwlGatherSubBusesCallback(xmlNode* node, void* b)
 {
-    kwlProjectDataBinaryRepresentation* bin = (kwlProjectDataBinaryRepresentation*)b;
+    kwlProjectDataBinary* bin = (kwlProjectDataBinary*)b;
     
     //find the mix bus to attach the children to
     kwlMixBusChunk* mb = NULL;
@@ -166,7 +148,7 @@ static void kwlGatherSubBusesCallback(xmlNode* node, void* b)
     }
 }
 
-static void kwlMixBusRootXMLToBin(xmlNode* projectRoot, kwlProjectDataBinaryRepresentation* bin)
+static void kwlMixBusRootXMLToBin(xmlNode* projectRoot, kwlProjectDataBinary* bin)
 {
     bin->mixBusChunk.chunkId = KWL_MIX_BUSES_CHUNK_ID;
     
@@ -183,7 +165,7 @@ static void kwlMixBusRootXMLToBin(xmlNode* projectRoot, kwlProjectDataBinaryRepr
                         bin);
 }
 
-static int kwlGetMixBusIndex(kwlProjectDataBinaryRepresentation* bin, const char* id)
+static int kwlGetMixBusIndex(kwlProjectDataBinary* bin, const char* id)
 {
     KWL_ASSERT(bin->mixBusChunk.numMixBuses > 0);
     
@@ -205,13 +187,14 @@ static int kwlGetMixBusIndex(kwlProjectDataBinaryRepresentation* bin, const char
  */
 static void kwlGatherMixPresetsCallback(xmlNode* node, void* b)
 {
-    kwlProjectDataBinaryRepresentation* bin = (kwlProjectDataBinaryRepresentation*)b;
+    kwlProjectDataBinary* bin = (kwlProjectDataBinary*)b;
     const int numMixBuses = bin->mixBusChunk.numMixBuses;
     KWL_ASSERT(numMixBuses > 0);
     
     bin->mixPresetChunk.numMixPresets += 1;
-    bin->mixPresetChunk.mixPresets = realloc(bin->mixPresetChunk.mixPresets,
-                                             sizeof(kwlMixPresetChunk) * bin->mixPresetChunk.numMixPresets);
+    bin->mixPresetChunk.mixPresets = KWL_REALLOC(bin->mixPresetChunk.mixPresets,
+                                                 sizeof(kwlMixPresetChunk) * bin->mixPresetChunk.numMixPresets,
+                                                 "xml 2 bin mix preset realloc");
     kwlMixPresetChunk* c = &bin->mixPresetChunk.mixPresets[bin->mixPresetChunk.numMixPresets - 1];
     c->id = kwlGetNodePath(node);
     c->isDefault = kwlGetIntAttributeValue(node, KWL_XML_ATTR_MIX_PRESET_IS_DEFAULT);
@@ -243,7 +226,7 @@ static void kwlGatherMixPresetsCallback(xmlNode* node, void* b)
     KWL_ASSERT(paramSetIdx == numMixBuses);
 }
 
-static void kwlMixPresetRootXMLToBin(xmlNode* projectRoot, kwlProjectDataBinaryRepresentation* bin)
+static void kwlMixPresetRootXMLToBin(xmlNode* projectRoot, kwlProjectDataBinary* bin)
 {
     bin->mixPresetChunk.chunkId = KWL_MIX_PRESETS_CHUNK_ID;
     
@@ -256,10 +239,11 @@ static void kwlMixPresetRootXMLToBin(xmlNode* projectRoot, kwlProjectDataBinaryR
 
 static void kwlGatherWaveBanksCallback(xmlNode* node, void* b)
 {
-    kwlProjectDataBinaryRepresentation* bin = (kwlProjectDataBinaryRepresentation*)b;
+    kwlProjectDataBinary* bin = (kwlProjectDataBinary*)b;
     bin->waveBankChunk.numWaveBanks += 1;
-    bin->waveBankChunk.waveBanks = realloc(bin->waveBankChunk.waveBanks,
-                                           sizeof(kwlWaveBankChunk) * bin->waveBankChunk.numWaveBanks);
+    bin->waveBankChunk.waveBanks = KWL_REALLOC(bin->waveBankChunk.waveBanks,
+                                               sizeof(kwlWaveBankChunk) * bin->waveBankChunk.numWaveBanks,
+                                               "xml 2 bin wave bank realloc");
     kwlWaveBankChunk* c = &bin->waveBankChunk.waveBanks[bin->waveBankChunk.numWaveBanks - 1];
     const xmlChar* path = kwlGetNodePath(node);
     c->id = path;
@@ -284,7 +268,7 @@ static void kwlGatherWaveBanksCallback(xmlNode* node, void* b)
     KWL_ASSERT(path != NULL);
 }
 
-static void kwlWaveBankRootXMLToBin(xmlNode* projectRoot, kwlProjectDataBinaryRepresentation* bin)
+static void kwlWaveBankRootXMLToBin(xmlNode* projectRoot, kwlProjectDataBinary* bin)
 {
     bin->waveBankChunk.chunkId = KWL_WAVE_BANKS_CHUNK_ID;
     
@@ -304,7 +288,7 @@ static void kwlWaveBankRootXMLToBin(xmlNode* projectRoot, kwlProjectDataBinaryRe
     bin->waveBankChunk.numAudioDataItemsTotal = totalNumItems;
 }
 
-static int kwlGetWaveBankIndex(kwlProjectDataBinaryRepresentation* bin, const char* id)
+static int kwlGetWaveBankIndex(kwlProjectDataBinary* bin, const char* id)
 {
     KWL_ASSERT(bin->waveBankChunk.numWaveBanks > 0);
     
@@ -342,10 +326,11 @@ static int kwlGetAudioDataIndex(kwlWaveBankChunk* wb, const char* id)
 
 static void kwlGatherSoundsCallback(xmlNode* node, void* b)
 {
-    kwlProjectDataBinaryRepresentation* bin = (kwlProjectDataBinaryRepresentation*)b;
+    kwlProjectDataBinary* bin = (kwlProjectDataBinary*)b;
     bin->soundChunk.numSoundDefinitions += 1;
-    bin->soundChunk.soundDefinitions = realloc(bin->soundChunk.soundDefinitions,
-                                               sizeof(kwlSoundChunk) * bin->soundChunk.numSoundDefinitions);
+    bin->soundChunk.soundDefinitions = KWL_REALLOC(bin->soundChunk.soundDefinitions,
+                                                   sizeof(kwlSoundChunk) * bin->soundChunk.numSoundDefinitions,
+                                                   "xml 2 bin sound realloc");
     kwlSoundChunk* c = &bin->soundChunk.soundDefinitions[bin->soundChunk.numSoundDefinitions - 1];
     
     c->gain = kwlGetFloatAttributeValue(node, KWL_XML_ATTR_SOUND_GAIN);
@@ -387,7 +372,7 @@ static void kwlGatherSoundsCallback(xmlNode* node, void* b)
     KWL_ASSERT(refIdx == c->numWaveReferences);
 }
 
-static void kwlSoundRootXMLToBin(xmlNode* projectRoot, kwlProjectDataBinaryRepresentation* bin)
+static void kwlSoundRootXMLToBin(xmlNode* projectRoot, kwlProjectDataBinary* bin)
 {
     bin->soundChunk.chunkId = KWL_SOUNDS_CHUNK_ID;
     
@@ -400,10 +385,11 @@ static void kwlSoundRootXMLToBin(xmlNode* projectRoot, kwlProjectDataBinaryRepre
 
 static void kwlGatherEventsCallback(xmlNode* node, void* b)
 {
-    kwlProjectDataBinaryRepresentation* bin = (kwlProjectDataBinaryRepresentation*)b;
+    kwlProjectDataBinary* bin = (kwlProjectDataBinary*)b;
     bin->eventChunk.numEventDefinitions += 1;
-    bin->eventChunk.eventDefinitions = realloc(bin->eventChunk.eventDefinitions,
-                                               sizeof(kwlEventChunk) * bin->eventChunk.numEventDefinitions);
+    bin->eventChunk.eventDefinitions = KWL_REALLOC(bin->eventChunk.eventDefinitions,
+                                                   sizeof(kwlEventChunk) * bin->eventChunk.numEventDefinitions,
+                                                   "xml 2 bin event realloc");
     kwlEventChunk* c = &bin->eventChunk.eventDefinitions[bin->eventChunk.numEventDefinitions - 1];
     c->id = kwlGetNodePath(node);
     
@@ -419,7 +405,7 @@ static void kwlGatherEventsCallback(xmlNode* node, void* b)
     //TODO
 }
 
-static void kwlEventRootXMLToBin(xmlNode* projectRoot, kwlProjectDataBinaryRepresentation* bin)
+static void kwlEventRootXMLToBin(xmlNode* projectRoot, kwlProjectDataBinary* bin)
 {
     bin->eventChunk.chunkId = KWL_EVENTS_CHUNK_ID;
     
@@ -432,10 +418,10 @@ static void kwlEventRootXMLToBin(xmlNode* projectRoot, kwlProjectDataBinaryRepre
 
 
 
-void kwlProjectDataBinaryRepresentation_loadFromXML(kwlProjectDataBinaryRepresentation* bin,
-                                                    const char* xmlPath,
-                                                    const char* xsdPath,
-                                                    kwlLogCallback errorLogCallback)
+void kwlProjectDataBinary_loadFromXML(kwlProjectDataBinary* bin,
+                                      const char* xmlPath,
+                                      const char* xsdPath,
+                                      kwlLogCallback errorLogCallback)
 
 {
     xmlDoc *doc = kwlLoadAndValidateProjectDataDoc(xmlPath, xsdPath);
@@ -481,7 +467,7 @@ void kwlProjectDataBinaryRepresentation_loadFromXML(kwlProjectDataBinaryRepresen
     KWL_ASSERT(soundRootNode != NULL);
     KWL_ASSERT(eventRootNode != NULL);
     
-    kwlMemset(bin, 0, sizeof(kwlProjectDataBinaryRepresentation));
+    kwlMemset(bin, 0, sizeof(kwlProjectDataBinary));
     
     kwlMixBusRootXMLToBin(projectRootNode, bin);
     kwlMixPresetRootXMLToBin(mixPresetRootNode, bin);
@@ -489,7 +475,7 @@ void kwlProjectDataBinaryRepresentation_loadFromXML(kwlProjectDataBinaryRepresen
     kwlSoundRootXMLToBin(soundRootNode, bin);
     kwlEventRootXMLToBin(eventRootNode, bin);
     
-    //kwlProjectDataBinaryRepresentation_dump(bin, kwlDefaultLogCallback);
+    //kwlProjectDataBinary_dump(bin, kwlDefaultLogCallback);
     
     /*free the document */
     xmlFreeDoc(doc);
@@ -502,18 +488,18 @@ void kwlProjectDataBinaryRepresentation_loadFromXML(kwlProjectDataBinaryRepresen
 }
 
 
-void kwlProjectDataBinaryRepresentation_saveToBinary(kwlProjectDataBinaryRepresentation* bin,
+void kwlProjectDataBinary_saveToBinary(kwlProjectDataBinary* bin,
                                                      const char* path)
 {
     KWL_ASSERT(0 && "TODO");
 }
 
-void kwlProjectDataBinaryRepresentation_loadFromBinary(kwlProjectDataBinaryRepresentation* binaryRep,
+void kwlProjectDataBinary_loadFromBinary(kwlProjectDataBinary* binaryRep,
                                                        const char* binaryPath,
                                                        kwlLogCallback errorLogCallbackIn)
 {
 
-    kwlMemset(binaryRep, 0, sizeof(kwlProjectDataBinaryRepresentation));
+    kwlMemset(binaryRep, 0, sizeof(kwlProjectDataBinary));
     
     kwlLogCallback errorLogCallback = errorLogCallbackIn == NULL ? kwlSilentLogCallback : errorLogCallbackIn;
     
@@ -804,39 +790,74 @@ void kwlProjectDataBinaryRepresentation_loadFromBinary(kwlProjectDataBinaryRepre
     
     onDataError:
     kwlInputStream_close(&is);
-    kwlProjectDataBinaryRepresentation_free(binaryRep);
+    kwlProjectDataBinary_free(binaryRep);
     return;
 }
 
-void kwlProjectDataBinaryRepresentation_free(kwlProjectDataBinaryRepresentation* bin)
+void kwlProjectDataBinary_free(kwlProjectDataBinary* bin)
 {
-    if (bin->mixBusChunk.numMixBuses > 0)
+    for (int i = 0; i < bin->mixBusChunk.numMixBuses; i++)
     {
-        
+        kwlMixBusChunk* mbi = &bin->mixBusChunk.mixBuses[i];
+        KWL_FREE(mbi->id);
+        if (mbi->subBusIndices != NULL)
+        {
+            KWL_FREE(mbi->subBusIndices);
+        }
     }
     
-    if (bin->mixPresetChunk.numMixPresets > 0)
+    KWL_FREE(bin->mixBusChunk.mixBuses);
+    
+    for (int i = 0; i < bin->mixPresetChunk.numMixPresets; i++)
     {
-        
+        kwlMixPresetChunk* mpi = &bin->mixPresetChunk.mixPresets[i];
+        KWL_FREE(mpi->id);
+        KWL_FREE(mpi->gainLeft);
+        KWL_FREE(mpi->gainRight);
+        KWL_FREE(mpi->pitch);
+        KWL_FREE(mpi->mixBusIndices);
     }
     
-    if (bin->waveBankChunk.numWaveBanks > 0)
+    KWL_FREE(bin->mixPresetChunk.mixPresets);
+    
+    for (int i = 0; i < bin->waveBankChunk.numWaveBanks; i++)
     {
-        
+        kwlWaveBankChunk* wbi = &bin->waveBankChunk.waveBanks[i];
+        KWL_FREE(wbi->id);
+        for (int j = 0; j < wbi->numAudioDataEntries; j++)
+        {
+            KWL_FREE(wbi->audioDataEntries[j]);
+        }
+        KWL_FREE(wbi->audioDataEntries);
     }
     
-    if (bin->soundChunk.numSoundDefinitions > 0)
+    KWL_FREE(bin->waveBankChunk.waveBanks);
+    
+    for (int i = 0; i < bin->soundChunk.numSoundDefinitions; i++)
     {
-        
+        kwlSoundChunk* si = &bin->soundChunk.soundDefinitions[i];
+        KWL_FREE(si->waveBankIndices);
+        KWL_FREE(si->audioDataIndices);
     }
     
-    if (bin->eventChunk.numEventDefinitions > 0)
+    KWL_FREE(bin->soundChunk.soundDefinitions);
+    
+    for (int i = 0; i < bin->eventChunk.numEventDefinitions; i++)
     {
-        
+        kwlEventChunk* ei = &bin->eventChunk.eventDefinitions[i];
+        KWL_FREE(ei->id);
+        if (ei->waveBankIndices != NULL)
+        {
+            KWL_FREE(ei->waveBankIndices);
+        }
     }
+    
+    KWL_FREE(bin->eventChunk.eventDefinitions);
+    
+    kwlMemset(bin, 0, sizeof(kwlProjectDataBinary));
 }
 
-void kwlProjectDataBinaryRepresentation_dump(kwlProjectDataBinaryRepresentation* bin, kwlLogCallback logCallback)
+void kwlProjectDataBinary_dump(kwlProjectDataBinary* bin, kwlLogCallback logCallback)
 {
     logCallback("Kowalski project data binary (");
     logCallback("file ID: ");

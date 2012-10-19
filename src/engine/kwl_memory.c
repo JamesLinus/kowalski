@@ -44,6 +44,11 @@ void* kwlMallocAndZero(size_t size)
     return ptr;
 }
 
+void* kwlRealloc(void* ptr, size_t size)
+{
+    return realloc(ptr, size);
+}
+
 void* kwlMalloc(size_t size)
 {
     return malloc(size);
@@ -65,14 +70,55 @@ void* kwlDebugMallocAndZero(size_t size, const char* const tag)
     return ptr;
 }
 
+void* kwlDebugRealloc(void* ptr, size_t size, const char* const tag)
+{
+    if (ptr == NULL)
+    {
+        return kwlDebugMalloc(size, tag);
+    }
+    
+    /*find a free slot in the allocation table*/
+    int allocationSlotIndex = -1;
+    for (int i = 0; i < KWL_DEBUG_ALLOCATION_TABLE_SIZE; i++)
+    {
+        if (kwlDebugAllocationAddresses[i] == ptr)
+        {
+            allocationSlotIndex = i;
+            break;
+        }
+    }
+    
+    KWL_ASSERT(allocationSlotIndex >= 0 && "reallocating untracked pointer");
+    
+    void* newPtr = realloc(ptr, size);
+    
+    size_t oldSize = kwlDebugAllocationSizes[allocationSlotIndex];
+    size_t delta = size - oldSize;
+    
+    kwlDebugAllocationSizes[allocationSlotIndex] += delta;
+    kwlDebugAllocationAddresses[allocationSlotIndex] = newPtr;
+    for (int i = 0; i < KWL_DEBUG_ALLOCATION_TAG_SIZE - 1; i++)
+    {
+        kwlDebugAllocationTags[allocationSlotIndex][i] = tag[i];
+        if (tag[i] == '\0')
+        {
+            break;
+        }
+    }
+    
+    liveBytes += delta;
+    totalBytes += delta;
+    
+    return newPtr;
+}
+
 void* kwlDebugMalloc(size_t size, const char* const tag)
 {
     KWL_ASSERT(size > 0 && "zero size allocation detected");
     
     /*find a free slot in the allocation table*/
     int allocationSlotIndex = -1;
-    int i;
-    for (i = 0; i < KWL_DEBUG_ALLOCATION_TABLE_SIZE; i++)
+    for (int i = 0; i < KWL_DEBUG_ALLOCATION_TABLE_SIZE; i++)
     {
         if (kwlDebugAllocationAddresses[i] == NULL)
         {
@@ -87,7 +133,7 @@ void* kwlDebugMalloc(size_t size, const char* const tag)
     
     /*record the allocation*/
     kwlDebugAllocationAddresses[allocationSlotIndex] = ptr;
-    for (i = 0; i < KWL_DEBUG_ALLOCATION_TAG_SIZE - 1; i++)
+    for (int i = 0; i < KWL_DEBUG_ALLOCATION_TAG_SIZE - 1; i++)
     {
         kwlDebugAllocationTags[allocationSlotIndex][i] = tag[i];
         if (tag[i] == '\0')
@@ -110,8 +156,7 @@ void kwlDebugFree(void* pointer)
     
     /*record the deletion*/
     int allocationSlotIndex = -1;
-    int i;
-    for (i = 0; i < KWL_DEBUG_ALLOCATION_TABLE_SIZE; i++)
+    for (int i = 0; i < KWL_DEBUG_ALLOCATION_TABLE_SIZE; i++)
     {
         if (kwlDebugAllocationAddresses[i] == pointer)
         {
@@ -126,7 +171,7 @@ void kwlDebugFree(void* pointer)
     
     /*clear the allocation table entry*/
     kwlDebugAllocationAddresses[allocationSlotIndex] = NULL;
-    for (i = 0; i < KWL_DEBUG_ALLOCATION_TAG_SIZE; i++)
+    for (int i = 0; i < KWL_DEBUG_ALLOCATION_TAG_SIZE; i++)
     {
         kwlDebugAllocationTags[allocationSlotIndex][i] = '\0';
     }

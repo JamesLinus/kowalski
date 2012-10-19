@@ -81,10 +81,27 @@ extern "C"
 #define KWL_XML_ATTR_REL_PATH "relativePath"
     
     /**
-     *
+     * A callback used when traversing XML node trees.
+     * @param currentNode
+     * @param userData 
      */
     typedef void (*kwlNodeTraversalCallback)(xmlNode* currentNode, void* userData);
 
+    /**
+     * Traverses an xml tree starting at a given root, decending at nodes with the name \c branchNodeName
+     * and invoking \c callback at nodes with the name \c leafNodeName.
+     * @param root
+     * @param branchNodeName
+     * @param leafNodeName
+     * @param callback
+     * @param userData
+     */
+    void kwlTraverseNodeTree(xmlNode* root,
+                             const char* branchNodeName,
+                             const char* leafNodeName,
+                             kwlNodeTraversalCallback callback,
+                             void* userData);
+    
     /**
      *
      */

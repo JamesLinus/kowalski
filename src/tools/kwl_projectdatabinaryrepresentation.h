@@ -165,7 +165,7 @@ extern "C"
     /**
      * 
      */
-    typedef struct kwlProjectDataBinaryRepresentation
+    typedef struct kwlProjectDataBinary
     {
         char fileIdentifier[KWL_ENGINE_DATA_BINARY_FILE_IDENTIFIER_LENGTH];
         kwlMixPresetDataChunk mixPresetChunk;
@@ -174,18 +174,18 @@ extern "C"
         kwlSoundDataChunk soundChunk;
         kwlEventDataChunk eventChunk;
         
-    } kwlProjectDataBinaryRepresentation;
+    } kwlProjectDataBinary;
     
     /**
      *
      */
-    void kwlProjectDataBinaryRepresentation_saveToBinary(kwlProjectDataBinaryRepresentation* bin,
+    void kwlProjectDataBinary_saveToBinary(kwlProjectDataBinary* bin,
                                                          const char* binPath);
     
     /**
      *
      */
-    void kwlProjectDataBinaryRepresentation_loadFromXML(kwlProjectDataBinaryRepresentation* bin,
+    void kwlProjectDataBinary_loadFromXML(kwlProjectDataBinary* bin,
                                                         const char* xmlPath,
                                                         const char* xsdPath,
                                                         kwlLogCallback errorLogCallback);
@@ -193,19 +193,19 @@ extern "C"
     /**
      *
      */
-    void kwlProjectDataBinaryRepresentation_loadFromBinary(kwlProjectDataBinaryRepresentation* bin,
+    void kwlProjectDataBinary_loadFromBinary(kwlProjectDataBinary* bin,
                                                            const char* binPath,
                                                            kwlLogCallback errorLogCallback);
     
     /**
      *
      */
-    void kwlProjectDataBinaryRepresentation_free(kwlProjectDataBinaryRepresentation* bin);
+    void kwlProjectDataBinary_free(kwlProjectDataBinary* bin);
     
     /**
      *
      */
-    void kwlProjectDataBinaryRepresentation_dump(kwlProjectDataBinaryRepresentation* bin,
+    void kwlProjectDataBinary_dump(kwlProjectDataBinary* bin,
                                                  kwlLogCallback logCallback);
     
     

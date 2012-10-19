@@ -136,4 +136,5 @@ The Wave Bank Binary Format
     * ``int32``: The number of channels of entry _i_ (non-zero for PCM, 0 otherwise)
     * ``int32``: The number, ``N``, of audio data bytes for entry _i_
 	* ``unsigned char[N]``: Audio data. If the encoding is PCM, this is just the interleaved 16 bit samples. For non-PCM data, this is the entire audio file.
+
 ---

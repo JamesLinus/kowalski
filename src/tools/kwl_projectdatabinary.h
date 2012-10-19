@@ -24,8 +24,9 @@
 #ifndef KWL_PROJECT_DATA_BINARY_REPRESENTATION_H
 #define KWL_PROJECT_DATA_BINARY_REPRESENTATION_H
 
-#include "kwl_logging.h"
+#include "kwl_datavalidation.h"
 #include "kwl_enginedata.h"
+#include "kwl_logging.h"
 
 #ifdef __cplusplus
 extern "C"
@@ -186,17 +187,17 @@ extern "C"
     /**
      *
      */
-    void kwlProjectDataBinary_loadFromXML(kwlProjectDataBinary* bin,
-                                                        const char* xmlPath,
-                                                        const char* xsdPath,
-                                                        kwlLogCallback errorLogCallback);
+    kwlDataValidationResult kwlProjectDataBinary_loadFromXML(kwlProjectDataBinary* bin,
+                                                             const char* xmlPath,
+                                                             const char* xsdPath,
+                                                             kwlLogCallback errorLogCallback);
     
     /**
      *
      */
-    void kwlProjectDataBinary_loadFromBinary(kwlProjectDataBinary* bin,
-                                                           const char* binPath,
-                                                           kwlLogCallback errorLogCallback);
+    kwlDataValidationResult kwlProjectDataBinary_loadFromBinary(kwlProjectDataBinary* bin,
+                                                                const char* binPath,
+                                                                kwlLogCallback errorLogCallback);
     
     /**
      *

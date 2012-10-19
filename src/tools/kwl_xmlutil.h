@@ -26,6 +26,8 @@ freely, subject to the following restrictions:
 
 #include <libxml/tree.h>
 
+#include "kwl_datavalidation.h"
+
 #ifdef __cplusplus
 extern "C"
 {
@@ -105,39 +107,68 @@ extern "C"
                              void* userData);
     
     /**
-     *
+     * Returns the value of an attribute with a given name for a given node. The
+     * return value gets released along with the document containing \c node.
+     * @param node The node to get the attribute from.
+     * @param name The name of the attribute.
+     * @return The attribute value, or NULL if the attribute name could not be found.
      */
     xmlChar* kwlGetAttributeValue(xmlNode* node, const char* name);
     
     /**
-     *
+     * Does the same as kwlGetAttributeValue but returns a copy of the attribute value.
+     * @param node The node to get the attribute from.
+     * @param name The name of the attribute.
+     * @return The attribute value, or NULL if the attribute name could not be found.
+     * @see kwlGetAttributeValue
      */
     char* kwlGetAttributeValueCopy(xmlNode* node, const char* name);
     
     /**
-     *
+     * Returns the float value of a given attribute for a given node.
+     * @param node The node to get the attribute from.
+     * @param name The name of the attribute.
+     * @return The float value of the attribute.
      */
-    float kwlGetFloatAttributeValue(xmlNode* node, const char* attribute);
+    float kwlGetFloatAttributeValue(xmlNode* node, const char* name);
     
     /**
-     *
+     * Returns the integer value of a given attribute for a given node.
+     * @param node The node to get the attribute from.
+     * @param name The name of the attribute.
+     * @return The integer value of the attribute.
      */
-    int kwlGetIntAttributeValue(xmlNode* node, const char* attribute);
+    int kwlGetIntAttributeValue(xmlNode* node, const char* name);
     
     /**
-     *
+     * Returns the boolean value of a given attribute for a given node.
+     * @param node The node to get the attribute from.
+     * @param name The name of the attribute.
+     * @return The boolean value of the attribute.
      */
-    int kwlGetBoolAttributeValue(xmlNode* node, const char* attribute);
+    int kwlGetBoolAttributeValue(xmlNode* node, const char* name);
     
     /**
-     *
+     * Returns the number of children with the specified name of a given node.
+     * @param node The node to count the children of.
+     * @param childName Only count children with this name.
+     * @return The number of children of \c node.
      */
     int kwlGetChildCount(xmlNode* node, const char* childName);
     
     /**
-     *
+     * Loads an XML document at a given path and validates it with a given schema. 
+     * Any omitted optional attributes will be added assigned their default values.
+     * @param xmlPath The path of the XML document.
+     * @param schemaPath The path of the XML schema.
+     * @param docPtr The loaded document on success, NULL on failure.
+     * @param errorLogCallback A callback used to print error messages
+     * @return An error code.
      */
-    xmlDocPtr kwlLoadAndValidateProjectDataDoc(const char* xmlPath, const char* schemaPath);
+    kwlDataValidationResult kwlLoadAndValidateProjectDataDoc(const char* xmlPath,
+                                                             const char* schemaPath,
+                                                             xmlDocPtr* docPtr,
+                                                             kwlLogCallback errorLogCallback);
     
 #ifdef __cplusplus
 }

@@ -414,13 +414,19 @@ static void kwlEventRootXMLToBin(xmlNode* projectRoot, kwlProjectDataBinary* bin
 
 
 
-void kwlProjectDataBinary_loadFromXML(kwlProjectDataBinary* bin,
-                                      const char* xmlPath,
-                                      const char* xsdPath,
-                                      kwlLogCallback errorLogCallback)
+kwlDataValidationResult kwlProjectDataBinary_loadFromXML(kwlProjectDataBinary* bin,
+                                                         const char* xmlPath,
+                                                         const char* xsdPath,
+                                                         kwlLogCallback errorLogCallback)
 
 {
-    xmlDoc *doc = kwlLoadAndValidateProjectDataDoc(xmlPath, xsdPath);
+    xmlDocPtr doc;
+    kwlDataValidationResult result = kwlLoadAndValidateProjectDataDoc(xmlPath, xsdPath, &doc, errorLogCallback);
+    
+    if (result != KWL_DATA_IS_VALID)
+    {
+        return result;
+    }
     
     /*Get the root element node */
     xmlNode* projectRootNode = xmlDocGetRootElement(doc);
@@ -485,6 +491,8 @@ void kwlProjectDataBinary_loadFromXML(kwlProjectDataBinary* bin,
      *have been allocated by the parser.
      */
     xmlCleanupParser();
+    
+    return KWL_DATA_IS_VALID;
 }
 
 
@@ -653,9 +661,9 @@ void kwlProjectDataBinary_writeToBinary(kwlProjectDataBinary* bin,
     kwlFileOutputStream_close(&fos);
 }
 
-void kwlProjectDataBinary_loadFromBinary(kwlProjectDataBinary* binaryRep,
-                                         const char* binaryPath,
-                                         kwlLogCallback errorLogCallbackIn)
+kwlDataValidationResult kwlProjectDataBinary_loadFromBinary(kwlProjectDataBinary* binaryRep,
+                                                            const char* binaryPath,
+                                                            kwlLogCallback errorLogCallbackIn)
 {
 
     kwlMemset(binaryRep, 0, sizeof(kwlProjectDataBinary));
@@ -663,12 +671,12 @@ void kwlProjectDataBinary_loadFromBinary(kwlProjectDataBinary* binaryRep,
     kwlLogCallback errorLogCallback = errorLogCallbackIn == NULL ? kwlSilentLogCallback : errorLogCallbackIn;
     
     kwlInputStream is;
-    kwlError result = kwlInputStream_initWithFile(&is, binaryPath);
-    if (result != KWL_NO_ERROR)
+    kwlError fileOpenResult = kwlInputStream_initWithFile(&is, binaryPath);
+    if (fileOpenResult != KWL_NO_ERROR)
     {
         //error loading file
         errorLogCallback("Could not open engine data binary %s\n", binaryPath);
-        return;
+        return KWL_COULD_NOT_OPEN_ENGINE_DATA_BINARY_FILE;
     }
     
     /*check file identifier*/
@@ -680,10 +688,12 @@ void kwlProjectDataBinary_loadFromBinary(kwlProjectDataBinary* binaryRep,
         {
             //invalid file format
             kwlInputStream_close(&is);
-            errorLogCallback("Invalid engine data binary file header\n");
-            return;
+            errorLogCallback("Invalid engine data binary file header in %s\n", binaryPath);
+            return KWL_INVALID_FILE_IDENTIFIER;
         }
     }
+    
+    kwlDataValidationResult result = KWL_DATA_IS_VALID;
     
     //mix buses
     {
@@ -713,6 +723,7 @@ void kwlProjectDataBinary_loadFromBinary(kwlProjectDataBinary* binaryRep,
                     {
                         errorLogCallback("Mix bus %s sub bus index at %d is %d. Expected value in [0, %d]\n",
                                          mi->id, j, subBusIndexj, binaryRep->mixBusChunk.numMixBuses - 1);
+                        result = KWL_ENGINE_DATA_STRUCTURE_ERROR;
                         goto onDataError;
                     }
                     mi->subBusIndices[j] = subBusIndexj;
@@ -747,6 +758,7 @@ void kwlProjectDataBinary_loadFromBinary(kwlProjectDataBinary* binaryRep,
                 if(defaultPresetIndex != -1)
                 {
                     errorLogCallback("Multiple default mix presets found\n");
+                    result = KWL_ENGINE_DATA_STRUCTURE_ERROR;
                     goto onDataError;
                 }
                 defaultPresetIndex = i;
@@ -765,6 +777,7 @@ void kwlProjectDataBinary_loadFromBinary(kwlProjectDataBinary* binaryRep,
                     errorLogCallback("Mix preset %s references out of bounds index %d (mix bus count is %d)\n",
                                      mpi->id, mpi->mixBusIndices[j],
                                      binaryRep->mixBusChunk.numMixBuses);
+                    result = KWL_ENGINE_DATA_STRUCTURE_ERROR;
                     goto onDataError;
                 }
                 mpi->gainLeft[j] = kwlInputStream_readFloatBE(&is);
@@ -776,6 +789,7 @@ void kwlProjectDataBinary_loadFromBinary(kwlProjectDataBinary* binaryRep,
         if (defaultPresetIndex < 0)
         {
             errorLogCallback("No default mix preset found\n");
+            result = KWL_ENGINE_DATA_STRUCTURE_ERROR;
             goto onDataError;
         }
     }
@@ -791,6 +805,7 @@ void kwlProjectDataBinary_loadFromBinary(kwlProjectDataBinary* binaryRep,
         {
             errorLogCallback("Expected at least one audio data entry, found %d\n",
                              binaryRep->waveBankChunk.numAudioDataItemsTotal);
+            result = KWL_ENGINE_DATA_STRUCTURE_ERROR;
             goto onDataError;
         }
         
@@ -799,6 +814,7 @@ void kwlProjectDataBinary_loadFromBinary(kwlProjectDataBinary* binaryRep,
         {
             errorLogCallback("Expected at least one wave bank, found %d\n",
                              binaryRep->waveBankChunk.numWaveBanks);
+            result = KWL_ENGINE_DATA_STRUCTURE_ERROR;
             goto onDataError;
         }
         
@@ -816,6 +832,7 @@ void kwlProjectDataBinary_loadFromBinary(kwlProjectDataBinary* binaryRep,
                 errorLogCallback("Wave bank %s has %d audio data items. Expected at least 1.\n",
                                  wbi->id,
                                  wbi->numAudioDataEntries);
+                result = KWL_ENGINE_DATA_STRUCTURE_ERROR;
                 goto onDataError;
             }
             
@@ -856,6 +873,7 @@ void kwlProjectDataBinary_loadFromBinary(kwlProjectDataBinary* binaryRep,
             if (si->numWaveReferences < 0)
             {
                 errorLogCallback("Sound with index %d has %d audio data items. Expected at least 1.\n", i, si->numWaveReferences);
+                result = KWL_ENGINE_DATA_STRUCTURE_ERROR;
                 goto onDataError;
             }
             
@@ -881,6 +899,7 @@ void kwlProjectDataBinary_loadFromBinary(kwlProjectDataBinary* binaryRep,
         {
             errorLogCallback("Found %d event definitions. Expected at least 1.\n",
                              binaryRep->eventChunk.numEventDefinitions);
+            result = KWL_ENGINE_DATA_STRUCTURE_ERROR;
             goto onDataError;
         }
         
@@ -915,6 +934,7 @@ void kwlProjectDataBinary_loadFromBinary(kwlProjectDataBinary* binaryRep,
             if (ei->soundIndex < -1)
             {
                 errorLogCallback("Invalid sound index %d in event definition %s.\n", ei->soundIndex, ei->id);
+                result = KWL_ENGINE_DATA_STRUCTURE_ERROR;
                 goto onDataError;
             }
             
@@ -942,6 +962,7 @@ void kwlProjectDataBinary_loadFromBinary(kwlProjectDataBinary* binaryRep,
                                      ei->waveBankIndices[j],
                                      ei->id,
                                      binaryRep->waveBankChunk.numWaveBanks);
+                    result = KWL_ENGINE_DATA_STRUCTURE_ERROR;
                     goto onDataError;
                 }
             }
@@ -949,12 +970,12 @@ void kwlProjectDataBinary_loadFromBinary(kwlProjectDataBinary* binaryRep,
     }
     
     kwlInputStream_close(&is);
-    return;
+    return KWL_DATA_IS_VALID;
     
     onDataError:
     kwlInputStream_close(&is);
     kwlProjectDataBinary_free(binaryRep);
-    return;
+    return result;
 }
 
 void kwlProjectDataBinary_free(kwlProjectDataBinary* bin)

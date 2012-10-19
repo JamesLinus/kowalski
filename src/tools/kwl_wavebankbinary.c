@@ -29,7 +29,7 @@
 #include "kwl_wavebankbinaryrepresentation.h"
 #include "kwl_xmlutil.h"
 
-void kwlWaveBankBinaryRepresentation_writeToBinary(kwlWaveBankBinaryRepresentation* bin,
+void kwlWaveBankBinary_writeToBinary(kwlWaveBankBinary* bin,
                                                    const char* path)
 {
     kwlFileOutputStream fos;
@@ -63,13 +63,13 @@ void kwlWaveBankBinaryRepresentation_writeToBinary(kwlWaveBankBinaryRepresentati
     kwlFileOutputStream_close(&fos);
 }
 
-void kwlWaveBankBinaryRepresentation_loadFromBinary(kwlWaveBankBinaryRepresentation* binaryRep,
-                                                    const char* path,
-                                                    kwlLogCallback errorLogCallback)
+kwlDataValidationResult kwlWaveBankBinary_loadFromBinary(kwlWaveBankBinary* binaryRep,
+                                                                       const char* path,
+                                                                       kwlLogCallback errorLogCallback)
 {
     kwlLogCallback errorCallback = errorLogCallback == NULL ? kwlSilentLogCallback : errorLogCallback;
     
-    kwlMemset(binaryRep, 0, sizeof(kwlWaveBankBinaryRepresentation));
+    kwlMemset(binaryRep, 0, sizeof(kwlWaveBankBinary));
     
     kwlInputStream stream;
     kwlError result = kwlInputStream_initWithFile(&stream, path);
@@ -77,8 +77,10 @@ void kwlWaveBankBinaryRepresentation_loadFromBinary(kwlWaveBankBinaryRepresentat
     {
         //error loading file
         errorCallback("Could not open wave bank binary %s\n", path);
-        return;
+        return KWL_COULD_NOT_OPEN_WAVE_BANK_BINARY_FILE;
     }
+    
+    kwlDataValidationResult error = KWL_DATA_IS_VALID;
     
     /*... and check the wave bank file identifier.*/
     for (int i = 0; i < KWL_WAVE_BANK_BINARY_FILE_IDENTIFIER_LENGTH; i++)
@@ -89,6 +91,7 @@ void kwlWaveBankBinaryRepresentation_loadFromBinary(kwlWaveBankBinaryRepresentat
         {
             /* Not the file identifier we expected. */
             errorLogCallback("Invalid wave bank binary file header\n");
+            error = KWL_INVALID_FILE_IDENTIFIER;
             goto onDataError;
         }
     }
@@ -112,12 +115,12 @@ void kwlWaveBankBinaryRepresentation_loadFromBinary(kwlWaveBankBinaryRepresentat
     }
     
     kwlInputStream_close(&stream);
-    return;
+    return KWL_DATA_IS_VALID;
     
 onDataError:
     kwlInputStream_close(&stream);
-    kwlWaveBankBinaryRepresentation_free(binaryRep);
-    return;
+    kwlWaveBankBinary_free(binaryRep);
+    return error;
 }
 
 static const char* kwlGetAudioFilePath(const char* xmlPath,
@@ -138,19 +141,20 @@ static char* kwlDuplicateString(const char* str)
     return copy;
 }
 
-void kwlWaveBankBinaryRepresentation_loadFromXML(kwlWaveBankBinaryRepresentation* bin,
-                                                 const char* xmlPath,
-                                                 const char* xsdPath,
-                                                 const char* waveBankId,
-                                                 kwlLogCallback errorLogCallback)
+kwlDataValidationResult kwlWaveBankBinary_loadFromXML(kwlWaveBankBinary* bin,
+                                                                    const char* xmlPath,
+                                                                    const char* xsdPath,
+                                                                    const char* waveBankId,
+                                                                    kwlLogCallback errorLogCallback)
 {
     /*grab the audio file root path*/
-    xmlDocPtr doc = kwlLoadAndValidateProjectDataDoc(xmlPath, xsdPath);
-    if (doc == NULL)
+    xmlDocPtr doc = NULL;
+    kwlDataValidationResult result = kwlLoadAndValidateProjectDataDoc(xmlPath, xsdPath, &doc, errorLogCallback);
+    if (result != KWL_DATA_IS_VALID)
     {
-        KWL_ASSERT(0 && "error loading project xml. TODO: proper error handling");
-        return;
+        return result;
     }
+    
     xmlNode* projNode = xmlDocGetRootElement(doc);
     char* audioFileRoot = kwlGetAttributeValueCopy(projNode, KWL_XML_ATTR_PROJECT_AUDIO_FILE_ROOT);
     int rootIsRelative = kwlGetBoolAttributeValue(projNode, KWL_XML_ATTR_PROJECT_AUDIO_FILE_ROOT_IS_RELATIVE);
@@ -177,13 +181,14 @@ void kwlWaveBankBinaryRepresentation_loadFromXML(kwlWaveBankBinaryRepresentation
     
     if (waveBank == NULL)
     {
-        KWL_ASSERT(0 && "could not find wave bank. TODO: proper error handling");
-        return;
+        errorLogCallback("The wave bank id '%s' could not be found in project data file %s\n",
+                         waveBankId, xmlPath);
+        return KWL_WAVE_BANK_ID_NOT_FOUND;
     }
     
     /*create wave bank binary struct and populate it using the corresponding
      wave bank from project data and the contents of the referenecd audio files*/
-    kwlMemset(bin, 0, sizeof(kwlWaveBankBinaryRepresentation));
+    kwlMemset(bin, 0, sizeof(kwlWaveBankBinary));
     bin->numEntries = waveBank->numAudioDataEntries;
     for (int i = 0; i < KWL_WAVE_BANK_BINARY_FILE_IDENTIFIER_LENGTH; i++)
     {
@@ -197,14 +202,16 @@ void kwlWaveBankBinaryRepresentation_loadFromXML(kwlWaveBankBinaryRepresentation
         kwlWaveBankEntryChunk* ei = &bin->entries[i];
         ei->fileName = kwlDuplicateString(waveBank->audioDataEntries[i]);
         const char* audioFilePath = kwlGetAudioFilePath(xmlPath, audioFileRoot, rootIsRelative, ei->fileName);
-        //TODO
+        //TODO: load audio data from file
     }
     
     /*clean up*/
     kwlProjectDataBinary_free(&projBin);
+    
+    return KWL_DATA_IS_VALID;
 }
 
-void kwlWaveBankBinaryRepresentation_dump(kwlWaveBankBinaryRepresentation* bin,
+void kwlWaveBankBinary_dump(kwlWaveBankBinary* bin,
                                           kwlLogCallback lcb)
 {
     kwlLogCallback logCallback = lcb == NULL ? kwlSilentLogCallback : lcb;
@@ -227,7 +234,7 @@ void kwlWaveBankBinaryRepresentation_dump(kwlWaveBankBinaryRepresentation* bin,
     }
 }
 
-void kwlWaveBankBinaryRepresentation_free(kwlWaveBankBinaryRepresentation* bin)
+void kwlWaveBankBinary_free(kwlWaveBankBinary* bin)
 {
     KWL_FREE(bin->id);
     
@@ -240,5 +247,5 @@ void kwlWaveBankBinaryRepresentation_free(kwlWaveBankBinaryRepresentation* bin)
     
     KWL_FREE(bin->entries);
     
-    kwlMemset(bin, 0, sizeof(kwlWaveBankBinaryRepresentation));
+    kwlMemset(bin, 0, sizeof(kwlWaveBankBinary));
 }

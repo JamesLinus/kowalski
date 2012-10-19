@@ -52,27 +52,27 @@ int main(int argc, const char * argv[])
     }
 
     //load kwb from xml
-    if (1)
+    if (0)
     {
-        kwlWaveBankBinaryRepresentation wbb;
-        kwlWaveBankBinaryRepresentation_loadFromXML(&wbb,
+        kwlWaveBankBinary wbb;
+        kwlWaveBankBinary_loadFromXML(&wbb,
                                                     xmlPath,
                                                     xsdPath,
                                                     waveBankId,
                                                     kwlDefaultLogCallback);
-        kwlWaveBankBinaryRepresentation_dump(&wbb, kwlDefaultLogCallback);
-        kwlWaveBankBinaryRepresentation_free(&wbb);
+        kwlWaveBankBinary_dump(&wbb, kwlDefaultLogCallback);
+        kwlWaveBankBinary_free(&wbb);
     }
     
     //load kwb from bin
     if (0)
     {
-        kwlWaveBankBinaryRepresentation wbb;
-        kwlWaveBankBinaryRepresentation_loadFromBinary(&wbb,
+        kwlWaveBankBinary wbb;
+        kwlWaveBankBinary_loadFromBinary(&wbb,
                                                        kwbPath,
                                                        kwlDefaultLogCallback);
-        kwlWaveBankBinaryRepresentation_dump(&wbb, kwlDefaultLogCallback);
-        kwlWaveBankBinaryRepresentation_free(&wbb);
+        kwlWaveBankBinary_dump(&wbb, kwlDefaultLogCallback);
+        kwlWaveBankBinary_free(&wbb);
     }
     
     //validate xml

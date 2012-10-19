@@ -25,45 +25,35 @@ freely, subject to the following restrictions:
 #define KWL_XML_VALIDATION_H
 
 #include "kwl_toolsutil.h"
-#include <libxml/tree.h>
 
 #ifdef __cplusplus
 extern "C"
 {
 #endif /* __cplusplus */
 
+    typedef enum
+    {
+        KWL_DATA_IS_VALID = 0,
+        KWL_XML_PARSING_ERROR,
+        KWL_XSD_PARSING_ERROR,
+        KWL_PROJECT_STRUCTURE_ERROR,
+        KWL_INVALID_FILE_IDENTIFIER
+    } kwlDataValidationResult;
     
     /**
      *
      */
-    void kwlValidateProjectData(const char* xmlPath, kwlLogCallback messageCallback);
+    kwlDataValidationResult kwlValidateProjectData(const char* xmlPath, const char* xsdPath, kwlLogCallback logCallback);
     
     /**
      *
      */
-    void kwlValidateWaveBank(const char* waveBankPath);
+    kwlDataValidationResult kwlValidateWaveBank(const char* waveBankPath, kwlLogCallback logCallback);
     
     /**
      *
      */
-    void kwlValidateEngineData(const char* engineDataPath);
-
-    /**
-     *
-     */
-    void kwlBuildEngineData(const char* xmlPath, const char* targetFile);
-    
-    /**
-     *
-     */
-    void kwlBuildWaveBanks(const char* xmlPath, const char* targetDir);
-    
-    /**
-     *
-     */
-    void kwlBuildWaveBank(const char* xmlPath, const char* waveBankId, const char* targetDir);
-    
-    xmlDocPtr kwlLoadAndValidateProjectData(const char* xmlPath);
+    kwlDataValidationResult kwlValidateEngineData(const char* engineDataPath, kwlLogCallback logCallback);
 
     
 #ifdef __cplusplus

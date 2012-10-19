@@ -59,15 +59,15 @@ extern "C"
     /**
      *
      */
-    void kwlWaveBankBinaryRepresentation_serialize(kwlWaveBankBinaryRepresentation* bin,
-                                                   const char* path);
+    void kwlWaveBankBinaryRepresentation_saveToBinary(kwlWaveBankBinaryRepresentation* bin,
+                                                      const char* path);
     
     /**
      *
      */
-    void kwlWaveBankBinaryRepresentation_deserialize(kwlWaveBankBinaryRepresentation* bin,
-                                              const char* path,
-                                              kwlLogCallback errorLogCallback);
+    void kwlWaveBankBinaryRepresentation_loadFromBinary(kwlWaveBankBinaryRepresentation* bin,
+                                                        const char* path,
+                                                        kwlLogCallback errorLogCallback);
     
     /**
      *

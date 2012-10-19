@@ -25,13 +25,13 @@
 
 #include "kwl_wavebankbinaryrepresentation.h"
 
-void kwlWaveBankBinaryRepresentation_serialize(kwlWaveBankBinaryRepresentation* bin,
+void kwlWaveBankBinaryRepresentation_saveToBinary(kwlWaveBankBinaryRepresentation* bin,
                                                const char* path)
 {
     
 }
 
-void kwlWaveBankBinaryRepresentation_deserialize(kwlWaveBankBinaryRepresentation* binaryRep,
+void kwlWaveBankBinaryRepresentation_loadFromBinary(kwlWaveBankBinaryRepresentation* binaryRep,
                                                  const char* path,
                                                  kwlLogCallback errorLogCallback)
 {

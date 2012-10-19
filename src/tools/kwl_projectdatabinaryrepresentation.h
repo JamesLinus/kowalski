@@ -179,15 +179,28 @@ extern "C"
     /**
      *
      */
-    void kwlProjectDataBinaryRepresentation_serialize(kwlProjectDataBinaryRepresentation* bin,
-                                                      const char* path);
+    void kwlProjectDataBinaryRepresentation_saveToBinary(kwlProjectDataBinaryRepresentation* bin,
+                                                         const char* binPath);
     
     /**
      *
      */
-    void kwlProjectDataBinaryRepresentation_deserialize(kwlProjectDataBinaryRepresentation* bin,
-                                                        const char* path,
+    void kwlProjectDataBinaryRepresentation_loadFromXML(kwlProjectDataBinaryRepresentation* bin,
+                                                        const char* xmlPath,
+                                                        const char* xsdPath,
                                                         kwlLogCallback errorLogCallback);
+    
+    /**
+     *
+     */
+    void kwlProjectDataBinaryRepresentation_loadFromBinary(kwlProjectDataBinaryRepresentation* bin,
+                                                           const char* binPath,
+                                                           kwlLogCallback errorLogCallback);
+    
+    /**
+     *
+     */
+    void kwlProjectDataBinaryRepresentation_free(kwlProjectDataBinaryRepresentation* bin);
     
     /**
      *
@@ -195,10 +208,7 @@ extern "C"
     void kwlProjectDataBinaryRepresentation_dump(kwlProjectDataBinaryRepresentation* bin,
                                                  kwlLogCallback logCallback);
     
-    /**
-     *
-     */
-    void kwlProjectDataBinaryRepresentation_free(kwlProjectDataBinaryRepresentation* bin);
+    
     
 #ifdef __cplusplus
 }

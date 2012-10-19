@@ -21,51 +21,90 @@ freely, subject to the following restrictions:
    distribution.
 */
 
-#include <stdio.h>
-
 #include <libxml/parser.h>
-#include <libxml/tree.h>
 #include <libxml/xmlschemas.h>
 
-#include "kwl_xmlvalidation.h"
+#include "kwl_memory.h"
+#include "kwl_xmlutil.h"
 
-/**
- * example1Func:
- * @filename: a filename or an URL
- *
- * Parse the resource and free the resulting tree
- */
-static void example1Func(const char *filename)
+xmlChar* kwlGetAttributeValue(xmlNode* node, const char* name)
 {
-    xmlDocPtr doc; /* the resulting document tree */
-    
-    doc = xmlReadFile(filename, NULL, 0);
-    if (doc == NULL)
+    xmlAttr* attr = node->properties;
+    while (attr)
     {
+        if (xmlStrEqual(attr->name, (xmlChar*)name))
+        {
+            return attr->children->content;
+        }
         
-        fprintf(stderr, "Failed to parse %s\n", filename);
-        return;
+        attr = attr->next;
     }
     
-    
-
-    xmlFreeDoc(doc);
+    return NULL;
 }
 
-void kwlValidateProjectData(const char* xmlPath, kwlLogCallback errorCallback)
+char* kwlGetAttributeValueCopy(xmlNode* node, const char* name)
 {
+    xmlChar* val = NULL;
     
-    example1Func(xmlPath);
+    xmlAttr* attr = node->properties;
+    while (attr)
+    {
+        if (xmlStrEqual(attr->name, (xmlChar*)name))
+        {
+            val = attr->children->content;
+            break;
+        }
+        
+        attr = attr->next;
+    }
     
-    //check valid xml structure
+    if (val == NULL)
+    {
+        return NULL;
+    }
     
-    //validate against project data schema
-    
-    //create binary representation and check references etc
-    
+    int len = xmlStrlen(val) + 1;
+    char* ret = KWL_MALLOCANDZERO(len * sizeof(char), "attribute value copy");
+    kwlMemcpy(ret, val, len - 1);
+    ret[len - 1] = '\0';
+    return ret;
 }
 
-xmlDocPtr kwlLoadAndValidateProjectData(const char* xmlPath)
+float kwlGetFloatAttributeValue(xmlNode* node, const char* attribute)
+{
+    return strtof(kwlGetAttributeValue(node, attribute), NULL);
+}
+
+int kwlGetIntAttributeValue(xmlNode* node, const char* attribute)
+{
+    return strtof(kwlGetAttributeValue(node, attribute), NULL);
+}
+
+int kwlGetBoolAttributeValue(xmlNode* node, const char* attribute)
+{
+    //TODO
+    return strtof(kwlGetAttributeValue(node, attribute), NULL);
+}
+
+
+int kwlGetChildCount(xmlNode* node, const char* childName)
+{
+    int count = 0;
+    
+    for (xmlNode* curr = node->children; curr != NULL; curr = curr->next)
+    {
+        if (xmlStrEqual(curr->name, (xmlChar*)childName))
+        {
+            count++;
+        }
+    }
+    
+    return count;
+}
+
+
+xmlDocPtr kwlLoadAndValidateProjectDataDoc(const char* xmlPath, const char* schemaPath)
 {
     xmlDocPtr doc = xmlReadFile(xmlPath, NULL, 0);
     if (doc == NULL)
@@ -76,7 +115,7 @@ xmlDocPtr kwlLoadAndValidateProjectData(const char* xmlPath)
     }
     
     
-    xmlDocPtr schema_doc = xmlReadFile("/Users/perarne/code/kowalski/src/tools/kowalski1.0.xsd", NULL, XML_PARSE_NONET);
+    xmlDocPtr schema_doc = xmlReadFile(schemaPath, NULL, XML_PARSE_NONET);
     if (schema_doc == NULL) {
         /* the schema cannot be loaded or is not well-formed */
         return NULL;
@@ -114,5 +153,3 @@ xmlDocPtr kwlLoadAndValidateProjectData(const char* xmlPath)
     /* force the return value to be non-negative on success */
     return is_valid ? doc : NULL;
 }
-
-

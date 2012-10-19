@@ -32,17 +32,17 @@ extern "C"
     /**
      *
      */
-    void kwlBuildEngineData(const char* xmlPath, const char* targetFile);
+    void kwlBuildEngineData(const char* xmlPath, const char* xsdPath, const char* targetFile);
     
     /**
      *
      */
-    void kwlBuildWaveBanks(const char* xmlPath, const char* targetDir);
+    void kwlBuildWaveBanks(const char* xmlPath, const char* xsdPath, const char* targetDir);
     
     /**
      *
      */
-    void kwlBuildWaveBank(const char* xmlPath, const char* waveBankId, const char* targetDir);
+    void kwlBuildWaveBank(const char* xmlPath, const char* xsdPath, const char* waveBankId, const char* targetDir);
 
     
 #ifdef __cplusplus

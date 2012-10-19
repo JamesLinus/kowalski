@@ -21,30 +21,25 @@ freely, subject to the following restrictions:
    distribution.
 */
 
-#ifndef KWL_BINARY_VIEWING_H
-#define KWL_BINARY_VIEWING_H
+#include <stdio.h>
 
-#include "kwl_toolsutil.h"
-#include "kwl_enginedata.h"
+#include <libxml/parser.h>
+#include <libxml/tree.h>
+#include <libxml/xmlschemas.h>
 
-#ifdef __cplusplus
-extern "C"
+#include "kwl_datavalidation.h"
+
+kwlDataValidationResult kwlValidateProjectData(const char* xmlPath, const char* xsdPath, kwlLogCallback errorCallback)
 {
-#endif /* __cplusplus */
     
-    /**
-     *
-     */
-    void kwlViewWaveBank(const char* waveBankPath, int verbose, kwlLogCallback messageCallback);
+    //check valid xml structure
     
-    /**
-     *
-     */
-    void kwlViewEngineData(const char* engineDataPath, int verbose, kwlLogCallback messageCallback);
+    //validate against project data schema
     
-#ifdef __cplusplus
+    //create binary representation and check references etc
+    
 }
-#endif /* __cplusplus */
 
 
-#endif /*KWL_BINARY_VIEWING_H*/
+
+

@@ -181,6 +181,11 @@ extern "C"
     /**
      *
      */
+    int kwlFileIsEngineDataBinary(const char* path);
+    
+    /**
+     *
+     */
     void kwlEngineDataBinary_writeToFile(kwlEngineDataBinary* bin,
                                          const char* binPath);
     

@@ -58,6 +58,13 @@ extern "C"
     } kwlWaveBankBinary;
     
     /**
+     * Determines if a given file is a wave bank binary file.
+     * @param path The path to the file to check.
+     * @return Zero if the file is not a wave bank binary, non-zero otherwise.
+     */
+    int kwlFileIsWaveBankBinary(const char* path);
+    
+    /**
      * Writes a given wave bank binary to a file.
      * @param bin The wave bank binary to write.
      * @param path The path of the target file.

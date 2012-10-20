@@ -49,4 +49,3 @@ tools
 - skip top bus "master" name constraint
 - make top MixPresetGroup optional
 - allow empty wavebanks etc in binaries.
-- more forgiving bin struct loading -> then validate struct

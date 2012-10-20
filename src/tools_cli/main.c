@@ -8,6 +8,13 @@
 #include "kwl_datavalidation.h"
 #include "kwl_logging.h"
 
+/**
+ * kowalski enginedata xmlpath binpath
+ * kowalski wavebanks xmlpath targetdir
+ * kowalski wavebank xmlpath bank id targetdir
+ * kowalski validate filepath
+ * kowalski view filepath
+ */
 int main(int argc, const char * argv[])
 {
     const char* xmlPath = "/Users/perarne/code/kowalski/res/demodata/master/demoproject.xml";
@@ -52,7 +59,7 @@ int main(int argc, const char * argv[])
     }
     
     //load kwb from xml
-    if (0)
+    if (1)
     {
         kwlWaveBankBinary wbb;
         kwlWaveBankBinary_loadFromXML(&wbb,
@@ -76,7 +83,7 @@ int main(int argc, const char * argv[])
     }
     
     //validate xml
-    if (1)
+    if (0)
     {
         kwlDataValidationResult result = kwlValidateProjectData(xmlPath, xsdPath, kwlDefaultLogCallback);
     }

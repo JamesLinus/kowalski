@@ -303,6 +303,8 @@
 		C1E86EAF1220E9FA00C53E55 /* kwl_mixer.c in Sources */ = {isa = PBXBuildFile; fileRef = C127F07A117F189400C9A250 /* kwl_mixer.c */; };
 		C1E86EB01220E9FA00C53E55 /* kwl_sounddefinition.c in Sources */ = {isa = PBXBuildFile; fileRef = C127F07C117F189400C9A250 /* kwl_sounddefinition.c */; };
 		C1E86EB11220E9FA00C53E55 /* kwl_engine.c in Sources */ = {isa = PBXBuildFile; fileRef = C127F07E117F189400C9A250 /* kwl_engine.c */; };
+		C1F474BD163304180017713A /* kwl_fileutil.c in Sources */ = {isa = PBXBuildFile; fileRef = C1F474BB163304180017713A /* kwl_fileutil.c */; };
+		C1F474BE163304180017713A /* kwl_fileutil.h in Headers */ = {isa = PBXBuildFile; fileRef = C1F474BC163304180017713A /* kwl_fileutil.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -503,6 +505,8 @@
 		C1C25E8C12633C6D007D17F6 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		C1CDEF10127AD8090054F870 /* kwl_asm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_asm.h; sourceTree = "<group>"; };
 		C1DD3C2B1370D12B00D10AA6 /* libkowalski_ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libkowalski_ios.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1F474BB163304180017713A /* kwl_fileutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_fileutil.c; sourceTree = "<group>"; };
+		C1F474BC163304180017713A /* kwl_fileutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_fileutil.h; sourceTree = "<group>"; };
 		D2AAC046055464E500DB518D /* libkowalski.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libkowalski.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -722,6 +726,8 @@
 				C1760F861620D6BD0044204B /* kwl_datavalidation.c */,
 				C107AB14162F6E7700A12FD7 /* kwl_fileoutputstream.c */,
 				C107AB15162F6E7700A12FD7 /* kwl_fileoutputstream.h */,
+				C1F474BB163304180017713A /* kwl_fileutil.c */,
+				C1F474BC163304180017713A /* kwl_fileutil.h */,
 				C166E38B162F28940068C846 /* kwl_logging.c */,
 				C166E38A162F27C70068C846 /* kwl_logging.h */,
 				C166E38D162F41E00068C846 /* kwl_enginedatabinary.c */,
@@ -868,6 +874,7 @@
 				C145485A1632CB5200DE1EA6 /* kwl_enginedatabinary.h in Headers */,
 				C145485C1632CB5800DE1EA6 /* kwl_wavebankbinary.h in Headers */,
 				C145485E1632CB5D00DE1EA6 /* kwl_xmlutil.h in Headers */,
+				C1F474BE163304180017713A /* kwl_fileutil.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1230,6 +1237,7 @@
 				C14548591632CB4F00DE1EA6 /* kwl_enginedatabinary.c in Sources */,
 				C145485B1632CB5500DE1EA6 /* kwl_wavebankbinary.c in Sources */,
 				C145485D1632CB5A00DE1EA6 /* kwl_xmlutil.c in Sources */,
+				C1F474BD163304180017713A /* kwl_fileutil.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

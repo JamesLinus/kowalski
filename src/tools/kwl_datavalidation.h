@@ -48,6 +48,14 @@ extern "C"
         KWL_ENGINE_DATA_STRUCTURE_ERROR
     } kwlDataValidationResult;
     
+    
+    /**
+     * Validates wave bank binaries, engine data binaries or project data xml files.
+     * @param filePath The path to the file to validate.
+     * @return An error code.
+     */
+    kwlDataValidationResult kwlValidate(const char* filePath, const char* schemaPath, kwlLogCallback logCallback);
+    
     /**
      *
      */

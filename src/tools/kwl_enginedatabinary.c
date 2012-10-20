@@ -39,6 +39,30 @@
 /*TODO: this shouldnt be global*/
 static char** soundDefinitionNames = NULL;
 
+int kwlFileIsEngineDataBinary(const char* path)
+{
+    kwlInputStream is;
+    kwlError result = kwlInputStream_initWithFile(&is, path);
+    if (result != KWL_NO_ERROR)
+    {
+        return 0;
+    }
+    
+    int isEngineData = 1;
+    for (int i = 0; i < KWL_ENGINE_DATA_BINARY_FILE_IDENTIFIER_LENGTH; i++)
+    {
+        char ci = kwlInputStream_readChar(&is);
+        if (ci != KWL_ENGINE_DATA_BINARY_FILE_IDENTIFIER[i])
+        {
+            isEngineData = 0;
+            break;
+        }
+    }
+    
+    return isEngineData;
+}
+
+
 /**
  * returns the path up to the top group
  */
@@ -408,8 +432,6 @@ static int kwlGetSoundDefinitionIndex(kwlEngineDataBinary* bin, const char* id)
     }
     return -1;
 }
-
-
 
 static int kwlGetAudioDataIndex(kwlWaveBankChunk* wb, const char* id)
 {

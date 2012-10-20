@@ -69,6 +69,7 @@
 		C14548771632E75100DE1EA6 /* schema_error_forbidden_element_under_root.xml in Resources */ = {isa = PBXBuildFile; fileRef = C14548741632E75000DE1EA6 /* schema_error_forbidden_element_under_root.xml */; };
 		C14548781632E75100DE1EA6 /* schema_error_wrong_root_name.xml in Resources */ = {isa = PBXBuildFile; fileRef = C14548751632E75000DE1EA6 /* schema_error_wrong_root_name.xml */; };
 		C145487A1632E7FB00DE1EA6 /* minimal_valid_project_reordered_root_groups.xml in Resources */ = {isa = PBXBuildFile; fileRef = C14548791632E7FA00DE1EA6 /* minimal_valid_project_reordered_root_groups.xml */; };
+		C145487E1632EC0500DE1EA6 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = C145487D1632EC0500DE1EA6 /* main.c */; };
 		C1636D3A163217D200D186E1 /* kwl_decoder_ios.c in Sources */ = {isa = PBXBuildFile; fileRef = C1636D36163217D200D186E1 /* kwl_decoder_ios.c */; };
 		C1636D3B163217D200D186E1 /* kwl_decoder_ios.h in Headers */ = {isa = PBXBuildFile; fileRef = C1636D37163217D200D186E1 /* kwl_decoder_ios.h */; };
 		C1636D3C163217D200D186E1 /* kwl_engine_ios.h in Headers */ = {isa = PBXBuildFile; fileRef = C1636D38163217D200D186E1 /* kwl_engine_ios.h */; };
@@ -110,7 +111,6 @@
 		C1A018C41265EF120039DB22 /* kwl_eventdefinition.c in Sources */ = {isa = PBXBuildFile; fileRef = C1A018C21265EF120039DB22 /* kwl_eventdefinition.c */; };
 		C1A77322126C647C00B6B1C4 /* kwl_audiofileutil.h in Headers */ = {isa = PBXBuildFile; fileRef = C1A77320126C647C00B6B1C4 /* kwl_audiofileutil.h */; };
 		C1A77323126C647C00B6B1C4 /* kwl_audiofileutil.c in Sources */ = {isa = PBXBuildFile; fileRef = C1A77321126C647C00B6B1C4 /* kwl_audiofileutil.c */; };
-		C1AD37B81628935400CE9A8B /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = C1AD37B71628935400CE9A8B /* main.c */; };
 		C1AE00001472B80300AFC66F /* mdct.c in Sources */ = {isa = PBXBuildFile; fileRef = C1B77F4A1212AF80008DFEB2 /* mdct.c */; };
 		C1AE00011472B80300AFC66F /* mdct.h in Headers */ = {isa = PBXBuildFile; fileRef = C1B77F4B1212AF80008DFEB2 /* mdct.h */; };
 		C1AE00021472B80300AFC66F /* misc.h in Headers */ = {isa = PBXBuildFile; fileRef = C1B77F4C1212AF80008DFEB2 /* misc.h */; };
@@ -389,6 +389,8 @@
 		C14548741632E75000DE1EA6 /* schema_error_forbidden_element_under_root.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = schema_error_forbidden_element_under_root.xml; sourceTree = "<group>"; };
 		C14548751632E75000DE1EA6 /* schema_error_wrong_root_name.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = schema_error_wrong_root_name.xml; sourceTree = "<group>"; };
 		C14548791632E7FA00DE1EA6 /* minimal_valid_project_reordered_root_groups.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = minimal_valid_project_reordered_root_groups.xml; sourceTree = "<group>"; };
+		C145487C1632EC0500DE1EA6 /* kowalski.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = kowalski.1; sourceTree = "<group>"; };
+		C145487D1632EC0500DE1EA6 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		C14F85A4120C4C080033D01F /* kwl_messagequeue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_messagequeue.h; sourceTree = "<group>"; };
 		C14F85A5120C4C080033D01F /* kwl_messagequeue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_messagequeue.c; sourceTree = "<group>"; };
 		C160771D121677F90041FE58 /* kwl_engine_portaudio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_engine_portaudio.c; sourceTree = "<group>"; };
@@ -420,7 +422,7 @@
 		C1702E571461645B00ADE4F7 /* kwl_enginedata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_enginedata.h; sourceTree = "<group>"; };
 		C1702E581461645B00ADE4F7 /* kwl_enginedata.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_enginedata.c; sourceTree = "<group>"; };
 		C1760F68161E399E0044204B /* kwl_datavalidation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = kwl_datavalidation.h; sourceTree = "<group>"; };
-		C1760F7B1620D6160044204B /* kwltools */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = kwltools; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1760F7B1620D6160044204B /* kowalski */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = kowalski; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1760F861620D6BD0044204B /* kwl_datavalidation.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_datavalidation.c; sourceTree = "<group>"; };
 		C1760F8C1620DD5B0044204B /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/usr/lib/libxml2.dylib; sourceTree = DEVELOPER_DIR; };
 		C1820E2F12E9621B00E1BD7A /* kwl_positionalaudiosettings.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_positionalaudiosettings.c; sourceTree = "<group>"; };
@@ -462,8 +464,6 @@
 		C1A2605F1170D28E00955BDD /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		C1A77320126C647C00B6B1C4 /* kwl_audiofileutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_audiofileutil.h; sourceTree = "<group>"; };
 		C1A77321126C647C00B6B1C4 /* kwl_audiofileutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_audiofileutil.c; sourceTree = "<group>"; };
-		C1AD37B61628935400CE9A8B /* kwltools.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = kwltools.1; sourceTree = "<group>"; };
-		C1AD37B71628935400CE9A8B /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		C1B3D57A135B8E880025DD08 /* kowalski_sdl.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = kowalski_sdl.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1B77F351212AF80008DFEB2 /* asm_arm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asm_arm.h; sourceTree = "<group>"; };
 		C1B77F361212AF80008DFEB2 /* bitwise.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bitwise.c; sourceTree = "<group>"; };
@@ -591,6 +591,7 @@
 				C127F05E117F189400C9A250 /* engine */,
 				C19BB8751630C359000F1BE7 /* test */,
 				C1760F67161E399E0044204B /* tools */,
+				C145487B1632EC0500DE1EA6 /* tools_cli */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -601,7 +602,7 @@
 				D2AAC046055464E500DB518D /* libkowalski.dylib */,
 				C1B3D57A135B8E880025DD08 /* kowalski_sdl.dylib */,
 				C1DD3C2B1370D12B00D10AA6 /* libkowalski_ios.a */,
-				C1760F7B1620D6160044204B /* kwltools */,
+				C1760F7B1620D6160044204B /* kowalski */,
 				C19BB85D1630C1E9000F1BE7 /* kowalski_test.octest */,
 				C145484D1632CAFE00DE1EA6 /* libkowalski_tools.a */,
 			);
@@ -665,6 +666,16 @@
 			path = ../../src/engine;
 			sourceTree = SOURCE_ROOT;
 		};
+		C145487B1632EC0500DE1EA6 /* tools_cli */ = {
+			isa = PBXGroup;
+			children = (
+				C145487C1632EC0500DE1EA6 /* kowalski.1 */,
+				C145487D1632EC0500DE1EA6 /* main.c */,
+			);
+			name = tools_cli;
+			path = ../../src/tools_cli;
+			sourceTree = "<group>";
+		};
 		C1607716121677F90041FE58 /* hosts */ = {
 			isa = PBXGroup;
 			children = (
@@ -705,8 +716,6 @@
 		C1760F67161E399E0044204B /* tools */ = {
 			isa = PBXGroup;
 			children = (
-				C1AD37B61628935400CE9A8B /* kwltools.1 */,
-				C1AD37B71628935400CE9A8B /* main.c */,
 				C166E387162F26F80068C846 /* kwl_binarybuilding.c */,
 				C166E388162F26F80068C846 /* kwl_binarybuilding.h */,
 				C1760F68161E399E0044204B /* kwl_datavalidation.h */,
@@ -1038,9 +1047,9 @@
 			productReference = C145484D1632CAFE00DE1EA6 /* libkowalski_tools.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		C1760F7A1620D6160044204B /* kwltools */ = {
+		C1760F7A1620D6160044204B /* kowalski */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C1760F841620D6160044204B /* Build configuration list for PBXNativeTarget "kwltools" */;
+			buildConfigurationList = C1760F841620D6160044204B /* Build configuration list for PBXNativeTarget "kowalski" */;
 			buildPhases = (
 				C1760F771620D6160044204B /* Sources */,
 				C1760F781620D6160044204B /* Frameworks */,
@@ -1051,9 +1060,9 @@
 			dependencies = (
 				C14548621632CB8200DE1EA6 /* PBXTargetDependency */,
 			);
-			name = kwltools;
-			productName = kwltools;
-			productReference = C1760F7B1620D6160044204B /* kwltools */;
+			name = kowalski;
+			productName = kowalski;
+			productReference = C1760F7B1620D6160044204B /* kowalski */;
 			productType = "com.apple.product-type.tool";
 		};
 		C19BB85C1630C1E9000F1BE7 /* kowalski_test */ = {
@@ -1153,7 +1162,7 @@
 				D2AAC045055464E500DB518D /* kowalski_portaudio */,
 				C1AD100412179BB500EC0C49 /* kowalski_sdl */,
 				C1DD3C2A1370D12B00D10AA6 /* kowalski_ios */,
-				C1760F7A1620D6160044204B /* kwltools */,
+				C1760F7A1620D6160044204B /* kowalski */,
 				C19BB85C1630C1E9000F1BE7 /* kowalski_test */,
 				C145484C1632CAFE00DE1EA6 /* kowalski_tools */,
 			);
@@ -1228,7 +1237,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1AD37B81628935400CE9A8B /* main.c in Sources */,
+				C145487E1632EC0500DE1EA6 /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1806,8 +1815,9 @@
 				C14548501632CAFE00DE1EA6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		C1760F841620D6160044204B /* Build configuration list for PBXNativeTarget "kwltools" */ = {
+		C1760F841620D6160044204B /* Build configuration list for PBXNativeTarget "kowalski" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C1760F821620D6160044204B /* Debug */,

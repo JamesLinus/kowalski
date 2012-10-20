@@ -43,110 +43,109 @@
 
 -(void)testBrokenSchemaRules
 {
-    [self ensureXMLValidationResult:@"schema_error_duplicate_event_root_group.xml"
-                                   :KWL_XML_VALIDATION_FAILED];
-    [self ensureXMLValidationResult:@"schema_error_forbidden_element_under_root.xml"
-                                   :KWL_XML_VALIDATION_FAILED];
-    [self ensureXMLValidationResult:@"schema_error_wrong_root_name.xml"
-                                   :KWL_XML_VALIDATION_FAILED];
+    [self requireXMLValidationResult:@"schema_error_duplicate_event_root_group.xml"
+                                    :KWL_XML_VALIDATION_FAILED];
+    [self requireXMLValidationResult:@"schema_error_forbidden_element_under_root.xml"
+                                    :KWL_XML_VALIDATION_FAILED];
+    [self requireXMLValidationResult:@"schema_error_wrong_root_name.xml"
+                                    :KWL_XML_VALIDATION_FAILED];
 }
 
 -(void)testDuplicateEventGroupIDs
 {
-    [self ensureXMLValidationResult:@"duplicate_event_group_ids_1.xml"
-                                   :KWL_PROJECT_XML_STRUCTURE_ERROR];
-    [self ensureXMLValidationResult:@"duplicate_event_group_ids_2.xml"
-                                   :KWL_PROJECT_XML_STRUCTURE_ERROR];
+    [self requireXMLValidationResult:@"duplicate_event_group_ids_1.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
+    [self requireXMLValidationResult:@"duplicate_event_group_ids_2.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
 }
 
 -(void)testDuplicateEventIDs
 {
-    [self ensureXMLValidationResult:@"duplicate_event_ids_1.xml"
-                                   :KWL_PROJECT_XML_STRUCTURE_ERROR];
+    [self requireXMLValidationResult:@"duplicate_event_ids_1.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
 }
 
 -(void)testDuplicateMixBusIDs
 {
-    [self ensureXMLValidationResult:@"duplicate_mix_bus_ids.xml"
-                                   :KWL_PROJECT_XML_STRUCTURE_ERROR];
+    [self requireXMLValidationResult:@"duplicate_mix_bus_ids.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
 }
 
 -(void)testDuplicateSoundGroupIDs
 {
-    [self ensureXMLValidationResult:@"duplicate_sound_group_ids_1.xml"
-                                   :KWL_PROJECT_XML_STRUCTURE_ERROR];
-    [self ensureXMLValidationResult:@"duplicate_sound_group_ids_2.xml"
-                                   :KWL_PROJECT_XML_STRUCTURE_ERROR];
+    [self requireXMLValidationResult:@"duplicate_sound_group_ids_1.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
+    [self requireXMLValidationResult:@"duplicate_sound_group_ids_2.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
 }
 
 -(void)testDuplicateSoundIDs
 {
-    [self ensureXMLValidationResult:@"duplicate_sound_ids_1.xml"
-                                   :KWL_PROJECT_XML_STRUCTURE_ERROR];
-    [self ensureXMLValidationResult:@"duplicate_sound_ids_2.xml"
-                                   :KWL_PROJECT_XML_STRUCTURE_ERROR];
+    [self requireXMLValidationResult:@"duplicate_sound_ids_1.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
+    [self requireXMLValidationResult:@"duplicate_sound_ids_2.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
 }
 
 -(void)testDuplicateWaveBankIDs
 {
-    [self ensureXMLValidationResult:@"duplicate_wave_bank_ids.xml"
-                                   :KWL_PROJECT_XML_STRUCTURE_ERROR];
+    [self requireXMLValidationResult:@"duplicate_wave_bank_ids.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
 }
 
 -(void)testInvalidAudioDataReference
 {
-    [self ensureXMLValidationResult:@"invalid_audio_data_reference.xml"
-                                   :KWL_PROJECT_XML_STRUCTURE_ERROR];
+    [self requireXMLValidationResult:@"invalid_audio_data_reference.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
 }
 
 -(void)testInvalidEventMixBusReference
 {
-    [self ensureXMLValidationResult:@"invalid_event_mix_bus_reference.xml"
-                                   :KWL_PROJECT_XML_STRUCTURE_ERROR];
+    [self requireXMLValidationResult:@"invalid_event_mix_bus_reference.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
 }
 
 -(void)testInvalidEventMixPresetMixBusReference
 {
-    [self ensureXMLValidationResult:@"invalid_mix_preset_mix_bus_reference.xml"
-                                   :KWL_PROJECT_XML_STRUCTURE_ERROR];
+    [self requireXMLValidationResult:@"invalid_mix_preset_mix_bus_reference.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
 }
 
 
 -(void)testInvalidSoundReference
 {
-    [self ensureXMLValidationResult:@"invalid_sound_reference.xml"
-                                   :KWL_PROJECT_XML_STRUCTURE_ERROR];
+    [self requireXMLValidationResult:@"invalid_sound_reference.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
 }
 
 -(void)testValidProjectXML
 {
-    [self ensureXMLValidationResult:@"minimal_valid_project.xml"
-                                   :KWL_DATA_IS_VALID];
-    [self ensureXMLValidationResult:@"minimal_valid_project_reordered_root_groups.xml"
-                                   :KWL_DATA_IS_VALID];
+    [self requireXMLValidationResult:@"minimal_valid_project.xml"
+                                    :KWL_DATA_IS_VALID];
+    [self requireXMLValidationResult:@"minimal_valid_project_reordered_root_groups.xml"
+                                    :KWL_DATA_IS_VALID];
 }
-
 
 -(void)testMissingDefaultPreset
 {
-    [self ensureXMLValidationResult:@"missing_default_mix_preset.xml"
-                                   :KWL_PROJECT_XML_STRUCTURE_ERROR];
+    [self requireXMLValidationResult:@"missing_default_mix_preset.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
 }
 
 -(void)testMultipleDefaultPresets
 {
-    [self ensureXMLValidationResult:@"multiple_default_mix_presets.xml"
-                                   :KWL_PROJECT_XML_STRUCTURE_ERROR];
+    [self requireXMLValidationResult:@"multiple_default_mix_presets.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
 }
 
 -(void)testXMLSyntaxError
 {
-    [self ensureXMLValidationResult:@"xml_syntax_error.xml"
-                                   :KWL_FAILED_TO_PARSE_PROJECT_XML];
+    [self requireXMLValidationResult:@"xml_syntax_error.xml"
+                                    :KWL_FAILED_TO_PARSE_PROJECT_XML];
 }
 
--(void)ensureXMLValidationResult:(NSString*) xmlPath
-                                :(kwlDataValidationResult)expectedResult
+-(void)requireXMLValidationResult:(NSString*) xmlPath
+                                 :(kwlDataValidationResult)expectedResult
 {
     kwlDataValidationResult result = kwlValidateProjectData([self getResourcePath:xmlPath],
                                                             [self getResourcePath:@"kowalski.xsd"],

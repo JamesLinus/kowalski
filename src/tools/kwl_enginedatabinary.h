@@ -165,7 +165,7 @@ extern "C"
     } kwlEventDataChunk;
     
     /**
-     *
+     * An engine data binary, i.e a struct representation of an engine data binary file.
      */
     typedef struct kwlEngineDataBinary
     {

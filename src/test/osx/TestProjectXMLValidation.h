@@ -23,6 +23,12 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-@interface kowalski_test : SenTestCase
+#import "kwl_datavalidation.h"
+
+@interface TestProjectXMLValidation : SenTestCase
+
+-(void)ensureXMLValidationResult:(NSString*) xmlPath
+                                :(kwlDataValidationResult)result;
+-(const char*)getResourcePath:(NSString*)fileName;
 
 @end

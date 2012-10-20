@@ -73,8 +73,8 @@ extern "C"
      * @return An error code.
      */
     kwlDataValidationResult kwlWaveBankBinary_loadFromBinaryFile(kwlWaveBankBinary* bin,
-                                                             const char* path,
-                                                             kwlLogCallback errorLogCallback);
+                                                                 const char* path,
+                                                                 kwlLogCallback errorLogCallback);
     
     /**
      * Creates a wave bank binary corresponding to a wavebank with a given id in

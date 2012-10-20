@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C107AB16162F6E7700A12FD7 /* kwl_fileoutputstream.c in Sources */ = {isa = PBXBuildFile; fileRef = C107AB14162F6E7700A12FD7 /* kwl_fileoutputstream.c */; };
-		C11CEBE9162F176600B5B075 /* kwl_memory.c in Sources */ = {isa = PBXBuildFile; fileRef = C195518511C8FD8F00FE59BA /* kwl_memory.c */; };
 		C123314612445213001796D2 /* asm_arm.h in Headers */ = {isa = PBXBuildFile; fileRef = C1B77F351212AF80008DFEB2 /* asm_arm.h */; };
 		C123314712445213001796D2 /* bitwise.c in Sources */ = {isa = PBXBuildFile; fileRef = C1B77F361212AF80008DFEB2 /* bitwise.c */; };
 		C123314812445213001796D2 /* backends.h in Headers */ = {isa = PBXBuildFile; fileRef = C1B77F371212AF80008DFEB2 /* backends.h */; };
@@ -45,6 +43,25 @@
 		C123316712445213001796D2 /* window.h in Headers */ = {isa = PBXBuildFile; fileRef = C1B77F581212AF80008DFEB2 /* window.h */; };
 		C136324113851FA9002CD5C2 /* kwl_dspunit.h in Headers */ = {isa = PBXBuildFile; fileRef = C136324013851FA9002CD5C2 /* kwl_dspunit.h */; };
 		C136324213851FA9002CD5C2 /* kwl_dspunit.h in Headers */ = {isa = PBXBuildFile; fileRef = C136324013851FA9002CD5C2 /* kwl_dspunit.h */; };
+		C14548461632C4EC00DE1EA6 /* kowalski.xsd in Resources */ = {isa = PBXBuildFile; fileRef = C14548451632C4EC00DE1EA6 /* kowalski.xsd */; };
+		C14548511632CB1500DE1EA6 /* kwl_binarybuilding.c in Sources */ = {isa = PBXBuildFile; fileRef = C166E387162F26F80068C846 /* kwl_binarybuilding.c */; };
+		C14548521632CB1E00DE1EA6 /* kwl_datavalidation.c in Sources */ = {isa = PBXBuildFile; fileRef = C1760F861620D6BD0044204B /* kwl_datavalidation.c */; };
+		C14548531632CB2200DE1EA6 /* kwl_binarybuilding.h in Headers */ = {isa = PBXBuildFile; fileRef = C166E388162F26F80068C846 /* kwl_binarybuilding.h */; };
+		C14548541632CB2500DE1EA6 /* kwl_datavalidation.h in Headers */ = {isa = PBXBuildFile; fileRef = C1760F68161E399E0044204B /* kwl_datavalidation.h */; };
+		C14548551632CB2E00DE1EA6 /* kwl_fileoutputstream.c in Sources */ = {isa = PBXBuildFile; fileRef = C107AB14162F6E7700A12FD7 /* kwl_fileoutputstream.c */; };
+		C14548561632CB3000DE1EA6 /* kwl_fileoutputstream.h in Headers */ = {isa = PBXBuildFile; fileRef = C107AB15162F6E7700A12FD7 /* kwl_fileoutputstream.h */; };
+		C14548571632CB3500DE1EA6 /* kwl_logging.h in Headers */ = {isa = PBXBuildFile; fileRef = C166E38A162F27C70068C846 /* kwl_logging.h */; };
+		C14548581632CB3900DE1EA6 /* kwl_logging.c in Sources */ = {isa = PBXBuildFile; fileRef = C166E38B162F28940068C846 /* kwl_logging.c */; };
+		C14548591632CB4F00DE1EA6 /* kwl_enginedatabinary.c in Sources */ = {isa = PBXBuildFile; fileRef = C166E38D162F41E00068C846 /* kwl_enginedatabinary.c */; };
+		C145485A1632CB5200DE1EA6 /* kwl_enginedatabinary.h in Headers */ = {isa = PBXBuildFile; fileRef = C166E38E162F41E00068C846 /* kwl_enginedatabinary.h */; };
+		C145485B1632CB5500DE1EA6 /* kwl_wavebankbinary.c in Sources */ = {isa = PBXBuildFile; fileRef = C166E390162F5AE70068C846 /* kwl_wavebankbinary.c */; };
+		C145485C1632CB5800DE1EA6 /* kwl_wavebankbinary.h in Headers */ = {isa = PBXBuildFile; fileRef = C166E391162F5AE80068C846 /* kwl_wavebankbinary.h */; };
+		C145485D1632CB5A00DE1EA6 /* kwl_xmlutil.c in Sources */ = {isa = PBXBuildFile; fileRef = C166E384162F248C0068C846 /* kwl_xmlutil.c */; };
+		C145485E1632CB5D00DE1EA6 /* kwl_xmlutil.h in Headers */ = {isa = PBXBuildFile; fileRef = C166E385162F248C0068C846 /* kwl_xmlutil.h */; };
+		C14548631632CB8E00DE1EA6 /* libkowalski_tools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C145484D1632CAFE00DE1EA6 /* libkowalski_tools.a */; };
+		C14548661632CBAC00DE1EA6 /* libkowalski_tools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C145484D1632CAFE00DE1EA6 /* libkowalski_tools.a */; };
+		C14548671632CBE900DE1EA6 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C1760F8C1620DD5B0044204B /* libxml2.dylib */; };
+		C14548681632CBFA00DE1EA6 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C1760F8C1620DD5B0044204B /* libxml2.dylib */; };
 		C1636D3A163217D200D186E1 /* kwl_decoder_ios.c in Sources */ = {isa = PBXBuildFile; fileRef = C1636D36163217D200D186E1 /* kwl_decoder_ios.c */; };
 		C1636D3B163217D200D186E1 /* kwl_decoder_ios.h in Headers */ = {isa = PBXBuildFile; fileRef = C1636D37163217D200D186E1 /* kwl_decoder_ios.h */; };
 		C1636D3C163217D200D186E1 /* kwl_engine_ios.h in Headers */ = {isa = PBXBuildFile; fileRef = C1636D38163217D200D186E1 /* kwl_engine_ios.h */; };
@@ -52,17 +69,10 @@
 		C166D353146072F700FB60DD /* kwl_wavebank.c in Sources */ = {isa = PBXBuildFile; fileRef = C166D352146072F700FB60DD /* kwl_wavebank.c */; };
 		C166D355146072F700FB60DD /* kwl_wavebank.c in Sources */ = {isa = PBXBuildFile; fileRef = C166D352146072F700FB60DD /* kwl_wavebank.c */; };
 		C166E383162F23870068C846 /* libkowalski.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC046055464E500DB518D /* libkowalski.dylib */; };
-		C166E386162F248C0068C846 /* kwl_xmlutil.c in Sources */ = {isa = PBXBuildFile; fileRef = C166E384162F248C0068C846 /* kwl_xmlutil.c */; };
-		C166E389162F26F80068C846 /* kwl_binarybuilding.c in Sources */ = {isa = PBXBuildFile; fileRef = C166E387162F26F80068C846 /* kwl_binarybuilding.c */; };
-		C166E38C162F28940068C846 /* kwl_logging.c in Sources */ = {isa = PBXBuildFile; fileRef = C166E38B162F28940068C846 /* kwl_logging.c */; };
-		C166E38F162F41E00068C846 /* kwl_enginedatabinary.c in Sources */ = {isa = PBXBuildFile; fileRef = C166E38D162F41E00068C846 /* kwl_enginedatabinary.c */; };
-		C166E392162F5AE80068C846 /* kwl_wavebankbinary.c in Sources */ = {isa = PBXBuildFile; fileRef = C166E390162F5AE70068C846 /* kwl_wavebankbinary.c */; };
 		C1702E5B1461645B00ADE4F7 /* kwl_enginedata.h in Headers */ = {isa = PBXBuildFile; fileRef = C1702E571461645B00ADE4F7 /* kwl_enginedata.h */; };
 		C1702E5C1461645B00ADE4F7 /* kwl_enginedata.c in Sources */ = {isa = PBXBuildFile; fileRef = C1702E581461645B00ADE4F7 /* kwl_enginedata.c */; };
 		C1702E5D1461645B00ADE4F7 /* kwl_enginedata.h in Headers */ = {isa = PBXBuildFile; fileRef = C1702E571461645B00ADE4F7 /* kwl_enginedata.h */; };
 		C1702E5E1461645B00ADE4F7 /* kwl_enginedata.c in Sources */ = {isa = PBXBuildFile; fileRef = C1702E581461645B00ADE4F7 /* kwl_enginedata.c */; };
-		C1760F871620D6BD0044204B /* kwl_datavalidation.c in Sources */ = {isa = PBXBuildFile; fileRef = C1760F861620D6BD0044204B /* kwl_datavalidation.c */; };
-		C1760F8D1620DD5B0044204B /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C1760F8C1620DD5B0044204B /* libxml2.dylib */; };
 		C186B33511C3F225003D0013 /* libportaudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1655C5D1171B9AE004021DB /* libportaudio.a */; };
 		C18CC37B163206860037E220 /* duplicate_event_group_ids_1.xml in Resources */ = {isa = PBXBuildFile; fileRef = C18CC318163206860037E220 /* duplicate_event_group_ids_1.xml */; };
 		C18CC37C163206860037E220 /* duplicate_event_group_ids_2.xml in Resources */ = {isa = PBXBuildFile; fileRef = C18CC319163206860037E220 /* duplicate_event_group_ids_2.xml */; };
@@ -84,8 +94,7 @@
 		C192DBB21274391100852CBC /* kwl_audiodata.c in Sources */ = {isa = PBXBuildFile; fileRef = C192DBB01274391100852CBC /* kwl_audiodata.c */; };
 		C19BB8601630C1E9000F1BE7 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C19BB85F1630C1E9000F1BE7 /* SenTestingKit.framework */; };
 		C19BB8621630C1E9000F1BE7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C19BB8611630C1E9000F1BE7 /* Cocoa.framework */; };
-		C19BB87A1630C359000F1BE7 /* kowalski_test.m in Sources */ = {isa = PBXBuildFile; fileRef = C19BB8791630C359000F1BE7 /* kowalski_test.m */; };
-		C19BB8831630D9B5000F1BE7 /* test_datavalidation.c in Sources */ = {isa = PBXBuildFile; fileRef = C19BB87F1630D9B4000F1BE7 /* test_datavalidation.c */; };
+		C19BB87A1630C359000F1BE7 /* TestProjectXMLValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = C19BB8791630C359000F1BE7 /* TestProjectXMLValidation.m */; };
 		C19FD680141AC72900B836F5 /* kwl_decoder_pcm.h in Headers */ = {isa = PBXBuildFile; fileRef = C19FD67E141AC72900B836F5 /* kwl_decoder_pcm.h */; };
 		C19FD681141AC72900B836F5 /* kwl_decoder_pcm.c in Sources */ = {isa = PBXBuildFile; fileRef = C19FD67F141AC72900B836F5 /* kwl_decoder_pcm.c */; };
 		C19FD682141AC72900B836F5 /* kwl_decoder_pcm.h in Headers */ = {isa = PBXBuildFile; fileRef = C19FD67E141AC72900B836F5 /* kwl_decoder_pcm.h */; };
@@ -290,12 +299,26 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C166E380162F235F0068C846 /* PBXContainerItemProxy */ = {
+		C145485F1632CB7A00DE1EA6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = D2AAC045055464E500DB518D;
 			remoteInfo = kowalski_portaudio;
+		};
+		C14548611632CB8200DE1EA6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C145484C1632CAFE00DE1EA6;
+			remoteInfo = kowalski_tools;
+		};
+		C14548641632CBA500DE1EA6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C145484C1632CAFE00DE1EA6;
+			remoteInfo = kowalski_tools;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -352,6 +375,8 @@
 		C136324013851FA9002CD5C2 /* kwl_dspunit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_dspunit.h; sourceTree = "<group>"; };
 		C13B88B41182DC7400F4F461 /* kwl_assert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_assert.h; sourceTree = "<group>"; };
 		C13F8D6412CF556300A30996 /* kwl_positionalaudiolistener.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_positionalaudiolistener.c; sourceTree = "<group>"; };
+		C14548451632C4EC00DE1EA6 /* kowalski.xsd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = kowalski.xsd; path = ../../src/tools/kowalski.xsd; sourceTree = "<group>"; };
+		C145484D1632CAFE00DE1EA6 /* libkowalski_tools.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libkowalski_tools.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C14F85A4120C4C080033D01F /* kwl_messagequeue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_messagequeue.h; sourceTree = "<group>"; };
 		C14F85A5120C4C080033D01F /* kwl_messagequeue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_messagequeue.c; sourceTree = "<group>"; };
 		C160771D121677F90041FE58 /* kwl_engine_portaudio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_engine_portaudio.c; sourceTree = "<group>"; };
@@ -415,10 +440,8 @@
 		C19BB8651630C1E9000F1BE7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C19BB8661630C1E9000F1BE7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C19BB8771630C359000F1BE7 /* kowalski_test-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "kowalski_test-Prefix.pch"; sourceTree = "<group>"; };
-		C19BB8781630C359000F1BE7 /* kowalski_test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kowalski_test.h; sourceTree = "<group>"; };
-		C19BB8791630C359000F1BE7 /* kowalski_test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = kowalski_test.m; sourceTree = "<group>"; };
-		C19BB87F1630D9B4000F1BE7 /* test_datavalidation.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test_datavalidation.c; sourceTree = "<group>"; };
-		C19BB8801630D9B5000F1BE7 /* test_datavalidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = test_datavalidation.h; sourceTree = "<group>"; };
+		C19BB8781630C359000F1BE7 /* TestProjectXMLValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestProjectXMLValidation.h; sourceTree = "<group>"; };
+		C19BB8791630C359000F1BE7 /* TestProjectXMLValidation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestProjectXMLValidation.m; sourceTree = "<group>"; };
 		C19FD67E141AC72900B836F5 /* kwl_decoder_pcm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_decoder_pcm.h; sourceTree = "<group>"; };
 		C19FD67F141AC72900B836F5 /* kwl_decoder_pcm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_decoder_pcm.c; sourceTree = "<group>"; };
 		C1A018C11265EF120039DB22 /* kwl_eventdefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_eventdefinition.h; sourceTree = "<group>"; };
@@ -472,12 +495,21 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C145484A1632CAFE00DE1EA6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C14548671632CBE900DE1EA6 /* libxml2.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C1760F781620D6160044204B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C14548681632CBFA00DE1EA6 /* libxml2.dylib in Frameworks */,
+				C14548631632CB8E00DE1EA6 /* libkowalski_tools.a in Frameworks */,
 				C166E383162F23870068C846 /* libkowalski.dylib in Frameworks */,
-				C1760F8D1620DD5B0044204B /* libxml2.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +517,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C14548661632CBAC00DE1EA6 /* libkowalski_tools.a in Frameworks */,
 				C19BB8601630C1E9000F1BE7 /* SenTestingKit.framework in Frameworks */,
 				C19BB8621630C1E9000F1BE7 /* Cocoa.framework in Frameworks */,
 			);
@@ -556,6 +589,7 @@
 				C1DD3C2B1370D12B00D10AA6 /* libkowalski_ios.a */,
 				C1760F7B1620D6160044204B /* kwltools */,
 				C19BB85D1630C1E9000F1BE7 /* kowalski_test.octest */,
+				C145484D1632CAFE00DE1EA6 /* libkowalski_tools.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -690,6 +724,7 @@
 		C18CC317163206860037E220 /* test */ = {
 			isa = PBXGroup;
 			children = (
+				C14548451632C4EC00DE1EA6 /* kowalski.xsd */,
 				C18CC318163206860037E220 /* duplicate_event_group_ids_1.xml */,
 				C18CC319163206860037E220 /* duplicate_event_group_ids_2.xml */,
 				C18CC31A163206860037E220 /* duplicate_event_ids_1.xml */,
@@ -735,8 +770,6 @@
 			isa = PBXGroup;
 			children = (
 				C19BB8761630C359000F1BE7 /* osx */,
-				C19BB87F1630D9B4000F1BE7 /* test_datavalidation.c */,
-				C19BB8801630D9B5000F1BE7 /* test_datavalidation.h */,
 			);
 			name = test;
 			path = ../../src/test;
@@ -746,8 +779,8 @@
 			isa = PBXGroup;
 			children = (
 				C19BB8771630C359000F1BE7 /* kowalski_test-Prefix.pch */,
-				C19BB8781630C359000F1BE7 /* kowalski_test.h */,
-				C19BB8791630C359000F1BE7 /* kowalski_test.m */,
+				C19BB8781630C359000F1BE7 /* TestProjectXMLValidation.h */,
+				C19BB8791630C359000F1BE7 /* TestProjectXMLValidation.m */,
 			);
 			path = osx;
 			sourceTree = "<group>";
@@ -796,6 +829,20 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		C145484B1632CAFE00DE1EA6 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C14548531632CB2200DE1EA6 /* kwl_binarybuilding.h in Headers */,
+				C14548541632CB2500DE1EA6 /* kwl_datavalidation.h in Headers */,
+				C14548561632CB3000DE1EA6 /* kwl_fileoutputstream.h in Headers */,
+				C14548571632CB3500DE1EA6 /* kwl_logging.h in Headers */,
+				C145485A1632CB5200DE1EA6 /* kwl_enginedatabinary.h in Headers */,
+				C145485C1632CB5800DE1EA6 /* kwl_wavebankbinary.h in Headers */,
+				C145485E1632CB5D00DE1EA6 /* kwl_xmlutil.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C1AD100112179BB500EC0C49 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -954,6 +1001,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		C145484C1632CAFE00DE1EA6 /* kowalski_tools */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C145484E1632CAFE00DE1EA6 /* Build configuration list for PBXNativeTarget "kowalski_tools" */;
+			buildPhases = (
+				C14548491632CAFE00DE1EA6 /* Sources */,
+				C145484A1632CAFE00DE1EA6 /* Frameworks */,
+				C145484B1632CAFE00DE1EA6 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C14548601632CB7A00DE1EA6 /* PBXTargetDependency */,
+			);
+			name = kowalski_tools;
+			productName = kowalski_tools;
+			productReference = C145484D1632CAFE00DE1EA6 /* libkowalski_tools.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		C1760F7A1620D6160044204B /* kwltools */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C1760F841620D6160044204B /* Build configuration list for PBXNativeTarget "kwltools" */;
@@ -965,7 +1030,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				C166E381162F235F0068C846 /* PBXTargetDependency */,
+				C14548621632CB8200DE1EA6 /* PBXTargetDependency */,
 			);
 			name = kwltools;
 			productName = kwltools;
@@ -984,6 +1049,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				C14548651632CBA500DE1EA6 /* PBXTargetDependency */,
 			);
 			name = kowalski_test;
 			productName = kowalski_test;
@@ -1070,6 +1136,7 @@
 				C1DD3C2A1370D12B00D10AA6 /* kowalski_ios */,
 				C1760F7A1620D6160044204B /* kwltools */,
 				C19BB85C1630C1E9000F1BE7 /* kowalski_test */,
+				C145484C1632CAFE00DE1EA6 /* kowalski_tools */,
 			);
 		};
 /* End PBXProject section */
@@ -1096,6 +1163,7 @@
 				C18CC389163206860037E220 /* missing_default_mix_preset.xml in Resources */,
 				C18CC38A163206860037E220 /* multiple_default_mix_presets.xml in Resources */,
 				C18CC38C163206E40037E220 /* xml_syntax_error.xml in Resources */,
+				C14548461632C4EC00DE1EA6 /* kowalski.xsd in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1118,19 +1186,25 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		C14548491632CAFE00DE1EA6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C14548511632CB1500DE1EA6 /* kwl_binarybuilding.c in Sources */,
+				C14548521632CB1E00DE1EA6 /* kwl_datavalidation.c in Sources */,
+				C14548551632CB2E00DE1EA6 /* kwl_fileoutputstream.c in Sources */,
+				C14548581632CB3900DE1EA6 /* kwl_logging.c in Sources */,
+				C14548591632CB4F00DE1EA6 /* kwl_enginedatabinary.c in Sources */,
+				C145485B1632CB5500DE1EA6 /* kwl_wavebankbinary.c in Sources */,
+				C145485D1632CB5A00DE1EA6 /* kwl_xmlutil.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C1760F771620D6160044204B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1760F871620D6BD0044204B /* kwl_datavalidation.c in Sources */,
 				C1AD37B81628935400CE9A8B /* main.c in Sources */,
-				C11CEBE9162F176600B5B075 /* kwl_memory.c in Sources */,
-				C166E386162F248C0068C846 /* kwl_xmlutil.c in Sources */,
-				C166E389162F26F80068C846 /* kwl_binarybuilding.c in Sources */,
-				C166E38C162F28940068C846 /* kwl_logging.c in Sources */,
-				C166E38F162F41E00068C846 /* kwl_enginedatabinary.c in Sources */,
-				C166E392162F5AE80068C846 /* kwl_wavebankbinary.c in Sources */,
-				C107AB16162F6E7700A12FD7 /* kwl_fileoutputstream.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1138,8 +1212,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C19BB87A1630C359000F1BE7 /* kowalski_test.m in Sources */,
-				C19BB8831630D9B5000F1BE7 /* test_datavalidation.c in Sources */,
+				C19BB87A1630C359000F1BE7 /* TestProjectXMLValidation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1279,10 +1352,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C166E381162F235F0068C846 /* PBXTargetDependency */ = {
+		C14548601632CB7A00DE1EA6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D2AAC045055464E500DB518D /* kowalski_portaudio */;
-			targetProxy = C166E380162F235F0068C846 /* PBXContainerItemProxy */;
+			targetProxy = C145485F1632CB7A00DE1EA6 /* PBXContainerItemProxy */;
+		};
+		C14548621632CB8200DE1EA6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C145484C1632CAFE00DE1EA6 /* kowalski_tools */;
+			targetProxy = C14548611632CB8200DE1EA6 /* PBXContainerItemProxy */;
+		};
+		C14548651632CBA500DE1EA6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C145484C1632CAFE00DE1EA6 /* kowalski_tools */;
+			targetProxy = C14548641632CBA500DE1EA6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1450,6 +1533,51 @@
 			};
 			name = Release;
 		};
+		C145484F1632CAFE00DE1EA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				EXECUTABLE_PREFIX = lib;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C14548501632CAFE00DE1EA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		C1760F821620D6160044204B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1468,7 +1596,7 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				HEADER_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1488,7 +1616,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				HEADER_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -1646,6 +1774,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		C145484E1632CAFE00DE1EA6 /* Build configuration list for PBXNativeTarget "kowalski_tools" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C145484F1632CAFE00DE1EA6 /* Debug */,
+				C14548501632CAFE00DE1EA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		C1760F841620D6160044204B /* Build configuration list for PBXNativeTarget "kwltools" */ = {
 			isa = XCConfigurationList;

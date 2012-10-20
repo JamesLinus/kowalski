@@ -11,7 +11,7 @@
 int main(int argc, const char * argv[])
 {
     const char* xmlPath = "/Users/perarne/code/kowalski/res/demodata/master/demoproject.xml";
-    const char* xsdPath = "/Users/perarne/code/kowalski/src/tools/kowalski1.0.xsd";
+    const char* xsdPath = "/Users/perarne/code/kowalski/src/tools/kowalski.xsd";
     const char* kwlPath = "/Users/perarne/code/kowalski/res/demodata/final/demoproject.kwl";
     const char* kwbPath = "/Users/perarne/code/kowalski/res/demodata/final/numbers.kwb";
     

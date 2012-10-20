@@ -392,9 +392,9 @@
                 <xs:documentation>A set of mix bus parameters, one per mix bus in the project.</xs:documentation>
             </xs:annotation>
             <xs:attribute name="mixBus" type="identifierString" use="required"/>
-            <xs:attribute name="leftGain" type="gainFloat" use="required" />
-            <xs:attribute name="rightGain" type="gainFloat" use="required" />
-            <xs:attribute name="pitch" type="pitchFloat" use="required" />
+            <xs:attribute name="leftGain" type="gainFloat" use="optional" default="1.0" />
+            <xs:attribute name="rightGain" type="gainFloat" use="optional" default="1.0" />
+            <xs:attribute name="pitch" type="pitchFloat" use="optional" default="1.0" />
         </xs:complexType>
     </xs:element>
 

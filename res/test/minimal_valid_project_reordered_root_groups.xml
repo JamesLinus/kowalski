@@ -2,7 +2,7 @@
 <KowalskiProject version="1.0">
     <MixPresetGroup id="root">
         <MixPreset id="testmixpreset" default="true">
-            <MixBusParameters mixBus="master" leftGain="1" rightGain="1" pitch="1"/>
+            <MixBusParameters mixBus="master"/>
         </MixPreset>
     </MixPresetGroup >
 

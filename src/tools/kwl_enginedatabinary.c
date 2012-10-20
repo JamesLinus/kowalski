@@ -275,14 +275,19 @@ static void kwlGatherMixPresetsCallback(xmlNode* node,
             if (busIdx < 0)
             {
                 *errorOccurred = 1;
-                errorLogCallback("The mix bus '%s' referenced by mix preset '%s' does not exist\n", busId, c->id);
+                errorLogCallback("The mix bus '%s' referenced by mix preset '%s' does not exist.\n", busId, c->id);
             }
             
             float gainLeft = kwlGetFloatAttributeValue(curr, KWL_XML_ATTR_PARAM_SET_GAIN_L);
             float gainRight = kwlGetFloatAttributeValue(curr, KWL_XML_ATTR_PARAM_SET_GAIN_R);
             float pitch = kwlGetFloatAttributeValue(curr, KWL_XML_ATTR_PARAM_SET_PITCH);
             
-            KWL_ASSERT(paramSetIdx < numMixBuses);
+            if (paramSetIdx >= numMixBuses)
+            {
+                *errorOccurred = 1;
+                errorLogCallback("Mix preset '%s' has more parameter sets than the number of mix buses.\n", c->id);
+                break;
+            }
             c->gainLeft[paramSetIdx] = gainLeft;
             c->gainLeft[paramSetIdx] = gainRight;
             c->pitch[paramSetIdx] = pitch;
@@ -291,9 +296,9 @@ static void kwlGatherMixPresetsCallback(xmlNode* node,
         }
     }
     
-    if (paramSetIdx != numMixBuses)
+    if (paramSetIdx < numMixBuses)
     {
-        errorLogCallback("The number of parameter sets does not equal the number of mix buses for mix preset '%s'.\n", c->id);
+        errorLogCallback("The number of parameter sets for mix preset '%s' is less than the number of mix buses.\n", c->id);
         *errorOccurred = 1;
     }
 }
@@ -622,7 +627,7 @@ static void kwlCheckPathUniqueness(xmlNode* node,
         if (numMatches > 1)
         {
             errorLogCallback("The id '%s' is not unique among the children of the containing %s '%s'.\n",
-                             childNames[i], branchNodeName, (const char*)kwlGetAttributeValue(node, "id"));
+                             childNames[i], branchNodeName, kwlGetAttributeValue(node, "id"));
             *uniquenessErrorOccurred = 1;
         }
     }

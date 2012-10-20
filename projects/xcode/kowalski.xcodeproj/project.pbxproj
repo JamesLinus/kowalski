@@ -43,6 +43,9 @@
 		C123316712445213001796D2 /* window.h in Headers */ = {isa = PBXBuildFile; fileRef = C1B77F581212AF80008DFEB2 /* window.h */; };
 		C136324113851FA9002CD5C2 /* kwl_dspunit.h in Headers */ = {isa = PBXBuildFile; fileRef = C136324013851FA9002CD5C2 /* kwl_dspunit.h */; };
 		C136324213851FA9002CD5C2 /* kwl_dspunit.h in Headers */ = {isa = PBXBuildFile; fileRef = C136324013851FA9002CD5C2 /* kwl_dspunit.h */; };
+		C1406A0816336E210080C904 /* duplicate_mix_preset_bus_reference.xml in Resources */ = {isa = PBXBuildFile; fileRef = C1406A0716336E210080C904 /* duplicate_mix_preset_bus_reference.xml */; };
+		C1406A0B16336EDB0080C904 /* missing_mix_bus_parameter_set.xml in Resources */ = {isa = PBXBuildFile; fileRef = C1406A0A16336EDB0080C904 /* missing_mix_bus_parameter_set.xml */; };
+		C1406A0D16336F180080C904 /* extra_mix_bus_parameter_set.xml in Resources */ = {isa = PBXBuildFile; fileRef = C1406A0C16336F180080C904 /* extra_mix_bus_parameter_set.xml */; };
 		C14548461632C4EC00DE1EA6 /* kowalski.xsd in Resources */ = {isa = PBXBuildFile; fileRef = C14548451632C4EC00DE1EA6 /* kowalski.xsd */; };
 		C14548511632CB1500DE1EA6 /* kwl_binarybuilding.c in Sources */ = {isa = PBXBuildFile; fileRef = C166E387162F26F80068C846 /* kwl_binarybuilding.c */; };
 		C14548521632CB1E00DE1EA6 /* kwl_datavalidation.c in Sources */ = {isa = PBXBuildFile; fileRef = C1760F861620D6BD0044204B /* kwl_datavalidation.c */; };
@@ -375,6 +378,9 @@
 		C136324013851FA9002CD5C2 /* kwl_dspunit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_dspunit.h; sourceTree = "<group>"; };
 		C13B88B41182DC7400F4F461 /* kwl_assert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_assert.h; sourceTree = "<group>"; };
 		C13F8D6412CF556300A30996 /* kwl_positionalaudiolistener.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_positionalaudiolistener.c; sourceTree = "<group>"; };
+		C1406A0716336E210080C904 /* duplicate_mix_preset_bus_reference.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = duplicate_mix_preset_bus_reference.xml; sourceTree = "<group>"; };
+		C1406A0A16336EDB0080C904 /* missing_mix_bus_parameter_set.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = missing_mix_bus_parameter_set.xml; sourceTree = "<group>"; };
+		C1406A0C16336F180080C904 /* extra_mix_bus_parameter_set.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = extra_mix_bus_parameter_set.xml; sourceTree = "<group>"; };
 		C14548451632C4EC00DE1EA6 /* kowalski.xsd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = kowalski.xsd; path = ../../src/tools/kowalski.xsd; sourceTree = "<group>"; };
 		C145484D1632CAFE00DE1EA6 /* libkowalski_tools.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libkowalski_tools.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C145486B1632E1DF00DE1EA6 /* invalid_mix_preset_mix_bus_reference.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = invalid_mix_preset_mix_bus_reference.xml; sourceTree = "<group>"; };
@@ -750,6 +756,7 @@
 				C18CC31A163206860037E220 /* duplicate_event_ids_1.xml */,
 				C18CC31B163206860037E220 /* duplicate_event_ids_2.xml */,
 				C18CC31C163206860037E220 /* duplicate_mix_bus_ids.xml */,
+				C1406A0716336E210080C904 /* duplicate_mix_preset_bus_reference.xml */,
 				C18CC31D163206860037E220 /* duplicate_sound_group_ids_1.xml */,
 				C18CC31E163206860037E220 /* duplicate_sound_group_ids_2.xml */,
 				C18CC31F163206860037E220 /* duplicate_sound_ids_1.xml */,
@@ -762,6 +769,8 @@
 				C18CC325163206860037E220 /* minimal_valid_project.xml */,
 				C14548791632E7FA00DE1EA6 /* minimal_valid_project_reordered_root_groups.xml */,
 				C18CC326163206860037E220 /* missing_default_mix_preset.xml */,
+				C1406A0A16336EDB0080C904 /* missing_mix_bus_parameter_set.xml */,
+				C1406A0C16336F180080C904 /* extra_mix_bus_parameter_set.xml */,
 				C18CC327163206860037E220 /* multiple_default_mix_presets.xml */,
 				C14548731632E74F00DE1EA6 /* schema_error_duplicate_event_root_group.xml */,
 				C14548741632E75000DE1EA6 /* schema_error_forbidden_element_under_root.xml */,
@@ -1194,6 +1203,9 @@
 				C14548771632E75100DE1EA6 /* schema_error_forbidden_element_under_root.xml in Resources */,
 				C14548781632E75100DE1EA6 /* schema_error_wrong_root_name.xml in Resources */,
 				C145487A1632E7FB00DE1EA6 /* minimal_valid_project_reordered_root_groups.xml in Resources */,
+				C1406A0816336E210080C904 /* duplicate_mix_preset_bus_reference.xml in Resources */,
+				C1406A0B16336EDB0080C904 /* missing_mix_bus_parameter_set.xml in Resources */,
+				C1406A0D16336F180080C904 /* extra_mix_bus_parameter_set.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

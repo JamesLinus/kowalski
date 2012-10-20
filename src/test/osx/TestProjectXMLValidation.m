@@ -105,12 +105,30 @@
                                     :KWL_PROJECT_XML_STRUCTURE_ERROR];
 }
 
--(void)testInvalidEventMixPresetMixBusReference
+-(void)testInvalidMixPresetMixBusReference
 {
     [self requireXMLValidationResult:@"invalid_mix_preset_mix_bus_reference.xml"
                                     :KWL_PROJECT_XML_STRUCTURE_ERROR];
 }
 
+-(void)testExtraMixBusParameterSet
+{
+    [self requireXMLValidationResult:@"extra_mix_bus_parameter_set.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
+}
+
+
+-(void)testMissingMixBusParameterSet
+{
+    [self requireXMLValidationResult:@"missing_mix_bus_parameter_set.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
+}
+
+-(void)testDuplicateMixPresetMixBusReference
+{
+    [self requireXMLValidationResult:@"duplicate_mix_preset_bus_reference.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
+}
 
 -(void)testInvalidSoundReference
 {
@@ -153,7 +171,7 @@
                                                   kwlDefaultLogCallback);
     STAssertEquals(result,
                    expectedResult,
-                   [NSString stringWithFormat:@"Should %@ generate a validation error", xmlPath, expectedResult == KWL_SUCCESS ? @"not" : @""]);
+                   [NSString stringWithFormat:@"%@ should %@ generate a validation error", xmlPath, expectedResult == KWL_SUCCESS ? @"not" : @""]);
 }
 
 -(const char*)getResourcePath:(NSString*)fileName

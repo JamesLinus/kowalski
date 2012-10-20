@@ -27,6 +27,7 @@
 #include "kwl_assert.h"
 #include "kwl_binarybuilding.h"
 #include "kwl_datavalidation.h"
+#include "kwl_fileutil.h"
 #include "kwl_inputstream.h"
 #include "kwl_memory.h"
 #include "kwl_fileoutputstream.h"
@@ -585,6 +586,7 @@ static void kwlCreateEventChunk(xmlNode* projectRoot, kwlEngineDataBinary* bin, 
 kwlDataValidationResult kwlEngineDataBinary_loadFromXML(kwlEngineDataBinary* bin,
                                                         const char* xmlPath,
                                                         const char* xsdPath,
+                                                        int validateAudioFileReferences,
                                                         kwlLogCallback errorLogCallback)
 
 {
@@ -638,32 +640,62 @@ kwlDataValidationResult kwlEngineDataBinary_loadFromXML(kwlEngineDataBinary* bin
     KWL_ASSERT(eventRootNode != NULL);
     
     kwlMemset(bin, 0, sizeof(kwlEngineDataBinary));
-    soundDefinitionNames = NULL;
-    
-    int errorOccurred = 0;
-    kwlCreateMixBusChunk(projectRootNode, bin, &errorOccurred, errorLogCallback);
-    kwlCreateMixPresetChunk(mixPresetRootNode, bin, &errorOccurred, errorLogCallback);
-    kwlCreateWaveBankChunk(waveBankRootNode, bin, &errorOccurred, errorLogCallback);
-    kwlCreateSoundChunk(soundRootNode, bin, &errorOccurred, errorLogCallback);
-    kwlCreateEventChunk(eventRootNode, bin, &errorOccurred, errorLogCallback);
-    
-    /*finally, write file identifier*/
+    /*first, write file identifier*/
     for (int i = 0; i < KWL_ENGINE_DATA_BINARY_FILE_IDENTIFIER_LENGTH; i++)
     {
         bin->fileIdentifier[i] = KWL_ENGINE_DATA_BINARY_FILE_IDENTIFIER[i];
     }
     
-    /*free the document */
-    xmlFreeDoc(doc);
+    /*then gather the different chunks*/
+    soundDefinitionNames = NULL;
+    int mixBusErrorOccurred = 0;
+    kwlCreateMixBusChunk(projectRootNode, bin, &mixBusErrorOccurred, errorLogCallback);
+    int mixPresetErrorOccurred = 0;
+    kwlCreateMixPresetChunk(mixPresetRootNode, bin, &mixPresetErrorOccurred, errorLogCallback);
+    int waveBankErrorOccurred = 0;
+    kwlCreateWaveBankChunk(waveBankRootNode, bin, &waveBankErrorOccurred, errorLogCallback);
+    int soundErrorOccurred = 0;
+    kwlCreateSoundChunk(soundRootNode, bin, &soundErrorOccurred, errorLogCallback);
+    int eventErrorOccurred = 0;
+    kwlCreateEventChunk(eventRootNode, bin, &eventErrorOccurred, errorLogCallback);
     
-    /*
-     *Free the global variables that may
-     *have been allocated by the parser.
-     */
+    int audioDataReferenceErrorOccurred = 0;
+    if (validateAudioFileReferences)
+    {
+        xmlNode* projNode = xmlDocGetRootElement(doc);
+        char* audioFileRoot = kwlGetAttributeValueCopy(projNode, KWL_XML_ATTR_PROJECT_AUDIO_FILE_ROOT);
+        int rootIsRelative = kwlGetBoolAttributeValue(projNode, KWL_XML_ATTR_PROJECT_AUDIO_FILE_ROOT_IS_RELATIVE);
+        
+        for (int i = 0; i < bin->waveBankChunk.numWaveBanks; i++)
+        {
+            kwlWaveBankChunk* wbi = &bin->waveBankChunk.waveBanks[i];
+            for (int j = 0; j < wbi->numAudioDataEntries; j++)
+            {
+                char* relPathj = wbi->audioDataEntries[j];
+                
+                const char* audioFilePath = kwlGetAudioFilePath(xmlPath, audioFileRoot, rootIsRelative, relPathj);
+                if (!kwlDoesFileExist(audioFilePath))
+                {
+                    errorLogCallback("The audio file '%s' referenced by wave bank '%s' does not exist.\n", audioFilePath, wbi->id);
+                    audioDataReferenceErrorOccurred = 1;
+                }
+            }
+        }
+        
+        KWL_FREE(audioFileRoot);
+    }
+    
+    /*the xml document is no longer needed */
+    xmlFreeDoc(doc);
     xmlCleanupParser();
 
-    
-    if (errorOccurred != 0)
+    /*check if everything went well*/
+    if (mixBusErrorOccurred ||
+        mixPresetErrorOccurred ||
+        waveBankErrorOccurred ||
+        soundErrorOccurred ||
+        eventErrorOccurred ||
+        audioDataReferenceErrorOccurred)
     {
         kwlEngineDataBinary_free(bin);
         return KWL_PROJECT_XML_STRUCTURE_ERROR;
@@ -1097,6 +1129,7 @@ kwlDataValidationResult kwlEngineDataBinary_loadFromBinaryFile(kwlEngineDataBina
             ei->gain = kwlInputStream_readFloatBE(&is);
             ei->pitch = kwlInputStream_readFloatBE(&is);
             ei->innerConeAngleDeg = kwlInputStream_readFloatBE(&is);
+            ei->innerConeGain = kwlInputStream_readFloatBE(&is);
             ei->outerConeAngleDeg = kwlInputStream_readFloatBE(&is);
             ei->outerConeGain = kwlInputStream_readFloatBE(&is);
             

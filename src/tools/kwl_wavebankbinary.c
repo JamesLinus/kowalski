@@ -180,10 +180,16 @@ kwlDataValidationResult kwlWaveBankBinary_loadFromXML(kwlWaveBankBinary* bin,
     
     /*load project data*/
     kwlEngineDataBinary projBin;
-    kwlEngineDataBinary_loadFromXML(&projBin,
-                                    xmlPath,
-                                    xsdPath,
-                                    errorLogCallback);
+    result = kwlEngineDataBinary_loadFromXML(&projBin,
+                                             xmlPath,
+                                             xsdPath,
+                                             1, //validate audio file refs
+                                             errorLogCallback);
+    
+    if (result != KWL_DATA_IS_VALID)
+    {
+        return result;
+    }
     
     /*find the wavebank*/
     kwlWaveBankChunk* waveBank = NULL;
@@ -237,7 +243,7 @@ kwlDataValidationResult kwlWaveBankBinary_loadFromXML(kwlWaveBankBinary* bin,
     if (errorOccurred != 0)
     {
         kwlWaveBankBinary_free(bin);
-        return KWL_PROJECT_XML_STRUCTURE_ERROR;
+        return KWL_AUDIO_FILE_REFERENCE_ERROR;
     }
     
     return KWL_DATA_IS_VALID;
@@ -256,13 +262,15 @@ void kwlWaveBankBinary_dump(kwlWaveBankBinary* bin,
     }
     logCallback(")\n");
     
-    logCallback("    %s (%d entries):\n", bin->id, bin->numEntries);
+    logCallback("    id '%s' (%d entries):\n", bin->id, bin->numEntries);
     
     for (int i = 0; i < bin->numEntries; i++)
     {
         kwlWaveBankEntryChunk* ei = &bin->entries[i];
-        logCallback("        %s (encoding %d, streaming %d, %d channel(s), %d bytes)\n",
-                    ei->fileName, ei->encoding, ei->isStreaming, ei->numChannels, ei->numBytes);
+        logCallback("        '%s'\n", ei->fileName);
+        logCallback("            encoding %d, streaming %d, %d channel(s), %d bytes\n",
+                    ei->encoding, ei->isStreaming, ei->numChannels, ei->numBytes);
+        
     }
 }
 

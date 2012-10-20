@@ -195,6 +195,7 @@ extern "C"
     kwlDataValidationResult kwlEngineDataBinary_loadFromXML(kwlEngineDataBinary* bin,
                                                             const char* xmlPath,
                                                             const char* xsdPath,
+                                                            int validateAudioFileReferences,
                                                             kwlLogCallback errorLogCallback);
     
     /**

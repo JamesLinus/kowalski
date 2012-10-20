@@ -32,14 +32,15 @@ int main(int argc, const char * argv[])
     kwlMemset(&pdb, 0, sizeof(kwlEngineDataBinary));
     
     //load kwl from xml
-    if (0)
+    if (1)
     {
         kwlEngineDataBinary_loadFromXML(&pdb,
                                         xmlPath,
                                         xsdPath,
+                                        1,
                                         kwlDefaultLogCallback);
-        //kwlEngineDataBinary_dump(&pdb, kwlDefaultLogCallback);
-        //kwlEngineDataBinary_writeToFile(&pdb, binTargetFile);
+        kwlEngineDataBinary_dump(&pdb, kwlDefaultLogCallback);
+        kwlEngineDataBinary_writeToFile(&pdb, binTargetFile);
         kwlEngineDataBinary_free(&pdb);
         
         kwlEngineDataBinary_loadFromBinaryFile(&pdb, binTargetFile, kwlDefaultLogCallback);
@@ -59,7 +60,7 @@ int main(int argc, const char * argv[])
     }
     
     //load kwb from xml
-    if (1)
+    if (0)
     {
         kwlWaveBankBinary wbb;
         kwlWaveBankBinary_loadFromXML(&wbb,
@@ -85,7 +86,7 @@ int main(int argc, const char * argv[])
     //validate xml
     if (0)
     {
-        kwlDataValidationResult result = kwlValidateProjectData(xmlPath, xsdPath, kwlDefaultLogCallback);
+        kwlDataValidationResult result = kwlValidateProjectData(xmlPath, xsdPath, 1, kwlDefaultLogCallback);
     }
     
     //validate kwl

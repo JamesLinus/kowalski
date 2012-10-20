@@ -45,6 +45,7 @@ extern "C"
         KWL_INVALID_FILE_IDENTIFIER,
         KWL_COULD_NOT_OPEN_WAVE_BANK_BINARY_FILE,
         KWL_COULD_NOT_OPEN_ENGINE_DATA_BINARY_FILE,
+        KWL_AUDIO_FILE_REFERENCE_ERROR,
         KWL_ENGINE_DATA_STRUCTURE_ERROR
     } kwlDataValidationResult;
     
@@ -57,9 +58,12 @@ extern "C"
     kwlDataValidationResult kwlValidate(const char* filePath, const char* schemaPath, kwlLogCallback logCallback);
     
     /**
-     *
+     * Validates a project data XML document.
      */
-    kwlDataValidationResult kwlValidateProjectData(const char* xmlPath, const char* xsdPath, kwlLogCallback logCallback);
+    kwlDataValidationResult kwlValidateProjectData(const char* xmlPath,
+                                                   const char* xsdPath,
+                                                   int validateAudioFileReferences,
+                                                   kwlLogCallback logCallback);
     
     /**
      *

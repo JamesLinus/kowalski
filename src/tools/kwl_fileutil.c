@@ -118,30 +118,30 @@ char* kwlGetAudioFilePath(const char* xmlPath,
                           int rootIsRelative,
                           const char* relPath)
 {
-    
+    /*
     printf("kwlGetAudioFilePath:\n");
     printf("    xmlPath  : %s\n", xmlPath);
     printf("    root     : %s\n", rootDir);
     printf("    rel root : %d\n", rootIsRelative);
-    printf("    rel path : %s\n", relPath);
+    printf("    rel path : %s\n", relPath);*/
     
     char* audioFilePath = NULL;
     if (rootIsRelative)
     {
         char* xmlRootDir = kwlGetFileDirectory(xmlPath);
-        printf("    xml root : %s\n", xmlRootDir);
+        //printf("    xml root : %s\n", xmlRootDir);
         KWL_ASSERT(kwlIsFileDirectory(xmlRootDir));
         char* audioRootDir = kwlAppendPathElement(xmlRootDir, rootDir);
         audioFilePath = kwlAppendPathElement(audioRootDir, relPath);
         KWL_FREE(audioRootDir);
         KWL_FREE(xmlRootDir);
-        printf("    full path: %s\n", audioFilePath);
+        //printf("    full path: %s\n", audioFilePath);
         return audioFilePath;
     }
     
     char* finalPath = kwlAppendPathElement(rootDir, relPath);
     
-    printf("    full path: %s\n", finalPath);
+    //printf("    full path: %s\n", finalPath);
     
     return finalPath;
     

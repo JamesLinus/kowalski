@@ -66,6 +66,7 @@ kwlDataValidationResult kwlValidate(const char* filePath, const char* schemaPath
     kwlDataValidationResult result = kwlEngineDataBinary_loadFromXML(&edb,
                                                                      filePath,
                                                                      schemaPath,
+                                                                     0,
                                                                      logCallback);
     kwlEngineDataBinary_free(&edb);
     if (result == KWL_DATA_IS_VALID)
@@ -77,6 +78,7 @@ kwlDataValidationResult kwlValidate(const char* filePath, const char* schemaPath
 
 kwlDataValidationResult kwlValidateProjectData(const char* xmlPath,
                                                const char* xsdPath,
+                                               int validateAudioFileReferences,
                                                kwlLogCallback errorCallback)
 {
     
@@ -87,6 +89,7 @@ kwlDataValidationResult kwlValidateProjectData(const char* xmlPath,
     kwlDataValidationResult result = kwlEngineDataBinary_loadFromXML(&bin,
                                                                      xmlPath,
                                                                      xsdPath,
+                                                                     validateAudioFileReferences,
                                                                      errorCallback);
     
     /*clean up*/

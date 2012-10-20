@@ -36,6 +36,8 @@
 
 #define KWL_TEMP_STRING_LENGTH 1024
 
+/*TODO: this shouldnt be global*/
+static char** soundDefinitionNames = NULL;
 
 /**
  * returns the path up to the top group
@@ -244,6 +246,13 @@ static void kwlGatherMixPresetsCallback(xmlNode* node,
             //TODO: dont write bus index, use the already established bus order
             char* busId = kwlGetAttributeValue(curr, KWL_XML_ATTR_PARAM_SET_BUS);
             const int busIdx = kwlGetMixBusIndex(bin, busId);
+            
+            if (busIdx < 0)
+            {
+                *errorOccurred = 1;
+                errorLogCallback("The mix bus '%s' referenced by mix preset '%s' does not exist\n", busId, c->id);
+            }
+            
             float gainLeft = kwlGetFloatAttributeValue(curr, KWL_XML_ATTR_PARAM_SET_GAIN_L);
             float gainRight = kwlGetFloatAttributeValue(curr, KWL_XML_ATTR_PARAM_SET_GAIN_R);
             float pitch = kwlGetFloatAttributeValue(curr, KWL_XML_ATTR_PARAM_SET_PITCH);
@@ -375,8 +384,6 @@ static void kwlCreateWaveBankChunk(xmlNode* projectRoot, kwlEngineDataBinary* bi
 
 static int kwlGetWaveBankIndex(kwlEngineDataBinary* bin, const char* id)
 {
-    KWL_ASSERT(bin->waveBankChunk.numWaveBanks > 0);
-    
     for (int i = 0; i < bin->waveBankChunk.numWaveBanks; i++)
     {
         kwlWaveBankChunk* wbi = &bin->waveBankChunk.waveBanks[i];
@@ -386,18 +393,28 @@ static int kwlGetWaveBankIndex(kwlEngineDataBinary* bin, const char* id)
         }
     }
     
-    KWL_ASSERT(0);
+    return -1;
+}
+
+static int kwlGetSoundDefinitionIndex(kwlEngineDataBinary* bin, const char* id)
+{
+    for (int i = 0; i < bin->soundChunk.numSoundDefinitions; i++)
+    {
+        
+        if (strcmp(id, soundDefinitionNames[i]) == 0)
+        {
+            return i;
+        }
+    }
     return -1;
 }
 
 
+
 static int kwlGetAudioDataIndex(kwlWaveBankChunk* wb, const char* id)
 {
-    KWL_ASSERT(wb->numAudioDataEntries > 0);
-    
     for (int i = 0; i < wb->numAudioDataEntries; i++)
     {
-        
         if (strcmp(id, wb->audioDataEntries[i]) == 0)
         {
             return i;
@@ -421,6 +438,11 @@ static void kwlGatherSoundsCallback(xmlNode* node,
                                                    sizeof(kwlSoundChunk) * bin->soundChunk.numSoundDefinitions,
                                                    "xml 2 bin sound realloc");
     kwlSoundChunk* c = &bin->soundChunk.soundDefinitions[bin->soundChunk.numSoundDefinitions - 1];
+    
+    soundDefinitionNames = KWL_REALLOC(soundDefinitionNames,
+                                       bin->soundChunk.numSoundDefinitions * sizeof(char*),
+                                       "sound def id list realloc");
+    soundDefinitionNames[bin->soundChunk.numSoundDefinitions - 1] = kwlGetNodePath(node);
     
     c->gain = kwlGetFloatAttributeValue(node, KWL_XML_ATTR_SOUND_GAIN);
     c->gainVariation = kwlGetFloatAttributeValue(node, KWL_XML_ATTR_SOUND_GAIN_VAR);
@@ -503,6 +525,14 @@ static void kwlGatherEventsCallback(xmlNode* node,
     c->isPositional = kwlGetBoolAttributeValue(node, KWL_XML_ATTR_EVENT_IS_POSITIONAL);
     c->mixBusIndex = kwlGetMixBusIndex(bin, kwlGetAttributeValue(node, KWL_XML_ATTR_EVENT_BUS));
     
+    if (c->mixBusIndex < 0)
+    {
+        *errorOccurred = 1;
+        errorLogCallback("The mix bus '%s' referenced by event definition '%s' does not exist\n",
+                         (const char*)kwlGetAttributeValue(node, KWL_XML_ATTR_EVENT_BUS),
+                         c->id);
+    }
+    
     c->numReferencedWaveBanks = 0;    //TODO
     
 }
@@ -518,6 +548,14 @@ static void kwlCreateEventChunk(xmlNode* projectRoot, kwlEngineDataBinary* bin, 
                         bin,
                         errorOccurred,
                         errorLogCallback);
+
+    /*we don't need the sound definition names anymore*/
+    for (int i = 0; i < bin->soundChunk.numSoundDefinitions; i++)
+    {
+        KWL_FREE(soundDefinitionNames[i]);
+    }
+    
+    KWL_FREE(soundDefinitionNames);
 }
 
 
@@ -578,6 +616,7 @@ kwlDataValidationResult kwlEngineDataBinary_loadFromXML(kwlEngineDataBinary* bin
     KWL_ASSERT(eventRootNode != NULL);
     
     kwlMemset(bin, 0, sizeof(kwlEngineDataBinary));
+    soundDefinitionNames = NULL;
     
     int errorOccurred = 0;
     kwlCreateMixBusChunk(projectRootNode, bin, &errorOccurred, errorLogCallback);
@@ -600,6 +639,7 @@ kwlDataValidationResult kwlEngineDataBinary_loadFromXML(kwlEngineDataBinary* bin
      *have been allocated by the parser.
      */
     xmlCleanupParser();
+
     
     if (errorOccurred != 0)
     {

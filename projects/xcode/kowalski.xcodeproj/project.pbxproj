@@ -64,6 +64,11 @@
 		C14548681632CBFA00DE1EA6 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C1760F8C1620DD5B0044204B /* libxml2.dylib */; };
 		C14548691632CD6D00DE1EA6 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C1760F8C1620DD5B0044204B /* libxml2.dylib */; };
 		C145486A1632CD7600DE1EA6 /* libkowalski.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC046055464E500DB518D /* libkowalski.dylib */; };
+		C145486C1632E1DF00DE1EA6 /* invalid_mix_preset_mix_bus_reference.xml in Resources */ = {isa = PBXBuildFile; fileRef = C145486B1632E1DF00DE1EA6 /* invalid_mix_preset_mix_bus_reference.xml */; };
+		C14548761632E75100DE1EA6 /* schema_error_duplicate_event_root_group.xml in Resources */ = {isa = PBXBuildFile; fileRef = C14548731632E74F00DE1EA6 /* schema_error_duplicate_event_root_group.xml */; };
+		C14548771632E75100DE1EA6 /* schema_error_forbidden_element_under_root.xml in Resources */ = {isa = PBXBuildFile; fileRef = C14548741632E75000DE1EA6 /* schema_error_forbidden_element_under_root.xml */; };
+		C14548781632E75100DE1EA6 /* schema_error_wrong_root_name.xml in Resources */ = {isa = PBXBuildFile; fileRef = C14548751632E75000DE1EA6 /* schema_error_wrong_root_name.xml */; };
+		C145487A1632E7FB00DE1EA6 /* minimal_valid_project_reordered_root_groups.xml in Resources */ = {isa = PBXBuildFile; fileRef = C14548791632E7FA00DE1EA6 /* minimal_valid_project_reordered_root_groups.xml */; };
 		C1636D3A163217D200D186E1 /* kwl_decoder_ios.c in Sources */ = {isa = PBXBuildFile; fileRef = C1636D36163217D200D186E1 /* kwl_decoder_ios.c */; };
 		C1636D3B163217D200D186E1 /* kwl_decoder_ios.h in Headers */ = {isa = PBXBuildFile; fileRef = C1636D37163217D200D186E1 /* kwl_decoder_ios.h */; };
 		C1636D3C163217D200D186E1 /* kwl_engine_ios.h in Headers */ = {isa = PBXBuildFile; fileRef = C1636D38163217D200D186E1 /* kwl_engine_ios.h */; };
@@ -87,7 +92,7 @@
 		C18CC383163206860037E220 /* duplicate_sound_ids_2.xml in Resources */ = {isa = PBXBuildFile; fileRef = C18CC320163206860037E220 /* duplicate_sound_ids_2.xml */; };
 		C18CC384163206860037E220 /* duplicate_wave_bank_ids.xml in Resources */ = {isa = PBXBuildFile; fileRef = C18CC321163206860037E220 /* duplicate_wave_bank_ids.xml */; };
 		C18CC385163206860037E220 /* invalid_audio_data_reference.xml in Resources */ = {isa = PBXBuildFile; fileRef = C18CC322163206860037E220 /* invalid_audio_data_reference.xml */; };
-		C18CC386163206860037E220 /* invalid_mix_bus_reference.xml in Resources */ = {isa = PBXBuildFile; fileRef = C18CC323163206860037E220 /* invalid_mix_bus_reference.xml */; };
+		C18CC386163206860037E220 /* invalid_event_mix_bus_reference.xml in Resources */ = {isa = PBXBuildFile; fileRef = C18CC323163206860037E220 /* invalid_event_mix_bus_reference.xml */; };
 		C18CC387163206860037E220 /* invalid_sound_reference.xml in Resources */ = {isa = PBXBuildFile; fileRef = C18CC324163206860037E220 /* invalid_sound_reference.xml */; };
 		C18CC388163206860037E220 /* minimal_valid_project.xml in Resources */ = {isa = PBXBuildFile; fileRef = C18CC325163206860037E220 /* minimal_valid_project.xml */; };
 		C18CC389163206860037E220 /* missing_default_mix_preset.xml in Resources */ = {isa = PBXBuildFile; fileRef = C18CC326163206860037E220 /* missing_default_mix_preset.xml */; };
@@ -379,6 +384,11 @@
 		C13F8D6412CF556300A30996 /* kwl_positionalaudiolistener.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_positionalaudiolistener.c; sourceTree = "<group>"; };
 		C14548451632C4EC00DE1EA6 /* kowalski.xsd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = kowalski.xsd; path = ../../src/tools/kowalski.xsd; sourceTree = "<group>"; };
 		C145484D1632CAFE00DE1EA6 /* libkowalski_tools.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libkowalski_tools.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C145486B1632E1DF00DE1EA6 /* invalid_mix_preset_mix_bus_reference.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = invalid_mix_preset_mix_bus_reference.xml; sourceTree = "<group>"; };
+		C14548731632E74F00DE1EA6 /* schema_error_duplicate_event_root_group.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = schema_error_duplicate_event_root_group.xml; sourceTree = "<group>"; };
+		C14548741632E75000DE1EA6 /* schema_error_forbidden_element_under_root.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = schema_error_forbidden_element_under_root.xml; sourceTree = "<group>"; };
+		C14548751632E75000DE1EA6 /* schema_error_wrong_root_name.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = schema_error_wrong_root_name.xml; sourceTree = "<group>"; };
+		C14548791632E7FA00DE1EA6 /* minimal_valid_project_reordered_root_groups.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = minimal_valid_project_reordered_root_groups.xml; sourceTree = "<group>"; };
 		C14F85A4120C4C080033D01F /* kwl_messagequeue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kwl_messagequeue.h; sourceTree = "<group>"; };
 		C14F85A5120C4C080033D01F /* kwl_messagequeue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_messagequeue.c; sourceTree = "<group>"; };
 		C160771D121677F90041FE58 /* kwl_engine_portaudio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kwl_engine_portaudio.c; sourceTree = "<group>"; };
@@ -425,7 +435,7 @@
 		C18CC320163206860037E220 /* duplicate_sound_ids_2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = duplicate_sound_ids_2.xml; sourceTree = "<group>"; };
 		C18CC321163206860037E220 /* duplicate_wave_bank_ids.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = duplicate_wave_bank_ids.xml; sourceTree = "<group>"; };
 		C18CC322163206860037E220 /* invalid_audio_data_reference.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = invalid_audio_data_reference.xml; sourceTree = "<group>"; };
-		C18CC323163206860037E220 /* invalid_mix_bus_reference.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = invalid_mix_bus_reference.xml; sourceTree = "<group>"; };
+		C18CC323163206860037E220 /* invalid_event_mix_bus_reference.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = invalid_event_mix_bus_reference.xml; sourceTree = "<group>"; };
 		C18CC324163206860037E220 /* invalid_sound_reference.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = invalid_sound_reference.xml; sourceTree = "<group>"; };
 		C18CC325163206860037E220 /* minimal_valid_project.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = minimal_valid_project.xml; sourceTree = "<group>"; };
 		C18CC326163206860037E220 /* missing_default_mix_preset.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = missing_default_mix_preset.xml; sourceTree = "<group>"; };
@@ -740,11 +750,16 @@
 				C18CC320163206860037E220 /* duplicate_sound_ids_2.xml */,
 				C18CC321163206860037E220 /* duplicate_wave_bank_ids.xml */,
 				C18CC322163206860037E220 /* invalid_audio_data_reference.xml */,
-				C18CC323163206860037E220 /* invalid_mix_bus_reference.xml */,
+				C18CC323163206860037E220 /* invalid_event_mix_bus_reference.xml */,
+				C145486B1632E1DF00DE1EA6 /* invalid_mix_preset_mix_bus_reference.xml */,
 				C18CC324163206860037E220 /* invalid_sound_reference.xml */,
 				C18CC325163206860037E220 /* minimal_valid_project.xml */,
+				C14548791632E7FA00DE1EA6 /* minimal_valid_project_reordered_root_groups.xml */,
 				C18CC326163206860037E220 /* missing_default_mix_preset.xml */,
 				C18CC327163206860037E220 /* multiple_default_mix_presets.xml */,
+				C14548731632E74F00DE1EA6 /* schema_error_duplicate_event_root_group.xml */,
+				C14548741632E75000DE1EA6 /* schema_error_forbidden_element_under_root.xml */,
+				C14548751632E75000DE1EA6 /* schema_error_wrong_root_name.xml */,
 				C18CC38B163206E40037E220 /* xml_syntax_error.xml */,
 			);
 			path = test;
@@ -1161,13 +1176,18 @@
 				C18CC383163206860037E220 /* duplicate_sound_ids_2.xml in Resources */,
 				C18CC384163206860037E220 /* duplicate_wave_bank_ids.xml in Resources */,
 				C18CC385163206860037E220 /* invalid_audio_data_reference.xml in Resources */,
-				C18CC386163206860037E220 /* invalid_mix_bus_reference.xml in Resources */,
+				C18CC386163206860037E220 /* invalid_event_mix_bus_reference.xml in Resources */,
 				C18CC387163206860037E220 /* invalid_sound_reference.xml in Resources */,
 				C18CC388163206860037E220 /* minimal_valid_project.xml in Resources */,
 				C18CC389163206860037E220 /* missing_default_mix_preset.xml in Resources */,
 				C18CC38A163206860037E220 /* multiple_default_mix_presets.xml in Resources */,
 				C18CC38C163206E40037E220 /* xml_syntax_error.xml in Resources */,
 				C14548461632C4EC00DE1EA6 /* kowalski.xsd in Resources */,
+				C145486C1632E1DF00DE1EA6 /* invalid_mix_preset_mix_bus_reference.xml in Resources */,
+				C14548761632E75100DE1EA6 /* schema_error_duplicate_event_root_group.xml in Resources */,
+				C14548771632E75100DE1EA6 /* schema_error_forbidden_element_under_root.xml in Resources */,
+				C14548781632E75100DE1EA6 /* schema_error_wrong_root_name.xml in Resources */,
+				C145487A1632E7FB00DE1EA6 /* minimal_valid_project_reordered_root_groups.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

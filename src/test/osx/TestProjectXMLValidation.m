@@ -41,6 +41,16 @@
     [super tearDown];
 }
 
+-(void)testBrokenSchemaRules
+{
+    [self ensureXMLValidationResult:@"schema_error_duplicate_event_root_group.xml"
+                                   :KWL_XML_VALIDATION_FAILED];
+    [self ensureXMLValidationResult:@"schema_error_forbidden_element_under_root.xml"
+                                   :KWL_XML_VALIDATION_FAILED];
+    [self ensureXMLValidationResult:@"schema_error_wrong_root_name.xml"
+                                   :KWL_XML_VALIDATION_FAILED];
+}
+
 -(void)testDuplicateEventGroupIDs
 {
     [self ensureXMLValidationResult:@"duplicate_event_group_ids_1.xml"
@@ -89,11 +99,18 @@
                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
 }
 
--(void)testInvalidMixBusReference
+-(void)testInvalidEventMixBusReference
 {
-    [self ensureXMLValidationResult:@"invalid_mix_bus_reference.xml"
+    [self ensureXMLValidationResult:@"invalid_event_mix_bus_reference.xml"
                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
 }
+
+-(void)testInvalidEventMixPresetMixBusReference
+{
+    [self ensureXMLValidationResult:@"invalid_mix_preset_mix_bus_reference.xml"
+                                   :KWL_PROJECT_XML_STRUCTURE_ERROR];
+}
+
 
 -(void)testInvalidSoundReference
 {
@@ -105,7 +122,10 @@
 {
     [self ensureXMLValidationResult:@"minimal_valid_project.xml"
                                    :KWL_DATA_IS_VALID];
+    [self ensureXMLValidationResult:@"minimal_valid_project_reordered_root_groups.xml"
+                                   :KWL_DATA_IS_VALID];
 }
+
 
 -(void)testMissingDefaultPreset
 {

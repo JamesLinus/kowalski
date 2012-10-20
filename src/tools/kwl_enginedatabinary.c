@@ -78,7 +78,10 @@ static const xmlChar* kwlGetNodePath(xmlNode* currentNode)
 /**
  * Gather mix buses excluding sub buses
  */
-static void kwlGatherMixBusesCallback(xmlNode* currentNode, void* b)
+static void kwlGatherMixBusesCallback(xmlNode* currentNode,
+                                      void* b,
+                                      int* errorOccurred,
+                                      kwlLogCallback errorLogCallback)
 {
     kwlEngineDataBinary* bin = (kwlEngineDataBinary*)b;
     bin->mixBusChunk.numMixBuses += 1;
@@ -98,7 +101,10 @@ static void kwlGatherMixBusesCallback(xmlNode* currentNode, void* b)
 /**
  * gather sub buses of already gathered mix buses
  */
-static void kwlGatherSubBusesCallback(xmlNode* node, void* b)
+static void kwlGatherSubBusesCallback(xmlNode* node,
+                                      void* b,
+                                      int* errorOccurred,
+                                      kwlLogCallback errorLogCallback)
 {
     kwlEngineDataBinary* bin = (kwlEngineDataBinary*)b;
     
@@ -144,7 +150,7 @@ static void kwlGatherSubBusesCallback(xmlNode* node, void* b)
     }
 }
 
-static void kwlCreateMixBusChunk(xmlNode* projectRoot, kwlEngineDataBinary* bin)
+static void kwlCreateMixBusChunk(xmlNode* projectRoot, kwlEngineDataBinary* bin, int* errorOccurred, kwlLogCallback errorLogCallback)
 {
     bin->mixBusChunk.chunkId = KWL_MIX_BUSES_CHUNK_ID;
     
@@ -152,13 +158,42 @@ static void kwlCreateMixBusChunk(xmlNode* projectRoot, kwlEngineDataBinary* bin)
                         KWL_XML_MIX_BUS_NAME,
                         KWL_XML_MIX_BUS_NAME,
                         kwlGatherMixBusesCallback,
-                        bin);
+                        bin,
+                        errorOccurred,
+                        errorLogCallback);
+    
+    /*check that all mix bus names are unique*/
+    for (int i = 0; i < bin->mixBusChunk.numMixBuses; i++)
+    {
+        const char* idi = bin->mixBusChunk.mixBuses[i].id;
+        for (int j = 0; j < bin->mixBusChunk.numMixBuses; j++)
+        {
+            if (j != i)
+            {
+                const char* idj = bin->mixBusChunk.mixBuses[j].id;
+                if (strcmp(idj, idi) == 0)
+                {
+                    errorLogCallback("Mix bus id '%s' is not unique.\n", idi);
+                    *errorOccurred = 1;
+                }
+            }
+        }
+    }
+    
+    if (*errorOccurred != 0)
+    {
+        /*if duplicate names were found, return now and skip gathering the sub buses*/
+        return;
+    }
     
     kwlTraverseNodeTree(projectRoot,
                         KWL_XML_MIX_BUS_NAME,
                         KWL_XML_MIX_BUS_NAME,
                         kwlGatherSubBusesCallback,
-                        bin);
+                        bin,
+                        errorOccurred,
+                        errorLogCallback);
+
 }
 
 static int kwlGetMixBusIndex(kwlEngineDataBinary* bin, const char* id)
@@ -173,15 +208,17 @@ static int kwlGetMixBusIndex(kwlEngineDataBinary* bin, const char* id)
             return i;
         }
     }
-    
-    KWL_ASSERT(0);
+
     return -1;
 }
 
 /**
  * Gather mix presets
  */
-static void kwlGatherMixPresetsCallback(xmlNode* node, void* b)
+static void kwlGatherMixPresetsCallback(xmlNode* node,
+                                        void* b,
+                                        int* errorOccurred,
+                                        kwlLogCallback errorLogCallback)
 {
     kwlEngineDataBinary* bin = (kwlEngineDataBinary*)b;
     const int numMixBuses = bin->mixBusChunk.numMixBuses;
@@ -220,10 +257,14 @@ static void kwlGatherMixPresetsCallback(xmlNode* node, void* b)
         }
     }
     
-    KWL_ASSERT(paramSetIdx == numMixBuses);
+    if (paramSetIdx != numMixBuses)
+    {
+        errorLogCallback("The number of parameter sets does not equal the number of mix buses for mix preset '%s'.\n", c->id);
+        *errorOccurred = 1;
+    }
 }
 
-static void kwlCreateMixPresetChunk(xmlNode* projectRoot, kwlEngineDataBinary* bin)
+static void kwlCreateMixPresetChunk(xmlNode* projectRoot, kwlEngineDataBinary* bin, int* errorOccurred, kwlLogCallback errorLogCallback)
 {
     bin->mixPresetChunk.chunkId = KWL_MIX_PRESETS_CHUNK_ID;
     
@@ -231,10 +272,55 @@ static void kwlCreateMixPresetChunk(xmlNode* projectRoot, kwlEngineDataBinary* b
                         KWL_XML_MIX_PRESET_GROUP_NAME,
                         KWL_XML_MIX_PRESET_NAME,
                         kwlGatherMixPresetsCallback,
-                        bin);
+                        bin,
+                        errorOccurred,
+                        errorLogCallback);
+    
+    /*check that all mix preset ids are unique */
+    for (int i = 0; i < bin->mixPresetChunk.numMixPresets; i++)
+    {
+        const char* idi = bin->mixPresetChunk.mixPresets[i].id;
+        for (int j = 0; j < bin->mixPresetChunk.numMixPresets; j++)
+        {
+            if (j != i)
+            {
+                const char* idj = bin->mixPresetChunk.mixPresets[j].id;
+                if (strcmp(idj, idi) == 0)
+                {
+                    errorLogCallback("Mix preset id '%s' is not unique.\n", idi);
+                    *errorOccurred = 1;
+                }
+            }
+        }
+    }
+    
+    /*check that there is exactly one default preset*/
+    int numDefaultsFound = 0;
+    for (int i = 0; i < bin->mixPresetChunk.numMixPresets; i++)
+    {
+        kwlMixPresetChunk* mpi = &bin->mixPresetChunk.mixPresets[i];
+        if (mpi->isDefault != 0)
+        {
+            numDefaultsFound++;
+        }
+    }
+    
+    if (numDefaultsFound == 0)
+    {
+        errorLogCallback("No default mix preset found.\n");
+        *errorOccurred = 1;
+    }
+    else if (numDefaultsFound > 1)
+    {
+        errorLogCallback("Multiple default mix presets found.\n");
+        *errorOccurred = 1;
+    }
 }
 
-static void kwlGatherWaveBanksCallback(xmlNode* node, void* b)
+static void kwlGatherWaveBanksCallback(xmlNode* node,
+                                       void* b,
+                                       int* errorOccurred,
+                                       kwlLogCallback errorLogCallback)
 {
     kwlEngineDataBinary* bin = (kwlEngineDataBinary*)b;
     bin->waveBankChunk.numWaveBanks += 1;
@@ -265,7 +351,7 @@ static void kwlGatherWaveBanksCallback(xmlNode* node, void* b)
     KWL_ASSERT(path != NULL);
 }
 
-static void kwlCreateWaveBankChunk(xmlNode* projectRoot, kwlEngineDataBinary* bin)
+static void kwlCreateWaveBankChunk(xmlNode* projectRoot, kwlEngineDataBinary* bin, int* errorOccurred, kwlLogCallback errorLogCallback)
 {
     bin->waveBankChunk.chunkId = KWL_WAVE_BANKS_CHUNK_ID;
     
@@ -274,7 +360,9 @@ static void kwlCreateWaveBankChunk(xmlNode* projectRoot, kwlEngineDataBinary* bi
                         KWL_XML_WAVE_BANK_GROUP_NAME,
                         KWL_XML_WAVE_BANK_NAME,
                         kwlGatherWaveBanksCallback,
-                        bin);
+                        bin,
+                        errorOccurred,
+                        errorLogCallback);
     /*store the total number of audio data items*/
     int totalNumItems = 0;
     for (int i = 0; i < bin->waveBankChunk.numWaveBanks; i++)
@@ -316,13 +404,17 @@ static int kwlGetAudioDataIndex(kwlWaveBankChunk* wb, const char* id)
         }
     }
     
-    KWL_ASSERT(0);
     return -1;
 }
 
 
-static void kwlGatherSoundsCallback(xmlNode* node, void* b)
+static void kwlGatherSoundsCallback(xmlNode* node,
+                                    void* b,
+                                    int* errorOccurred,
+                                    kwlLogCallback errorLogCallback)
 {
+    *errorOccurred = 0;
+    
     kwlEngineDataBinary* bin = (kwlEngineDataBinary*)b;
     bin->soundChunk.numSoundDefinitions += 1;
     bin->soundChunk.soundDefinitions = KWL_REALLOC(bin->soundChunk.soundDefinitions,
@@ -338,7 +430,6 @@ static void kwlGatherSoundsCallback(xmlNode* node, void* b)
     c->playbackCount = kwlGetIntAttributeValue(node, KWL_XML_ATTR_PLAYBACK_COUNT);
     c->playbackMode = kwlGetIntAttributeValue(node, KWL_XML_ATTR_PLAYBACK_MODE);
     c->numWaveReferences = kwlGetChildCount(node, KWL_XML_AUDIO_DATA_REFERENCE_NAME);
-    KWL_ASSERT(c->numWaveReferences > 0);
     
     if (c->numWaveReferences > 0)
     {
@@ -358,6 +449,15 @@ static void kwlGatherSoundsCallback(xmlNode* node, void* b)
             kwlWaveBankChunk* wb = &bin->waveBankChunk.waveBanks[wbIdx];
             const int itemIdx = kwlGetAudioDataIndex(wb, filePath);
             
+            if (itemIdx < 0)
+            {
+                const char* soundPath = kwlGetNodePath(node);
+                *errorOccurred = 1;
+                errorLogCallback("Invalid reference to '%s' in wave bank '%s' found in sound definition '%s'.\n",
+                                 filePath, waveBankId, soundPath);
+                KWL_FREE(soundPath);
+            }
+            
             c->waveBankIndices[refIdx] = wbIdx;
             c->audioDataIndices[refIdx] = itemIdx;
             
@@ -369,7 +469,7 @@ static void kwlGatherSoundsCallback(xmlNode* node, void* b)
     KWL_ASSERT(refIdx == c->numWaveReferences);
 }
 
-static void kwlCreateSoundChunk(xmlNode* projectRoot, kwlEngineDataBinary* bin)
+static void kwlCreateSoundChunk(xmlNode* projectRoot, kwlEngineDataBinary* bin, int* errorOccurred, kwlLogCallback errorLogCallback)
 {
     bin->soundChunk.chunkId = KWL_SOUNDS_CHUNK_ID;
     
@@ -377,10 +477,15 @@ static void kwlCreateSoundChunk(xmlNode* projectRoot, kwlEngineDataBinary* bin)
                         KWL_XML_SOUND_GROUP_NAME,
                         KWL_XML_SOUND_NAME,
                         kwlGatherSoundsCallback,
-                        bin);
+                        bin,
+                        errorOccurred,
+                        errorLogCallback);
 }
 
-static void kwlGatherEventsCallback(xmlNode* node, void* b)
+static void kwlGatherEventsCallback(xmlNode* node,
+                                    void* b,
+                                    int* errorOccurred,
+                                    kwlLogCallback errorLogCallback)
 {
     kwlEngineDataBinary* bin = (kwlEngineDataBinary*)b;
     bin->eventChunk.numEventDefinitions += 1;
@@ -399,10 +504,10 @@ static void kwlGatherEventsCallback(xmlNode* node, void* b)
     c->mixBusIndex = kwlGetMixBusIndex(bin, kwlGetAttributeValue(node, KWL_XML_ATTR_EVENT_BUS));
     
     c->numReferencedWaveBanks = 0;    //TODO
-
+    
 }
 
-static void kwlCreateEventChunk(xmlNode* projectRoot, kwlEngineDataBinary* bin)
+static void kwlCreateEventChunk(xmlNode* projectRoot, kwlEngineDataBinary* bin, int* errorOccurred, kwlLogCallback errorLogCallback)
 {
     bin->eventChunk.chunkId = KWL_EVENTS_CHUNK_ID;
     
@@ -410,7 +515,9 @@ static void kwlCreateEventChunk(xmlNode* projectRoot, kwlEngineDataBinary* bin)
                         KWL_XML_EVENT_GROUP_NAME,
                         KWL_XML_EVENT_NAME,
                         kwlGatherEventsCallback,
-                        bin);
+                        bin,
+                        errorOccurred,
+                        errorLogCallback);
 }
 
 
@@ -472,11 +579,12 @@ kwlDataValidationResult kwlEngineDataBinary_loadFromXML(kwlEngineDataBinary* bin
     
     kwlMemset(bin, 0, sizeof(kwlEngineDataBinary));
     
-    kwlCreateMixBusChunk(projectRootNode, bin);
-    kwlCreateMixPresetChunk(mixPresetRootNode, bin);
-    kwlCreateWaveBankChunk(waveBankRootNode, bin);
-    kwlCreateSoundChunk(soundRootNode, bin);
-    kwlCreateEventChunk(eventRootNode, bin);
+    int errorOccurred = 0;
+    kwlCreateMixBusChunk(projectRootNode, bin, &errorOccurred, errorLogCallback);
+    kwlCreateMixPresetChunk(mixPresetRootNode, bin, &errorOccurred, errorLogCallback);
+    kwlCreateWaveBankChunk(waveBankRootNode, bin, &errorOccurred, errorLogCallback);
+    kwlCreateSoundChunk(soundRootNode, bin, &errorOccurred, errorLogCallback);
+    kwlCreateEventChunk(eventRootNode, bin, &errorOccurred, errorLogCallback);
     
     /*finally, write file identifier*/
     for (int i = 0; i < KWL_ENGINE_DATA_BINARY_FILE_IDENTIFIER_LENGTH; i++)
@@ -492,6 +600,12 @@ kwlDataValidationResult kwlEngineDataBinary_loadFromXML(kwlEngineDataBinary* bin
      *have been allocated by the parser.
      */
     xmlCleanupParser();
+    
+    if (errorOccurred != 0)
+    {
+        kwlEngineDataBinary_free(bin);
+        return KWL_PROJECT_XML_STRUCTURE_ERROR;
+    }
     
     return KWL_DATA_IS_VALID;
 }
@@ -663,8 +777,8 @@ void kwlEngineDataBinary_writeToFile(kwlEngineDataBinary* bin,
 }
 
 kwlDataValidationResult kwlEngineDataBinary_loadFromBinaryFile(kwlEngineDataBinary* binaryRep,
-                                                           const char* binaryPath,
-                                                           kwlLogCallback errorLogCallbackIn)
+                                                               const char* binaryPath,
+                                                               kwlLogCallback errorLogCallbackIn)
 {
     
     kwlMemset(binaryRep, 0, sizeof(kwlEngineDataBinary));
@@ -985,7 +1099,7 @@ void kwlEngineDataBinary_free(kwlEngineDataBinary* bin)
     {
         kwlMixBusChunk* mbi = &bin->mixBusChunk.mixBuses[i];
         KWL_FREE(mbi->id);
-        if (mbi->subBusIndices != NULL)
+        if (mbi->numSubBuses > 0)
         {
             KWL_FREE(mbi->subBusIndices);
         }
@@ -1021,8 +1135,11 @@ void kwlEngineDataBinary_free(kwlEngineDataBinary* bin)
     for (int i = 0; i < bin->soundChunk.numSoundDefinitions; i++)
     {
         kwlSoundChunk* si = &bin->soundChunk.soundDefinitions[i];
-        KWL_FREE(si->waveBankIndices);
-        KWL_FREE(si->audioDataIndices);
+        if (si->numWaveReferences > 0)
+        {
+            KWL_FREE(si->waveBankIndices);
+            KWL_FREE(si->audioDataIndices);
+        }
     }
     
     KWL_FREE(bin->soundChunk.soundDefinitions);
@@ -1031,7 +1148,7 @@ void kwlEngineDataBinary_free(kwlEngineDataBinary* bin)
     {
         kwlEventChunk* ei = &bin->eventChunk.eventDefinitions[i];
         KWL_FREE(ei->id);
-        if (ei->waveBankIndices != NULL)
+        if (ei->numReferencedWaveBanks > 0)
         {
             KWL_FREE(ei->waveBankIndices);
         }

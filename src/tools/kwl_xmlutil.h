@@ -89,7 +89,7 @@ extern "C"
      * @param currentNode
      * @param userData 
      */
-    typedef void (*kwlNodeTraversalCallback)(xmlNode* currentNode, void* userData);
+    typedef void (*kwlNodeTraversalCallback)(xmlNode* currentNode, void* userData, int* errorOccurred, kwlLogCallback errorLogCallback);
 
     /**
      * Traverses an xml tree starting at a given root, decending at nodes with the name \c branchNodeName
@@ -104,7 +104,9 @@ extern "C"
                              const char* branchNodeName,
                              const char* leafNodeName,
                              kwlNodeTraversalCallback callback,
-                             void* userData);
+                             void* userData,
+                             int* errorOccurred,
+                             kwlLogCallback errorLogCallback);
     
     /**
      * Returns the value of an attribute with a given name for a given node. The

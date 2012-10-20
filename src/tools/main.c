@@ -32,7 +32,7 @@ int main(int argc, const char * argv[])
                                         xsdPath,
                                         kwlDefaultLogCallback);
         //kwlEngineDataBinary_dump(&pdb, kwlDefaultLogCallback);
-        kwlEngineDataBinary_writeToFile(&pdb, binTargetFile);
+        //kwlEngineDataBinary_writeToFile(&pdb, binTargetFile);
         kwlEngineDataBinary_free(&pdb);
         
         kwlEngineDataBinary_loadFromBinaryFile(&pdb, binTargetFile, kwlDefaultLogCallback);
@@ -52,7 +52,7 @@ int main(int argc, const char * argv[])
     }
     
     //load kwb from xml
-    if (1)
+    if (0)
     {
         kwlWaveBankBinary wbb;
         kwlWaveBankBinary_loadFromXML(&wbb,
@@ -76,9 +76,9 @@ int main(int argc, const char * argv[])
     }
     
     //validate xml
-    if (0)
+    if (1)
     {
-        kwlValidateProjectData(xmlPath, xsdPath, kwlDefaultLogCallback);
+        kwlDataValidationResult result = kwlValidateProjectData(xmlPath, xsdPath, kwlDefaultLogCallback);
     }
     
     //validate kwl

@@ -32,10 +32,12 @@ freely, subject to the following restrictions:
 
 static kwlDataValidationResult validateEngineDataBinaryStructure(kwlEngineDataBinary* bin, kwlLogCallback errorCallback)
 {
-    return 0;
+    return KWL_DATA_IS_VALID;
 }
 
-kwlDataValidationResult kwlValidateProjectData(const char* xmlPath, const char* xsdPath, kwlLogCallback errorCallback)
+kwlDataValidationResult kwlValidateProjectData(const char* xmlPath,
+                                               const char* xsdPath,
+                                               kwlLogCallback errorCallback)
 {
     
 
@@ -48,6 +50,7 @@ kwlDataValidationResult kwlValidateProjectData(const char* xmlPath, const char* 
                                                                          xmlPath,
                                                                          xsdPath,
                                                                          errorCallback);
+
         if (result != KWL_DATA_IS_VALID)
         {
             return result;

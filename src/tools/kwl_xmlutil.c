@@ -31,17 +31,19 @@ void kwlTraverseNodeTree(xmlNode* root,
                          const char* branchNodeName,
                          const char* leafNodeName,
                          kwlNodeTraversalCallback callback,
-                         void* userData)
+                         void* userData,
+                         int* errorOccurred,
+                         kwlLogCallback errorLogCallback)
 {
     for (xmlNode* curr = root->children; curr != NULL; curr = curr->next)
     {
         if (xmlStrEqual(curr->name, (xmlChar*)branchNodeName))
         {
-            kwlTraverseNodeTree(curr, branchNodeName, leafNodeName, callback, userData);
+            kwlTraverseNodeTree(curr, branchNodeName, leafNodeName, callback, userData, errorOccurred, errorLogCallback);
         }
         if (xmlStrEqual(curr->name, (xmlChar*)leafNodeName))
         {
-            callback(curr, userData);
+            callback(curr, userData, errorOccurred, errorLogCallback);
         }
     }
 }

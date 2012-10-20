@@ -62,6 +62,8 @@
 		C14548661632CBAC00DE1EA6 /* libkowalski_tools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C145484D1632CAFE00DE1EA6 /* libkowalski_tools.a */; };
 		C14548671632CBE900DE1EA6 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C1760F8C1620DD5B0044204B /* libxml2.dylib */; };
 		C14548681632CBFA00DE1EA6 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C1760F8C1620DD5B0044204B /* libxml2.dylib */; };
+		C14548691632CD6D00DE1EA6 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C1760F8C1620DD5B0044204B /* libxml2.dylib */; };
+		C145486A1632CD7600DE1EA6 /* libkowalski.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC046055464E500DB518D /* libkowalski.dylib */; };
 		C1636D3A163217D200D186E1 /* kwl_decoder_ios.c in Sources */ = {isa = PBXBuildFile; fileRef = C1636D36163217D200D186E1 /* kwl_decoder_ios.c */; };
 		C1636D3B163217D200D186E1 /* kwl_decoder_ios.h in Headers */ = {isa = PBXBuildFile; fileRef = C1636D37163217D200D186E1 /* kwl_decoder_ios.h */; };
 		C1636D3C163217D200D186E1 /* kwl_engine_ios.h in Headers */ = {isa = PBXBuildFile; fileRef = C1636D38163217D200D186E1 /* kwl_engine_ios.h */; };
@@ -517,6 +519,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C145486A1632CD7600DE1EA6 /* libkowalski.dylib in Frameworks */,
+				C14548691632CD6D00DE1EA6 /* libxml2.dylib in Frameworks */,
 				C14548661632CBAC00DE1EA6 /* libkowalski_tools.a in Frameworks */,
 				C19BB8601630C1E9000F1BE7 /* SenTestingKit.framework in Frameworks */,
 				C19BB8621630C1E9000F1BE7 /* Cocoa.framework in Frameworks */,

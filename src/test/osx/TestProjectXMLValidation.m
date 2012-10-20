@@ -44,61 +44,61 @@
 -(void)testDuplicateEventGroupIDs
 {
     [self ensureXMLValidationResult:@"duplicate_event_group_ids_1.xml"
-                                   :KWL_ENGINE_DATA_STRUCTURE_ERROR];
+                                   :KWL_PROJECT_XML_STRUCTURE_ERROR];
     [self ensureXMLValidationResult:@"duplicate_event_group_ids_2.xml"
-                                   :KWL_ENGINE_DATA_STRUCTURE_ERROR];
+                                   :KWL_PROJECT_XML_STRUCTURE_ERROR];
 }
 
 -(void)testDuplicateEventIDs
 {
     [self ensureXMLValidationResult:@"duplicate_event_ids_1.xml"
-                                   :KWL_ENGINE_DATA_STRUCTURE_ERROR];
+                                   :KWL_PROJECT_XML_STRUCTURE_ERROR];
 }
 
 -(void)testDuplicateMixBusIDs
 {
     [self ensureXMLValidationResult:@"duplicate_mix_bus_ids.xml"
-                                   :KWL_ENGINE_DATA_STRUCTURE_ERROR];
+                                   :KWL_PROJECT_XML_STRUCTURE_ERROR];
 }
 
 -(void)testDuplicateSoundGroupIDs
 {
     [self ensureXMLValidationResult:@"duplicate_sound_group_ids_1.xml"
-                                   :KWL_ENGINE_DATA_STRUCTURE_ERROR];
+                                   :KWL_PROJECT_XML_STRUCTURE_ERROR];
     [self ensureXMLValidationResult:@"duplicate_sound_group_ids_2.xml"
-                                   :KWL_ENGINE_DATA_STRUCTURE_ERROR];
+                                   :KWL_PROJECT_XML_STRUCTURE_ERROR];
 }
 
 -(void)testDuplicateSoundIDs
 {
     [self ensureXMLValidationResult:@"duplicate_sound_ids_1.xml"
-                                   :KWL_ENGINE_DATA_STRUCTURE_ERROR];
+                                   :KWL_PROJECT_XML_STRUCTURE_ERROR];
     [self ensureXMLValidationResult:@"duplicate_sound_ids_2.xml"
-                                   :KWL_ENGINE_DATA_STRUCTURE_ERROR];
+                                   :KWL_PROJECT_XML_STRUCTURE_ERROR];
 }
 
 -(void)testDuplicateWaveBankIDs
 {
     [self ensureXMLValidationResult:@"duplicate_wave_bank_ids.xml"
-                                   :KWL_ENGINE_DATA_STRUCTURE_ERROR];
+                                   :KWL_PROJECT_XML_STRUCTURE_ERROR];
 }
 
 -(void)testInvalidAudioDataReference
 {
     [self ensureXMLValidationResult:@"invalid_audio_data_reference.xml"
-                                   :KWL_ENGINE_DATA_STRUCTURE_ERROR];
+                                   :KWL_PROJECT_XML_STRUCTURE_ERROR];
 }
 
 -(void)testInvalidMixBusReference
 {
     [self ensureXMLValidationResult:@"invalid_mix_bus_reference.xml"
-                                   :KWL_ENGINE_DATA_STRUCTURE_ERROR];
+                                   :KWL_PROJECT_XML_STRUCTURE_ERROR];
 }
 
 -(void)testInvalidSoundReference
 {
     [self ensureXMLValidationResult:@"invalid_sound_reference.xml"
-                                   :KWL_ENGINE_DATA_STRUCTURE_ERROR];
+                                   :KWL_PROJECT_XML_STRUCTURE_ERROR];
 }
 
 -(void)testValidProjectXML
@@ -110,13 +110,13 @@
 -(void)testMissingDefaultPreset
 {
     [self ensureXMLValidationResult:@"missing_default_mix_preset.xml"
-                                   :KWL_ENGINE_DATA_STRUCTURE_ERROR];
+                                   :KWL_PROJECT_XML_STRUCTURE_ERROR];
 }
 
 -(void)testMultipleDefaultPresets
 {
     [self ensureXMLValidationResult:@"multiple_default_mix_presets.xml"
-                                   :KWL_ENGINE_DATA_STRUCTURE_ERROR];
+                                   :KWL_PROJECT_XML_STRUCTURE_ERROR];
 }
 
 -(void)testXMLSyntaxError

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<KowalskiProject version="1.0" audioFileRootDirectory="">
+<<KowalskiProject version="1.0">
   <EventGroup id="root"/>
   <WaveBankGroup id="root"/>
   <SoundGroup id="root"/>

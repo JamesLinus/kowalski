@@ -186,24 +186,24 @@ extern "C"
     /**
      *
      */
-    void kwlEngineDataBinary_writeToFile(kwlEngineDataBinary* bin,
-                                         const char* binPath);
+    kwlResultCode kwlEngineDataBinary_writeToFile(kwlEngineDataBinary* bin,
+                                                  const char* binPath);
     
     /**
      *
      */
-    kwlDataValidationResult kwlEngineDataBinary_loadFromXML(kwlEngineDataBinary* bin,
-                                                            const char* xmlPath,
-                                                            const char* xsdPath,
-                                                            int validateAudioFileReferences,
-                                                            kwlLogCallback errorLogCallback);
+    kwlResultCode kwlEngineDataBinary_loadFromXML(kwlEngineDataBinary* bin,
+                                                  const char* xmlPath,
+                                                  const char* xsdPath,
+                                                  int validateAudioFileReferences,
+                                                  kwlLogCallback errorLogCallback);
     
     /**
      *
      */
-    kwlDataValidationResult kwlEngineDataBinary_loadFromBinaryFile(kwlEngineDataBinary* bin,
-                                                                   const char* binPath,
-                                                                   kwlLogCallback errorLogCallback);
+    kwlResultCode kwlEngineDataBinary_loadFromBinaryFile(kwlEngineDataBinary* bin,
+                                                         const char* binPath,
+                                                         kwlLogCallback errorLogCallback);
     
     /**
      *

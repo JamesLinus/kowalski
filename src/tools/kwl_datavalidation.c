@@ -32,16 +32,15 @@
 #include "kwl_enginedatabinary.h"
 #include "kwl_wavebankbinary.h"
 
-
-kwlDataValidationResult kwlValidate(const char* filePath, const char* schemaPath, kwlLogCallback logCallback)
+kwlResultCode kwlValidate(const char* filePath, const char* schemaPath, kwlLogCallback logCallback)
 {
     if (kwlFileIsWaveBankBinary(filePath))
     {
         logCallback("Validating wave bank binary file %s:\n", filePath);
         kwlWaveBankBinary wbb;
-        kwlDataValidationResult result = kwlWaveBankBinary_loadFromBinaryFile(&wbb, filePath, logCallback);
+        kwlResultCode result = kwlWaveBankBinary_loadFromBinaryFile(&wbb, filePath, logCallback);
         kwlWaveBankBinary_free(&wbb);
-        if (result == KWL_DATA_IS_VALID)
+        if (result == KWL_SUCCESS)
         {
             logCallback("No errors.\n");
         }
@@ -51,9 +50,9 @@ kwlDataValidationResult kwlValidate(const char* filePath, const char* schemaPath
     {
         logCallback("Validating engine data binary file %s:\n", filePath);
         kwlEngineDataBinary edb;
-        kwlDataValidationResult result = kwlEngineDataBinary_loadFromBinaryFile(&edb, filePath, logCallback);
+        kwlResultCode result = kwlEngineDataBinary_loadFromBinaryFile(&edb, filePath, logCallback);
         kwlEngineDataBinary_free(&edb);
-        if (result == KWL_DATA_IS_VALID)
+        if (result == KWL_SUCCESS)
         {
             logCallback("No errors.\n");
         }
@@ -63,34 +62,34 @@ kwlDataValidationResult kwlValidate(const char* filePath, const char* schemaPath
     /*The file is not a valid binary. See if it's a project data XML file*/
     logCallback("Validating project data XML file %s:\n", filePath);
     kwlEngineDataBinary edb;
-    kwlDataValidationResult result = kwlEngineDataBinary_loadFromXML(&edb,
-                                                                     filePath,
-                                                                     schemaPath,
-                                                                     0,
-                                                                     logCallback);
+    kwlResultCode result = kwlEngineDataBinary_loadFromXML(&edb,
+                                                           filePath,
+                                                           schemaPath,
+                                                           0,
+                                                           logCallback);
     kwlEngineDataBinary_free(&edb);
-    if (result == KWL_DATA_IS_VALID)
+    if (result == KWL_SUCCESS)
     {
         logCallback("No errors.\n");
     }
     return result;
 }
 
-kwlDataValidationResult kwlValidateProjectData(const char* xmlPath,
-                                               const char* xsdPath,
-                                               int validateAudioFileReferences,
-                                               kwlLogCallback errorCallback)
+kwlResultCode kwlValidateProjectData(const char* xmlPath,
+                                     const char* xsdPath,
+                                     int validateAudioFileReferences,
+                                     kwlLogCallback errorCallback)
 {
     
     
     kwlEngineDataBinary bin;
     kwlMemset(&bin, 0, sizeof(kwlEngineDataBinary));
     
-    kwlDataValidationResult result = kwlEngineDataBinary_loadFromXML(&bin,
-                                                                     xmlPath,
-                                                                     xsdPath,
-                                                                     validateAudioFileReferences,
-                                                                     errorCallback);
+    kwlResultCode result = kwlEngineDataBinary_loadFromXML(&bin,
+                                                           xmlPath,
+                                                           xsdPath,
+                                                           validateAudioFileReferences,
+                                                           errorCallback);
     
     /*clean up*/
     kwlEngineDataBinary_free(&bin);

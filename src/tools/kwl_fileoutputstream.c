@@ -16,7 +16,7 @@ int kwlFileOutputStream_initWithPath(kwlFileOutputStream* const stream, const ch
     {
         //perror("ERROR:");
         //fprintf(stderr, "%s\n", );
-
+        
         return 0;
     }
     

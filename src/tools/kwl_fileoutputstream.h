@@ -1,7 +1,7 @@
 #ifndef KWL_FILE_OUTPUTSTREAM_H
 #define KWL_FILE_OUTPUTSTREAM_H
 
-/*! \file */ 
+/*! \file */
 
 #include <stdio.h>
 #include "kwl_inputstream.h"
@@ -10,7 +10,7 @@
 extern "C"
 {
 #endif /* __cplusplus */
-
+    
     typedef struct kwlFileOutputStream
     {
         FILE* file;
@@ -49,6 +49,6 @@ extern "C"
     
 #ifdef __cplusplus
 }
-#endif /* __cplusplus */    
-    
+#endif /* __cplusplus */
+
 #endif /*KWL_FILE_OUTPUTSTREAM_H*/

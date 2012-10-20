@@ -87,9 +87,9 @@ void kwlWaveBankBinary_writeToFile(kwlWaveBankBinary* bin,
     kwlFileOutputStream_close(&fos);
 }
 
-kwlDataValidationResult kwlWaveBankBinary_loadFromBinaryFile(kwlWaveBankBinary* binaryRep,
-                                                             const char* path,
-                                                             kwlLogCallback errorLogCallback)
+kwlResultCode kwlWaveBankBinary_loadFromBinaryFile(kwlWaveBankBinary* binaryRep,
+                                                   const char* path,
+                                                   kwlLogCallback errorLogCallback)
 {
     kwlLogCallback errorCallback = errorLogCallback == NULL ? kwlSilentLogCallback : errorLogCallback;
     
@@ -104,7 +104,7 @@ kwlDataValidationResult kwlWaveBankBinary_loadFromBinaryFile(kwlWaveBankBinary* 
         return KWL_COULD_NOT_OPEN_WAVE_BANK_BINARY_FILE;
     }
     
-    kwlDataValidationResult error = KWL_DATA_IS_VALID;
+    kwlResultCode error = KWL_SUCCESS;
     
     /*... and check the wave bank file identifier.*/
     for (int i = 0; i < KWL_WAVE_BANK_BINARY_FILE_IDENTIFIER_LENGTH; i++)
@@ -139,7 +139,7 @@ kwlDataValidationResult kwlWaveBankBinary_loadFromBinaryFile(kwlWaveBankBinary* 
     }
     
     kwlInputStream_close(&stream);
-    return KWL_DATA_IS_VALID;
+    return KWL_SUCCESS;
     
 onDataError:
     kwlInputStream_close(&stream);
@@ -157,16 +157,16 @@ static char* kwlDuplicateString(const char* str)
     return copy;
 }
 
-kwlDataValidationResult kwlWaveBankBinary_loadFromXML(kwlWaveBankBinary* bin,
-                                                      const char* xmlPath,
-                                                      const char* xsdPath,
-                                                      const char* waveBankId,
-                                                      kwlLogCallback errorLogCallback)
+kwlResultCode kwlWaveBankBinary_loadFromXML(kwlWaveBankBinary* bin,
+                                            const char* xmlPath,
+                                            const char* xsdPath,
+                                            const char* waveBankId,
+                                            kwlLogCallback errorLogCallback)
 {
     /*grab the audio file root path*/
     xmlDocPtr doc = NULL;
-    kwlDataValidationResult result = kwlLoadAndValidateProjectDataDoc(xmlPath, xsdPath, &doc, errorLogCallback);
-    if (result != KWL_DATA_IS_VALID)
+    kwlResultCode result = kwlLoadAndValidateProjectDataDoc(xmlPath, xsdPath, &doc, errorLogCallback);
+    if (result != KWL_SUCCESS)
     {
         return result;
     }
@@ -186,7 +186,7 @@ kwlDataValidationResult kwlWaveBankBinary_loadFromXML(kwlWaveBankBinary* bin,
                                              1, //validate audio file refs
                                              errorLogCallback);
     
-    if (result != KWL_DATA_IS_VALID)
+    if (result != KWL_SUCCESS)
     {
         return result;
     }
@@ -226,15 +226,7 @@ kwlDataValidationResult kwlWaveBankBinary_loadFromXML(kwlWaveBankBinary* bin,
         kwlWaveBankEntryChunk* ei = &bin->entries[i];
         ei->fileName = kwlDuplicateString(waveBank->audioDataEntries[i]);
         const char* audioFilePath = kwlGetAudioFilePath(xmlPath, audioFileRoot, rootIsRelative, ei->fileName);
-        if (!kwlDoesFileExist(audioFilePath))
-        {
-            errorLogCallback("The audio file '%s' referenced by wave bank '%s' does not exist.\n", audioFilePath, bin->id);
-            errorOccurred = 1;
-        }
-        else
-        {
-            //load data from file
-        }
+        KWL_ASSERT(kwlDoesFileExist(audioFilePath) && "audio file does not exist. should have been caught in validation");
     }
     
     /*clean up*/
@@ -246,7 +238,7 @@ kwlDataValidationResult kwlWaveBankBinary_loadFromXML(kwlWaveBankBinary* bin,
         return KWL_AUDIO_FILE_REFERENCE_ERROR;
     }
     
-    return KWL_DATA_IS_VALID;
+    return KWL_SUCCESS;
 }
 
 void kwlWaveBankBinary_dump(kwlWaveBankBinary* bin,

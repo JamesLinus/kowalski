@@ -49,3 +49,4 @@ tools
 - skip top bus "master" name constraint
 - make top MixPresetGroup optional
 - allow empty wavebanks etc in binaries.
+- path notation for mix buses too?

@@ -332,15 +332,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		C1760F791620D6160044204B /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
 		C1CF02021171D1D9007D7ACC /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1060,7 +1051,6 @@
 			buildPhases = (
 				C1760F771620D6160044204B /* Sources */,
 				C1760F781620D6160044204B /* Frameworks */,
-				C1760F791620D6160044204B /* CopyFiles */,
 			);
 			buildRules = (
 			);

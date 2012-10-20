@@ -220,7 +220,7 @@ static void kwlCreateMixBusChunk(xmlNode* projectRoot, kwlEngineDataBinary* bin,
                         bin,
                         errorOccurred,
                         errorLogCallback);
-
+    
 }
 
 static int kwlGetMixBusIndex(kwlEngineDataBinary* bin, const char* id)
@@ -235,7 +235,7 @@ static int kwlGetMixBusIndex(kwlEngineDataBinary* bin, const char* id)
             return i;
         }
     }
-
+    
     return -1;
 }
 
@@ -571,7 +571,7 @@ static void kwlCreateEventChunk(xmlNode* projectRoot, kwlEngineDataBinary* bin, 
                         bin,
                         errorOccurred,
                         errorLogCallback);
-
+    
     /*we don't need the sound definition names anymore*/
     for (int i = 0; i < bin->soundChunk.numSoundDefinitions; i++)
     {
@@ -581,19 +581,79 @@ static void kwlCreateEventChunk(xmlNode* projectRoot, kwlEngineDataBinary* bin, 
     KWL_FREE(soundDefinitionNames);
 }
 
+static void kwlCheckPathUniqueness(xmlNode* node,
+                                   const char* branchNodeName,
+                                   const char* leafNodeName,
+                                   int* uniquenessErrorOccurred,
+                                   kwlLogCallback errorLogCallback)
+{
+    const int childCount = kwlGetChildCount(node, branchNodeName) + kwlGetChildCount(node, leafNodeName);
+    
+    /*gather child id list*/
+    const xmlChar** childNames = KWL_MALLOC(childCount * sizeof(char*), "path uniqueness check list");
+    int childIdx = 0;
+    for (xmlNode* curr = node->children; curr != NULL; curr = curr->next)
+    {
+        if (xmlStrEqual(curr->name, (xmlChar*)branchNodeName) ||
+            xmlStrEqual(curr->name, (xmlChar*)leafNodeName))
+        {
+            childNames[childIdx] = kwlGetAttributeValue(curr, "id");
+            KWL_ASSERT(childNames[childIdx] != NULL);
+            childIdx++;
+        }
+    }
+    
+    KWL_ASSERT(childCount == childIdx);
+    
+    /*check id uniqueness*/
+    for (int i = 0; i < childCount; i++)
+    {
+        int numMatches = 0;
+        for (int j = 0; j < childCount; j++)
+        {
+            if (xmlStrEqual(childNames[i], childNames[j]))
+            {
+                numMatches++;
+            }
+        }
+        
+        KWL_ASSERT(numMatches > 0);
+        
+        if (numMatches > 1)
+        {
+            errorLogCallback("The id '%s' is not unique among the children of the containing %s '%s'.\n",
+                             childNames[i], branchNodeName, (const char*)kwlGetAttributeValue(node, "id"));
+            *uniquenessErrorOccurred = 1;
+        }
+    }
+    
+    KWL_FREE(childNames);
+    
+    /*traverse branch nodes*/
+    for (xmlNode* curr = node->children; curr != NULL; curr = curr->next)
+    {
+        if (xmlStrEqual(curr->name, (xmlChar*)branchNodeName))
+        {
+            kwlCheckPathUniqueness(curr,
+                                   branchNodeName,
+                                   leafNodeName,
+                                   uniquenessErrorOccurred,
+                                   errorLogCallback);
+        }
+    }
+}
 
-
-kwlDataValidationResult kwlEngineDataBinary_loadFromXML(kwlEngineDataBinary* bin,
-                                                        const char* xmlPath,
-                                                        const char* xsdPath,
-                                                        int validateAudioFileReferences,
-                                                        kwlLogCallback errorLogCallback)
+kwlResultCode kwlEngineDataBinary_loadFromXML(kwlEngineDataBinary* bin,
+                                              const char* xmlPath,
+                                              const char* xsdPath,
+                                              int validateAudioFileReferences,
+                                              kwlLogCallback errorLogCallback)
 
 {
     xmlDocPtr doc;
-    kwlDataValidationResult result = kwlLoadAndValidateProjectDataDoc(xmlPath, xsdPath, &doc, errorLogCallback);
+    kwlResultCode result = kwlLoadAndValidateProjectDataDoc(xmlPath, xsdPath, &doc, errorLogCallback);
     
-    if (result != KWL_DATA_IS_VALID)
+    if (result != KWL_SUCCESS)
     {
         return result;
     }
@@ -639,6 +699,42 @@ kwlDataValidationResult kwlEngineDataBinary_loadFromXML(kwlEngineDataBinary* bin
     KWL_ASSERT(soundRootNode != NULL);
     KWL_ASSERT(eventRootNode != NULL);
     
+    /*before starting to build the binary, check path uniqueness*/
+    {
+        int uniquenessErrorOccurred = 0;
+        
+        kwlCheckPathUniqueness(mixBusRootNode,
+                               KWL_XML_MIX_PRESET_GROUP_NAME,
+                               KWL_XML_MIX_PRESET_NAME,
+                               &uniquenessErrorOccurred,
+                               errorLogCallback);
+        
+        kwlCheckPathUniqueness(waveBankRootNode,
+                               KWL_XML_WAVE_BANK_GROUP_NAME,
+                               KWL_XML_WAVE_BANK_NAME,
+                               &uniquenessErrorOccurred,
+                               errorLogCallback);
+        
+        kwlCheckPathUniqueness(soundRootNode,
+                               KWL_XML_SOUND_GROUP_NAME,
+                               KWL_XML_SOUND_NAME,
+                               &uniquenessErrorOccurred,
+                               errorLogCallback);
+        
+        kwlCheckPathUniqueness(eventRootNode,
+                               KWL_XML_EVENT_GROUP_NAME,
+                               KWL_XML_EVENT_NAME,
+                               &uniquenessErrorOccurred,
+                               errorLogCallback);
+        
+        if (uniquenessErrorOccurred != 0)
+        {
+            xmlFreeDoc(doc);
+            xmlCleanupParser();
+            return KWL_PROJECT_XML_STRUCTURE_ERROR;
+        }
+    }
+    
     kwlMemset(bin, 0, sizeof(kwlEngineDataBinary));
     /*first, write file identifier*/
     for (int i = 0; i < KWL_ENGINE_DATA_BINARY_FILE_IDENTIFIER_LENGTH; i++)
@@ -673,12 +769,13 @@ kwlDataValidationResult kwlEngineDataBinary_loadFromXML(kwlEngineDataBinary* bin
             {
                 char* relPathj = wbi->audioDataEntries[j];
                 
-                const char* audioFilePath = kwlGetAudioFilePath(xmlPath, audioFileRoot, rootIsRelative, relPathj);
+                char* audioFilePath = kwlGetAudioFilePath(xmlPath, audioFileRoot, rootIsRelative, relPathj);
                 if (!kwlDoesFileExist(audioFilePath))
                 {
                     errorLogCallback("The audio file '%s' referenced by wave bank '%s' does not exist.\n", audioFilePath, wbi->id);
                     audioDataReferenceErrorOccurred = 1;
                 }
+                KWL_FREE(audioFilePath);
             }
         }
         
@@ -688,7 +785,7 @@ kwlDataValidationResult kwlEngineDataBinary_loadFromXML(kwlEngineDataBinary* bin
     /*the xml document is no longer needed */
     xmlFreeDoc(doc);
     xmlCleanupParser();
-
+    
     /*check if everything went well*/
     if (mixBusErrorOccurred ||
         mixPresetErrorOccurred ||
@@ -701,19 +798,18 @@ kwlDataValidationResult kwlEngineDataBinary_loadFromXML(kwlEngineDataBinary* bin
         return KWL_PROJECT_XML_STRUCTURE_ERROR;
     }
     
-    return KWL_DATA_IS_VALID;
+    return KWL_SUCCESS;
 }
 
 
-void kwlEngineDataBinary_writeToFile(kwlEngineDataBinary* bin,
-                                     const char* path)
+kwlResultCode kwlEngineDataBinary_writeToFile(kwlEngineDataBinary* bin,
+                                              const char* path)
 {
     kwlFileOutputStream fos;
     int success = kwlFileOutputStream_initWithPath(&fos, path);
     if (!success)
     {
-        KWL_ASSERT(0 && "could not open file for writing. TODO: proper error handling here");
-        return;
+        return KWL_COULD_NOT_OPEN_FILE_FOR_WRITING;
     }
     
     /*write file identifier*/
@@ -868,11 +964,13 @@ void kwlEngineDataBinary_writeToFile(kwlEngineDataBinary* bin,
     
     /*done*/
     kwlFileOutputStream_close(&fos);
+    
+    return KWL_SUCCESS;
 }
 
-kwlDataValidationResult kwlEngineDataBinary_loadFromBinaryFile(kwlEngineDataBinary* binaryRep,
-                                                               const char* binaryPath,
-                                                               kwlLogCallback errorLogCallbackIn)
+kwlResultCode kwlEngineDataBinary_loadFromBinaryFile(kwlEngineDataBinary* binaryRep,
+                                                     const char* binaryPath,
+                                                     kwlLogCallback errorLogCallbackIn)
 {
     
     kwlMemset(binaryRep, 0, sizeof(kwlEngineDataBinary));
@@ -902,7 +1000,7 @@ kwlDataValidationResult kwlEngineDataBinary_loadFromBinaryFile(kwlEngineDataBina
         }
     }
     
-    kwlDataValidationResult result = KWL_DATA_IS_VALID;
+    kwlResultCode result = KWL_SUCCESS;
     
     //mix buses
     {
@@ -1168,7 +1266,7 @@ kwlDataValidationResult kwlEngineDataBinary_loadFromBinaryFile(kwlEngineDataBina
                 ei->waveBankIndices[j] = kwlInputStream_readIntBE(&is);
                 if (ei->waveBankIndices[j] < 0 || ei->waveBankIndices[j] >= binaryRep->waveBankChunk.numWaveBanks)
                 {
-                    errorLogCallback("Invalid wave bank index index %d in event definition %s. Wave bank count is %d\n",
+                    errorLogCallback("Invalid wave bank index %d in event definition %s (wave bank count is %d).\n",
                                      ei->waveBankIndices[j],
                                      ei->id,
                                      binaryRep->waveBankChunk.numWaveBanks);
@@ -1180,7 +1278,7 @@ kwlDataValidationResult kwlEngineDataBinary_loadFromBinaryFile(kwlEngineDataBina
     }
     
     kwlInputStream_close(&is);
-    return KWL_DATA_IS_VALID;
+    return KWL_SUCCESS;
     
 onDataError:
     kwlInputStream_close(&is);

@@ -79,9 +79,9 @@ extern "C"
      * @param errorCallback A callback used for logging any error messages.
      * @return An error code.
      */
-    kwlDataValidationResult kwlWaveBankBinary_loadFromBinaryFile(kwlWaveBankBinary* bin,
-                                                                 const char* path,
-                                                                 kwlLogCallback errorLogCallback);
+    kwlResultCode kwlWaveBankBinary_loadFromBinaryFile(kwlWaveBankBinary* bin,
+                                                       const char* path,
+                                                       kwlLogCallback errorLogCallback);
     
     /**
      * Creates a wave bank binary corresponding to a wavebank with a given id in
@@ -93,11 +93,11 @@ extern "C"
      * @param errorLogCallback A callback used for logging any error messages.
      * @return An error code.
      */
-    kwlDataValidationResult kwlWaveBankBinary_loadFromXML(kwlWaveBankBinary* bin,
-                                                          const char* xmlPath,
-                                                          const char* xsdPath,
-                                                          const char* waveBankId,
-                                                          kwlLogCallback errorLogCallback);
+    kwlResultCode kwlWaveBankBinary_loadFromXML(kwlWaveBankBinary* bin,
+                                                const char* xmlPath,
+                                                const char* xsdPath,
+                                                const char* waveBankId,
+                                                kwlLogCallback errorLogCallback);
     
     /**
      * Prints the contents of a given wave bank binary.

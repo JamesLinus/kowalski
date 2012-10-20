@@ -28,7 +28,7 @@
 @interface TestProjectXMLValidation : SenTestCase
 
 -(void)requireXMLValidationResult:(NSString*) xmlPath
-                                :(kwlDataValidationResult)result;
+                                :(kwlResultCode)result;
 -(const char*)getResourcePath:(NSString*)fileName;
 
 @end

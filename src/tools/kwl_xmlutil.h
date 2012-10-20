@@ -1,25 +1,25 @@
 /*
-Copyright (c) 2010-2012 Per Gantelius
-
-This software is provided 'as-is', without any express or implied
-warranty. In no event will the authors be held liable for any damages
-arising from the use of this software.
-
-Permission is granted to anyone to use this software for any purpose,
-including commercial applications, and to alter it and redistribute it
-freely, subject to the following restrictions:
-
-   1. The origin of this software must not be misrepresented; you must not
-   claim that you wrote the original software. If you use this software
-   in a product, an acknowledgment in the product documentation would be
-   appreciated but is not required.
-
-   2. Altered source versions must be plainly marked as such, and must not be
-   misrepresented as being the original software.
-
-   3. This notice may not be removed or altered from any source
-   distribution.
-*/
+ Copyright (c) 2010-2012 Per Gantelius
+ 
+ This software is provided 'as-is', without any express or implied
+ warranty. In no event will the authors be held liable for any damages
+ arising from the use of this software.
+ 
+ Permission is granted to anyone to use this software for any purpose,
+ including commercial applications, and to alter it and redistribute it
+ freely, subject to the following restrictions:
+ 
+ 1. The origin of this software must not be misrepresented; you must not
+ claim that you wrote the original software. If you use this software
+ in a product, an acknowledgment in the product documentation would be
+ appreciated but is not required.
+ 
+ 2. Altered source versions must be plainly marked as such, and must not be
+ misrepresented as being the original software.
+ 
+ 3. This notice may not be removed or altered from any source
+ distribution.
+ */
 
 #ifndef KWL_XML_UTIL_H
 #define KWL_XML_UTIL_H
@@ -73,7 +73,7 @@ extern "C"
 #define KWL_XML_ATTR_EVENT_BUS "bus"
     
 #define KWL_XML_PROJECT_NODE_NAME "KowalskiProject"
-#define KWL_XML_ATTR_PROJECT_AUDIO_FILE_ROOT "audioFileRootPath"   
+#define KWL_XML_ATTR_PROJECT_AUDIO_FILE_ROOT "audioFileRootPath"
 #define KWL_XML_ATTR_PROJECT_AUDIO_FILE_ROOT_IS_RELATIVE "audioFileRootPathIsRelative"
     
 #define KWL_XML_PARAM_SET_NAME "MixBusParameters"
@@ -87,10 +87,10 @@ extern "C"
     /**
      * A callback used when traversing XML node trees.
      * @param currentNode
-     * @param userData 
+     * @param userData
      */
     typedef void (*kwlNodeTraversalCallback)(xmlNode* currentNode, void* userData, int* errorOccurred, kwlLogCallback errorLogCallback);
-
+    
     /**
      * Traverses an xml tree starting at a given root, decending at nodes with the name \c branchNodeName
      * and invoking \c callback at nodes with the name \c leafNodeName.
@@ -159,7 +159,7 @@ extern "C"
     int kwlGetChildCount(xmlNode* node, const char* childName);
     
     /**
-     * Loads an XML document at a given path and validates it with a given schema. 
+     * Loads an XML document at a given path and validates it with a given schema.
      * Any omitted optional attributes will be added and assigned their default values.
      * @param xmlPath The path of the XML document.
      * @param schemaPath The path of the XML schema.
@@ -167,10 +167,10 @@ extern "C"
      * @param errorLogCallback A callback used to print error messages
      * @return An error code.
      */
-    kwlDataValidationResult kwlLoadAndValidateProjectDataDoc(const char* xmlPath,
-                                                             const char* schemaPath,
-                                                             xmlDocPtr* docPtr,
-                                                             kwlLogCallback errorLogCallback);
+    kwlResultCode kwlLoadAndValidateProjectDataDoc(const char* xmlPath,
+                                                   const char* schemaPath,
+                                                   xmlDocPtr* docPtr,
+                                                   kwlLogCallback errorLogCallback);
     
 #ifdef __cplusplus
 }

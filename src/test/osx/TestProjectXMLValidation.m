@@ -121,9 +121,9 @@
 -(void)testValidProjectXML
 {
     [self requireXMLValidationResult:@"minimal_valid_project.xml"
-                                    :KWL_DATA_IS_VALID];
+                                    :KWL_SUCCESS];
     [self requireXMLValidationResult:@"minimal_valid_project_reordered_root_groups.xml"
-                                    :KWL_DATA_IS_VALID];
+                                    :KWL_SUCCESS];
 }
 
 -(void)testMissingDefaultPreset
@@ -145,14 +145,15 @@
 }
 
 -(void)requireXMLValidationResult:(NSString*) xmlPath
-                                 :(kwlDataValidationResult)expectedResult
+                                 :(kwlResultCode)expectedResult
 {
-    kwlDataValidationResult result = kwlValidateProjectData([self getResourcePath:xmlPath],
-                                                            [self getResourcePath:@"kowalski.xsd"],
-                                                            kwlDefaultLogCallback);
+    kwlResultCode result = kwlValidateProjectData([self getResourcePath:xmlPath],
+                                                  [self getResourcePath:@"kowalski.xsd"],
+                                                  0,
+                                                  kwlDefaultLogCallback);
     STAssertEquals(result,
                    expectedResult,
-                   [NSString stringWithFormat:@"%@ should %@ generate a validation error", xmlPath, expectedResult == KWL_DATA_IS_VALID ? @"not" : @""]);
+                   [NSString stringWithFormat:@"Should %@ generate a validation error", xmlPath, expectedResult == KWL_SUCCESS ? @"not" : @""]);
 }
 
 -(const char*)getResourcePath:(NSString*)fileName

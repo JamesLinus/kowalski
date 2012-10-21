@@ -751,6 +751,10 @@ static void kwlGatherEventsCallback(xmlNode* node,
                 c->audioDataIndex = kwlGetAudioDataIndex(wb, audioDataPath);
             }
         }
+        
+        c->numReferencedWaveBanks = 1;
+        c->waveBankIndices = KWL_MALLOCANDZERO(c->numReferencedWaveBanks * sizeof(int), "bin streaming evt wb indices");
+        c->waveBankIndices[0] = c->waveBankIndex;
     }
     else
     {
@@ -758,6 +762,7 @@ static void kwlGatherEventsCallback(xmlNode* node,
         KWL_ASSERT(soundRefNode != NULL);
         xmlChar* soundPath = kwlGetAttributeValue(soundRefNode, KWL_XML_ATTR_SOUND_REFERENCE_SOUND);
         c->soundIndex = kwlGetSoundIndex(bin, soundPath);
+        
         if (c->soundIndex < 0)
         {
             *errorOccurred = 1;
@@ -765,12 +770,37 @@ static void kwlGatherEventsCallback(xmlNode* node,
         }
         else
         {
+            /*gather wavebanks indirectly referenced by this event through its sound definition*/
+            c->numReferencedWaveBanks = 0;
+            c->waveBankIndices = NULL;
             
+            kwlSoundChunk* s = &bin->soundChunk.soundDefinitions[c->soundIndex];
+            
+            for (int i = 0; i < s->numWaveReferences; i++)
+            {
+                const int wbIdx = s->waveBankIndices[i];
+                
+                int wbAlreadyInList = 0;
+                for (int j = 0; j < c->numReferencedWaveBanks; j++)
+                {
+                    if (c->waveBankIndices[j] == wbIdx)
+                    {
+                        wbAlreadyInList = 1;
+                        break;
+                    }
+                }
+                
+                if (wbAlreadyInList == 0)
+                {
+                    c->numReferencedWaveBanks++;
+                    c->waveBankIndices = KWL_REALLOC(c->waveBankIndices,
+                                                     c->numReferencedWaveBanks * sizeof(int),
+                                                     "bin event ref wb list");
+                    c->waveBankIndices[c->numReferencedWaveBanks - 1] = wbIdx;
+                }
+            }
         }
     }
-    
-    c->numReferencedWaveBanks = 0;    //TODO
-    
 }
 
 static void kwlCreateEventChunk(xmlNode* projectRoot, kwlEngineDataBinary* bin, int* errorOccurred, kwlLogCallback errorLogCallback)
@@ -1152,6 +1182,7 @@ kwlResultCode kwlEngineDataBinary_writeToFile(kwlEngineDataBinary* bin,
             kwlFileOutputStream_writeFloat32BE(&fos, ei->outerConeGain);
             kwlFileOutputStream_writeInt32BE(&fos, ei->mixBusIndex);
             kwlFileOutputStream_writeInt32BE(&fos, ei->isPositional);
+            kwlFileOutputStream_writeInt32BE(&fos, ei->soundIndex);
             kwlFileOutputStream_writeInt32BE(&fos, ei->retriggerMode);
             kwlFileOutputStream_writeInt32BE(&fos, ei->waveBankIndex);
             kwlFileOutputStream_writeInt32BE(&fos, ei->audioDataIndex);
@@ -1449,29 +1480,37 @@ kwlResultCode kwlEngineDataBinary_loadFromBinaryFile(kwlEngineDataBinary* binary
             KWL_ASSERT(ei->mixBusIndex >= 0 && ei->mixBusIndex < binaryRep->mixBusChunk.numMixBuses);
             ei->isPositional = kwlInputStream_readIntBE(&is);
             
-            /*read the index of the sound referenced by this event (ignored for streaming events)*/
             ei->soundIndex = kwlInputStream_readIntBE(&is);
-            
-            if (ei->soundIndex < -1)
+            if (ei->soundIndex < -1) //-1 is a valid value and indicates a streaming event
             {
                 errorLogCallback("Invalid sound index %d in event definition %s.\n", ei->soundIndex, ei->id);
                 result = KWL_ENGINE_DATA_STRUCTURE_ERROR;
                 goto onDataError;
             }
             
-            /*read the event retrigger mode (ignored for streaming events)*/
-            ei->retriggerMode = (kwlEventRetriggerMode)kwlInputStream_readIntBE(&is);
-            
-            /*read the index of the audio data referenced by this event (only used for streaming events)*/
+            ei->retriggerMode = kwlInputStream_readIntBE(&is);
             ei->waveBankIndex = kwlInputStream_readIntBE(&is);
+            if (ei->waveBankIndex < -1) //-1 is a valid value and indicates a non-streaming event
+            {
+                errorLogCallback("Invalid wave bank index %d in event definition %s.\n", ei->waveBankIndex, ei->id);
+                result = KWL_ENGINE_DATA_STRUCTURE_ERROR;
+                goto onDataError;
+            }
             ei->audioDataIndex = kwlInputStream_readIntBE(&is);
+            if (ei->audioDataIndex < -1) //-1 is a valid value and indicates a non-streaming event
+            {
+                errorLogCallback("Invalid audio data index %d in event definition %s.\n", ei->audioDataIndex, ei->id);
+                result = KWL_ENGINE_DATA_STRUCTURE_ERROR;
+                goto onDataError;
+            }
             
-            /*read loop flag (ignored for non-streaming events)*/
             ei->loopIfStreaming = kwlInputStream_readIntBE(&is);
-            
+            KWL_ASSERT(ei->loopIfStreaming == 0 || ei->loopIfStreaming == 1);
+    
             /*read referenced wave banks*/
             ei->numReferencedWaveBanks = kwlInputStream_readIntBE(&is);
-            ei->waveBankIndices = (int*)KWL_MALLOC(ei->numReferencedWaveBanks * sizeof(int),
+            KWL_ASSERT(ei->numReferencedWaveBanks >= 0 && ei->numReferencedWaveBanks <= binaryRep->waveBankChunk.numWaveBanks);
+            ei->waveBankIndices = (int*)KWL_MALLOCANDZERO(ei->numReferencedWaveBanks * sizeof(int),
                                                    "bin evt wave bank refs");
             
             for (int j = 0; j < ei->numReferencedWaveBanks; j++)
@@ -1662,10 +1701,10 @@ void kwlEngineDataBinary_dump(kwlEngineDataBinary* bin, kwlLogCallback logCallba
                     ei->instanceCount, ei->isPositional, ei->instanceStealingMode, ei->retriggerMode);
         logCallback("                audio data index %d, wave bank index %d, loop %d (streaming events only)\n", ei->audioDataIndex, ei->waveBankIndex, ei->loopIfStreaming);
         logCallback("                sound index %d (non-streaming events only)\n", ei->soundIndex);
-        logCallback("                %d referenced wave banks\n", ei->numReferencedWaveBanks);
+        logCallback("                %d referenced wave bank(s):\n", ei->numReferencedWaveBanks);
         for (int j = 0; j < ei->numReferencedWaveBanks; j++)
         {
-            logCallback("                 idx %d\n", ei->waveBankIndices[j]);
+            logCallback("                    idx %d\n", ei->waveBankIndices[j]);
         }
     }
 }

@@ -18,12 +18,12 @@
 		C1064E8513DA369D001DA332 /* notes.kwb in Resources */ = {isa = PBXBuildFile; fileRef = C1064E7F13DA369D001DA332 /* notes.kwb */; };
 		C1064E8613DA369D001DA332 /* numbers.kwb in Resources */ = {isa = PBXBuildFile; fileRef = C1064E8013DA369D001DA332 /* numbers.kwb */; };
 		C1064E8713DA369D001DA332 /* sfx.kwb in Resources */ = {isa = PBXBuildFile; fileRef = C1064E8113DA369D001DA332 /* sfx.kwb */; };
-		C1064ED513DA3BBB001DA332 /* libkowalski_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1064EC913DA3AC9001DA332 /* libkowalski_ios.a */; };
 		C1064ED913DA3BCD001DA332 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1064ED813DA3BCD001DA332 /* AudioToolbox.framework */; };
 		C1064EDB13DA3BCD001DA332 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1064EDA13DA3BCD001DA332 /* CoreAudio.framework */; };
 		C1309E1C13E33D63000796BD /* DemoBase.m in Sources */ = {isa = PBXBuildFile; fileRef = C1309E1B13E33D63000796BD /* DemoBase.m */; };
 		C1309E2D13E33E0D000796BD /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1309E2C13E33E0D000796BD /* DemoViewController.m */; };
 		C1309E6913E341A4000796BD /* PianoDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1309E6813E341A4000796BD /* PianoDemo.xib */; };
+		C15BC19D1634A62900053E91 /* libkowalski_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C16381F61634A59E000CFA84 /* libkowalski_ios.a */; };
 		C16463D513E3525E00436CA4 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C16463D413E3525E00436CA4 /* AboutViewController.m */; };
 		C18064C613FEA4F20025240F /* DecodersDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C18064C413FEA4F20025240F /* DecodersDemo.m */; };
 		C18064C713FEA4F20025240F /* DecodersDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C18064C513FEA4F20025240F /* DecodersDemo.xib */; };
@@ -34,11 +34,10 @@
 		C1A5D57613E35D3400065F5C /* FreeformEventsDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A5D57413E35D3400065F5C /* FreeformEventsDemo.m */; };
 		C1A5D57713E35D3400065F5C /* FreeformEventsDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1A5D57513E35D3400065F5C /* FreeformEventsDemo.xib */; };
 		C1C0FD8313DCB09D009769E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C0FD7A13DCB09D009769E7 /* main.m */; };
-		C1C0FD8413DCB09D009769E7 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1C0FD7B13DCB09D009769E7 /* MainWindow.xib */; };
-		C1C0FD8513DCB09D009769E7 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1C0FD7C13DCB09D009769E7 /* RootViewController.xib */; };
 		C1C0FD8613DCB09D009769E7 /* kowalski_demo_iosAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C0FD7E13DCB09D009769E7 /* kowalski_demo_iosAppDelegate.m */; };
 		C1C0FD8713DCB09D009769E7 /* PianoDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C0FD8013DCB09D009769E7 /* PianoDemo.m */; };
 		C1C0FD8813DCB09D009769E7 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C0FD8213DCB09D009769E7 /* RootViewController.m */; };
+		C1C3FD921634A3B700D22747 /* demoproject_testwrite.kwl in Resources */ = {isa = PBXBuildFile; fileRef = C1C3FD911634A3B700D22747 /* demoproject_testwrite.kwl */; };
 		C1D9BDEC13E9AD0500C3C7DC /* InputDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D9BDEA13E9AD0500C3C7DC /* InputDemo.m */; };
 		C1D9BDED13E9AD0500C3C7DC /* InputDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1D9BDEB13E9AD0500C3C7DC /* InputDemo.xib */; };
 		C1D9BE0213E9AF9100C3C7DC /* SampleClockDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D9BE0013E9AF9100C3C7DC /* SampleClockDemo.m */; };
@@ -65,7 +64,6 @@
 		C1F0460113EC00C90078EE79 /* emittericon.png in Resources */ = {isa = PBXBuildFile; fileRef = C1F0460013EC00C90078EE79 /* emittericon.png */; };
 		C1F0463313EC023D0078EE79 /* DopplerShiftDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F0463213EC023D0078EE79 /* DopplerShiftDemo.m */; };
 		C1F0463813EC027B0078EE79 /* DopplerShiftDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1F0463713EC027B0078EE79 /* DopplerShiftDemo.xib */; };
-		C1F44F6D163218D200644E23 /* demoproject.kwl in Resources */ = {isa = PBXBuildFile; fileRef = C1F44F5A163218D200644E23 /* demoproject.kwl */; };
 		C1F44F6E163218D200644E23 /* sine_signed_16bit_mono.aiff in Resources */ = {isa = PBXBuildFile; fileRef = C1F44F5C163218D200644E23 /* sine_signed_16bit_mono.aiff */; };
 		C1F44F6F163218D200644E23 /* sine_signed_16bit_mono.au in Resources */ = {isa = PBXBuildFile; fileRef = C1F44F5D163218D200644E23 /* sine_signed_16bit_mono.au */; };
 		C1F44F70163218D200644E23 /* sine_signed_16bit_mono.wav in Resources */ = {isa = PBXBuildFile; fileRef = C1F44F5E163218D200644E23 /* sine_signed_16bit_mono.wav */; };
@@ -79,10 +77,6 @@
 		C1F44F78163218D200644E23 /* sine_signed_8bit_mono.au in Resources */ = {isa = PBXBuildFile; fileRef = C1F44F66163218D200644E23 /* sine_signed_8bit_mono.au */; };
 		C1F44F79163218D200644E23 /* sine_unsigned_8bit_mono.aiff in Resources */ = {isa = PBXBuildFile; fileRef = C1F44F67163218D200644E23 /* sine_unsigned_8bit_mono.aiff */; };
 		C1F44F7A163218D200644E23 /* sine_unsigned_8bit_mono.wav in Resources */ = {isa = PBXBuildFile; fileRef = C1F44F68163218D200644E23 /* sine_unsigned_8bit_mono.wav */; };
-		C1F44F7B163218D200644E23 /* music.kwb in Resources */ = {isa = PBXBuildFile; fileRef = C1F44F69163218D200644E23 /* music.kwb */; };
-		C1F44F7C163218D200644E23 /* notes.kwb in Resources */ = {isa = PBXBuildFile; fileRef = C1F44F6A163218D200644E23 /* notes.kwb */; };
-		C1F44F7D163218D200644E23 /* numbers.kwb in Resources */ = {isa = PBXBuildFile; fileRef = C1F44F6B163218D200644E23 /* numbers.kwb */; };
-		C1F44F7E163218D200644E23 /* sfx.kwb in Resources */ = {isa = PBXBuildFile; fileRef = C1F44F6C163218D200644E23 /* sfx.kwb */; };
 		C1F5EA201416B5C300825765 /* EventCallbackDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F5EA1E1416B5C300825765 /* EventCallbackDemo.m */; };
 		C1F5EA211416B5C300825765 /* EventCallbackDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1F5EA1F1416B5C300825765 /* EventCallbackDemo.xib */; };
 		C1F5EBC21417B6F100825765 /* listenericon.png in Resources */ = {isa = PBXBuildFile; fileRef = C1F5EBC11417B6F100825765 /* listenericon.png */; };
@@ -93,47 +87,54 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C1064EC213DA3AC9001DA332 /* PBXContainerItemProxy */ = {
+		C15BC19B1634A62400053E91 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C1064EB813DA3AC8001DA332 /* kowalski.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D2AAC046055464E500DB518D;
-			remoteInfo = kowalski_portaudio;
-		};
-		C1064EC413DA3AC9001DA332 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C1064EB813DA3AC8001DA332 /* kowalski.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C1B3D57A135B8E880025DD08;
-			remoteInfo = kowalski_sdl;
-		};
-		C1064EC813DA3AC9001DA332 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C1064EB813DA3AC8001DA332 /* kowalski.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C1DD3C2B1370D12B00D10AA6;
-			remoteInfo = kowalski_ios;
-		};
-		C1760F9C1620E91F0044204B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C1064EB813DA3AC8001DA332 /* kowalski.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C1760F7B1620D6160044204B;
-			remoteInfo = kwltools;
-		};
-		C1F0C45413DA3E4000E05434 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C1064EB813DA3AC8001DA332 /* kowalski.xcodeproj */;
+			containerPortal = C16381E81634A59E000CFA84 /* kowalski.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = C1DD3C2A1370D12B00D10AA6;
 			remoteInfo = kowalski_ios;
 		};
-		C1F44E831632185A00644E23 /* PBXContainerItemProxy */ = {
+		C16381F11634A59E000CFA84 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C1064EB813DA3AC8001DA332 /* kowalski.xcodeproj */;
+			containerPortal = C16381E81634A59E000CFA84 /* kowalski.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC046055464E500DB518D;
+			remoteInfo = kowalski_portaudio;
+		};
+		C16381F31634A59E000CFA84 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C16381E81634A59E000CFA84 /* kowalski.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C1B3D57A135B8E880025DD08;
+			remoteInfo = kowalski_sdl;
+		};
+		C16381F51634A59E000CFA84 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C16381E81634A59E000CFA84 /* kowalski.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C1DD3C2B1370D12B00D10AA6;
+			remoteInfo = kowalski_ios;
+		};
+		C16381F71634A59E000CFA84 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C16381E81634A59E000CFA84 /* kowalski.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C1760F7B1620D6160044204B;
+			remoteInfo = kowalski;
+		};
+		C16381F91634A59E000CFA84 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C16381E81634A59E000CFA84 /* kowalski.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = C19BB85D1630C1E9000F1BE7;
 			remoteInfo = kowalski_test;
+		};
+		C16381FB1634A59E000CFA84 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C16381E81634A59E000CFA84 /* kowalski.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C145484D1632CAFE00DE1EA6;
+			remoteInfo = kowalski_tools;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -151,7 +152,6 @@
 		C1064E7F13DA369D001DA332 /* notes.kwb */ = {isa = PBXFileReference; lastKnownFileType = file; name = notes.kwb; path = ../../res/demodata/final/notes.kwb; sourceTree = SOURCE_ROOT; };
 		C1064E8013DA369D001DA332 /* numbers.kwb */ = {isa = PBXFileReference; lastKnownFileType = file; name = numbers.kwb; path = ../../res/demodata/final/numbers.kwb; sourceTree = SOURCE_ROOT; };
 		C1064E8113DA369D001DA332 /* sfx.kwb */ = {isa = PBXFileReference; lastKnownFileType = file; name = sfx.kwb; path = ../../res/demodata/final/sfx.kwb; sourceTree = SOURCE_ROOT; };
-		C1064EB813DA3AC8001DA332 /* kowalski.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = kowalski.xcodeproj; sourceTree = "<group>"; };
 		C1064ECD13DA3AEB001DA332 /* kowalski.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = kowalski.h; path = ../../src/engine/kowalski.h; sourceTree = SOURCE_ROOT; };
 		C1064ED813DA3BCD001DA332 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		C1064EDA13DA3BCD001DA332 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
@@ -159,6 +159,7 @@
 		C1309E2B13E33E0D000796BD /* DemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
 		C1309E2C13E33E0D000796BD /* DemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
 		C1309E6813E341A4000796BD /* PianoDemo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PianoDemo.xib; sourceTree = "<group>"; };
+		C16381E81634A59E000CFA84 /* kowalski.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = kowalski.xcodeproj; sourceTree = "<group>"; };
 		C16463D313E3525E00436CA4 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		C16463D413E3525E00436CA4 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		C18064C313FEA4F20025240F /* DecodersDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecodersDemo.h; sourceTree = "<group>"; };
@@ -183,6 +184,7 @@
 		C1C0FD8013DCB09D009769E7 /* PianoDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PianoDemo.m; sourceTree = "<group>"; };
 		C1C0FD8113DCB09D009769E7 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		C1C0FD8213DCB09D009769E7 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		C1C3FD911634A3B700D22747 /* demoproject_testwrite.kwl */ = {isa = PBXFileReference; lastKnownFileType = file; name = demoproject_testwrite.kwl; path = demodata/final/demoproject_testwrite.kwl; sourceTree = "<group>"; };
 		C1D9BDE913E9AD0500C3C7DC /* InputDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputDemo.h; sourceTree = "<group>"; };
 		C1D9BDEA13E9AD0500C3C7DC /* InputDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputDemo.m; sourceTree = "<group>"; };
 		C1D9BDEB13E9AD0500C3C7DC /* InputDemo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InputDemo.xib; sourceTree = "<group>"; };
@@ -255,7 +257,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1064ED513DA3BBB001DA332 /* libkowalski_ios.a in Frameworks */,
+				C15BC19D1634A62900053E91 /* libkowalski_ios.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
@@ -278,7 +280,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				C1064EB813DA3AC8001DA332 /* kowalski.xcodeproj */,
+				C16381E81634A59E000CFA84 /* kowalski.xcodeproj */,
 				C1064ED813DA3BCD001DA332 /* AudioToolbox.framework */,
 				C1064EDA13DA3BCD001DA332 /* CoreAudio.framework */,
 				C1064ECA13DA3AD4001DA332 /* include */,
@@ -324,24 +326,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C1064EB913DA3AC8001DA332 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				C1064EC313DA3AC9001DA332 /* libkowalski.dylib */,
-				C1064EC513DA3AC9001DA332 /* kowalski_sdl.dylib */,
-				C1064EC913DA3AC9001DA332 /* libkowalski_ios.a */,
-				C1760F9D1620E91F0044204B /* kwltools */,
-				C1F44E841632185A00644E23 /* kowalski_test.octest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		C1064ECA13DA3AD4001DA332 /* include */ = {
 			isa = PBXGroup;
 			children = (
 				C1064ECD13DA3AEB001DA332 /* kowalski.h */,
 			);
 			name = include;
+			sourceTree = "<group>";
+		};
+		C16381E91634A59E000CFA84 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C16381F21634A59E000CFA84 /* libkowalski.dylib */,
+				C16381F41634A59E000CFA84 /* kowalski_sdl.dylib */,
+				C16381F61634A59E000CFA84 /* libkowalski_ios.a */,
+				C16381F81634A59E000CFA84 /* kowalski */,
+				C16381FA1634A59E000CFA84 /* kowalski_test.octest */,
+				C16381FC1634A59E000CFA84 /* libkowalski_tools.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		C1C0FD7813DCB09D009769E7 /* src */ = {
@@ -424,6 +427,7 @@
 			isa = PBXGroup;
 			children = (
 				C1F44F5A163218D200644E23 /* demoproject.kwl */,
+				C1C3FD911634A3B700D22747 /* demoproject_testwrite.kwl */,
 				C1F44F5B163218D200644E23 /* freeformeventaudio */,
 				C1F44F69163218D200644E23 /* music.kwb */,
 				C1F44F6A163218D200644E23 /* notes.kwb */,
@@ -469,7 +473,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				C1F0C45513DA3E4000E05434 /* PBXTargetDependency */,
+				C15BC19C1634A62400053E91 /* PBXTargetDependency */,
 			);
 			name = kowalski_demo_ios;
 			productName = kowalski_demo_ios;
@@ -481,6 +485,9 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "kowalski_demo_ios" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -496,8 +503,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = C1064EB913DA3AC8001DA332 /* Products */;
-					ProjectRef = C1064EB813DA3AC8001DA332 /* kowalski.xcodeproj */;
+					ProductGroup = C16381E91634A59E000CFA84 /* Products */;
+					ProjectRef = C16381E81634A59E000CFA84 /* kowalski.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -508,39 +515,46 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		C1064EC313DA3AC9001DA332 /* libkowalski.dylib */ = {
+		C16381F21634A59E000CFA84 /* libkowalski.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libkowalski.dylib;
-			remoteRef = C1064EC213DA3AC9001DA332 /* PBXContainerItemProxy */;
+			remoteRef = C16381F11634A59E000CFA84 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		C1064EC513DA3AC9001DA332 /* kowalski_sdl.dylib */ = {
+		C16381F41634A59E000CFA84 /* kowalski_sdl.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = kowalski_sdl.dylib;
-			remoteRef = C1064EC413DA3AC9001DA332 /* PBXContainerItemProxy */;
+			remoteRef = C16381F31634A59E000CFA84 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		C1064EC913DA3AC9001DA332 /* libkowalski_ios.a */ = {
+		C16381F61634A59E000CFA84 /* libkowalski_ios.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libkowalski_ios.a;
-			remoteRef = C1064EC813DA3AC9001DA332 /* PBXContainerItemProxy */;
+			remoteRef = C16381F51634A59E000CFA84 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		C1760F9D1620E91F0044204B /* kwltools */ = {
+		C16381F81634A59E000CFA84 /* kowalski */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
-			path = kwltools;
-			remoteRef = C1760F9C1620E91F0044204B /* PBXContainerItemProxy */;
+			path = kowalski;
+			remoteRef = C16381F71634A59E000CFA84 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		C1F44E841632185A00644E23 /* kowalski_test.octest */ = {
+		C16381FA1634A59E000CFA84 /* kowalski_test.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = kowalski_test.octest;
-			remoteRef = C1F44E831632185A00644E23 /* PBXContainerItemProxy */;
+			remoteRef = C16381F91634A59E000CFA84 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C16381FC1634A59E000CFA84 /* libkowalski_tools.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libkowalski_tools.a;
+			remoteRef = C16381FB1634A59E000CFA84 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -558,8 +572,6 @@
 				C1064E8513DA369D001DA332 /* notes.kwb in Resources */,
 				C1064E8613DA369D001DA332 /* numbers.kwb in Resources */,
 				C1064E8713DA369D001DA332 /* sfx.kwb in Resources */,
-				C1C0FD8413DCB09D009769E7 /* MainWindow.xib in Resources */,
-				C1C0FD8513DCB09D009769E7 /* RootViewController.xib in Resources */,
 				C1309E6913E341A4000796BD /* PianoDemo.xib in Resources */,
 				C1A5D52913E358C200065F5C /* SeamlessPitchDemo.xib in Resources */,
 				C1A5D55013E35A1600065F5C /* MixPresetDemo.xib in Resources */,
@@ -584,7 +596,6 @@
 				C1F5EC871417C8E100825765 /* ConeAttenuationDemo.xib in Resources */,
 				C1F5ECB21417D2FA00825765 /* emittericon90degcone.png in Resources */,
 				C1F5ECB31417D2FA00825765 /* listenericon90degcone.png in Resources */,
-				C1F44F6D163218D200644E23 /* demoproject.kwl in Resources */,
 				C1F44F6E163218D200644E23 /* sine_signed_16bit_mono.aiff in Resources */,
 				C1F44F6F163218D200644E23 /* sine_signed_16bit_mono.au in Resources */,
 				C1F44F70163218D200644E23 /* sine_signed_16bit_mono.wav in Resources */,
@@ -598,10 +609,7 @@
 				C1F44F78163218D200644E23 /* sine_signed_8bit_mono.au in Resources */,
 				C1F44F79163218D200644E23 /* sine_unsigned_8bit_mono.aiff in Resources */,
 				C1F44F7A163218D200644E23 /* sine_unsigned_8bit_mono.wav in Resources */,
-				C1F44F7B163218D200644E23 /* music.kwb in Resources */,
-				C1F44F7C163218D200644E23 /* notes.kwb in Resources */,
-				C1F44F7D163218D200644E23 /* numbers.kwb in Resources */,
-				C1F44F7E163218D200644E23 /* sfx.kwb in Resources */,
+				C1C3FD921634A3B700D22747 /* demoproject_testwrite.kwl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -643,10 +651,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C1F0C45513DA3E4000E05434 /* PBXTargetDependency */ = {
+		C15BC19C1634A62400053E91 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = kowalski_ios;
-			targetProxy = C1F0C45413DA3E4000E05434 /* PBXContainerItemProxy */;
+			targetProxy = C15BC19B1634A62400053E91 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -691,7 +699,6 @@
 				GCC_PREPROCESSOR_DEFINITIONS = KWL_DEBUG_MEMORY;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				PREBINDING = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -705,7 +712,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PREBINDING = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Release;

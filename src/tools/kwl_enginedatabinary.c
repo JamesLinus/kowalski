@@ -1079,7 +1079,7 @@ kwlResultCode kwlEngineDataBinary_writeToFile(kwlEngineDataBinary* bin,
             kwlFileOutputStream_writeInt32BE(&fos, wbi->numAudioDataEntries);
             for (int j = 0; j < wbi->numAudioDataEntries; j++)
             {
-                kwlFileOutputStream_writeASCIIString(&fos, wbi->audioDataEntries[i]);
+                kwlFileOutputStream_writeASCIIString(&fos, wbi->audioDataEntries[j]);
             }
         }
         chunkEndPositions[0] = ftell(fos.file);

@@ -91,6 +91,20 @@
 			remoteGlobalIDString = C1760F7B1620D6160044204B;
 			remoteInfo = kwltools;
 		};
+		C15BC1861634A5F100053E91 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C15758C41628EE6F0051A4DF /* kowalski.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C19BB85D1630C1E9000F1BE7;
+			remoteInfo = kowalski_test;
+		};
+		C15BC1881634A5F100053E91 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C15758C41628EE6F0051A4DF /* kowalski.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C145484D1632CAFE00DE1EA6;
+			remoteInfo = kowalski_tools;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -215,6 +229,8 @@
 				C15758D21628EE6F0051A4DF /* kowalski_sdl.dylib */,
 				C15758D41628EE6F0051A4DF /* libkowalski_ios.a */,
 				C15758D61628EE6F0051A4DF /* kwltools */,
+				C15BC1871634A5F100053E91 /* kowalski_test.octest */,
+				C15BC1891634A5F100053E91 /* libkowalski_tools.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -457,8 +473,22 @@
 		C15758D61628EE6F0051A4DF /* kwltools */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
-			path = kwltools;
+			path = kowalski;
 			remoteRef = C15758D51628EE6F0051A4DF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C15BC1871634A5F100053E91 /* kowalski_test.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = kowalski_test.octest;
+			remoteRef = C15BC1861634A5F100053E91 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C15BC1891634A5F100053E91 /* libkowalski_tools.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libkowalski_tools.a;
+			remoteRef = C15BC1881634A5F100053E91 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

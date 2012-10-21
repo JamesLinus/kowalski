@@ -37,6 +37,7 @@ release	    <-	[release]
 - sort functions to match h and c files
 - kwl_iphone -> kwl_ios or use standard check?
 - int 	kwlIsInputEnabled () is in the wrong doc section
+
 tools
 - assume unit params if mixbusparameter set is missing from preset?
 - use strlen in kwlFileOutputStream_writeASCIIString

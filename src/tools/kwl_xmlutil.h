@@ -83,6 +83,7 @@ extern "C"
 #define KWL_XML_ATTR_PARAM_SET_BUS "mixBus"
     
 #define KWL_XML_ATTR_REL_PATH "relativePath"
+#define KWL_XML_ATTR_STREAM "streamFromDisk"
     
     /**
      * A callback used when traversing XML node trees.
@@ -171,6 +172,11 @@ extern "C"
                                                    const char* schemaPath,
                                                    xmlDocPtr* docPtr,
                                                    kwlLogCallback errorLogCallback);
+    
+    /**
+     * 
+     */
+    xmlNode* kwlResolveNodePath(xmlNode* root, const char* id);
     
 #ifdef __cplusplus
 }

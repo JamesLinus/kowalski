@@ -86,6 +86,7 @@ extern "C"
         char* id;
         int numAudioDataEntries;
         char** audioDataEntries;
+        int* streamFlags;
     } kwlWaveBankChunk;
     
     /**

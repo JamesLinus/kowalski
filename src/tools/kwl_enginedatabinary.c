@@ -22,6 +22,7 @@
  */
 
 #include <stdio.h>
+#include <string.h>
 
 
 #include "kwl_assert.h"
@@ -62,7 +63,6 @@ int kwlFileIsEngineDataBinary(const char* path)
     
     return isEngineData;
 }
-
 
 /**
  * returns the path up to the top group
@@ -239,6 +239,19 @@ static int kwlGetMixBusIndex(kwlEngineDataBinary* bin, const char* id)
     return -1;
 }
 
+static int kwlDoesMixBusExist(kwlEngineDataBinary* bin, const char* id)
+{
+    for (int i = 0; i < bin->mixBusChunk.numMixBuses; i++)
+    {
+        if (strcmp(id, bin->mixBusChunk.mixBuses[i].id) == 0)
+        {
+            return 1;
+        }
+    }
+    
+    return 0;
+}
+
 /**
  * Gather mix presets
  */
@@ -275,7 +288,7 @@ static void kwlGatherMixPresetsCallback(xmlNode* node,
             if (busIdx < 0)
             {
                 *errorOccurred = 1;
-                errorLogCallback("The mix bus '%s' referenced by mix preset '%s' does not exist.\n", busId, c->id);
+                errorLogCallback("The mix preset '%s' references a non-existing mix bus.\n", c->id);
             }
             
             float gainLeft = kwlGetFloatAttributeValue(curr, KWL_XML_ATTR_PARAM_SET_GAIN_L);
@@ -301,9 +314,58 @@ static void kwlGatherMixPresetsCallback(xmlNode* node,
         errorLogCallback("The number of parameter sets for mix preset '%s' is less than the number of mix buses.\n", c->id);
         *errorOccurred = 1;
     }
+    
+    /*check one to one correspondence between mix bus ids and param set bus refs*/
+    if (paramSetIdx == numMixBuses)
+    {
+        const char** busRefIds = KWL_MALLOCANDZERO(numMixBuses * sizeof(char*), "preset bus ref validation");
+        
+        for (int i = 0; i < numMixBuses; i++)
+        {
+            const int indexOfRefedBus = c->mixBusIndices[i];
+            const char* idOfRefedBus = bin->mixBusChunk.mixBuses[indexOfRefedBus].id;
+            
+            if (indexOfRefedBus < 0)
+            {
+                /*move to the next bus reference*/
+                break;
+            }
+            
+            for (int j = 0; j < numMixBuses; j++)
+            {
+                if (busRefIds[j] != NULL)
+                {
+                    if (strcmp(idOfRefedBus, busRefIds[j]) == 0 &&
+                        kwlDoesMixBusExist(bin, idOfRefedBus))
+                    {
+                        errorLogCallback("Mix preset '%s' references the mix bus '%s' more than once.\n", c->id, idOfRefedBus);
+                        *errorOccurred = 1;
+                    }
+                }
+            }
+            
+            int slotFound = 0;
+            for (int j = 0; j < numMixBuses; j++)
+            {
+                if (busRefIds[j] == NULL)
+                {
+                    slotFound = 1;
+                    busRefIds[j] = idOfRefedBus;
+                    break;
+                }
+            }
+            
+            KWL_ASSERT(slotFound != 0);
+        }
+        
+        KWL_FREE(busRefIds);
+    }
 }
 
-static void kwlCreateMixPresetChunk(xmlNode* projectRoot, kwlEngineDataBinary* bin, int* errorOccurred, kwlLogCallback errorLogCallback)
+static void kwlCreateMixPresetChunk(xmlNode* projectRoot,
+                                    kwlEngineDataBinary* bin,
+                                    int* errorOccurred,
+                                    kwlLogCallback errorLogCallback)
 {
     bin->mixPresetChunk.chunkId = KWL_MIX_PRESETS_CHUNK_ID;
     
@@ -314,24 +376,6 @@ static void kwlCreateMixPresetChunk(xmlNode* projectRoot, kwlEngineDataBinary* b
                         bin,
                         errorOccurred,
                         errorLogCallback);
-    
-    /*check that all mix preset ids are unique */
-    for (int i = 0; i < bin->mixPresetChunk.numMixPresets; i++)
-    {
-        const char* idi = bin->mixPresetChunk.mixPresets[i].id;
-        for (int j = 0; j < bin->mixPresetChunk.numMixPresets; j++)
-        {
-            if (j != i)
-            {
-                const char* idj = bin->mixPresetChunk.mixPresets[j].id;
-                if (strcmp(idj, idi) == 0)
-                {
-                    errorLogCallback("Mix preset id '%s' is not unique.\n", idi);
-                    *errorOccurred = 1;
-                }
-            }
-        }
-    }
     
     /*check that there is exactly one default preset*/
     int numDefaultsFound = 0;
@@ -371,7 +415,8 @@ static void kwlGatherWaveBanksCallback(xmlNode* node,
     c->id = path;
     c->numAudioDataEntries = kwlGetChildCount(node, KWL_XML_AUDIO_DATA_ITEM_NAME);
     KWL_ASSERT(c->numAudioDataEntries > 0);
-    c->audioDataEntries = KWL_MALLOCANDZERO(c->numAudioDataEntries * sizeof(char*), "xml 2 bin wb entries");
+    c->audioDataEntries = KWL_MALLOCANDZERO(c->numAudioDataEntries * sizeof(char*), "xml 2 bin wb entry names");
+    c->streamFlags = KWL_MALLOCANDZERO(c->numAudioDataEntries * sizeof(char*), "xml 2 bin wb entry stream flags");
     
     int idx = 0;
     //printf("reading wavebank %s\n", c->id);
@@ -382,6 +427,7 @@ static void kwlGatherWaveBanksCallback(xmlNode* node,
             
             char* itemPath = kwlGetAttributeValueCopy(curr, KWL_XML_ATTR_REL_PATH);
             c->audioDataEntries[idx] = itemPath;
+            c->streamFlags[idx] = kwlGetBoolAttributeValue(curr, KWL_XML_ATTR_STREAM);
             //printf("    %s\n", itemPath);
             idx++;
         }
@@ -441,8 +487,14 @@ static int kwlGetSoundDefinitionIndex(kwlEngineDataBinary* bin, const char* id)
 
 static int kwlGetAudioDataIndex(kwlWaveBankChunk* wb, const char* id)
 {
+    KWL_ASSERT(wb != NULL);
+    KWL_ASSERT(id != NULL);
+    KWL_ASSERT(wb->audioDataEntries != NULL);
+    
     for (int i = 0; i < wb->numAudioDataEntries; i++)
     {
+        
+        KWL_ASSERT(wb->audioDataEntries[i] != NULL);
         if (strcmp(id, wb->audioDataEntries[i]) == 0)
         {
             return i;
@@ -496,20 +548,44 @@ static void kwlGatherSoundsCallback(xmlNode* node,
             xmlChar* waveBankId = kwlGetAttributeValue(curr, KWL_XML_ATTR_AUDIO_DATA_REFERENCE_WAVEBANK);
             
             const int wbIdx = kwlGetWaveBankIndex(bin, waveBankId);
-            kwlWaveBankChunk* wb = &bin->waveBankChunk.waveBanks[wbIdx];
-            const int itemIdx = kwlGetAudioDataIndex(wb, filePath);
+            c->waveBankIndices[refIdx] = wbIdx;
             
-            if (itemIdx < 0)
+            
+            if (wbIdx < 0)
             {
                 const char* soundPath = kwlGetNodePath(node);
                 *errorOccurred = 1;
-                errorLogCallback("Invalid reference to '%s' in wave bank '%s' found in sound definition '%s'.\n",
-                                 filePath, waveBankId, soundPath);
+                errorLogCallback("Invalid wave bank path '%s' found in sound definition '%s'.\n",
+                                 waveBankId, soundPath);
                 KWL_FREE(soundPath);
             }
-            
-            c->waveBankIndices[refIdx] = wbIdx;
-            c->audioDataIndices[refIdx] = itemIdx;
+            else
+            {
+                kwlWaveBankChunk* wb = &bin->waveBankChunk.waveBanks[wbIdx];
+                const int itemIdx = kwlGetAudioDataIndex(wb, filePath);
+                c->audioDataIndices[refIdx] = itemIdx;
+                const char* soundPath = kwlGetNodePath(node);
+                if (itemIdx < 0)
+                {
+                    
+                    *errorOccurred = 1;
+                    errorLogCallback("Invalid reference to '%s' in wave bank '%s' found in sound definition '%s'.\n",
+                                     filePath, waveBankId, soundPath);
+
+                }
+                else
+                {
+                    kwlWaveBankChunk* wb = &bin->waveBankChunk.waveBanks[wbIdx];
+                    if (wb->streamFlags[itemIdx] != 0)
+                    {
+                        *errorOccurred = 1;
+                        errorLogCallback("Sound definition '%s' references audio data item '%s' with stream flag set.\n",
+                                         soundPath, wb->audioDataEntries[itemIdx]);
+                    }
+                }
+                
+                KWL_FREE(soundPath);
+            }
             
             KWL_ASSERT(refIdx < bin->waveBankChunk.numAudioDataItemsTotal);
             refIdx++;
@@ -708,7 +784,7 @@ kwlResultCode kwlEngineDataBinary_loadFromXML(kwlEngineDataBinary* bin,
     {
         int uniquenessErrorOccurred = 0;
         
-        kwlCheckPathUniqueness(mixBusRootNode,
+        kwlCheckPathUniqueness(mixPresetRootNode,
                                KWL_XML_MIX_PRESET_GROUP_NAME,
                                KWL_XML_MIX_PRESET_NAME,
                                &uniquenessErrorOccurred,
@@ -761,6 +837,8 @@ kwlResultCode kwlEngineDataBinary_loadFromXML(kwlEngineDataBinary* bin,
     kwlCreateEventChunk(eventRootNode, bin, &eventErrorOccurred, errorLogCallback);
     
     int audioDataReferenceErrorOccurred = 0;
+    
+    /*If requested, check that all audio data file references can be resolved.*/
     if (validateAudioFileReferences)
     {
         xmlNode* projNode = xmlDocGetRootElement(doc);
@@ -1326,6 +1404,7 @@ void kwlEngineDataBinary_free(kwlEngineDataBinary* bin)
             KWL_FREE(wbi->audioDataEntries[j]);
         }
         KWL_FREE(wbi->audioDataEntries);
+        KWL_FREE(wbi->streamFlags);
     }
     
     KWL_FREE(bin->waveBankChunk.waveBanks);

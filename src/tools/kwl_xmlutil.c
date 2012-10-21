@@ -24,6 +24,7 @@
 #include <libxml/parser.h>
 #include <libxml/xmlschemas.h>
 
+#include "kwl_assert.h"
 #include "kwl_memory.h"
 #include "kwl_xmlutil.h"
 
@@ -208,4 +209,10 @@ kwlResultCode kwlLoadAndValidateProjectDataDoc(const char* xmlPath,
         xmlFreeDoc(doc);
         return KWL_XML_VALIDATION_FAILED;
     }
+}
+
+xmlNode* kwlResolveNodePath(xmlNode* root, const char* id)
+{
+    KWL_ASSERT(0 && "TODO");
+    return NULL;
 }

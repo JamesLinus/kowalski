@@ -43,6 +43,9 @@ extern "C"
 #define KWL_XML_ATTR_AUDIO_DATA_REFERENCE_PATH "relativePath"
 #define KWL_XML_ATTR_AUDIO_DATA_REFERENCE_WAVEBANK "waveBank"
     
+#define KWL_XML_SOUND_REFERENCE_NAME "SoundReference"
+#define KWL_XML_ATTR_SOUND_REFERENCE_SOUND "sound"
+    
 #define KWL_XML_WAVE_BANK_NAME "WaveBank"
 #define KWL_XML_MIX_PRESET_GROUP_NAME "MixPresetGroup"
     
@@ -174,9 +177,9 @@ extern "C"
                                                    kwlLogCallback errorLogCallback);
     
     /**
-     * 
+     *
      */
-    xmlNode* kwlResolveNodePath(xmlNode* root, const char* id);
+    xmlNode* kwlGetChild(xmlNode* root, const char* id);
     
 #ifdef __cplusplus
 }

@@ -288,7 +288,7 @@ static void kwlGatherMixPresetsCallback(xmlNode* node,
             if (busIdx < 0)
             {
                 *errorOccurred = 1;
-                errorLogCallback("The mix preset '%s' references a non-existing mix bus.\n", c->id);
+                errorLogCallback("The mix preset '%s' references non-existing mix bus '%s'.\n", c->id, busId);
             }
             
             float gainLeft = kwlGetFloatAttributeValue(curr, KWL_XML_ATTR_PARAM_SET_GAIN_L);
@@ -472,6 +472,21 @@ static int kwlGetWaveBankIndex(kwlEngineDataBinary* bin, const char* id)
     return -1;
 }
 
+static int kwlGetSoundIndex(kwlEngineDataBinary* bin, const char* id)
+{
+    KWL_ASSERT(soundDefinitionNames != NULL);
+    for (int i = 0; i < bin->soundChunk.numSoundDefinitions; i++)
+    {
+        if (strcmp(id, soundDefinitionNames[i]) == 0)
+        {
+            return i;
+        }
+    }
+    
+    return -1;
+}
+
+
 static int kwlGetSoundDefinitionIndex(kwlEngineDataBinary* bin, const char* id)
 {
     for (int i = 0; i < bin->soundChunk.numSoundDefinitions; i++)
@@ -567,7 +582,6 @@ static void kwlGatherSoundsCallback(xmlNode* node,
                 const char* soundPath = kwlGetNodePath(node);
                 if (itemIdx < 0)
                 {
-                    
                     *errorOccurred = 1;
                     errorLogCallback("Invalid reference to '%s' in wave bank '%s' found in sound definition '%s'.\n",
                                      filePath, waveBankId, soundPath);
@@ -635,6 +649,54 @@ static void kwlGatherEventsCallback(xmlNode* node,
         errorLogCallback("The mix bus '%s' referenced by event definition '%s' does not exist\n",
                          (const char*)kwlGetAttributeValue(node, KWL_XML_ATTR_EVENT_BUS),
                          c->id);
+    }
+    
+    const int isStreaming = kwlGetChildCount(node, KWL_XML_SOUND_REFERENCE_NAME) == 0;
+    
+    if (isStreaming)
+    {
+        xmlNode* audioDataRefNode = kwlGetChild(node, KWL_XML_AUDIO_DATA_REFERENCE_NAME);
+        KWL_ASSERT(audioDataRefNode != NULL);
+        xmlChar* wbPath = kwlGetAttributeValue(audioDataRefNode, KWL_XML_ATTR_AUDIO_DATA_REFERENCE_WAVEBANK);
+        char* audioDataPath = kwlGetAttributeValue(audioDataRefNode, KWL_XML_ATTR_AUDIO_DATA_REFERENCE_PATH);
+        
+        c->waveBankIndex = kwlGetWaveBankIndex(bin, wbPath);
+        c->audioDataIndex = -1;
+        if (c->waveBankIndex < 0)
+        {
+            *errorOccurred = 1;
+            errorLogCallback("Streaming event '%s' references non-existing wave bank '%s'.\n", c->id, wbPath);
+        }
+        else
+        {
+            kwlWaveBankChunk* wb = &bin->waveBankChunk.waveBanks[c->waveBankIndex];
+            const int itemIdx = kwlGetAudioDataIndex(wb, audioDataPath);
+            if (itemIdx < 0)
+            {
+                *errorOccurred = 1;
+                errorLogCallback("Streaming event '%s' references non-existing audio data item '%s'.\n", c->id, audioDataPath);
+            }
+            else
+            {
+                c->audioDataIndex = kwlGetAudioDataIndex(wb, audioDataPath);
+            }
+        }
+    }
+    else
+    {
+        xmlNode* soundRefNode = kwlGetChild(node, KWL_XML_SOUND_REFERENCE_NAME);
+        KWL_ASSERT(soundRefNode != NULL);
+        xmlChar* soundPath = kwlGetAttributeValue(soundRefNode, KWL_XML_ATTR_SOUND_REFERENCE_SOUND);
+        c->soundIndex = kwlGetSoundIndex(bin, soundPath);
+        if (c->soundIndex < 0)
+        {
+            *errorOccurred = 1;
+            errorLogCallback("Event '%s' references non-existing sound '%s'.\n", c->id, soundPath);
+        }
+        else
+        {
+            
+        }
     }
     
     c->numReferencedWaveBanks = 0;    //TODO

@@ -211,8 +211,15 @@ kwlResultCode kwlLoadAndValidateProjectDataDoc(const char* xmlPath,
     }
 }
 
-xmlNode* kwlResolveNodePath(xmlNode* root, const char* id)
+xmlNode* kwlGetChild(xmlNode* node, const char* id)
 {
-    KWL_ASSERT(0 && "TODO");
+    for (xmlNode* curr = node->children; curr != NULL; curr = curr->next)
+    {
+        if (xmlStrEqual(curr->name, (xmlChar*)id))
+        {
+            return curr;
+        }
+    }
+    
     return NULL;
 }

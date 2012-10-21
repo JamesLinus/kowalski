@@ -98,6 +98,8 @@ kwlResultCode kwlBuildWaveBanks(const char* xmlPath,
     
     for (int i = 0; i < edb.waveBankChunk.numWaveBanks; i++)
     {
+        kwlWaveBankChunk* edwb = &edb.waveBankChunk.waveBanks[i];
+        
         /*create a wave bank structure...*/
         const char* wbId = edb.waveBankChunk.waveBanks[i].id;
         kwlWaveBankBinary wbBin;
@@ -129,7 +131,44 @@ kwlResultCode kwlBuildWaveBanks(const char* xmlPath,
             
             //printf("WRITING WB TO %s\n", wbFilePath);
             
-            kwlWaveBankBinary_writeToFile(&wbBin, wbFilePath);
+            int shouldWrite = 1;
+            
+            if (kwlDoesFileExist(wbFilePath))
+            {
+                /*do dependency checking. only write the binary
+                 if the project data or any containing audio file
+                 has more recent changes than the wave bank file that
+                 already exists*/
+                long wbTimestamp = kwlGetFileTimeStamp(wbFilePath);
+                long projectTimestamp = kwlGetFileTimeStamp(xmlPath);
+                long latestAudioFileTimeStamp = 0;
+                for (int j = 0; j < edwb->numAudioDataEntries; j++)
+                {
+                    char* audioFilePath = kwlGetAudioFilePath(xmlPath,
+                                                              audioFileRoot,
+                                                              rootIsRelative,
+                                                              edwb->audioDataEntries[j]);
+                    long timeStamp = kwlGetFileTimeStamp(audioFilePath);
+                    if (timeStamp > latestAudioFileTimeStamp)
+                    {
+                        latestAudioFileTimeStamp = timeStamp;
+                    }
+                    KWL_FREE(audioFilePath);
+                }
+                
+                if (wbTimestamp > projectTimestamp &&
+                    wbTimestamp > latestAudioFileTimeStamp)
+                {
+                    errorLogCallback("Wave bank file '%s' is up to date.\n", wbFilePath);
+                    shouldWrite = 0;
+                }
+            }
+            
+            if (shouldWrite)
+            {
+                errorLogCallback("Building wave bank file '%s'.\n", wbFilePath);
+                kwlWaveBankBinary_writeToFile(&wbBin, wbFilePath);
+            }
             
             KWL_FREE(wbFilePath);
             KWL_FREE(wbFilePathNoExt);

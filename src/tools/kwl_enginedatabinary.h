@@ -28,6 +28,8 @@
 #include "kwl_enginedata.h"
 #include "kwl_logging.h"
 
+#include <libxml/tree.h>
+
 #ifdef __cplusplus
 extern "C"
 {
@@ -187,17 +189,33 @@ extern "C"
     /**
      *
      */
+    kwlResultCode kwlEngineDataBinary_validateFileReferences(kwlEngineDataBinary* bin,
+                                                             const char* xmlPath,
+                                                             const char* audioFileRoot,
+                                                             int rootIsRelative,
+                                                             kwlLogCallback errorLogCallback);
+    
+    /**
+     *
+     */
     kwlResultCode kwlEngineDataBinary_writeToFile(kwlEngineDataBinary* bin,
                                                   const char* binPath);
     
     /**
      *
      */
-    kwlResultCode kwlEngineDataBinary_loadFromXML(kwlEngineDataBinary* bin,
+    kwlResultCode kwlEngineDataBinary_loadFromXMLFile(kwlEngineDataBinary* bin,
                                                   const char* xmlPath,
                                                   const char* xsdPath,
                                                   int validateAudioFileReferences,
                                                   kwlLogCallback errorLogCallback);
+    
+    /**
+     * Assumes that \c document has been properly validated.
+     */
+    kwlResultCode kwlEngineDataBinary_loadFromXMLDocument(kwlEngineDataBinary* bin,
+                                                          xmlDoc* document,
+                                                          kwlLogCallback errorLogCallback);
     
     /**
      *

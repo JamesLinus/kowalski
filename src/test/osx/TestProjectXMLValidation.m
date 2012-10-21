@@ -250,6 +250,8 @@
     STAssertEquals(result,
                    expectedResult,
                    [NSString stringWithFormat:@"%@ should %@ generate a validation error", xmlPath, expectedResult == KWL_SUCCESS ? @"not" : @""]);
+    
+    printf("\n");
 }
 
 -(const char*)getResourcePath:(NSString*)fileName

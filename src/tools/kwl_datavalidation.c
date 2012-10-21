@@ -62,7 +62,7 @@ kwlResultCode kwlValidate(const char* filePath, const char* schemaPath, kwlLogCa
     /*The file is not a valid binary. See if it's a project data XML file*/
     logCallback("Validating project data XML file %s:\n", filePath);
     kwlEngineDataBinary edb;
-    kwlResultCode result = kwlEngineDataBinary_loadFromXML(&edb,
+    kwlResultCode result = kwlEngineDataBinary_loadFromXMLFile(&edb,
                                                            filePath,
                                                            schemaPath,
                                                            0,
@@ -85,7 +85,7 @@ kwlResultCode kwlValidateProjectData(const char* xmlPath,
     kwlEngineDataBinary bin;
     kwlMemset(&bin, 0, sizeof(kwlEngineDataBinary));
     
-    kwlResultCode result = kwlEngineDataBinary_loadFromXML(&bin,
+    kwlResultCode result = kwlEngineDataBinary_loadFromXMLFile(&bin,
                                                            xmlPath,
                                                            xsdPath,
                                                            validateAudioFileReferences,

@@ -157,45 +157,31 @@ static char* kwlDuplicateString(const char* str)
     return copy;
 }
 
-kwlResultCode kwlWaveBankBinary_loadFromXML(kwlWaveBankBinary* bin,
-                                            const char* xmlPath,
-                                            const char* xsdPath,
-                                            const char* waveBankId,
-                                            kwlLogCallback errorLogCallback)
+kwlResultCode kwlWaveBankBinary_create(kwlWaveBankBinary* wbBin,
+                                       kwlEngineDataBinary* edBin,
+                                       const char* xmlPath,
+                                       const char* audioFileRoot,
+                                       int rootIsRelative,
+                                       const char* waveBankId,
+                                       kwlLogCallback errorLogCallback)
 {
-    /*grab the audio file root path*/
-    xmlDocPtr doc = NULL;
-    kwlResultCode result = kwlLoadAndValidateProjectDataDoc(xmlPath, xsdPath, &doc, errorLogCallback);
-    if (result != KWL_SUCCESS)
+    /*double check file references before building*/
+    kwlResultCode rc = kwlEngineDataBinary_validateFileReferences(edBin,
+                                                                  xmlPath,
+                                                                  audioFileRoot,
+                                                                  rootIsRelative,
+                                                                  errorLogCallback);
+    
+    if (rc != KWL_SUCCESS)
     {
-        return result;
-    }
-    
-    int errorOccurred = 0;
-    
-    xmlNode* projNode = xmlDocGetRootElement(doc);
-    char* audioFileRoot = kwlGetAttributeValueCopy(projNode, KWL_XML_ATTR_PROJECT_AUDIO_FILE_ROOT);
-    int rootIsRelative = kwlGetBoolAttributeValue(projNode, KWL_XML_ATTR_PROJECT_AUDIO_FILE_ROOT_IS_RELATIVE);
-    xmlFreeDoc(doc);
-    
-    /*load project data*/
-    kwlEngineDataBinary projBin;
-    result = kwlEngineDataBinary_loadFromXML(&projBin,
-                                             xmlPath,
-                                             xsdPath,
-                                             1, //validate audio file refs
-                                             errorLogCallback);
-    
-    if (result != KWL_SUCCESS)
-    {
-        return result;
+        return rc;
     }
     
     /*find the wavebank*/
     kwlWaveBankChunk* waveBank = NULL;
-    for (int i = 0; i < projBin.waveBankChunk.numWaveBanks; i++)
+    for (int i = 0; i < edBin->waveBankChunk.numWaveBanks; i++)
     {
-        kwlWaveBankChunk* wbi = &projBin.waveBankChunk.waveBanks[i];
+        kwlWaveBankChunk* wbi = &edBin->waveBankChunk.waveBanks[i];
         if (strcmp(wbi->id, waveBankId) == 0)
         {
             waveBank = wbi;
@@ -212,30 +198,21 @@ kwlResultCode kwlWaveBankBinary_loadFromXML(kwlWaveBankBinary* bin,
     
     /*create wave bank binary struct and populate it using the corresponding
      wave bank from project data and the contents of the referenecd audio files*/
-    kwlMemset(bin, 0, sizeof(kwlWaveBankBinary));
-    bin->numEntries = waveBank->numAudioDataEntries;
+    kwlMemset(wbBin, 0, sizeof(kwlWaveBankBinary));
+    wbBin->numEntries = waveBank->numAudioDataEntries;
     for (int i = 0; i < KWL_WAVE_BANK_BINARY_FILE_IDENTIFIER_LENGTH; i++)
     {
-        bin->fileIdentifier[i] = KWL_WAVE_BANK_BINARY_FILE_IDENTIFIER[i];
+        wbBin->fileIdentifier[i] = KWL_WAVE_BANK_BINARY_FILE_IDENTIFIER[i];
     }
     
-    bin->id = kwlDuplicateString(waveBank->id);
-    bin->entries = KWL_MALLOCANDZERO(waveBank->numAudioDataEntries * sizeof(kwlWaveBankEntryChunk), "bin wb entries");
+    wbBin->id = kwlDuplicateString(waveBank->id);
+    wbBin->entries = KWL_MALLOCANDZERO(waveBank->numAudioDataEntries * sizeof(kwlWaveBankEntryChunk), "bin wb entries");
     for (int i = 0; i < waveBank->numAudioDataEntries; i++)
     {
-        kwlWaveBankEntryChunk* ei = &bin->entries[i];
+        kwlWaveBankEntryChunk* ei = &wbBin->entries[i];
         ei->fileName = kwlDuplicateString(waveBank->audioDataEntries[i]);
         const char* audioFilePath = kwlGetAudioFilePath(xmlPath, audioFileRoot, rootIsRelative, ei->fileName);
         KWL_ASSERT(kwlDoesFileExist(audioFilePath) && "audio file does not exist. should have been caught in validation");
-    }
-    
-    /*clean up*/
-    kwlEngineDataBinary_free(&projBin);
-    
-    if (errorOccurred != 0)
-    {
-        kwlWaveBankBinary_free(bin);
-        return KWL_AUDIO_FILE_REFERENCE_ERROR;
     }
     
     return KWL_SUCCESS;

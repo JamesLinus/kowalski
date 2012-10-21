@@ -729,7 +729,6 @@ static void kwlGatherEventsCallback(xmlNode* node,
         const int loop = kwlGetBoolAttributeValue(audioDataRefNode, KWL_XML_ATTR_AUDIO_DATA_REFERENCE_LOOP);
         
         c->waveBankIndex = kwlGetWaveBankIndex(bin, wbPath);
-        KWL_ASSERT(c->waveBankIndex >= 0 && c->waveBankIndex < bin->waveBankChunk.numWaveBanks);
         c->audioDataIndex = -1;
         c->loopIfStreaming = loop;
         if (c->waveBankIndex < 0)
@@ -739,6 +738,7 @@ static void kwlGatherEventsCallback(xmlNode* node,
         }
         else
         {
+            KWL_ASSERT(c->waveBankIndex >= 0 && c->waveBankIndex < bin->waveBankChunk.numWaveBanks);
             kwlWaveBankChunk* wb = &bin->waveBankChunk.waveBanks[c->waveBankIndex];
             const int itemIdx = kwlGetAudioDataIndex(wb, audioDataPath);
             if (itemIdx < 0)
@@ -886,21 +886,10 @@ static void kwlCheckPathUniqueness(xmlNode* node,
     }
 }
 
-kwlResultCode kwlEngineDataBinary_loadFromXML(kwlEngineDataBinary* bin,
-                                              const char* xmlPath,
-                                              const char* xsdPath,
-                                              int validateAudioFileReferences,
-                                              kwlLogCallback errorLogCallback)
-
+kwlResultCode kwlEngineDataBinary_loadFromXMLDocument(kwlEngineDataBinary* bin,
+                                                      xmlDocPtr doc,
+                                                      kwlLogCallback errorLogCallback)
 {
-    xmlDocPtr doc;
-    kwlResultCode result = kwlLoadAndValidateProjectDataDoc(xmlPath, xsdPath, &doc, errorLogCallback);
-    
-    if (result != KWL_SUCCESS)
-    {
-        return result;
-    }
-    
     /*Get the root element node */
     xmlNode* projectRootNode = xmlDocGetRootElement(doc);
     
@@ -972,8 +961,6 @@ kwlResultCode kwlEngineDataBinary_loadFromXML(kwlEngineDataBinary* bin,
         
         if (uniquenessErrorOccurred != 0)
         {
-            xmlFreeDoc(doc);
-            xmlCleanupParser();
             return KWL_PROJECT_XML_STRUCTURE_ERROR;
         }
     }
@@ -1000,36 +987,6 @@ kwlResultCode kwlEngineDataBinary_loadFromXML(kwlEngineDataBinary* bin,
     
     int audioDataReferenceErrorOccurred = 0;
     
-    /*If requested, check that all audio data file references can be resolved.*/
-    if (validateAudioFileReferences)
-    {
-        xmlNode* projNode = xmlDocGetRootElement(doc);
-        char* audioFileRoot = kwlGetAttributeValueCopy(projNode, KWL_XML_ATTR_PROJECT_AUDIO_FILE_ROOT);
-        int rootIsRelative = kwlGetBoolAttributeValue(projNode, KWL_XML_ATTR_PROJECT_AUDIO_FILE_ROOT_IS_RELATIVE);
-        
-        for (int i = 0; i < bin->waveBankChunk.numWaveBanks; i++)
-        {
-            kwlWaveBankChunk* wbi = &bin->waveBankChunk.waveBanks[i];
-            for (int j = 0; j < wbi->numAudioDataEntries; j++)
-            {
-                char* relPathj = wbi->audioDataEntries[j];
-                
-                char* audioFilePath = kwlGetAudioFilePath(xmlPath, audioFileRoot, rootIsRelative, relPathj);
-                if (!kwlDoesFileExist(audioFilePath))
-                {
-                    errorLogCallback("The audio file '%s' referenced by wave bank '%s' does not exist.\n", audioFilePath, wbi->id);
-                    audioDataReferenceErrorOccurred = 1;
-                }
-                KWL_FREE(audioFilePath);
-            }
-        }
-        
-        KWL_FREE(audioFileRoot);
-    }
-    
-    /*the xml document is no longer needed */
-    xmlFreeDoc(doc);
-    xmlCleanupParser();
     
     /*check if everything went well*/
     if (mixBusErrorOccurred ||
@@ -1046,6 +1003,79 @@ kwlResultCode kwlEngineDataBinary_loadFromXML(kwlEngineDataBinary* bin,
     return KWL_SUCCESS;
 }
 
+
+kwlResultCode kwlEngineDataBinary_loadFromXMLFile(kwlEngineDataBinary* bin,
+                                                  const char* xmlPath,
+                                                  const char* xsdPath,
+                                                  int validateAudioFileReferences,
+                                                  kwlLogCallback errorLogCallback)
+
+{
+    xmlDocPtr doc;
+    kwlResultCode validationResult = kwlLoadAndValidateProjectDataDoc(xmlPath, xsdPath, &doc, errorLogCallback);
+    
+    if (validationResult != KWL_SUCCESS)
+    {
+        return validationResult;
+    }
+    
+    kwlResultCode loadingResult = kwlEngineDataBinary_loadFromXMLDocument(bin,
+                                                                          doc,
+                                                                          errorLogCallback);
+    
+    /*If requested, check that all audio data file references can be resolved.*/
+    if (validateAudioFileReferences &&
+        loadingResult == KWL_SUCCESS)
+    {
+        xmlNode* projNode = xmlDocGetRootElement(doc);
+        char* audioFileRoot = kwlGetAttributeValueCopy(projNode, KWL_XML_ATTR_PROJECT_AUDIO_FILE_ROOT);
+        int rootIsRelative = kwlGetBoolAttributeValue(projNode, KWL_XML_ATTR_PROJECT_AUDIO_FILE_ROOT_IS_RELATIVE);
+        
+        kwlResultCode r = kwlEngineDataBinary_validateFileReferences(bin,
+                                                                     xmlPath,
+                                                                     audioFileRoot,
+                                                                     rootIsRelative,
+                                                                     errorLogCallback);
+        KWL_FREE(audioFileRoot);
+        xmlFreeDoc(doc);
+        xmlCleanupParser();
+        return r;
+    }
+    else
+    {
+        xmlFreeDoc(doc);
+        xmlCleanupParser();
+        return loadingResult;
+    }
+    
+}
+
+kwlResultCode kwlEngineDataBinary_validateFileReferences(kwlEngineDataBinary* bin,
+                                                         const char* xmlPath,
+                                                         const char* audioFileRoot,
+                                                         int rootIsRelative,
+                                                         kwlLogCallback errorLogCallback)
+{
+    kwlResultCode result = KWL_SUCCESS;
+    for (int i = 0; i < bin->waveBankChunk.numWaveBanks; i++)
+    {
+        kwlWaveBankChunk* wbi = &bin->waveBankChunk.waveBanks[i];
+        for (int j = 0; j < wbi->numAudioDataEntries; j++)
+        {
+            char* relPathj = wbi->audioDataEntries[j];
+            
+            char* audioFilePath = kwlGetAudioFilePath(xmlPath, audioFileRoot, rootIsRelative, relPathj);
+            if (!kwlDoesFileExist(audioFilePath))
+            {
+                errorLogCallback("The audio file '%s' referenced by wave bank '%s' does not exist.\n", audioFilePath, wbi->id);
+                result = KWL_AUDIO_FILE_REFERENCE_ERROR;
+            }
+            KWL_FREE(audioFilePath);
+        }
+    }
+    
+    return result;
+}
 
 kwlResultCode kwlEngineDataBinary_writeToFile(kwlEngineDataBinary* bin,
                                               const char* path)

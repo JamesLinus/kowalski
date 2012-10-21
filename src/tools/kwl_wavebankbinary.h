@@ -84,20 +84,16 @@ extern "C"
                                                        kwlLogCallback errorLogCallback);
     
     /**
-     * Creates a wave bank binary corresponding to a wavebank with a given id in
-     * a given project data XML file.
-     * @param bin The wave bank binary to populate with data.
-     * @param xmlPath The path to the project data XML file.
-     * @param xsdPath The path to the XML schema describing the structure of project XML data.
-     * @param waveBankId The id of the wave bank to load.
-     * @param errorLogCallback A callback used for logging any error messages.
+     * Creates a wave bank binary corresponding to a wavebank with a given id.
      * @return An error code.
      */
-    kwlResultCode kwlWaveBankBinary_loadFromXML(kwlWaveBankBinary* bin,
-                                                const char* xmlPath,
-                                                const char* xsdPath,
-                                                const char* waveBankId,
-                                                kwlLogCallback errorLogCallback);
+    kwlResultCode kwlWaveBankBinary_create(kwlWaveBankBinary* wbBin,
+                                           kwlEngineDataBinary* edBin,
+                                           const char* xmlPath,
+                                           const char* audioFileRoot,
+                                           int rootIsRelative,
+                                           const char* waveBankId,
+                                           kwlLogCallback errorLogCallback);
     
     /**
      * Prints the contents of a given wave bank binary.

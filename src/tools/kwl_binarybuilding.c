@@ -21,8 +21,13 @@
  distribution.
  */
 
+#include <string.h>
+
 #include "kwl_binarybuilding.h"
 #include "kwl_enginedatabinary.h"
+#include "kwl_wavebankbinary.h"
+#include "kwl_xmlutil.h"
+#include "kwl_fileutil.h"
 
 kwlResultCode kwlBuildEngineData(const char* xmlPath,
                                  const char* xsdPath,
@@ -30,11 +35,11 @@ kwlResultCode kwlBuildEngineData(const char* xmlPath,
                                  kwlLogCallback errorLogCallback)
 {
     kwlEngineDataBinary edb;
-    kwlResultCode result = kwlEngineDataBinary_loadFromXML(&edb,
-                                                           xmlPath,
-                                                           xsdPath,
-                                                           0,
-                                                           errorLogCallback);
+    kwlResultCode result = kwlEngineDataBinary_loadFromXMLFile(&edb,
+                                                               xmlPath,
+                                                               xsdPath,
+                                                               0,
+                                                               errorLogCallback);
     
     if (result != KWL_SUCCESS)
     {
@@ -58,5 +63,78 @@ kwlResultCode kwlBuildWaveBanks(const char* xmlPath,
                                 const char* targetDir,
                                 kwlLogCallback errorLogCallback)
 {
+    if (!kwlIsFileDirectory(targetDir))
+    {
+        /**/
+        errorLogCallback("Wave bank target location '%s' is not a directory.\n", targetDir);
+        return KWL_INVALID_PATH;
+    }
     
+    /*grab the audio file root path*/
+    xmlDocPtr doc = NULL;
+    kwlResultCode result = kwlLoadAndValidateProjectDataDoc(xmlPath, xsdPath, &doc, errorLogCallback);
+    if (result != KWL_SUCCESS)
+    {
+        return result;
+    }
+    
+    xmlNode* projNode = xmlDocGetRootElement(doc);
+    char* audioFileRoot = kwlGetAttributeValueCopy(projNode, KWL_XML_ATTR_PROJECT_AUDIO_FILE_ROOT);
+    int rootIsRelative = kwlGetBoolAttributeValue(projNode, KWL_XML_ATTR_PROJECT_AUDIO_FILE_ROOT_IS_RELATIVE);
+    
+    kwlEngineDataBinary edb;
+    kwlResultCode r = kwlEngineDataBinary_loadFromXMLDocument(&edb,
+                                                              doc,
+                                                              errorLogCallback);
+    
+    xmlFreeDoc(doc);
+    
+    if (r != KWL_SUCCESS)
+    {
+        return r;
+    }
+    
+    kwlResultCode finalResult = KWL_SUCCESS;
+    
+    for (int i = 0; i < edb.waveBankChunk.numWaveBanks; i++)
+    {
+        /*create a wave bank structure...*/
+        const char* wbId = edb.waveBankChunk.waveBanks[i].id;
+        kwlWaveBankBinary wbBin;
+        kwlResultCode wbResult = kwlWaveBankBinary_create(&wbBin,
+                                                          &edb,
+                                                          xmlPath,
+                                                          audioFileRoot,
+                                                          rootIsRelative,
+                                                          wbId,
+                                                          errorLogCallback);
+        
+        if (wbResult != KWL_SUCCESS)
+        {
+            finalResult = wbResult;
+        }
+        else
+        {
+            /*write the wave bank*/
+            char* wbFilePathNoExt = kwlAppendPathElement(targetDir, wbId);
+            size_t fullPathLen = strlen(wbFilePathNoExt) + 5;
+            char* wbFilePath = KWL_MALLOCANDZERO(fullPathLen * sizeof(char), "wb path w ext");
+            strcpy(wbFilePath, wbFilePathNoExt);
+            
+            wbFilePath[fullPathLen - 5] = '.';
+            wbFilePath[fullPathLen - 4] = 'k';
+            wbFilePath[fullPathLen - 3] = 'w';
+            wbFilePath[fullPathLen - 2] = 'b';
+            wbFilePath[fullPathLen - 1] = '\0';
+            
+            //printf("WRITING WB TO %s\n", wbFilePath);
+            
+            kwlWaveBankBinary_writeToFile(&wbBin, wbFilePath);
+            
+            KWL_FREE(wbFilePath);
+            KWL_FREE(wbFilePathNoExt);
+        }
+    }
+    
+    return finalResult;
 }

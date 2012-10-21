@@ -41,6 +41,131 @@
     [super tearDown];
 }
 
+/***************************************************************************
+ * EVENT STRUCTURE TESTS
+ ***************************************************************************/
+
+
+-(void)testDuplicateEventGroupIDs
+{
+    [self requireXMLValidationResult:@"event_group_duplicate_ids_1.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
+    [self requireXMLValidationResult:@"event_group_duplicate_ids_2.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
+}
+
+-(void)testDuplicateEventIDs
+{
+    [self requireXMLValidationResult:@"event_duplicate_ids_1.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
+    [self requireXMLValidationResult:@"event_duplicate_ids_2.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
+}
+
+-(void)testInvalidEventMixBusReference
+{
+    [self requireXMLValidationResult:@"event_invalid_mix_bus_reference.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
+}
+
+-(void)testInvalidSoundReference
+{
+    [self requireXMLValidationResult:@"event_invalid_sound_reference.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
+}
+
+/***************************************************************************
+ * MIX BUS STRUCTURE TESTS
+ ***************************************************************************/
+
+-(void)testDuplicateMixBusIDs
+{
+    [self requireXMLValidationResult:@"mix_bus_duplicate_ids.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
+}
+
+/***************************************************************************
+ * SOUND STRUCTURE TESTS
+ ***************************************************************************/
+
+-(void)testDuplicateSoundGroupIDs
+{
+    [self requireXMLValidationResult:@"sound_group_duplicate_ids_1.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
+    [self requireXMLValidationResult:@"sound_group_duplicate_ids_2.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
+}
+
+-(void)testDuplicateSoundIDs
+{
+    [self requireXMLValidationResult:@"sound_duplicate_ids_1.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
+    [self requireXMLValidationResult:@"sound_duplicate_ids_2.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
+}
+
+-(void)testSoundInvalidAudioDataReference
+{
+    [self requireXMLValidationResult:@"sound_invalid_audio_data_reference.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
+}
+
+/***************************************************************************
+ * WAVE BANK STRUCTURE TESTS
+ ***************************************************************************/
+
+-(void)testDuplicateWaveBankIDs
+{
+    [self requireXMLValidationResult:@"wave_bank_duplicate_ids.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
+}
+
+/***************************************************************************
+ * MIX PRESET STRUCTURE TESTS
+ ***************************************************************************/
+
+
+-(void)testInvalidMixPresetMixBusReference
+{
+    [self requireXMLValidationResult:@"mix_preset_invalid_mix_bus_reference.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
+}
+
+-(void)testExtraMixBusParameterSet
+{
+    [self requireXMLValidationResult:@"mix_preset_extra_parameter_set.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
+}
+
+
+-(void)testMissingMixBusParameterSet
+{
+    [self requireXMLValidationResult:@"mix_preset_missing_parameter_set.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
+}
+
+-(void)testDuplicateMixPresetMixBusReference
+{
+    [self requireXMLValidationResult:@"mix_preset_duplicate_bus_reference.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
+}
+
+-(void)testMissingDefaultPreset
+{
+    [self requireXMLValidationResult:@"mix_preset_missing_default.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
+}
+
+-(void)testMultipleDefaultPresets
+{
+    [self requireXMLValidationResult:@"mix_preset_multiple_defaults.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
+}
+
+/***************************************************************************
+ * SCHEMA VALIDATION TESTS
+ ***************************************************************************/
+
 -(void)testBrokenSchemaRules
 {
     [self requireXMLValidationResult:@"schema_error_duplicate_event_root_group.xml"
@@ -51,116 +176,31 @@
                                     :KWL_XML_VALIDATION_FAILED];
 }
 
--(void)testDuplicateEventGroupIDs
-{
-    [self requireXMLValidationResult:@"duplicate_event_group_ids_1.xml"
-                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
-    [self requireXMLValidationResult:@"duplicate_event_group_ids_2.xml"
-                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
-}
-
--(void)testDuplicateEventIDs
-{
-    [self requireXMLValidationResult:@"duplicate_event_ids_1.xml"
-                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
-}
-
--(void)testDuplicateMixBusIDs
-{
-    [self requireXMLValidationResult:@"duplicate_mix_bus_ids.xml"
-                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
-}
-
--(void)testDuplicateSoundGroupIDs
-{
-    [self requireXMLValidationResult:@"duplicate_sound_group_ids_1.xml"
-                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
-    [self requireXMLValidationResult:@"duplicate_sound_group_ids_2.xml"
-                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
-}
-
--(void)testDuplicateSoundIDs
-{
-    [self requireXMLValidationResult:@"duplicate_sound_ids_1.xml"
-                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
-    [self requireXMLValidationResult:@"duplicate_sound_ids_2.xml"
-                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
-}
-
--(void)testDuplicateWaveBankIDs
-{
-    [self requireXMLValidationResult:@"duplicate_wave_bank_ids.xml"
-                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
-}
-
--(void)testInvalidAudioDataReference
-{
-    [self requireXMLValidationResult:@"invalid_audio_data_reference.xml"
-                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
-}
-
--(void)testInvalidEventMixBusReference
-{
-    [self requireXMLValidationResult:@"invalid_event_mix_bus_reference.xml"
-                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
-}
-
--(void)testInvalidMixPresetMixBusReference
-{
-    [self requireXMLValidationResult:@"invalid_mix_preset_mix_bus_reference.xml"
-                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
-}
-
--(void)testExtraMixBusParameterSet
-{
-    [self requireXMLValidationResult:@"extra_mix_bus_parameter_set.xml"
-                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
-}
-
-
--(void)testMissingMixBusParameterSet
-{
-    [self requireXMLValidationResult:@"missing_mix_bus_parameter_set.xml"
-                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
-}
-
--(void)testDuplicateMixPresetMixBusReference
-{
-    [self requireXMLValidationResult:@"duplicate_mix_preset_bus_reference.xml"
-                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
-}
-
--(void)testInvalidSoundReference
-{
-    [self requireXMLValidationResult:@"invalid_sound_reference.xml"
-                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
-}
+/***************************************************************************
+ * VALID XML DATA TESTS
+ ***************************************************************************/
 
 -(void)testValidProjectXML
 {
-    [self requireXMLValidationResult:@"minimal_valid_project.xml"
+    [self requireXMLValidationResult:@"valid_project_minimal.xml"
                                     :KWL_SUCCESS];
-    [self requireXMLValidationResult:@"minimal_valid_project_reordered_root_groups.xml"
+    [self requireXMLValidationResult:@"valid_project_minimal_reordered_root_groups.xml"
                                     :KWL_SUCCESS];
 }
 
--(void)testMissingDefaultPreset
-{
-    [self requireXMLValidationResult:@"missing_default_mix_preset.xml"
-                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
-}
-
--(void)testMultipleDefaultPresets
-{
-    [self requireXMLValidationResult:@"multiple_default_mix_presets.xml"
-                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
-}
+/***************************************************************************
+ * XML SYNTAX ERROR TESTS
+ ***************************************************************************/
 
 -(void)testXMLSyntaxError
 {
     [self requireXMLValidationResult:@"xml_syntax_error.xml"
                                     :KWL_FAILED_TO_PARSE_PROJECT_XML];
 }
+
+/***************************************************************************
+ * HELPER METHODS
+ ***************************************************************************/
 
 -(void)requireXMLValidationResult:(NSString*) xmlPath
                                  :(kwlResultCode)expectedResult

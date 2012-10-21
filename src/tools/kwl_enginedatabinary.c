@@ -626,7 +626,7 @@ static void kwlCheckPathUniqueness(xmlNode* node,
         
         if (numMatches > 1)
         {
-            errorLogCallback("The id '%s' is not unique among the children of the containing %s '%s'.\n",
+            errorLogCallback("The id '%s' is not unique among the children of the %s node with id '%s'.\n",
                              childNames[i], branchNodeName, kwlGetAttributeValue(node, "id"));
             *uniquenessErrorOccurred = 1;
         }

@@ -37,8 +37,6 @@
                                     file location.</xs:documentation>
                 </xs:annotation>
             </xs:attribute>
-            <xs:attribute name="latestWaveBankDataBuildDirectory" use="optional" />
-            <xs:attribute name="latestEngineDataBuildDirectory" use="optional" />
             <xs:attribute name="speedOfSound" type="xs:float" use="optional" default="340"/>
             <xs:attribute name="distanceAttenuationModel" type="DistanceAttenuationModel" use="optional" default="INVERSE_DISTANCE_CLAMPED"/>
             <xs:attribute name="version" type="xs:string" use="required" fixed="1.0">
@@ -161,31 +159,14 @@
         </xs:restriction>
     </xs:simpleType>
 
-    <xs:complexType name="NodeWithExpansionState">
-        <xs:annotation>
-            <xs:documentation>Base type for nodes that are viewed in a tree.</xs:documentation>
-        </xs:annotation>
-        <xs:attribute name="expanded" type="xs:boolean" use="optional" default="true">
-            <xs:annotation>
-            <xs:documentation>The expansions state of the node in a tree visualizing project data, used to maintain the expansion
-            state of a GUI project tree. Note that this
-            value only affects the GUI presentation of project data.</xs:documentation>
-        </xs:annotation>
-        </xs:attribute>
-    </xs:complexType>
-
     <xs:complexType name="NodeWithIDAndComments">
         <xs:annotation>
             <xs:documentation>Base type for nodes with an ID attribute and a Comments element.</xs:documentation>
         </xs:annotation>
-         <xs:complexContent>
-            <xs:extension base="NodeWithExpansionState">
-                <xs:sequence>
-                    <xs:element name="Comments" type="commentString" minOccurs="0" maxOccurs="1"/>
-                </xs:sequence>
-                <xs:attribute name="id" type="identifierString" use="required" />
-            </xs:extension>
-         </xs:complexContent>
+        <xs:sequence>
+            <xs:element name="Comments" type="commentString" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="identifierString" use="required" />
     </xs:complexType>
 
     <xs:complexType name="Event">
@@ -198,9 +179,8 @@
                     <xs:element ref="AudioDataReference"/>
                     <xs:element ref="SoundReference"/>
                 </xs:choice>
-                
-                <xs:attribute name="positional" type="xs:boolean" use="optional" default="true"/>
                 <xs:attribute name="bus" type="identifierString" use="required"/>
+                <xs:attribute name="positional" type="xs:boolean" use="optional" default="true"/>
                 <xs:attribute name="pitch" type="pitchFloat" default="1.0" use="optional"/>
                 <xs:attribute name="gain" type="gainFloat" default="1.0" use="optional"/>
                 <xs:attribute name="innerConeAngle" type="coneAngleFloat" default="0" use="optional"/>

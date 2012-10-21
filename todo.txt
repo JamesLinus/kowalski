@@ -50,3 +50,5 @@ tools
 - make top MixPresetGroup optional
 - allow empty wavebanks etc in binaries.
 - path notation for mix buses too?
+- fry node with expansion state
+- generate xsd docs?

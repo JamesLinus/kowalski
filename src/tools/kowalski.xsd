@@ -188,7 +188,7 @@
                 <xs:attribute name="outerConeAngle" type="coneAngleFloat" default="360" use="optional"/>
                 <xs:attribute name="outerConeGain" type="gainFloat" default="1.0" use="optional"/>
                 <xs:attribute name="retriggerMode" type="EventRetriggerMode" default="RETRIGGER" use="optional"/>
-                <xs:attribute name="istanceStealingMode" type="EventInstanceStealingMode" default="STEAL_QUIETEST" use="optional"/>
+                <xs:attribute name="instanceStealingMode" type="EventInstanceStealingMode" default="STEAL_QUIETEST" use="optional"/>
                 <xs:attribute name="instanceCount" type="nonNegativeInt" default="1" use="optional"/>
             </xs:extension>
         </xs:complexContent>

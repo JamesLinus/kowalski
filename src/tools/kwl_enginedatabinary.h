@@ -140,13 +140,13 @@ extern "C"
         float gain;
         float pitch;
         float innerConeAngleDeg;
-        float innerConeGain;
         float outerConeAngleDeg;
         float outerConeGain;
         int mixBusIndex;
         int isPositional;
         int soundIndex;
         int retriggerMode;
+        int instanceStealingMode;
         int waveBankIndex;
         int audioDataIndex;
         int loopIfStreaming;

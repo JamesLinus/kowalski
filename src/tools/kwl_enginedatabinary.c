@@ -486,20 +486,6 @@ static int kwlGetSoundIndex(kwlEngineDataBinary* bin, const char* id)
     return -1;
 }
 
-
-static int kwlGetSoundDefinitionIndex(kwlEngineDataBinary* bin, const char* id)
-{
-    for (int i = 0; i < bin->soundChunk.numSoundDefinitions; i++)
-    {
-        
-        if (strcmp(id, soundDefinitionNames[i]) == 0)
-        {
-            return i;
-        }
-    }
-    return -1;
-}
-
 static int kwlGetAudioDataIndex(kwlWaveBankChunk* wb, const char* id)
 {
     KWL_ASSERT(wb != NULL);
@@ -519,6 +505,43 @@ static int kwlGetAudioDataIndex(kwlWaveBankChunk* wb, const char* id)
     return -1;
 }
 
+static int kwlGetSoundPlaybackModeInt(xmlChar* playbackMode)
+{
+    KWL_ASSERT(playbackMode != NULL);
+    
+    if (xmlStrcmp(playbackMode, (xmlChar*)KWL_XML_PLAYBACK_MODE_RANDOM) == 0)
+    {
+        return 0;
+    }
+    else if (xmlStrcmp(playbackMode, (xmlChar*)KWL_XML_PLAYBACK_MODE_RANDOM_NO_REPEAT) == 0)
+    {
+        return 1;
+    }
+    else if (xmlStrcmp(playbackMode, (xmlChar*)KWL_XML_PLAYBACK_MODE_SEQUENTIAL) == 0)
+    {
+        return 2;
+    }
+    else if (xmlStrcmp(playbackMode, (xmlChar*)KWL_XML_PLAYBACK_MODE_SEQUENTIAL_NO_RESET) == 0)
+    {
+        return 3;
+    }
+    else if (xmlStrcmp(playbackMode, (xmlChar*)KWL_XML_PLAYBACK_MODE_IN_RANDOM_OUT) == 0)
+    {
+        return 4;
+    }
+    else if (xmlStrcmp(playbackMode, (xmlChar*)KWL_XML_PLAYBACK_MODE_IN_RANDOM_NO_REPEAT_OUT) == 0)
+    {
+        return 5;
+    }
+    else if (xmlStrcmp(playbackMode, (xmlChar*)KWL_XML_PLAYBACK_MODE_IN_SEQUENTIAL_OUT) == 0)
+    {
+        return 6;
+    }
+    
+    KWL_ASSERT(0 && "invalid sound playback mode");
+    
+    return -1;
+}
 
 static void kwlGatherSoundsCallback(xmlNode* node,
                                     void* b,
@@ -545,7 +568,7 @@ static void kwlGatherSoundsCallback(xmlNode* node,
     c->pitchVariation = kwlGetFloatAttributeValue(node, KWL_XML_ATTR_PITCH_VAR);
     c->deferStop = kwlGetIntAttributeValue(node, KWL_XML_ATTR_DEFER_STOP);
     c->playbackCount = kwlGetIntAttributeValue(node, KWL_XML_ATTR_PLAYBACK_COUNT);
-    c->playbackMode = kwlGetIntAttributeValue(node, KWL_XML_ATTR_PLAYBACK_MODE);
+    c->playbackMode = kwlGetSoundPlaybackModeInt(kwlGetAttributeValue(node, KWL_XML_ATTR_PLAYBACK_MODE));
     c->numWaveReferences = kwlGetChildCount(node, KWL_XML_AUDIO_DATA_REFERENCE_NAME);
     
     if (c->numWaveReferences > 0)
@@ -622,6 +645,42 @@ static void kwlCreateSoundChunk(xmlNode* projectRoot, kwlEngineDataBinary* bin, 
                         errorLogCallback);
 }
 
+static int kwlGetEventRetriggerModeInt(xmlChar* playbackMode)
+{
+    if (xmlStrcmp(playbackMode, (xmlChar*)KWL_XML_RETRIGGER_MODE_RETRIGGER) == 0)
+    {
+        return 0;
+    }
+    else if (xmlStrcmp(playbackMode, (xmlChar*)KWL_XML_RETRIGGER_MODE_NO_RETRIGGER) == 0)
+    {
+        return 1;
+    }
+    
+    KWL_ASSERT(0 && "invalid event retrigger mode");
+    
+    return -1;
+}
+
+static int kwlGetEventInstanceStealingModeInt(xmlChar* playbackMode)
+{
+    if (xmlStrcmp(playbackMode, (xmlChar*)KWL_XML_INSTACE_STEALING_MODE_QUIETEST) == 0)
+    {
+        return 0;
+    }
+    else if (xmlStrcmp(playbackMode, (xmlChar*)KWL_XML_INSTACE_STEALING_MODE_RANDOM) == 0)
+    {
+        return 1;
+    }
+    else if (xmlStrcmp(playbackMode, (xmlChar*)KWL_XML_INSTACE_STEALING_MODE_NO_STEAL) == 0)
+    {
+        return 2;
+    }
+    
+    KWL_ASSERT(0 && "invalid event instance stealing mode");
+    
+    return -1;
+}
+
 static void kwlGatherEventsCallback(xmlNode* node,
                                     void* b,
                                     int* errorOccurred,
@@ -633,15 +692,19 @@ static void kwlGatherEventsCallback(xmlNode* node,
                                                    sizeof(kwlEventChunk) * bin->eventChunk.numEventDefinitions,
                                                    "xml 2 bin event realloc");
     kwlEventChunk* c = &bin->eventChunk.eventDefinitions[bin->eventChunk.numEventDefinitions - 1];
-    c->id = kwlGetNodePath(node);
+    kwlMemset(c, 0, sizeof(kwlEventChunk));
     
+    c->id = kwlGetNodePath(node);
     c->outerConeAngleDeg = kwlGetFloatAttributeValue(node, KWL_XML_ATTR_EVENT_OUTER_ANGLE);
+    c->outerConeGain = kwlGetFloatAttributeValue(node, KWL_XML_ATTR_EVENT_OUTER_GAIN);
     c->innerConeAngleDeg = kwlGetFloatAttributeValue(node, KWL_XML_ATTR_EVENT_INNER_ANGLE);
     c->gain = kwlGetFloatAttributeValue(node, KWL_XML_ATTR_EVENT_GAIN);
     c->pitch = kwlGetFloatAttributeValue(node, KWL_XML_ATTR_EVENT_PITCH);
     c->instanceCount = kwlGetFloatAttributeValue(node, KWL_XML_ATTR_EVENT_INSTANCE_COUNT);
     c->isPositional = kwlGetBoolAttributeValue(node, KWL_XML_ATTR_EVENT_IS_POSITIONAL);
     c->mixBusIndex = kwlGetMixBusIndex(bin, kwlGetAttributeValue(node, KWL_XML_ATTR_EVENT_BUS));
+    c->retriggerMode = kwlGetEventRetriggerModeInt(kwlGetAttributeValue(node, KWL_XML_ATTR_EVENT_RETRIGGER_MODE));
+    c->instanceStealingMode = kwlGetEventInstanceStealingModeInt(kwlGetAttributeValue(node, KWL_XML_ATTR_EVENT_INSTANCE_STEALING_MODE));
     
     if (c->mixBusIndex < 0)
     {
@@ -653,15 +716,22 @@ static void kwlGatherEventsCallback(xmlNode* node,
     
     const int isStreaming = kwlGetChildCount(node, KWL_XML_SOUND_REFERENCE_NAME) == 0;
     
+    c->soundIndex = -1;
+    c->waveBankIndex = -1;
+    c->audioDataIndex = -1;
+    
     if (isStreaming)
     {
         xmlNode* audioDataRefNode = kwlGetChild(node, KWL_XML_AUDIO_DATA_REFERENCE_NAME);
         KWL_ASSERT(audioDataRefNode != NULL);
         xmlChar* wbPath = kwlGetAttributeValue(audioDataRefNode, KWL_XML_ATTR_AUDIO_DATA_REFERENCE_WAVEBANK);
         char* audioDataPath = kwlGetAttributeValue(audioDataRefNode, KWL_XML_ATTR_AUDIO_DATA_REFERENCE_PATH);
+        const int loop = kwlGetBoolAttributeValue(audioDataRefNode, KWL_XML_ATTR_AUDIO_DATA_REFERENCE_LOOP);
         
         c->waveBankIndex = kwlGetWaveBankIndex(bin, wbPath);
+        KWL_ASSERT(c->waveBankIndex >= 0 && c->waveBankIndex < bin->waveBankChunk.numWaveBanks);
         c->audioDataIndex = -1;
+        c->loopIfStreaming = loop;
         if (c->waveBankIndex < 0)
         {
             *errorOccurred = 1;
@@ -1078,7 +1148,6 @@ kwlResultCode kwlEngineDataBinary_writeToFile(kwlEngineDataBinary* bin,
             kwlFileOutputStream_writeFloat32BE(&fos, ei->gain);
             kwlFileOutputStream_writeFloat32BE(&fos, ei->pitch);
             kwlFileOutputStream_writeFloat32BE(&fos, ei->innerConeAngleDeg);
-            kwlFileOutputStream_writeFloat32BE(&fos, ei->innerConeGain);
             kwlFileOutputStream_writeFloat32BE(&fos, ei->outerConeAngleDeg);
             kwlFileOutputStream_writeFloat32BE(&fos, ei->outerConeGain);
             kwlFileOutputStream_writeInt32BE(&fos, ei->mixBusIndex);
@@ -1372,7 +1441,6 @@ kwlResultCode kwlEngineDataBinary_loadFromBinaryFile(kwlEngineDataBinary* binary
             ei->gain = kwlInputStream_readFloatBE(&is);
             ei->pitch = kwlInputStream_readFloatBE(&is);
             ei->innerConeAngleDeg = kwlInputStream_readFloatBE(&is);
-            ei->innerConeGain = kwlInputStream_readFloatBE(&is);
             ei->outerConeAngleDeg = kwlInputStream_readFloatBE(&is);
             ei->outerConeGain = kwlInputStream_readFloatBE(&is);
             
@@ -1515,7 +1583,7 @@ void kwlEngineDataBinary_dump(kwlEngineDataBinary* bin, kwlLogCallback logCallba
     for (int i = 0; i < bin->mixBusChunk.numMixBuses; i++)
     {
         kwlMixBusChunk* mbi = &bin->mixBusChunk.mixBuses[i];
-        logCallback("        %s (%d sub buses", mbi->id, mbi->numSubBuses);
+        logCallback("        '%s' (idx %d, %d sub buses", mbi->id, i, mbi->numSubBuses);
         for (int j = 0; j < mbi->numSubBuses; j++)
         {
             logCallback("%s%d%s", j == 0 ? ": " : "", mbi->subBusIndices[j], j < mbi->numSubBuses - 1 ? ", " : "");
@@ -1531,7 +1599,7 @@ void kwlEngineDataBinary_dump(kwlEngineDataBinary* bin, kwlLogCallback logCallba
     for (int i = 0; i < bin->mixPresetChunk.numMixPresets; i++)
     {
         kwlMixPresetChunk* mpi = &bin->mixPresetChunk.mixPresets[i];
-        logCallback("        %s (default %d)\n", mpi->id, mpi->isDefault);
+        logCallback("        '%s' (default %d)\n", mpi->id, mpi->isDefault);
         for (int j = 0; j < bin->mixBusChunk.numMixBuses; j++)
         {
             logCallback("            bus idx %d: gain left %f, gain right %f, pitch %f\n",
@@ -1551,7 +1619,7 @@ void kwlEngineDataBinary_dump(kwlEngineDataBinary* bin, kwlLogCallback logCallba
     for (int i = 0; i < bin->waveBankChunk.numWaveBanks; i++)
     {
         kwlWaveBankChunk* wbi = &bin->waveBankChunk.waveBanks[i];
-        logCallback("        %s (%d entries)\n", wbi->id, wbi->numAudioDataEntries);
+        logCallback("        '%s' (%d entries)\n", wbi->id, wbi->numAudioDataEntries);
         for (int j = 0; j < wbi->numAudioDataEntries; j++)
         {
             logCallback("            %s\n", wbi->audioDataEntries[j]);
@@ -1566,8 +1634,8 @@ void kwlEngineDataBinary_dump(kwlEngineDataBinary* bin, kwlLogCallback logCallba
     for (int i = 0; i < bin->soundChunk.numSoundDefinitions; i++)
     {
         kwlSoundChunk* si = &bin->soundChunk.soundDefinitions[i];
-        logCallback("        %d%s: defer stop %d, playback count %d, num wave refs %d\n",
-                    i, i < 10 ? " " : "", si->deferStop, si->playbackCount, si->numWaveReferences);
+        logCallback("        %d%s: defer stop %d, playback count %d, playback mode %d, num wave refs %d\n",
+                    i, i < 10 ? " " : "", si->deferStop, si->playbackCount, si->playbackMode, si->numWaveReferences);
         logCallback("            gain (var) %f (%f), pitch (var) %f (%f)\n",
                     si->gain, si->gainVariation, si->pitch, si->pitchVariation);
         for (int j = 0; j < si->numWaveReferences; j++)
@@ -1586,6 +1654,18 @@ void kwlEngineDataBinary_dump(kwlEngineDataBinary* bin, kwlLogCallback logCallba
     for (int i = 0; i < bin->eventChunk.numEventDefinitions; i++)
     {
         kwlEventChunk* ei = &bin->eventChunk.eventDefinitions[i];
-        logCallback("        %s\n", ei->id);
+        logCallback("        %d: '%s'\n", i, ei->id);
+        logCallback("                gain %f, pitch %f, \n", ei->gain, ei->pitch);
+        logCallback("                inner cone angle %f, outer cone angle %f, outer cone gain %f\n",
+                    ei->innerConeAngleDeg, ei->outerConeAngleDeg, ei->outerConeGain);
+        logCallback("                instance count %d, is positional %d, stealing mode %d, retrigger mode %d\n",
+                    ei->instanceCount, ei->isPositional, ei->instanceStealingMode, ei->retriggerMode);
+        logCallback("                audio data index %d, wave bank index %d, loop %d (streaming events only)\n", ei->audioDataIndex, ei->waveBankIndex, ei->loopIfStreaming);
+        logCallback("                sound index %d (non-streaming events only)\n", ei->soundIndex);
+        logCallback("                %d referenced wave banks\n", ei->numReferencedWaveBanks);
+        for (int j = 0; j < ei->numReferencedWaveBanks; j++)
+        {
+            logCallback("                 idx %d\n", ei->waveBankIndices[j]);
+        }
     }
 }

@@ -92,8 +92,8 @@ kwlError kwlEngineData_loadMixBusData(kwlEngineData* data, kwlInputStream* strea
     const int numMixBuses = kwlInputStream_readIntBE(stream);
     KWL_ASSERT(numMixBuses > 0);
     data->numMixBuses = numMixBuses;
-    data->mixBuses = 
-    (kwlMixBus*)KWL_MALLOC(numMixBuses * sizeof(kwlMixBus), 
+    data->mixBuses =
+    (kwlMixBus*)KWL_MALLOC(numMixBuses * sizeof(kwlMixBus),
                            "kwlEngineData_loadMixBusData: mixer bus array");
     kwlMemset(data->mixBuses, 0, numMixBuses * sizeof(kwlMixBus));
     
@@ -118,7 +118,7 @@ kwlError kwlEngineData_loadMixBusData(kwlEngineData* data, kwlInputStream* strea
         mixBusi->subBuses = NULL;
         if (numSubBuses > 0)
         {
-            mixBusi->subBuses = (kwlMixBus**)KWL_MALLOC(numSubBuses * sizeof(kwlMixBus*), 
+            mixBusi->subBuses = (kwlMixBus**)KWL_MALLOC(numSubBuses * sizeof(kwlMixBus*),
                                                         "kwlEngineData_loadMixBusData: sub buses");
             int j;
             for (j = 0; j < numSubBuses; j++)
@@ -175,7 +175,7 @@ kwlError kwlEngineData_loadMixPresetData(kwlEngineData* data, kwlInputStream* st
     const int numParameterSets = data->numMixBuses;
     int defaultPresetIndex = -1;
     data->mixPresets = (kwlMixPreset*)KWL_MALLOC(sizeof(kwlMixPreset) * numMixPresets,
-                                                              "kwlEngineData_loadMixPresetData");
+                                                 "kwlEngineData_loadMixPresetData");
     
     /*read data*/
     int i;
@@ -197,8 +197,8 @@ kwlError kwlEngineData_loadMixPresetData(kwlEngineData* data, kwlInputStream* st
         }
         
         data->mixPresets[i].numParameterSets = numParameterSets;
-        data->mixPresets[i].parameterSets = 
-        (kwlMixBusParameters*)KWL_MALLOC(sizeof(kwlMixBusParameters) * numParameterSets, 
+        data->mixPresets[i].parameterSets =
+        (kwlMixBusParameters*)KWL_MALLOC(sizeof(kwlMixBusParameters) * numParameterSets,
                                          "kwlEngineData_loadMixPresetData");
         int j;
         for (j = 0; j < numParameterSets; j++)
@@ -251,11 +251,11 @@ kwlError kwlEngineData_loadWaveBankData(kwlEngineData* data, kwlInputStream* str
     
     data->totalNumAudioDataEntries = totalnumAudioDataEntries;
     data->audioDataEntries = (kwlAudioData*)KWL_MALLOC(totalnumAudioDataEntries * sizeof(kwlAudioData), "kwlEngineData_loadWaveBankData");
-    kwlMemset(data->audioDataEntries, 0, totalnumAudioDataEntries * sizeof(kwlAudioData)); 
+    kwlMemset(data->audioDataEntries, 0, totalnumAudioDataEntries * sizeof(kwlAudioData));
     
     data->numWaveBanks = numWaveBanks;
     data->waveBanks = (kwlWaveBank*)KWL_MALLOC(numWaveBanks * sizeof(kwlWaveBank), "kwlEngineData_loadWaveBankData");
-    kwlMemset(data->waveBanks, 0, numWaveBanks * sizeof(kwlWaveBank)); 
+    kwlMemset(data->waveBanks, 0, numWaveBanks * sizeof(kwlWaveBank));
     
     int i;
     int audioDataItemIdx = 0;
@@ -332,8 +332,8 @@ kwlError kwlEngineData_loadSoundData(kwlEngineData* data, kwlInputStream* stream
         
         const int numWaveReferences = kwlInputStream_readIntBE(stream);
         KWL_ASSERT(numWaveReferences > 0);
-        data->sounds[i].audioDataEntries = (kwlAudioData**)KWL_MALLOC(numWaveReferences * sizeof(kwlAudioData*), 
-                                                                                   "kwlEngineData_loadSoundData: wave list");
+        data->sounds[i].audioDataEntries = (kwlAudioData**)KWL_MALLOC(numWaveReferences * sizeof(kwlAudioData*),
+                                                                      "kwlEngineData_loadSoundData: wave list");
         data->sounds[i].numAudioDataEntries = numWaveReferences;
         
         int j;
@@ -366,7 +366,7 @@ void kwlEngineData_freeSoundData(kwlEngineData* data)
     {
         KWL_FREE(data->sounds[i].audioDataEntries);
     }
-    KWL_FREE(data->sounds);    
+    KWL_FREE(data->sounds);
     data->sounds = NULL;
     data->numSoundDefinitions = 0;
     
@@ -383,15 +383,14 @@ kwlError kwlEngineData_loadEventData(kwlEngineData* data, kwlInputStream* stream
     const int numEventDefinitions = kwlInputStream_readIntBE(stream);
     KWL_ASSERT(numEventDefinitions > 0);
     data->numEventDefinitions = numEventDefinitions;
-    data->events = 
+    data->events =
     (kwlEventInstance**)KWL_MALLOC(numEventDefinitions * sizeof(kwlEventInstance*), "kwlEngineData_loadEventData");
     kwlMemset(data->events, 0, numEventDefinitions * sizeof(kwlEventInstance*));
-    data->eventDefinitions = 
+    data->eventDefinitions =
     (kwlEventDefinition*)KWL_MALLOC(numEventDefinitions * sizeof(kwlEventDefinition), "kwlEngineData_loadEventData");
     kwlMemset(data->eventDefinitions, 0, numEventDefinitions * sizeof(kwlEventDefinition));
     
-    int i;
-    for (i = 0; i < numEventDefinitions; i++)
+    for (int i = 0; i < numEventDefinitions; i++)
     {
         kwlEventDefinition* definitioni = &data->eventDefinitions[i];
         /*read the id of this event definition*/
@@ -401,8 +400,9 @@ kwlError kwlEngineData_loadEventData(kwlEngineData* data, kwlInputStream* stream
         KWL_ASSERT(instanceCount >= -1);
         definitioni->instanceCount = instanceCount;
         const int numInstancesToAllocate = instanceCount < 1 ? 1 : instanceCount;
-        data->events[i] = 
-        (kwlEventInstance*)KWL_MALLOC(numInstancesToAllocate * sizeof(kwlEventInstance), "kwlEngineData_loadEventData");
+        data->events[i] =
+            (kwlEventInstance*)KWL_MALLOC(numInstancesToAllocate * sizeof(kwlEventInstance),
+                                          "kwlEngineData_loadEventData");
         kwlMemset(data->events[i], 0, numInstancesToAllocate * sizeof(kwlEventInstance));
         
         definitioni->gain = kwlInputStream_readFloatBE(stream);
@@ -423,7 +423,7 @@ kwlError kwlEngineData_loadEventData(kwlEngineData* data, kwlInputStream* stream
         KWL_ASSERT(mixBusIndex >= 0 && mixBusIndex < data->numMixBuses);
         definitioni->mixBus = &data->mixBuses[mixBusIndex];
         definitioni->isPositional = kwlInputStream_readIntBE(stream);
-        KWL_ASSERT(definitioni->isPositional == 0 || 
+        KWL_ASSERT(definitioni->isPositional == 0 ||
                    definitioni->isPositional == 1);
         
         /*read the index of the sound referenced by this event (ignored for streaming events)*/
@@ -463,7 +463,7 @@ kwlError kwlEngineData_loadEventData(kwlEngineData* data, kwlInputStream* stream
         /*read referenced wave banks*/
         definitioni->numReferencedWaveBanks = kwlInputStream_readIntBE(stream);
         KWL_ASSERT(definitioni->numReferencedWaveBanks < 10000 && definitioni->numReferencedWaveBanks >= 0);
-        definitioni->referencedWaveBanks = 
+        definitioni->referencedWaveBanks =
         (kwlWaveBank**)KWL_MALLOC(definitioni->numReferencedWaveBanks * sizeof(kwlWaveBank*), "wave bank refs");
         int j;
         for (j = 0; j < definitioni->numReferencedWaveBanks; j++)
@@ -486,7 +486,7 @@ kwlError kwlEngineData_loadEventData(kwlEngineData* data, kwlInputStream* stream
 
 void kwlEngineData_freeEventData(kwlEngineData* data)
 {
-    if (data->events == NULL && 
+    if (data->events == NULL &&
         data->eventDefinitions == NULL)
     {
         return;

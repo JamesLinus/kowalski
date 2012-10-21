@@ -46,6 +46,14 @@
 		C1406A0816336E210080C904 /* mix_preset_duplicate_bus_reference.xml in Resources */ = {isa = PBXBuildFile; fileRef = C1406A0716336E210080C904 /* mix_preset_duplicate_bus_reference.xml */; };
 		C1406A0B16336EDB0080C904 /* mix_preset_missing_parameter_set.xml in Resources */ = {isa = PBXBuildFile; fileRef = C1406A0A16336EDB0080C904 /* mix_preset_missing_parameter_set.xml */; };
 		C1406A0D16336F180080C904 /* mix_preset_extra_parameter_set.xml in Resources */ = {isa = PBXBuildFile; fileRef = C1406A0C16336F180080C904 /* mix_preset_extra_parameter_set.xml */; };
+		C1406A1216341F3B0080C904 /* event_invalid_audio_data_reference_1.xml in Resources */ = {isa = PBXBuildFile; fileRef = C1406A1016341F320080C904 /* event_invalid_audio_data_reference_1.xml */; };
+		C1406A1316341F3B0080C904 /* event_invalid_audio_data_reference_2.xml in Resources */ = {isa = PBXBuildFile; fileRef = C1406A1116341F340080C904 /* event_invalid_audio_data_reference_2.xml */; };
+		C1406A1616341FB70080C904 /* sound_invalid_audio_data_reference_1.xml in Resources */ = {isa = PBXBuildFile; fileRef = C1406A1416341FB60080C904 /* sound_invalid_audio_data_reference_1.xml */; };
+		C1406A1716341FB70080C904 /* sound_invalid_audio_data_reference_2.xml in Resources */ = {isa = PBXBuildFile; fileRef = C1406A1516341FB60080C904 /* sound_invalid_audio_data_reference_2.xml */; };
+		C1406A19163420370080C904 /* sound_reference_to_streaming_audio_data.xml in Resources */ = {isa = PBXBuildFile; fileRef = C1406A18163420360080C904 /* sound_reference_to_streaming_audio_data.xml */; };
+		C1406A1B1634213A0080C904 /* wave_bank_duplicate_group_ids.xml in Resources */ = {isa = PBXBuildFile; fileRef = C1406A1A163421390080C904 /* wave_bank_duplicate_group_ids.xml */; };
+		C1406A1E163421A80080C904 /* mix_preset_duplicate_group_ids.xml in Resources */ = {isa = PBXBuildFile; fileRef = C1406A1C163421A70080C904 /* mix_preset_duplicate_group_ids.xml */; };
+		C1406A1F163421A80080C904 /* mix_preset_duplicate_ids.xml in Resources */ = {isa = PBXBuildFile; fileRef = C1406A1D163421A80080C904 /* mix_preset_duplicate_ids.xml */; };
 		C14548461632C4EC00DE1EA6 /* kowalski.xsd in Resources */ = {isa = PBXBuildFile; fileRef = C14548451632C4EC00DE1EA6 /* kowalski.xsd */; };
 		C14548511632CB1500DE1EA6 /* kwl_binarybuilding.c in Sources */ = {isa = PBXBuildFile; fileRef = C166E387162F26F80068C846 /* kwl_binarybuilding.c */; };
 		C14548521632CB1E00DE1EA6 /* kwl_datavalidation.c in Sources */ = {isa = PBXBuildFile; fileRef = C1760F861620D6BD0044204B /* kwl_datavalidation.c */; };
@@ -95,7 +103,6 @@
 		C18CC382163206860037E220 /* sound_duplicate_ids_1.xml in Resources */ = {isa = PBXBuildFile; fileRef = C18CC31F163206860037E220 /* sound_duplicate_ids_1.xml */; };
 		C18CC383163206860037E220 /* sound_duplicate_ids_2.xml in Resources */ = {isa = PBXBuildFile; fileRef = C18CC320163206860037E220 /* sound_duplicate_ids_2.xml */; };
 		C18CC384163206860037E220 /* wave_bank_duplicate_ids.xml in Resources */ = {isa = PBXBuildFile; fileRef = C18CC321163206860037E220 /* wave_bank_duplicate_ids.xml */; };
-		C18CC385163206860037E220 /* sound_invalid_audio_data_reference.xml in Resources */ = {isa = PBXBuildFile; fileRef = C18CC322163206860037E220 /* sound_invalid_audio_data_reference.xml */; };
 		C18CC386163206860037E220 /* event_invalid_mix_bus_reference.xml in Resources */ = {isa = PBXBuildFile; fileRef = C18CC323163206860037E220 /* event_invalid_mix_bus_reference.xml */; };
 		C18CC387163206860037E220 /* event_invalid_sound_reference.xml in Resources */ = {isa = PBXBuildFile; fileRef = C18CC324163206860037E220 /* event_invalid_sound_reference.xml */; };
 		C18CC388163206860037E220 /* valid_project_minimal.xml in Resources */ = {isa = PBXBuildFile; fileRef = C18CC325163206860037E220 /* valid_project_minimal.xml */; };
@@ -381,6 +388,14 @@
 		C1406A0716336E210080C904 /* mix_preset_duplicate_bus_reference.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = mix_preset_duplicate_bus_reference.xml; sourceTree = "<group>"; };
 		C1406A0A16336EDB0080C904 /* mix_preset_missing_parameter_set.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = mix_preset_missing_parameter_set.xml; sourceTree = "<group>"; };
 		C1406A0C16336F180080C904 /* mix_preset_extra_parameter_set.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = mix_preset_extra_parameter_set.xml; sourceTree = "<group>"; };
+		C1406A1016341F320080C904 /* event_invalid_audio_data_reference_1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = event_invalid_audio_data_reference_1.xml; sourceTree = "<group>"; };
+		C1406A1116341F340080C904 /* event_invalid_audio_data_reference_2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = event_invalid_audio_data_reference_2.xml; sourceTree = "<group>"; };
+		C1406A1416341FB60080C904 /* sound_invalid_audio_data_reference_1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sound_invalid_audio_data_reference_1.xml; sourceTree = "<group>"; };
+		C1406A1516341FB60080C904 /* sound_invalid_audio_data_reference_2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sound_invalid_audio_data_reference_2.xml; sourceTree = "<group>"; };
+		C1406A18163420360080C904 /* sound_reference_to_streaming_audio_data.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sound_reference_to_streaming_audio_data.xml; sourceTree = "<group>"; };
+		C1406A1A163421390080C904 /* wave_bank_duplicate_group_ids.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = wave_bank_duplicate_group_ids.xml; sourceTree = "<group>"; };
+		C1406A1C163421A70080C904 /* mix_preset_duplicate_group_ids.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = mix_preset_duplicate_group_ids.xml; sourceTree = "<group>"; };
+		C1406A1D163421A80080C904 /* mix_preset_duplicate_ids.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = mix_preset_duplicate_ids.xml; sourceTree = "<group>"; };
 		C14548451632C4EC00DE1EA6 /* kowalski.xsd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = kowalski.xsd; path = ../../src/tools/kowalski.xsd; sourceTree = "<group>"; };
 		C145484D1632CAFE00DE1EA6 /* libkowalski_tools.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libkowalski_tools.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C145486B1632E1DF00DE1EA6 /* mix_preset_invalid_mix_bus_reference.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = mix_preset_invalid_mix_bus_reference.xml; sourceTree = "<group>"; };
@@ -435,7 +450,6 @@
 		C18CC31F163206860037E220 /* sound_duplicate_ids_1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sound_duplicate_ids_1.xml; sourceTree = "<group>"; };
 		C18CC320163206860037E220 /* sound_duplicate_ids_2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sound_duplicate_ids_2.xml; sourceTree = "<group>"; };
 		C18CC321163206860037E220 /* wave_bank_duplicate_ids.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = wave_bank_duplicate_ids.xml; sourceTree = "<group>"; };
-		C18CC322163206860037E220 /* sound_invalid_audio_data_reference.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sound_invalid_audio_data_reference.xml; sourceTree = "<group>"; };
 		C18CC323163206860037E220 /* event_invalid_mix_bus_reference.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = event_invalid_mix_bus_reference.xml; sourceTree = "<group>"; };
 		C18CC324163206860037E220 /* event_invalid_sound_reference.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = event_invalid_sound_reference.xml; sourceTree = "<group>"; };
 		C18CC325163206860037E220 /* valid_project_minimal.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = valid_project_minimal.xml; sourceTree = "<group>"; };
@@ -755,10 +769,14 @@
 				C18CC319163206860037E220 /* event_group_duplicate_ids_2.xml */,
 				C18CC31A163206860037E220 /* event_duplicate_ids_1.xml */,
 				C18CC31B163206860037E220 /* event_duplicate_ids_2.xml */,
+				C1406A1016341F320080C904 /* event_invalid_audio_data_reference_1.xml */,
+				C1406A1116341F340080C904 /* event_invalid_audio_data_reference_2.xml */,
 				C18CC323163206860037E220 /* event_invalid_mix_bus_reference.xml */,
 				C18CC324163206860037E220 /* event_invalid_sound_reference.xml */,
 				C18CC31C163206860037E220 /* mix_bus_duplicate_ids.xml */,
 				C1406A0716336E210080C904 /* mix_preset_duplicate_bus_reference.xml */,
+				C1406A1C163421A70080C904 /* mix_preset_duplicate_group_ids.xml */,
+				C1406A1D163421A80080C904 /* mix_preset_duplicate_ids.xml */,
 				C18CC326163206860037E220 /* mix_preset_missing_default.xml */,
 				C1406A0A16336EDB0080C904 /* mix_preset_missing_parameter_set.xml */,
 				C1406A0C16336F180080C904 /* mix_preset_extra_parameter_set.xml */,
@@ -768,10 +786,13 @@
 				C18CC31E163206860037E220 /* sound_group_duplicate_ids_2.xml */,
 				C18CC31F163206860037E220 /* sound_duplicate_ids_1.xml */,
 				C18CC320163206860037E220 /* sound_duplicate_ids_2.xml */,
-				C18CC322163206860037E220 /* sound_invalid_audio_data_reference.xml */,
+				C1406A1416341FB60080C904 /* sound_invalid_audio_data_reference_1.xml */,
+				C1406A1516341FB60080C904 /* sound_invalid_audio_data_reference_2.xml */,
+				C1406A18163420360080C904 /* sound_reference_to_streaming_audio_data.xml */,
 				C18CC325163206860037E220 /* valid_project_minimal.xml */,
 				C14548791632E7FA00DE1EA6 /* valid_project_minimal_reordered_root_groups.xml */,
 				C18CC321163206860037E220 /* wave_bank_duplicate_ids.xml */,
+				C1406A1A163421390080C904 /* wave_bank_duplicate_group_ids.xml */,
 				C14548731632E74F00DE1EA6 /* schema_error_duplicate_event_root_group.xml */,
 				C14548741632E75000DE1EA6 /* schema_error_forbidden_element_under_root.xml */,
 				C14548751632E75000DE1EA6 /* schema_error_wrong_root_name.xml */,
@@ -1190,7 +1211,6 @@
 				C18CC382163206860037E220 /* sound_duplicate_ids_1.xml in Resources */,
 				C18CC383163206860037E220 /* sound_duplicate_ids_2.xml in Resources */,
 				C18CC384163206860037E220 /* wave_bank_duplicate_ids.xml in Resources */,
-				C18CC385163206860037E220 /* sound_invalid_audio_data_reference.xml in Resources */,
 				C18CC386163206860037E220 /* event_invalid_mix_bus_reference.xml in Resources */,
 				C18CC387163206860037E220 /* event_invalid_sound_reference.xml in Resources */,
 				C18CC388163206860037E220 /* valid_project_minimal.xml in Resources */,
@@ -1206,6 +1226,14 @@
 				C1406A0816336E210080C904 /* mix_preset_duplicate_bus_reference.xml in Resources */,
 				C1406A0B16336EDB0080C904 /* mix_preset_missing_parameter_set.xml in Resources */,
 				C1406A0D16336F180080C904 /* mix_preset_extra_parameter_set.xml in Resources */,
+				C1406A1216341F3B0080C904 /* event_invalid_audio_data_reference_1.xml in Resources */,
+				C1406A1316341F3B0080C904 /* event_invalid_audio_data_reference_2.xml in Resources */,
+				C1406A1616341FB70080C904 /* sound_invalid_audio_data_reference_1.xml in Resources */,
+				C1406A1716341FB70080C904 /* sound_invalid_audio_data_reference_2.xml in Resources */,
+				C1406A19163420370080C904 /* sound_reference_to_streaming_audio_data.xml in Resources */,
+				C1406A1B1634213A0080C904 /* wave_bank_duplicate_group_ids.xml in Resources */,
+				C1406A1E163421A80080C904 /* mix_preset_duplicate_group_ids.xml in Resources */,
+				C1406A1F163421A80080C904 /* mix_preset_duplicate_ids.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<KowalskiProject version="1.0">
+    <EventGroup id="root"/>
+
+    <WaveBankGroup id="root">
+        <WaveBankGroup id="thegroup">
+            <WaveBank id="testwavebank">
+                <AudioData relativePath="testwave.wav" streamFromDisk="true"/>
+            </WaveBank>
+        </WaveBankGroup>
+    </WaveBankGroup>
+
+    <SoundGroup id="root">
+        <SoundGroup id="testsoundgroup">
+            <Sound id="testsound">
+                <AudioDataReference waveBank="thegroup/testwavebank" relativePath="testwave.wav"/>
+            </Sound>
+        </SoundGroup>
+    </SoundGroup>
+
+    <MixBus id="master" />
+
+    <MixPresetGroup id="root">
+        <MixPreset id="testmixpreset" default="true">
+            <MixBusParameters mixBus="master" leftGain="1" rightGain="1" pitch="1"/>
+        </MixPreset>
+    </MixPresetGroup>
+
+</KowalskiProject>

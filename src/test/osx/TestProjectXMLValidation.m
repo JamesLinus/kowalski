@@ -68,11 +68,21 @@
                                     :KWL_PROJECT_XML_STRUCTURE_ERROR];
 }
 
--(void)testInvalidSoundReference
+-(void)testInvalidEventSoundReference
 {
     [self requireXMLValidationResult:@"event_invalid_sound_reference.xml"
                                     :KWL_PROJECT_XML_STRUCTURE_ERROR];
 }
+
+-(void)testInvalidEventAudioDataReference
+{
+    [self requireXMLValidationResult:@"event_invalid_audio_data_reference_1.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
+    
+    [self requireXMLValidationResult:@"event_invalid_audio_data_reference_2.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
+}
+
 
 /***************************************************************************
  * MIX BUS STRUCTURE TESTS
@@ -106,9 +116,20 @@
 
 -(void)testSoundInvalidAudioDataReference
 {
-    [self requireXMLValidationResult:@"sound_invalid_audio_data_reference.xml"
+    [self requireXMLValidationResult:@"sound_invalid_audio_data_reference_1.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
+    
+    [self requireXMLValidationResult:@"sound_invalid_audio_data_reference_2.xml"
                                     :KWL_PROJECT_XML_STRUCTURE_ERROR];
 }
+
+-(void)testSoundReferenceToStreamingData
+{
+    [self requireXMLValidationResult:@"sound_reference_to_streaming_audio_data.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
+    
+}
+
 
 /***************************************************************************
  * WAVE BANK STRUCTURE TESTS
@@ -120,10 +141,27 @@
                                     :KWL_PROJECT_XML_STRUCTURE_ERROR];
 }
 
+-(void)testDuplicateWaveBankGroupIDs
+{
+    [self requireXMLValidationResult:@"wave_bank_duplicate_group_ids.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
+}
+
 /***************************************************************************
  * MIX PRESET STRUCTURE TESTS
  ***************************************************************************/
 
+-(void)testDuplicateMixPresetIDs
+{
+    [self requireXMLValidationResult:@"mix_preset_duplicate_ids.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
+}
+
+-(void)testDuplicateMixPresetGroupIDs
+{
+    [self requireXMLValidationResult:@"mix_preset_duplicate_group_ids.xml"
+                                    :KWL_PROJECT_XML_STRUCTURE_ERROR];
+}
 
 -(void)testInvalidMixPresetMixBusReference
 {

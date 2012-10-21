@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<KowalskiProject version="1.0">
+    <EventGroup id="root"/>
+    <WaveBankGroup id="root" />
+    <SoundGroup id="root"/>
+    
+    <MixBus id="master" >
+        <MixBus id="testmixbus"/>
+    </MixBus>
+    
+    <MixPresetGroup id="root">
+        <MixPresetGroup id="presetgroup">
+            <MixPreset id="testmixpreset" default="true">
+                <MixBusParameters mixBus="master" leftGain="1" rightGain="1" pitch="1"/>
+                <MixBusParameters mixBus="testmixbus" leftGain="1" rightGain="1" pitch="1"/>
+            </MixPreset>
+        </MixPresetGroup>
+        <MixPresetGroup id="presetgroup">
+            <MixPreset id="testmixpreset2" default="true">
+                <MixBusParameters mixBus="master" leftGain="1" rightGain="1" pitch="1"/>
+                <MixBusParameters mixBus="testmixbus" leftGain="1" rightGain="1" pitch="1"/>
+            </MixPreset>
+        </MixPresetGroup>
+    </MixPresetGroup>
+    
+</KowalskiProject>

@@ -855,7 +855,7 @@ static void kwlCreateEventChunk(xmlNode* eventsRootGroup,
                                                                   bin->waveBankChunk.waveBanks[wbIdx].audioDataEntries[adIdx]);
             KWL_ASSERT(audioDataNode);
             char* relFilePath = kwlGetAttributeValueCopy(audioDataNode, KWL_XML_ATTR_REL_PATH);
-            const int streaming = kwlGetAttributeValueCopy(audioDataNode, KWL_XML_ATTR_STREAM);
+            const int streaming = kwlGetBoolAttributeValue(audioDataNode, KWL_XML_ATTR_STREAM);
             
             char* absFilePath = kwlGetAudioFilePath(projectXmlPath,
                                                     audioFileRoot,

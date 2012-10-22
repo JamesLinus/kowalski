@@ -273,6 +273,8 @@ void PianoDemo::onKeyDown(SDLKey key)
     if (idx >= 0)
     {
         kwlEventStart(m_keyEventHandles[idx]);
+        kwlError e = kwlGetError();
+        assert(e == KWL_NO_ERROR);
     }
 }
 
@@ -291,11 +293,15 @@ void PianoDemo::initialize()
     m_keyEventHandles[10] = kwlEventGetHandle("pianodemo/b-1");
     m_keyEventHandles[11] = kwlEventGetHandle("pianodemo/h-1");
     m_keyEventHandles[12] = kwlEventGetHandle("pianodemo/c-2");
-    
+    kwlError error = kwlGetError();
+    assert(error == KWL_NO_ERROR);
     m_currentPitch = 1.0f;
     m_waveBankHandle = kwlWaveBankLoad(getResourcePath("notes.kwb"));
-    
+    error = kwlGetError();
+    assert(error == KWL_NO_ERROR);
     m_notesMixBusHandle = kwlMixBusGetHandle("notes");
+    error = kwlGetError();
+    assert(error == KWL_NO_ERROR);
 }
 
 void PianoDemo::deinitialize()

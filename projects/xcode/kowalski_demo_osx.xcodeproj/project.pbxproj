@@ -41,11 +41,6 @@
 		C15759A81628F1B50051A4DF /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C15759A71628F1B50051A4DF /* AudioUnit.framework */; };
 		C15759E81628F3CE0051A4DF /* SDL.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C15759E71628F3CE0051A4DF /* SDL.framework */; };
 		C15759E91628F3E60051A4DF /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C15759E71628F3CE0051A4DF /* SDL.framework */; };
-		C15759F11628F4F50051A4DF /* demoproject.kwl in Resources */ = {isa = PBXBuildFile; fileRef = C15759EC1628F4F50051A4DF /* demoproject.kwl */; };
-		C15759F21628F4F50051A4DF /* music.kwb in Resources */ = {isa = PBXBuildFile; fileRef = C15759ED1628F4F50051A4DF /* music.kwb */; };
-		C15759F31628F4F50051A4DF /* notes.kwb in Resources */ = {isa = PBXBuildFile; fileRef = C15759EE1628F4F50051A4DF /* notes.kwb */; };
-		C15759F41628F4F50051A4DF /* numbers.kwb in Resources */ = {isa = PBXBuildFile; fileRef = C15759EF1628F4F50051A4DF /* numbers.kwb */; };
-		C15759F51628F4F50051A4DF /* sfx.kwb in Resources */ = {isa = PBXBuildFile; fileRef = C15759F01628F4F50051A4DF /* sfx.kwb */; };
 		C1575A041628F4FE0051A4DF /* sine_signed_16bit_mono.aiff in Resources */ = {isa = PBXBuildFile; fileRef = C15759F71628F4FE0051A4DF /* sine_signed_16bit_mono.aiff */; };
 		C1575A051628F4FE0051A4DF /* sine_signed_16bit_mono.au in Resources */ = {isa = PBXBuildFile; fileRef = C15759F81628F4FE0051A4DF /* sine_signed_16bit_mono.au */; };
 		C1575A061628F4FE0051A4DF /* sine_signed_16bit_mono.wav in Resources */ = {isa = PBXBuildFile; fileRef = C15759F91628F4FE0051A4DF /* sine_signed_16bit_mono.wav */; };
@@ -59,6 +54,11 @@
 		C1575A0E1628F4FE0051A4DF /* sine_signed_8bit_mono.au in Resources */ = {isa = PBXBuildFile; fileRef = C1575A011628F4FE0051A4DF /* sine_signed_8bit_mono.au */; };
 		C1575A0F1628F4FE0051A4DF /* sine_unsigned_8bit_mono.aiff in Resources */ = {isa = PBXBuildFile; fileRef = C1575A021628F4FE0051A4DF /* sine_unsigned_8bit_mono.aiff */; };
 		C1575A101628F4FE0051A4DF /* sine_unsigned_8bit_mono.wav in Resources */ = {isa = PBXBuildFile; fileRef = C1575A031628F4FE0051A4DF /* sine_unsigned_8bit_mono.wav */; };
+		C17DD04D16360CF3004B3428 /* demoproject.kwl in Resources */ = {isa = PBXBuildFile; fileRef = C17DD04816360CF3004B3428 /* demoproject.kwl */; };
+		C17DD04E16360CF3004B3428 /* music.kwb in Resources */ = {isa = PBXBuildFile; fileRef = C17DD04916360CF3004B3428 /* music.kwb */; };
+		C17DD04F16360CF3004B3428 /* notes.kwb in Resources */ = {isa = PBXBuildFile; fileRef = C17DD04A16360CF3004B3428 /* notes.kwb */; };
+		C17DD05016360CF3004B3428 /* numbers.kwb in Resources */ = {isa = PBXBuildFile; fileRef = C17DD04B16360CF3004B3428 /* numbers.kwb */; };
+		C17DD05116360CF3004B3428 /* sfx.kwb in Resources */ = {isa = PBXBuildFile; fileRef = C17DD04C16360CF3004B3428 /* sfx.kwb */; };
 		C1AD37CB1628ED4E00CE9A8B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1AD37CA1628ED4E00CE9A8B /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
@@ -179,11 +179,6 @@
 		C15759A51628F1A90051A4DF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
 		C15759A71628F1B50051A4DF /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AudioUnit.framework; sourceTree = DEVELOPER_DIR; };
 		C15759E71628F3CE0051A4DF /* SDL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL.framework; path = ../../lib/SDL.framework; sourceTree = "<group>"; };
-		C15759EC1628F4F50051A4DF /* demoproject.kwl */ = {isa = PBXFileReference; lastKnownFileType = file; name = demoproject.kwl; path = ../../res/demodata/final/demoproject.kwl; sourceTree = "<group>"; };
-		C15759ED1628F4F50051A4DF /* music.kwb */ = {isa = PBXFileReference; lastKnownFileType = file; name = music.kwb; path = ../../res/demodata/final/music.kwb; sourceTree = "<group>"; };
-		C15759EE1628F4F50051A4DF /* notes.kwb */ = {isa = PBXFileReference; lastKnownFileType = file; name = notes.kwb; path = ../../res/demodata/final/notes.kwb; sourceTree = "<group>"; };
-		C15759EF1628F4F50051A4DF /* numbers.kwb */ = {isa = PBXFileReference; lastKnownFileType = file; name = numbers.kwb; path = ../../res/demodata/final/numbers.kwb; sourceTree = "<group>"; };
-		C15759F01628F4F50051A4DF /* sfx.kwb */ = {isa = PBXFileReference; lastKnownFileType = file; name = sfx.kwb; path = ../../res/demodata/final/sfx.kwb; sourceTree = "<group>"; };
 		C15759F71628F4FE0051A4DF /* sine_signed_16bit_mono.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = sine_signed_16bit_mono.aiff; sourceTree = "<group>"; };
 		C15759F81628F4FE0051A4DF /* sine_signed_16bit_mono.au */ = {isa = PBXFileReference; lastKnownFileType = audio.au; path = sine_signed_16bit_mono.au; sourceTree = "<group>"; };
 		C15759F91628F4FE0051A4DF /* sine_signed_16bit_mono.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sine_signed_16bit_mono.wav; sourceTree = "<group>"; };
@@ -197,6 +192,11 @@
 		C1575A011628F4FE0051A4DF /* sine_signed_8bit_mono.au */ = {isa = PBXFileReference; lastKnownFileType = audio.au; path = sine_signed_8bit_mono.au; sourceTree = "<group>"; };
 		C1575A021628F4FE0051A4DF /* sine_unsigned_8bit_mono.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = sine_unsigned_8bit_mono.aiff; sourceTree = "<group>"; };
 		C1575A031628F4FE0051A4DF /* sine_unsigned_8bit_mono.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sine_unsigned_8bit_mono.wav; sourceTree = "<group>"; };
+		C17DD04816360CF3004B3428 /* demoproject.kwl */ = {isa = PBXFileReference; lastKnownFileType = file; name = demoproject.kwl; path = ../../res/demodata/final/demoproject.kwl; sourceTree = "<group>"; };
+		C17DD04916360CF3004B3428 /* music.kwb */ = {isa = PBXFileReference; lastKnownFileType = file; name = music.kwb; path = ../../res/demodata/final/music.kwb; sourceTree = "<group>"; };
+		C17DD04A16360CF3004B3428 /* notes.kwb */ = {isa = PBXFileReference; lastKnownFileType = file; name = notes.kwb; path = ../../res/demodata/final/notes.kwb; sourceTree = "<group>"; };
+		C17DD04B16360CF3004B3428 /* numbers.kwb */ = {isa = PBXFileReference; lastKnownFileType = file; name = numbers.kwb; path = ../../res/demodata/final/numbers.kwb; sourceTree = "<group>"; };
+		C17DD04C16360CF3004B3428 /* sfx.kwb */ = {isa = PBXFileReference; lastKnownFileType = file; name = sfx.kwb; path = ../../res/demodata/final/sfx.kwb; sourceTree = "<group>"; };
 		C1AD37C61628ED4E00CE9A8B /* kowalski_demo_osx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kowalski_demo_osx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1AD37CA1628ED4E00CE9A8B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		C1AD37CD1628ED4E00CE9A8B /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -314,11 +314,11 @@
 			isa = PBXGroup;
 			children = (
 				C15759F61628F4FE0051A4DF /* freeformeventaudio */,
-				C15759EC1628F4F50051A4DF /* demoproject.kwl */,
-				C15759ED1628F4F50051A4DF /* music.kwb */,
-				C15759EE1628F4F50051A4DF /* notes.kwb */,
-				C15759EF1628F4F50051A4DF /* numbers.kwb */,
-				C15759F01628F4F50051A4DF /* sfx.kwb */,
+				C17DD04816360CF3004B3428 /* demoproject.kwl */,
+				C17DD04916360CF3004B3428 /* music.kwb */,
+				C17DD04A16360CF3004B3428 /* notes.kwb */,
+				C17DD04B16360CF3004B3428 /* numbers.kwb */,
+				C17DD04C16360CF3004B3428 /* sfx.kwb */,
 			);
 			name = res;
 			sourceTree = "<group>";
@@ -499,11 +499,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C157599C1628EEC20051A4DF /* kowalski_demo_osx-Info.plist in Resources */,
-				C15759F11628F4F50051A4DF /* demoproject.kwl in Resources */,
-				C15759F21628F4F50051A4DF /* music.kwb in Resources */,
-				C15759F31628F4F50051A4DF /* notes.kwb in Resources */,
-				C15759F41628F4F50051A4DF /* numbers.kwb in Resources */,
-				C15759F51628F4F50051A4DF /* sfx.kwb in Resources */,
 				C1575A041628F4FE0051A4DF /* sine_signed_16bit_mono.aiff in Resources */,
 				C1575A051628F4FE0051A4DF /* sine_signed_16bit_mono.au in Resources */,
 				C1575A061628F4FE0051A4DF /* sine_signed_16bit_mono.wav in Resources */,
@@ -517,6 +512,11 @@
 				C1575A0E1628F4FE0051A4DF /* sine_signed_8bit_mono.au in Resources */,
 				C1575A0F1628F4FE0051A4DF /* sine_unsigned_8bit_mono.aiff in Resources */,
 				C1575A101628F4FE0051A4DF /* sine_unsigned_8bit_mono.wav in Resources */,
+				C17DD04D16360CF3004B3428 /* demoproject.kwl in Resources */,
+				C17DD04E16360CF3004B3428 /* music.kwb in Resources */,
+				C17DD04F16360CF3004B3428 /* notes.kwb in Resources */,
+				C17DD05016360CF3004B3428 /* numbers.kwb in Resources */,
+				C17DD05116360CF3004B3428 /* sfx.kwb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -36,7 +36,7 @@ kwlResultCode kwlValidate(const char* filePath, const char* schemaPath, kwlLogCa
 {
     if (kwlFileIsWaveBankBinary(filePath))
     {
-        logCallback("Validating wave bank binary file %s:\n", filePath);
+        logCallback("Validating wave bank binary file '%s':\n", filePath);
         kwlWaveBankBinary wbb;
         kwlResultCode result = kwlWaveBankBinary_loadFromBinaryFile(&wbb, filePath, logCallback);
         kwlWaveBankBinary_free(&wbb);
@@ -48,7 +48,7 @@ kwlResultCode kwlValidate(const char* filePath, const char* schemaPath, kwlLogCa
     }
     else if (kwlFileIsEngineDataBinary(filePath))
     {
-        logCallback("Validating engine data binary file %s:\n", filePath);
+        logCallback("Validating engine data binary file '%s':\n", filePath);
         kwlEngineDataBinary edb;
         kwlResultCode result = kwlEngineDataBinary_loadFromBinaryFile(&edb, filePath, logCallback);
         kwlEngineDataBinary_free(&edb);
@@ -60,7 +60,7 @@ kwlResultCode kwlValidate(const char* filePath, const char* schemaPath, kwlLogCa
     }
     
     /*The file is not a valid binary. See if it's a project data XML file*/
-    logCallback("Validating project data XML file %s:\n", filePath);
+    logCallback("Validating project data XML file '%s':\n", filePath);
     kwlEngineDataBinary edb;
     kwlResultCode result = kwlEngineDataBinary_loadFromXMLFile(&edb,
                                                            filePath,

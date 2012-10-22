@@ -80,11 +80,7 @@ kwlError kwlDecoder_init(kwlDecoder* decoder, kwlEventInstance* event)
     {
         result = kwlInitDecoderOggVorbis(decoder);
     }
-    else if (audioData->encoding == KWL_ENCODING_UNSIGNED_8BIT_PCM ||
-             audioData->encoding == KWL_ENCODING_SIGNED_8BIT_PCM ||
-             audioData->encoding == KWL_ENCODING_SIGNED_16BIT_PCM ||
-             audioData->encoding == KWL_ENCODING_SIGNED_24BIT_PCM ||
-             audioData->encoding == KWL_ENCODING_SIGNED_32BIT_PCM)
+    else if (kwlAudioData_isLinearPCM(audioData))
     {
         result = kwlInitDecoderPCM(decoder);
     }

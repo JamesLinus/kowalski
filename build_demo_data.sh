@@ -1,0 +1,1 @@
+./dist/osx/kowalski build -xml res/demodata/master/demoproject.xml -xsd src/tools/kowalski.xsd -bin res/demodata/final/demoproject.kwl -dir res/demodata/final

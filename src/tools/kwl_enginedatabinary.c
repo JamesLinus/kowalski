@@ -732,6 +732,7 @@ static void kwlGatherEventsCallback(xmlNode* node,
         char* audioDataPath = kwlGetAttributeValue(audioDataRefNode, KWL_XML_ATTR_AUDIO_DATA_REFERENCE_PATH);
         const int loop = kwlGetBoolAttributeValue(audioDataRefNode, KWL_XML_ATTR_AUDIO_DATA_REFERENCE_LOOP);
         
+        
         c->waveBankIndex = kwlGetWaveBankIndex(bin, wbPath);
         c->audioDataIndex = -1;
         c->loopIfStreaming = loop;
@@ -854,6 +855,7 @@ static void kwlCreateEventChunk(xmlNode* eventsRootGroup,
                                                                   bin->waveBankChunk.waveBanks[wbIdx].audioDataEntries[adIdx]);
             KWL_ASSERT(audioDataNode);
             char* relFilePath = kwlGetAttributeValueCopy(audioDataNode, KWL_XML_ATTR_REL_PATH);
+            const int streaming = kwlGetAttributeValueCopy(audioDataNode, KWL_XML_ATTR_STREAM);
             
             char* absFilePath = kwlGetAudioFilePath(projectXmlPath,
                                                     audioFileRoot,
@@ -866,7 +868,9 @@ static void kwlCreateEventChunk(xmlNode* eventsRootGroup,
                                           &ad,
                                           KWL_SKIP_AUDIO_DATA);
             
-            if (e == KWL_NO_ERROR && kwlAudioData_isLinearPCM(&ad))
+            if (e == KWL_NO_ERROR &&
+                kwlAudioData_isLinearPCM(&ad) &&
+                !streaming)
             {
                 /*Create a sound definition for this event*/
                 //printf("Event '%s' references PCM audio file '%s'. Creating extra sound definition.\n", ei->id, absFilePath);

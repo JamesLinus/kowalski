@@ -65,7 +65,7 @@ kwlError kwlInitDecoderIPhone(kwlDecoder* decoder)
     AudioStreamBasicDescription sourceFormat;
     kwlMemset(&sourceFormat, 0, sizeof(AudioStreamBasicDescription));
     
-    int asbdSize = sizeof(AudioStreamBasicDescription);
+    UInt32 asbdSize = sizeof(AudioStreamBasicDescription);
     result = AudioFileGetProperty(audioFileID, 
                                   kAudioFilePropertyDataFormat, 
                                   &asbdSize, 
@@ -84,7 +84,7 @@ kwlError kwlInitDecoderIPhone(kwlDecoder* decoder)
     
     destinationFormat.mSampleRate = sourceFormat.mSampleRate;
 	destinationFormat.mFormatID = 'lpcm'; /*Linear PCM*/
-	destinationFormat.mFormatFlags =  0;/*kAudioFormatFlagIsPacked | kAudioFormatFlagIsNonInterleaved;*/
+	destinationFormat.mFormatFlags =  kLinearPCMFormatFlagIsSignedInteger;/*kAudioFormatFlagIsPacked | kAudioFormatFlagIsNonInterleaved;*/
 	destinationFormat.mFramesPerPacket = 1; /*Always 1 for linear PCM.*/
 	destinationFormat.mChannelsPerFrame = sourceFormat.mChannelsPerFrame;
     destinationFormat.mBytesPerFrame = 2 * destinationFormat.mChannelsPerFrame; /*2 for 2 bytes per 16 bit sample.*/
@@ -97,7 +97,7 @@ kwlError kwlInitDecoderIPhone(kwlDecoder* decoder)
      * kAudioFilePropertyMaximumPacketSize may give a tighter
      * bound but may also involve scanning the entire file.
      */
-    int psubSize = sizeof(kAudioFilePropertyPacketSizeUpperBound);
+    UInt32 psubSize = sizeof(kAudioFilePropertyPacketSizeUpperBound);
     result = AudioFileGetProperty(audioFileID,
                                   kAudioFilePropertyPacketSizeUpperBound,
                                   &psubSize,

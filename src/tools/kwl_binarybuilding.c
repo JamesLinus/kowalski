@@ -84,6 +84,7 @@ kwlResultCode kwlBuildWaveBanks(const char* xmlPath,
     
     kwlEngineDataBinary edb;
     kwlResultCode r = kwlEngineDataBinary_loadFromXMLDocument(&edb,
+                                                              xmlPath,
                                                               doc,
                                                               errorLogCallback);
     

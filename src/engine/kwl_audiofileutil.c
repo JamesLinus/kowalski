@@ -41,6 +41,8 @@ static void* kwlAllocateBufferWithEntireStream(kwlInputStream* stream, int* file
 
 kwlError kwlLoadAudioFile(const char* path, kwlAudioData* audioData, kwlAudioDataLoadingMode mode)
 {
+    audioData->encoding = KWL_ENCODING_UNKNOWN;
+    
     kwlError error = kwlLoadAIFF(path, audioData, mode);
     if (error == KWL_NO_ERROR)
     {

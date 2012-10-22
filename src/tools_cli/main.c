@@ -289,9 +289,8 @@ int main(int argc, const char * argv[])
         kwlEngineDataBinary_free(&pdb);
     }
     
-    
     //load kwl from xml
-    if (1)
+    if (0)
     {
         kwlEngineDataBinary_loadFromXMLFile(&pdb,
                                         xmlPath,
@@ -381,7 +380,7 @@ int main(int argc, const char * argv[])
     }
     
     //build wave bank
-    if (0)
+    if (1)
     {
         kwlBuildWaveBanks(xmlPath,
                           xsdPath,

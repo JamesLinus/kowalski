@@ -403,13 +403,13 @@
     <MixPresetGroup id="root">
         <MixPresetGroup id="mixpresetdemo">
             <MixPreset default="false" id="chirps">
-                <MixBusParameters pitch="1.0" rightGain="1.0" leftGain="1.0" mixBus="master"/>
-                <MixBusParameters pitch="1.0" rightGain="0.0" leftGain="0.0" mixBus="music"/>
-                <MixBusParameters pitch="1.0" rightGain="0.0" leftGain="0.0" mixBus="notes"/>
+                <MixBusParameters mixBus="master"/>
+                <MixBusParameters rightGain="0.0" leftGain="0.0" mixBus="music"/>
+                <MixBusParameters rightGain="0.0" leftGain="0.0" mixBus="notes"/>
                 <MixBusParameters pitch="1.5" rightGain="0.8" leftGain="0.8" mixBus="chirps"/>
-                <MixBusParameters pitch="1.0" rightGain="0.2" leftGain="0.2" mixBus="tones"/>
-                <MixBusParameters pitch="1.0" rightGain="0.2" leftGain="0.2" mixBus="noise"/>
-                <MixBusParameters pitch="1.0" rightGain="1.0" leftGain="1.0" mixBus="sfx"/>
+                <MixBusParameters rightGain="0.2" leftGain="0.2" mixBus="tones"/>
+                <MixBusParameters rightGain="0.2" leftGain="0.2" mixBus="noise"/>
+                <MixBusParameters mixBus="sfx"/>
             </MixPreset>
             <MixPreset default="false" id="noise">
                 <MixBusParameters pitch="1.0" rightGain="1.0" leftGain="1.0" mixBus="master"/>

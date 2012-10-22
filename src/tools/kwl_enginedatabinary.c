@@ -24,7 +24,6 @@
 #include <stdio.h>
 #include <string.h>
 
-
 #include "kwl_assert.h"
 #include "kwl_audiofileutil.h"
 #include "kwl_binarybuilding.h"
@@ -39,7 +38,7 @@
 
 #define KWL_TEMP_STRING_LENGTH 1024
 
-/*TODO: this shouldnt be global*/
+/*TODO: these shouldnt be global*/
 static char** soundDefinitionNames = NULL;
 const char* projectXmlPath = NULL;
 
@@ -968,9 +967,12 @@ static void kwlCheckPathUniqueness(xmlNode* node,
 }
 
 kwlResultCode kwlEngineDataBinary_loadFromXMLDocument(kwlEngineDataBinary* bin,
+                                                      const char* xmlPath,
                                                       xmlDocPtr doc,
                                                       kwlLogCallback errorLogCallback)
 {
+    projectXmlPath = xmlPath; //TODO: pass this along somehow
+    
     /*Get the root element node */
     xmlNode* projectRootNode = xmlDocGetRootElement(doc);
     
@@ -1093,8 +1095,6 @@ kwlResultCode kwlEngineDataBinary_loadFromXMLFile(kwlEngineDataBinary* bin,
                                                   kwlLogCallback errorLogCallback)
 
 {
-    projectXmlPath = xmlPath; //TODO: pass this along somehow
-    
     xmlDocPtr doc;
     kwlResultCode validationResult = kwlLoadAndValidateProjectDataDoc(xmlPath, xsdPath, &doc, errorLogCallback);
     
@@ -1105,6 +1105,7 @@ kwlResultCode kwlEngineDataBinary_loadFromXMLFile(kwlEngineDataBinary* bin,
     
     kwlResultCode loadingResult = kwlEngineDataBinary_loadFromXMLDocument(bin,
                                                                           doc,
+                                                                          xmlPath,
                                                                           errorLogCallback);
     
     /*If requested, check that all audio data file references can be resolved.*/

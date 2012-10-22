@@ -24,6 +24,7 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "kwl_audiofileutil.h"
 #include "kwl_fileoutputstream.h"
 #include "kwl_fileutil.h"
 #include "kwl_enginedatabinary.h"
@@ -216,7 +217,24 @@ kwlResultCode kwlWaveBankBinary_create(kwlWaveBankBinary* wbBin,
         const char* audioFilePath = kwlGetAudioFilePath(xmlPath, audioFileRoot, rootIsRelative, ei->fileName);
         KWL_ASSERT(kwlDoesFileExist(audioFilePath) && "audio file does not exist. should have been caught in validation");
         
+        kwlAudioData audioData;
+        kwlLoadAudioFile(audioFilePath, &audioData, KWL_SKIP_AUDIO_DATA);
         
+        if (kwlAudioData_isLinearPCM(&audioData))
+        {
+            kwlLoadAudioFile(audioFilePath, &audioData, KWL_CONVERT_TO_INT16_OR_FAIL);
+        }
+        else
+        {
+            /**/
+            kwlLoadAudioFile(audioFilePath, &audioData, KWL_LOAD_ENTIRE_FILE);
+        }
+        
+        ei->encoding = audioData.encoding;
+        ei->isStreaming =
+        ei->numBytes = audioData.numBytes;
+        ei->numChannels = audioData.numChannels;
+        ei->data = audioData.bytes;
     }
     
     return KWL_SUCCESS;

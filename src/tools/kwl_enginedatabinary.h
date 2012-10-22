@@ -213,6 +213,7 @@ extern "C"
      * Assumes that \c document has been properly validated.
      */
     kwlResultCode kwlEngineDataBinary_loadFromXMLDocument(kwlEngineDataBinary* bin,
+                                                          const char* xmlPath,
                                                           xmlDoc* document,
                                                           kwlLogCallback errorLogCallback);
     

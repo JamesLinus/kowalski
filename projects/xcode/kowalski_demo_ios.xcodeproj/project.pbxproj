@@ -37,7 +37,6 @@
 		C1C0FD8613DCB09D009769E7 /* kowalski_demo_iosAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C0FD7E13DCB09D009769E7 /* kowalski_demo_iosAppDelegate.m */; };
 		C1C0FD8713DCB09D009769E7 /* PianoDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C0FD8013DCB09D009769E7 /* PianoDemo.m */; };
 		C1C0FD8813DCB09D009769E7 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C0FD8213DCB09D009769E7 /* RootViewController.m */; };
-		C1C3FD921634A3B700D22747 /* demoproject_testwrite.kwl in Resources */ = {isa = PBXBuildFile; fileRef = C1C3FD911634A3B700D22747 /* demoproject_testwrite.kwl */; };
 		C1D9BDEC13E9AD0500C3C7DC /* InputDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D9BDEA13E9AD0500C3C7DC /* InputDemo.m */; };
 		C1D9BDED13E9AD0500C3C7DC /* InputDemo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1D9BDEB13E9AD0500C3C7DC /* InputDemo.xib */; };
 		C1D9BE0213E9AF9100C3C7DC /* SampleClockDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D9BE0013E9AF9100C3C7DC /* SampleClockDemo.m */; };
@@ -184,7 +183,6 @@
 		C1C0FD8013DCB09D009769E7 /* PianoDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PianoDemo.m; sourceTree = "<group>"; };
 		C1C0FD8113DCB09D009769E7 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		C1C0FD8213DCB09D009769E7 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		C1C3FD911634A3B700D22747 /* demoproject_testwrite.kwl */ = {isa = PBXFileReference; lastKnownFileType = file; name = demoproject_testwrite.kwl; path = demodata/final/demoproject_testwrite.kwl; sourceTree = "<group>"; };
 		C1D9BDE913E9AD0500C3C7DC /* InputDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputDemo.h; sourceTree = "<group>"; };
 		C1D9BDEA13E9AD0500C3C7DC /* InputDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputDemo.m; sourceTree = "<group>"; };
 		C1D9BDEB13E9AD0500C3C7DC /* InputDemo.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InputDemo.xib; sourceTree = "<group>"; };
@@ -427,7 +425,6 @@
 			isa = PBXGroup;
 			children = (
 				C1F44F5A163218D200644E23 /* demoproject.kwl */,
-				C1C3FD911634A3B700D22747 /* demoproject_testwrite.kwl */,
 				C1F44F5B163218D200644E23 /* freeformeventaudio */,
 				C1F44F69163218D200644E23 /* music.kwb */,
 				C1F44F6A163218D200644E23 /* notes.kwb */,
@@ -609,7 +606,6 @@
 				C1F44F78163218D200644E23 /* sine_signed_8bit_mono.au in Resources */,
 				C1F44F79163218D200644E23 /* sine_unsigned_8bit_mono.aiff in Resources */,
 				C1F44F7A163218D200644E23 /* sine_unsigned_8bit_mono.wav in Resources */,
-				C1C3FD921634A3B700D22747 /* demoproject_testwrite.kwl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

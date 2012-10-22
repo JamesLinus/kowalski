@@ -10,9 +10,11 @@
     </EventGroup>
 
     <WaveBankGroup id="root">
-        <WaveBank id="testwavebank">
-            <AudioData relativePath="testwave.wav"/>
-        </WaveBank>
+        <WaveBankGroup id="agroup">
+            <WaveBank id="testwavebank">
+                <AudioData relativePath="testwave.wav"/>
+            </WaveBank>
+        </WaveBankGroup>
     </WaveBankGroup>
 
     <SoundGroup id="root">

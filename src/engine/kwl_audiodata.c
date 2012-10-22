@@ -35,3 +35,11 @@ void kwlAudioData_free(kwlAudioData* audioData)
     audioData->isLoaded = 0;
 }
 
+int kwlAudioData_isLinearPCM(kwlAudioData* audioData)
+{
+    return audioData->encoding == KWL_ENCODING_SIGNED_16BIT_PCM ||
+           audioData->encoding == KWL_ENCODING_SIGNED_24BIT_PCM ||
+           audioData->encoding == KWL_ENCODING_SIGNED_32BIT_PCM||
+           audioData->encoding == KWL_ENCODING_SIGNED_8BIT_PCM ||
+           audioData->encoding == KWL_ENCODING_UNSIGNED_8BIT_PCM;
+}

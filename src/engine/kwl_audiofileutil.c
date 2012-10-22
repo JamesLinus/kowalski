@@ -26,7 +26,7 @@ freely, subject to the following restrictions:
 
 #include "assert.h"
 
-void* kwlAllocateBufferWithEntireStream(kwlInputStream* stream, int* fileSize)
+static void* kwlAllocateBufferWithEntireStream(kwlInputStream* stream, int* fileSize)
 {
     kwlInputStream_seek(stream, 0, SEEK_END);
     *fileSize = kwlInputStream_tell(stream);
@@ -449,7 +449,7 @@ kwlError kwlLoadWAVFromStreamWithOptionalIMA4Params(kwlInputStream* stream,
         }
         else
         {
-            printf("skipping %c%c%c%c chunk\n", c1, c2, c3, c4);
+            //printf("skipping %c%c%c%c chunk\n", c1, c2, c3, c4);
             const int chunkSize = kwlInputStream_readIntLE(stream);
             kwlInputStream_skip(stream, chunkSize);
         }
@@ -610,6 +610,8 @@ kwlError kwlLoadAUFromStream(kwlInputStream* stream, kwlAudioData* audioData, kw
 
 kwlError kwlLoadOggVorbis(const char* path, kwlAudioData* audioData, kwlAudioDataLoadingMode mode)
 {
+    kwlMemset(audioData, 0, sizeof(kwlAudioData));
+    
     kwlInputStream stream;
     kwlInputStream_initWithFile(&stream, path);
     if (stream.file == NULL)
@@ -617,15 +619,91 @@ kwlError kwlLoadOggVorbis(const char* path, kwlAudioData* audioData, kwlAudioDat
         return KWL_FILE_NOT_FOUND;
     }
     
-    KWL_ASSERT(0);
+    int numChannels = 0;
+    float sampleRate = 0;
+    int bitsPerSample = 0;
+    
+    //read ogg header
+    {
+        //capture pattern (4 bytes)
+        const char cp1 = kwlInputStream_readChar(&stream);
+        const char cp2 = kwlInputStream_readChar(&stream);
+        const char cp3 = kwlInputStream_readChar(&stream);
+        const char cp4 = kwlInputStream_readChar(&stream);
+        
+        int isOgg = cp1 == 'O' && cp2 == 'g' && cp3 == 'g' && cp4 == 'S';
+        
+        if (!isOgg)
+        {
+            kwlInputStream_close(&stream);
+            return KWL_UNKNOWN_FILE_FORMAT;
+        }
+        
+        char version = kwlInputStream_readChar(&stream);
+        char headerTyper = kwlInputStream_readChar(&stream);
+        /*long granulePosition*/ kwlInputStream_readIntLE(&stream); kwlInputStream_readIntLE(&stream);
+        int serialNumber = kwlInputStream_readIntLE(&stream);
+        int pageSequenceNumber = kwlInputStream_readIntLE(&stream);
+        int checkSum = kwlInputStream_readIntLE(&stream);
+        char numPageSegments = kwlInputStream_readChar(&stream);
+        for (int i = 0; i < numPageSegments; i++)
+        {
+            kwlInputStream_readChar(&stream);
+        }
+        //byte[] segmentTable = new byte[numPageSegments];
+        //dis.read(segmentTable);
+    }
+    
+    //read vorbis header
+    {
+        //packet type should be 1 for identification header
+        const char packetType = kwlInputStream_readChar(&stream);
+        
+        int isVorbis =
+        kwlInputStream_readChar(&stream) == 'v' &&
+        kwlInputStream_readChar(&stream) == 'o' &&
+        kwlInputStream_readChar(&stream) == 'r' &&
+        kwlInputStream_readChar(&stream) == 'b' &&
+        kwlInputStream_readChar(&stream) == 'i' &&
+        kwlInputStream_readChar(&stream) == 's';
+        
+        if (!isVorbis)
+        {
+            return KWL_UNKNOWN_FILE_FORMAT;
+        }
+        
+        int vorbisVersion = kwlInputStream_readIntLE(&stream);
+        numChannels = kwlInputStream_readChar(&stream);
+        sampleRate = kwlInputStream_readIntLE(&stream);
+        int maxBitRate = kwlInputStream_readIntLE(&stream);
+        int minBitRate = kwlInputStream_readIntLE(&stream);
+        int nominalBitRate = kwlInputStream_readIntLE(&stream);
+        //etc
+    }
+    
+    audioData->encoding = KWL_ENCODING_VORBIS;
+    audioData->numChannels = numChannels;
+    audioData->numFrames = 0;
+    
+    if (mode == KWL_SKIP_AUDIO_DATA)
+    {
+        /*nothing further*/
+    }
+    else
+    {
+        KWL_ASSERT(0 && "TODO");
+    }
+    
+    kwlInputStream_close(&stream);
+    
     
     return KWL_NO_ERROR;
 }
 
-short* kwlConvertBufferTo16BitSigned(char* inBuffer, 
+short* kwlConvertBufferTo16BitSigned(char* inBuffer,
                                      int inBufferSizeInBytes,
-                                     int* outBufferSizeInBytes, 
-                                     kwlAudioEncoding inBufferEncoding, 
+                                     int* outBufferSizeInBytes,
+                                     kwlAudioEncoding inBufferEncoding,
                                      int isBigEndian)
 {
     int bytesPerSample = 0;

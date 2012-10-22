@@ -277,24 +277,35 @@ int main(int argc, const char * argv[])
     kwlEngineDataBinary pdb;
     kwlMemset(&pdb, 0, sizeof(kwlEngineDataBinary));
     
+    //view ed
+    if (0)
+    {
+        kwlEngineDataBinary_loadFromBinaryFile(&pdb, kwlPath, kwlDefaultLogCallback);
+        kwlEngineDataBinary_dump(&pdb, kwlDefaultLogCallback);
+        kwlEngineDataBinary_free(&pdb);
+        
+        kwlEngineDataBinary_loadFromBinaryFile(&pdb, binTargetFile, kwlDefaultLogCallback);
+        kwlEngineDataBinary_dump(&pdb, kwlDefaultLogCallback);
+        kwlEngineDataBinary_free(&pdb);
+    }
     
     
     //load kwl from xml
-    if (0)
+    if (1)
     {
         kwlEngineDataBinary_loadFromXMLFile(&pdb,
                                         xmlPath,
                                         xsdPath,
                                         1,
                                         kwlDefaultLogCallback);
-        //kwlEngineDataBinary_dump(&pdb, kwlDefaultLogCallback);
+        kwlEngineDataBinary_dump(&pdb, kwlDefaultLogCallback);
         kwlEngineDataBinary_writeToFile(&pdb, binTargetFile);
         kwlEngineDataBinary_free(&pdb);
         
         kwlEngineDataBinary_loadFromBinaryFile(&pdb, binTargetFile, kwlDefaultLogCallback);
-        //kwlEngineDataBinary_dump(&pdb, kwlDefaultLogCallback);
+        kwlEngineDataBinary_dump(&pdb, kwlDefaultLogCallback);
         kwlEngineDataBinary_free(&pdb);
-        //kwlDebugPrintAllocationReport();
+        kwlDebugPrintAllocationReport();
     }
     
     //load kwl from bin
@@ -309,7 +320,7 @@ int main(int argc, const char * argv[])
         kwlEngineDataBinary_loadFromBinaryFile(&pdb,
                                                binTargetFile,
                                                kwlDefaultLogCallback);
-        kwlEngineDataBinary_dump(&pdb, kwlDefaultLogCallback);
+        //kwlEngineDataBinary_dump(&pdb, kwlDefaultLogCallback);
         kwlEngineDataBinary_free(&pdb);
         
     }
@@ -370,7 +381,7 @@ int main(int argc, const char * argv[])
     }
     
     //build wave bank
-    if (1)
+    if (0)
     {
         kwlBuildWaveBanks(xmlPath,
                           xsdPath,

@@ -24,6 +24,8 @@
 #include <libxml/parser.h>
 #include <libxml/xmlschemas.h>
 
+#include <string.h>
+
 #include "kwl_assert.h"
 #include "kwl_memory.h"
 #include "kwl_xmlutil.h"
@@ -216,6 +218,119 @@ xmlNode* kwlGetChild(xmlNode* node, const char* id)
     for (xmlNode* curr = node->children; curr != NULL; curr = curr->next)
     {
         if (xmlStrEqual(curr->name, (xmlChar*)id))
+        {
+            return curr;
+        }
+    }
+    
+    return NULL;
+}
+
+xmlNode* kwlGetChildWithIdAttributeValue(xmlNode* node, const char* id)
+{
+    for (xmlNode* curr = node->children; curr != NULL; curr = curr->next)
+    {
+        if (curr->type != XML_ELEMENT_NODE)
+        {
+            continue;
+        }
+        
+        xmlChar* currId = kwlGetAttributeValue(curr, KWL_XML_ATTR_ID);
+        if (currId == NULL)
+        {
+            continue;
+        }
+        //printf("  looking for child with id %s, testing %s\n", id, currId);
+        if (xmlStrEqual(currId, (xmlChar*)id))
+        {
+            return curr;
+        }
+    }
+    
+    return NULL;
+}
+
+xmlNode* kwlResolveNodePath(xmlNode* root, const char* path)
+{
+    //printf("resolving node path '%s'\n", path);
+    
+    const size_t pathLen = strlen(path);
+    if (pathLen == 0)
+    {
+        return NULL;
+    }
+    
+    if (path[0] == '/')
+    {
+        return NULL;
+    }
+    
+    size_t currStart = 0;
+    size_t currEnd = 0;
+    
+    xmlNode* currNode = root;
+    
+    while (currEnd < pathLen)
+    {
+        /*get current path element */
+        for (currEnd = currStart; currEnd < pathLen; currEnd++)
+        {
+            if (path[currEnd] == '/')
+            {
+                break;
+            }
+        }
+        
+        char* currPathElement = KWL_MALLOC(currEnd - currStart + 1, "path element");
+        kwlMemcpy(currPathElement, &path[currStart], currEnd - currStart);
+        currPathElement[currEnd - currStart] = '\0';
+
+        //printf("    current path element '%s'\n", currPathElement);
+        
+        currNode = kwlGetChildWithIdAttributeValue(currNode, currPathElement);
+        KWL_FREE(currPathElement);
+        
+        if (currNode == NULL)
+        {
+            return NULL;
+        }
+        
+        currStart = currEnd + 1; //+1 to skip '/'
+    }
+    
+    return currNode;
+}
+
+xmlNode* kwlResolveAudioDataReference(xmlNode* someNode, const char* wbPath, const char* audioDataPath)
+{
+    /*get the project node (a bit hacky)*/
+    xmlNode* rootNode = someNode;
+    while (xmlStrcmp(rootNode->name, (xmlChar*)KWL_XML_PROJECT_NODE_NAME) != 0)
+    {
+        rootNode = rootNode->parent;
+    }
+    
+    xmlNode* waveBankRootNode = kwlGetChild(rootNode, KWL_XML_WAVE_BANK_GROUP_NAME);
+    xmlNode* waveBankNode = kwlResolveNodePath(waveBankRootNode, wbPath);
+    
+    KWL_ASSERT(xmlStrEqual(waveBankNode->name, (xmlChar*)KWL_XML_WAVE_BANK_NAME));
+    
+    if (waveBankNode == NULL)
+    {
+        return NULL;
+    }
+    
+    for (xmlNode* curr = waveBankNode->children; curr != NULL; curr = curr->next)
+    {
+        if (curr->type != XML_ELEMENT_NODE)
+        {
+            continue;
+        }
+        
+        xmlChar* currPath = kwlGetAttributeValue(curr, KWL_XML_ATTR_REL_PATH);
+        KWL_ASSERT(currPath != NULL);
+        //printf("currPath %s, audioDataPath %s\n", currPath, audioDataPath);
+        if (xmlStrcmp(currPath, (xmlChar*)audioDataPath) == 0)
         {
             return curr;
         }

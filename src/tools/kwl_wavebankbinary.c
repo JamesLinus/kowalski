@@ -50,6 +50,8 @@ int kwlFileIsWaveBankBinary(const char* path)
         }
     }
     
+    kwlInputStream_close(&is);
+    
     return isWaveBank;
 }
 
@@ -213,6 +215,8 @@ kwlResultCode kwlWaveBankBinary_create(kwlWaveBankBinary* wbBin,
         ei->fileName = kwlDuplicateString(waveBank->audioDataEntries[i]);
         const char* audioFilePath = kwlGetAudioFilePath(xmlPath, audioFileRoot, rootIsRelative, ei->fileName);
         KWL_ASSERT(kwlDoesFileExist(audioFilePath) && "audio file does not exist. should have been caught in validation");
+        
+        
     }
     
     return KWL_SUCCESS;

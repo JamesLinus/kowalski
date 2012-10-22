@@ -26,6 +26,7 @@
 
 
 #include "kwl_assert.h"
+#include "kwl_audiofileutil.h"
 #include "kwl_binarybuilding.h"
 #include "kwl_datavalidation.h"
 #include "kwl_fileutil.h"
@@ -40,6 +41,7 @@
 
 /*TODO: this shouldnt be global*/
 static char** soundDefinitionNames = NULL;
+const char* projectXmlPath = NULL;
 
 int kwlFileIsEngineDataBinary(const char* path)
 {
@@ -60,6 +62,8 @@ int kwlFileIsEngineDataBinary(const char* path)
             break;
         }
     }
+    
+    kwlInputStream_close(&is);
     
     return isEngineData;
 }
@@ -416,7 +420,6 @@ static void kwlGatherWaveBanksCallback(xmlNode* node,
     c->numAudioDataEntries = kwlGetChildCount(node, KWL_XML_AUDIO_DATA_ITEM_NAME);
     KWL_ASSERT(c->numAudioDataEntries > 0);
     c->audioDataEntries = KWL_MALLOCANDZERO(c->numAudioDataEntries * sizeof(char*), "xml 2 bin wb entry names");
-    c->streamFlags = KWL_MALLOCANDZERO(c->numAudioDataEntries * sizeof(char*), "xml 2 bin wb entry stream flags");
     
     int idx = 0;
     //printf("reading wavebank %s\n", c->id);
@@ -427,8 +430,6 @@ static void kwlGatherWaveBanksCallback(xmlNode* node,
             
             char* itemPath = kwlGetAttributeValueCopy(curr, KWL_XML_ATTR_REL_PATH);
             c->audioDataEntries[idx] = itemPath;
-            c->streamFlags[idx] = kwlGetBoolAttributeValue(curr, KWL_XML_ATTR_STREAM);
-            //printf("    %s\n", itemPath);
             idx++;
         }
     }
@@ -543,6 +544,8 @@ static int kwlGetSoundPlaybackModeInt(xmlChar* playbackMode)
     return -1;
 }
 
+
+
 static void kwlGatherSoundsCallback(xmlNode* node,
                                     void* b,
                                     int* errorOccurred,
@@ -608,12 +611,14 @@ static void kwlGatherSoundsCallback(xmlNode* node,
                     *errorOccurred = 1;
                     errorLogCallback("Invalid reference to '%s' in wave bank '%s' found in sound definition '%s'.\n",
                                      filePath, waveBankId, soundPath);
-
+                    
                 }
                 else
                 {
-                    kwlWaveBankChunk* wb = &bin->waveBankChunk.waveBanks[wbIdx];
-                    if (wb->streamFlags[itemIdx] != 0)
+                    xmlNode* audioDataNode = kwlResolveAudioDataReference(node, wb->id, wb->audioDataEntries[itemIdx]);
+                    KWL_ASSERT(audioDataNode != NULL);
+                    int streamFromDisk = kwlGetBoolAttributeValue(audioDataNode, KWL_XML_ATTR_STREAM);
+                    if (streamFromDisk)
                     {
                         *errorOccurred = 1;
                         errorLogCallback("Sound definition '%s' references audio data item '%s' with stream flag set.\n",
@@ -714,13 +719,13 @@ static void kwlGatherEventsCallback(xmlNode* node,
                          c->id);
     }
     
-    const int isStreaming = kwlGetChildCount(node, KWL_XML_SOUND_REFERENCE_NAME) == 0;
+    const int eventHasAudioRef = kwlGetChildCount(node, KWL_XML_SOUND_REFERENCE_NAME) == 0;
     
     c->soundIndex = -1;
     c->waveBankIndex = -1;
     c->audioDataIndex = -1;
     
-    if (isStreaming)
+    if (eventHasAudioRef)
     {
         xmlNode* audioDataRefNode = kwlGetChild(node, KWL_XML_AUDIO_DATA_REFERENCE_NAME);
         KWL_ASSERT(audioDataRefNode != NULL);
@@ -803,11 +808,14 @@ static void kwlGatherEventsCallback(xmlNode* node,
     }
 }
 
-static void kwlCreateEventChunk(xmlNode* projectRoot, kwlEngineDataBinary* bin, int* errorOccurred, kwlLogCallback errorLogCallback)
+static void kwlCreateEventChunk(xmlNode* eventsRootGroup,
+                                kwlEngineDataBinary* bin,
+                                int* errorOccurred,
+                                kwlLogCallback errorLogCallback)
 {
     bin->eventChunk.chunkId = KWL_EVENTS_CHUNK_ID;
     
-    kwlTraverseNodeTree(projectRoot,
+    kwlTraverseNodeTree(eventsRootGroup,
                         KWL_XML_EVENT_GROUP_NAME,
                         KWL_XML_EVENT_NAME,
                         kwlGatherEventsCallback,
@@ -822,6 +830,79 @@ static void kwlCreateEventChunk(xmlNode* projectRoot, kwlEngineDataBinary* bin, 
     }
     
     KWL_FREE(soundDefinitionNames);
+    
+    if (*errorOccurred)
+    {
+        return;
+    }
+    
+    /*Finally, create sound definitions for events referencing
+     non-streaming pcm data directly*/
+    
+    xmlNode* projNode = eventsRootGroup->parent;
+    char* audioFileRoot = kwlGetAttributeValueCopy(projNode, KWL_XML_ATTR_PROJECT_AUDIO_FILE_ROOT);
+    const int rootIsRelative = kwlGetBoolAttributeValue(projNode, KWL_XML_ATTR_PROJECT_AUDIO_FILE_ROOT_IS_RELATIVE);
+    
+    for (int i = 0; i < bin->eventChunk.numEventDefinitions; i++)
+    {
+        kwlEventChunk* ei = &bin->eventChunk.eventDefinitions[i];
+        const int wbIdx = ei->waveBankIndex;
+        const int adIdx = ei->audioDataIndex;
+        if (ei->soundIndex < 0)
+        {
+            xmlNode* audioDataNode = kwlResolveAudioDataReference(eventsRootGroup,
+                                                                  bin->waveBankChunk.waveBanks[wbIdx].id,
+                                                                  bin->waveBankChunk.waveBanks[wbIdx].audioDataEntries[adIdx]);
+            KWL_ASSERT(audioDataNode);
+            char* relFilePath = kwlGetAttributeValueCopy(audioDataNode, KWL_XML_ATTR_REL_PATH);
+            
+            char* absFilePath = kwlGetAudioFilePath(projectXmlPath,
+                                                    audioFileRoot,
+                                                    rootIsRelative,
+                                                    relFilePath);
+            
+            kwlAudioData ad;
+            printf("loadint audio file %s\n", absFilePath);
+            kwlError e = kwlLoadAudioFile(absFilePath,
+                                          &ad,
+                                          KWL_SKIP_AUDIO_DATA);
+            
+            if (e == KWL_NO_ERROR && kwlAudioData_isLinearPCM(&ad))
+            {
+                /*Create a sound definition for this event*/
+                printf("Event '%s' references PCM audio file '%s'. Creating extra sound definition.\n", ei->id, absFilePath);
+                bin->soundChunk.numSoundDefinitions++;
+                const int newSndIdx = bin->soundChunk.numSoundDefinitions - 1;
+                bin->soundChunk.soundDefinitions = KWL_REALLOC(bin->soundChunk.soundDefinitions,
+                                                               bin->soundChunk.numSoundDefinitions * sizeof(kwlSoundChunk),
+                                                               "extra bin sounds realloc");
+                kwlSoundChunk* s = &bin->soundChunk.soundDefinitions[newSndIdx];
+                kwlMemset(s, 0, sizeof(kwlSoundChunk));
+                s->gain = 1.0f;
+                s->gainVariation = 0.0f;
+                s->pitch = 1.0;
+                s->pitchVariation = 0.0f;
+                s->numWaveReferences = 1;
+                s->playbackMode = KWL_RANDOM;
+                s->playbackCount = 1;
+                s->audioDataIndices = KWL_MALLOCANDZERO(sizeof(int), "extra sound data idx");
+                s->waveBankIndices = KWL_MALLOCANDZERO(sizeof(int), "extra sound wb idx");
+                s->waveBankIndices[0] = ei->waveBankIndex;
+                ei->waveBankIndex = -1;
+                s->audioDataIndices[0] = ei->audioDataIndex;
+                ei->audioDataIndex = -1;
+                
+                ei->soundIndex = newSndIdx;
+            }
+            
+            kwlAudioData_free(&ad);
+            
+            KWL_FREE(relFilePath);
+            KWL_FREE(absFilePath);
+        }
+    }
+    
+    KWL_FREE(audioFileRoot);
 }
 
 static void kwlCheckPathUniqueness(xmlNode* node,
@@ -974,6 +1055,7 @@ kwlResultCode kwlEngineDataBinary_loadFromXMLDocument(kwlEngineDataBinary* bin,
     
     /*then gather the different chunks*/
     soundDefinitionNames = NULL;
+    
     int mixBusErrorOccurred = 0;
     kwlCreateMixBusChunk(projectRootNode, bin, &mixBusErrorOccurred, errorLogCallback);
     int mixPresetErrorOccurred = 0;
@@ -1011,6 +1093,8 @@ kwlResultCode kwlEngineDataBinary_loadFromXMLFile(kwlEngineDataBinary* bin,
                                                   kwlLogCallback errorLogCallback)
 
 {
+    projectXmlPath = xmlPath; //TODO: pass this along somehow
+    
     xmlDocPtr doc;
     kwlResultCode validationResult = kwlLoadAndValidateProjectDataDoc(xmlPath, xsdPath, &doc, errorLogCallback);
     
@@ -1536,12 +1620,12 @@ kwlResultCode kwlEngineDataBinary_loadFromBinaryFile(kwlEngineDataBinary* binary
             
             ei->loopIfStreaming = kwlInputStream_readIntBE(&is);
             KWL_ASSERT(ei->loopIfStreaming == 0 || ei->loopIfStreaming == 1);
-    
+            
             /*read referenced wave banks*/
             ei->numReferencedWaveBanks = kwlInputStream_readIntBE(&is);
             KWL_ASSERT(ei->numReferencedWaveBanks >= 0 && ei->numReferencedWaveBanks <= binaryRep->waveBankChunk.numWaveBanks);
             ei->waveBankIndices = (int*)KWL_MALLOCANDZERO(ei->numReferencedWaveBanks * sizeof(int),
-                                                   "bin evt wave bank refs");
+                                                          "bin evt wave bank refs");
             
             for (int j = 0; j < ei->numReferencedWaveBanks; j++)
             {
@@ -1603,7 +1687,6 @@ void kwlEngineDataBinary_free(kwlEngineDataBinary* bin)
             KWL_FREE(wbi->audioDataEntries[j]);
         }
         KWL_FREE(wbi->audioDataEntries);
-        KWL_FREE(wbi->streamFlags);
     }
     
     KWL_FREE(bin->waveBankChunk.waveBanks);

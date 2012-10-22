@@ -228,7 +228,7 @@
 				C15758D01628EE6F0051A4DF /* libkowalski.dylib */,
 				C15758D21628EE6F0051A4DF /* kowalski_sdl.dylib */,
 				C15758D41628EE6F0051A4DF /* libkowalski_ios.a */,
-				C15758D61628EE6F0051A4DF /* kwltools */,
+				C15758D61628EE6F0051A4DF /* kowalski */,
 				C15BC1871634A5F100053E91 /* kowalski_test.octest */,
 				C15BC1891634A5F100053E91 /* libkowalski_tools.a */,
 			);
@@ -470,7 +470,7 @@
 			remoteRef = C15758D31628EE6F0051A4DF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		C15758D61628EE6F0051A4DF /* kwltools */ = {
+		C15758D61628EE6F0051A4DF /* kowalski */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
 			path = kowalski;

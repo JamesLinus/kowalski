@@ -37,6 +37,7 @@ extern "C"
 #define KWL_XML_ATTR_MIX_BUS_ID "id"
     
 #define KWL_XML_WAVE_BANK_GROUP_NAME "WaveBankGroup"
+#define KWL_XML_WAVE_BANK_NAME "WaveBank"
 #define KWL_XML_AUDIO_DATA_ITEM_NAME "AudioData"
     
 #define KWL_XML_AUDIO_DATA_REFERENCE_NAME "AudioDataReference"
@@ -105,7 +106,8 @@ extern "C"
 #define KWL_XML_ATTR_PARAM_SET_GAIN_R "rightGain"
 #define KWL_XML_ATTR_PARAM_SET_PITCH "pitch"
 #define KWL_XML_ATTR_PARAM_SET_BUS "mixBus"
-    
+
+#define KWL_XML_ATTR_ID "id"
 #define KWL_XML_ATTR_REL_PATH "relativePath"
 #define KWL_XML_ATTR_STREAM "streamFromDisk"
     
@@ -200,7 +202,23 @@ extern "C"
     /**
      *
      */
-    xmlNode* kwlGetChild(xmlNode* root, const char* id);
+    xmlNode* kwlGetChild(xmlNode* root, const char* nodeName);
+    
+    /**
+     *
+     */
+    xmlNode* kwlGetChildWithIdAttributeValue(xmlNode* root, const char* id);
+    
+    /**
+     *
+     */
+    xmlNode* kwlResolveNodePath(xmlNode* root, const char* path);
+    
+    /**
+     *
+     */
+    xmlNode* kwlResolveAudioDataReference(xmlNode* someNode, const char* wbPath, const char* audioDataPath);
+
     
 #ifdef __cplusplus
 }

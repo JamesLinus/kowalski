@@ -102,6 +102,7 @@ kwlResultCode kwlBuildWaveBanks(const char* xmlPath,
         
         /*create a wave bank structure...*/
         const char* wbId = edb.waveBankChunk.waveBanks[i].id;
+           
         kwlWaveBankBinary wbBin;
         kwlResultCode wbResult = kwlWaveBankBinary_create(&wbBin,
                                                           &edb,
@@ -117,7 +118,7 @@ kwlResultCode kwlBuildWaveBanks(const char* xmlPath,
         }
         else
         {
-            /*write the wave bank*/
+            /*create the path of the output file*/
             char* wbFilePathNoExt = kwlAppendPathElement(targetDir, wbId);
             size_t fullPathLen = strlen(wbFilePathNoExt) + 5;
             char* wbFilePath = KWL_MALLOCANDZERO(fullPathLen * sizeof(char), "wb path w ext");
@@ -129,13 +130,11 @@ kwlResultCode kwlBuildWaveBanks(const char* xmlPath,
             wbFilePath[fullPathLen - 2] = 'b';
             wbFilePath[fullPathLen - 1] = '\0';
             
-            //printf("WRITING WB TO %s\n", wbFilePath);
-            
+            /*do dependency checking.*/
             int shouldWrite = 1;
-            
             if (kwlDoesFileExist(wbFilePath))
             {
-                /*do dependency checking. only write the binary
+                /*only write the binary
                  if the project data or any containing audio file
                  has more recent changes than the wave bank file that
                  already exists*/

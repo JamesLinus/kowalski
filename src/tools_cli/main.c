@@ -212,7 +212,7 @@ int main(int argc, const char * argv[])
                 return 0;
             }
 
-            kwlResultCode result = kwlBuildEngineData(xmlPath, xsdPath, binPath, kwlDefaultLogCallback);
+            kwlResultCode result = kwlBuildEngineData(xmlPath, xsdPath, binPath, 0, kwlDefaultLogCallback);
             printf("Engine data binary written to '%s'\n", binPath);
             if (result != KWL_SUCCESS)
             {
@@ -270,9 +270,9 @@ int main(int argc, const char * argv[])
     
     const char* waveBankId = "music";
     const char* wbId = "";
-    const char* wbTargetDir = "/Users/perarne/code/kowalski/res/demodata/final/wbtestbuild";
+    const char* wbTargetDir = "/Users/perarne/code/kowalski/res/demodata/final";
     const char* wbTargetFile = "";
-    const char* binTargetFile = "/Users/perarne/code/kowalski/res/demodata/final/demoproject_testwrite.kwl";
+    const char* binTargetFile = "/Users/perarne/code/kowalski/res/demodata/final/demoproject.kwl";
     
     kwlEngineDataBinary pdb;
     kwlMemset(&pdb, 0, sizeof(kwlEngineDataBinary));
@@ -287,6 +287,32 @@ int main(int argc, const char * argv[])
         kwlEngineDataBinary_loadFromBinaryFile(&pdb, binTargetFile, kwlDefaultLogCallback);
         kwlEngineDataBinary_dump(&pdb, kwlDefaultLogCallback);
         kwlEngineDataBinary_free(&pdb);
+    }
+    
+    //build wave banks
+    if (1)
+    {
+        kwlBuildWaveBanks(xmlPath,
+                          xsdPath,
+                          wbTargetDir,
+                          0,
+                          kwlDefaultLogCallback);
+    }
+    
+    //compare wbs
+    if (0)
+    {
+        const char* musicOld = "/Users/perarne/code/kowalski/res/demodata/final/music.kwb";
+        const char* musicNew = "/Users/perarne/code/kowalski/res/demodata/final/wbtestbuild/music.kwb";
+        kwlWaveBankBinary w;
+        kwlWaveBankBinary_loadFromBinaryFile(&w, musicNew, kwlDefaultLogCallback);
+        kwlWaveBankBinary_dump(&w, kwlDefaultLogCallback);
+        kwlWaveBankBinary_free(&w);
+        
+        kwlWaveBankBinary_loadFromBinaryFile(&w, musicOld, kwlDefaultLogCallback);
+        kwlWaveBankBinary_dump(&w, kwlDefaultLogCallback);
+        kwlWaveBankBinary_free(&w);
+        
     }
     
     //load kwl from xml
@@ -371,22 +397,16 @@ int main(int argc, const char * argv[])
     }
     
     //build engine data
-    if (0)
+    if (1)
     {
         kwlBuildEngineData(xmlPath,
                            xsdPath,
                            binTargetFile,
+                           0,
                            kwlDefaultLogCallback);
     }
     
-    //build wave bank
-    if (1)
-    {
-        kwlBuildWaveBanks(xmlPath,
-                          xsdPath,
-                          wbTargetDir,
-                          kwlDefaultLogCallback);
-    }
+    
     
     return 0;
 }

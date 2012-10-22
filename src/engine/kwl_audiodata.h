@@ -48,8 +48,6 @@ extern "C"
         KWL_ENCODING_VORBIS = 1,
         /** IMA ADPCM (aka DVI ADPCM or IMA4). */
         KWL_ENCODING_IMA_ADPCM = 2,
-        /** Advanced audio coding, supported by the iPhone/iPad hardware decoder.*/
-        KWL_ENCODING_AAC = 3,
         /** Linear PCM. 24 bit, signed, interleaved.*/
         KWL_ENCODING_SIGNED_24BIT_PCM = 5,
         /** Linear PCM. 32 bit, signed, interleaved.*/

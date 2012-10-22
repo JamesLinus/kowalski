@@ -861,7 +861,7 @@ static void kwlCreateEventChunk(xmlNode* eventsRootGroup,
                                                     relFilePath);
             
             kwlAudioData ad;
-            printf("loadint audio file %s\n", absFilePath);
+            //printf("loadint audio file %s\n", absFilePath);
             kwlError e = kwlLoadAudioFile(absFilePath,
                                           &ad,
                                           KWL_SKIP_AUDIO_DATA);
@@ -869,7 +869,7 @@ static void kwlCreateEventChunk(xmlNode* eventsRootGroup,
             if (e == KWL_NO_ERROR && kwlAudioData_isLinearPCM(&ad))
             {
                 /*Create a sound definition for this event*/
-                printf("Event '%s' references PCM audio file '%s'. Creating extra sound definition.\n", ei->id, absFilePath);
+                //printf("Event '%s' references PCM audio file '%s'. Creating extra sound definition.\n", ei->id, absFilePath);
                 bin->soundChunk.numSoundDefinitions++;
                 const int newSndIdx = bin->soundChunk.numSoundDefinitions - 1;
                 bin->soundChunk.soundDefinitions = KWL_REALLOC(bin->soundChunk.soundDefinitions,
@@ -1104,8 +1104,8 @@ kwlResultCode kwlEngineDataBinary_loadFromXMLFile(kwlEngineDataBinary* bin,
     }
     
     kwlResultCode loadingResult = kwlEngineDataBinary_loadFromXMLDocument(bin,
-                                                                          doc,
                                                                           xmlPath,
+                                                                          doc,
                                                                           errorLogCallback);
     
     /*If requested, check that all audio data file references can be resolved.*/

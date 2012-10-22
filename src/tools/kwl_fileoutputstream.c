@@ -11,7 +11,7 @@ int kwlFileOutputStream_initWithPath(kwlFileOutputStream* const stream, const ch
 {
     memset(stream, 0, sizeof(kwlFileOutputStream));
     
-    stream->file = fopen(path, "w");
+    stream->file = fopen(path, "wb");
     if (stream->file == NULL)
     {
         //perror("ERROR:");

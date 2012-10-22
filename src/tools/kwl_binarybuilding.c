@@ -32,8 +32,24 @@
 kwlResultCode kwlBuildEngineData(const char* xmlPath,
                                  const char* xsdPath,
                                  const char* targetFile,
+                                 int forceRebuild,
                                  kwlLogCallback errorLogCallback)
 {
+    /*dependency checking*/
+    if (kwlDoesFileExist(targetFile) && !forceRebuild)
+    {
+        /*only overwrite the binary if the project data
+         has more recent changes than the binary*/
+        long binTimeStamp = kwlGetFileTimeStamp(targetFile);
+        long xmlTimeStamp = kwlGetFileTimeStamp(xmlPath);
+        
+        if (xmlTimeStamp < binTimeStamp)
+        {
+            errorLogCallback("Engine data binary '%s' is up to date.\n", targetFile);
+            return KWL_SUCCESS;
+        }
+    }
+    
     kwlEngineDataBinary edb;
     kwlResultCode result = kwlEngineDataBinary_loadFromXMLFile(&edb,
                                                                xmlPath,
@@ -43,6 +59,7 @@ kwlResultCode kwlBuildEngineData(const char* xmlPath,
     
     if (result != KWL_SUCCESS)
     {
+        errorLogCallback("Error loading project XML data '%s'.\n", xmlPath);
         return result;
     }
     
@@ -50,23 +67,25 @@ kwlResultCode kwlBuildEngineData(const char* xmlPath,
     
     if (result != KWL_SUCCESS)
     {
+        errorLogCallback("Error building engine data binary '%s'.\n", targetFile);
         return result;
     }
     
     kwlEngineDataBinary_free(&edb);
-    
+    errorLogCallback("Built engine data binary '%s'.\n", targetFile);
     return KWL_SUCCESS;
 }
 
 kwlResultCode kwlBuildWaveBanks(const char* xmlPath,
                                 const char* xsdPath,
                                 const char* targetDir,
+                                int forceRebuild,
                                 kwlLogCallback errorLogCallback)
 {
     if (!kwlIsFileDirectory(targetDir))
     {
         /**/
-        errorLogCallback("Wave bank target location '%s' is not a directory.\n", targetDir);
+        errorLogCallback("Wave bank binary target location '%s' is not a directory.\n", targetDir);
         return KWL_INVALID_PATH;
     }
     
@@ -75,6 +94,7 @@ kwlResultCode kwlBuildWaveBanks(const char* xmlPath,
     kwlResultCode result = kwlLoadAndValidateProjectDataDoc(xmlPath, xsdPath, &doc, errorLogCallback);
     if (result != KWL_SUCCESS)
     {
+        errorLogCallback("Error loading project XML data '%s'.\n", xmlPath);
         return result;
     }
     
@@ -88,10 +108,10 @@ kwlResultCode kwlBuildWaveBanks(const char* xmlPath,
                                                               doc,
                                                               errorLogCallback);
     
-    xmlFreeDoc(doc);
-    
     if (r != KWL_SUCCESS)
     {
+        errorLogCallback("Error loading project XML data '%s'.\n", xmlPath);
+        xmlFreeDoc(doc);
         return r;
     }
     
@@ -107,6 +127,7 @@ kwlResultCode kwlBuildWaveBanks(const char* xmlPath,
         kwlWaveBankBinary wbBin;
         kwlResultCode wbResult = kwlWaveBankBinary_create(&wbBin,
                                                           &edb,
+                                                          projNode,
                                                           xmlPath,
                                                           audioFileRoot,
                                                           rootIsRelative,
@@ -115,6 +136,7 @@ kwlResultCode kwlBuildWaveBanks(const char* xmlPath,
         
         if (wbResult != KWL_SUCCESS)
         {
+            errorLogCallback("Failed to write wave bank binary '%s'.\n", wbId);
             finalResult = wbResult;
         }
         else
@@ -133,7 +155,7 @@ kwlResultCode kwlBuildWaveBanks(const char* xmlPath,
             
             /*do dependency checking.*/
             int shouldWrite = 1;
-            if (kwlDoesFileExist(wbFilePath))
+            if (kwlDoesFileExist(wbFilePath) && !forceRebuild)
             {
                 /*only write the binary
                  if the project data or any containing audio file
@@ -159,21 +181,23 @@ kwlResultCode kwlBuildWaveBanks(const char* xmlPath,
                 if (wbTimestamp > projectTimestamp &&
                     wbTimestamp > latestAudioFileTimeStamp)
                 {
-                    errorLogCallback("Wave bank file '%s' is up to date.\n", wbFilePath);
+                    errorLogCallback("Wave bank binary '%s' is up to date.\n", wbFilePath);
                     shouldWrite = 0;
                 }
             }
             
             if (shouldWrite)
             {
-                errorLogCallback("Building wave bank file '%s'.\n", wbFilePath);
                 kwlWaveBankBinary_writeToFile(&wbBin, wbFilePath);
+                errorLogCallback("Built wave bank binary '%s'.\n", wbFilePath);
             }
             
             KWL_FREE(wbFilePath);
             KWL_FREE(wbFilePathNoExt);
         }
     }
+    
+    xmlFreeDoc(doc);
     
     return finalResult;
 }

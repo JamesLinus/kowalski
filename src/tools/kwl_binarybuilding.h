@@ -38,6 +38,7 @@ extern "C"
     kwlResultCode kwlBuildEngineData(const char* xmlPath,
                                      const char* xsdPath,
                                      const char* targetFile,
+                                     int forceRebuild,
                                      kwlLogCallback errorLogCallback);
     
     /**
@@ -46,6 +47,7 @@ extern "C"
     kwlResultCode kwlBuildWaveBanks(const char* xmlPath,
                                     const char* xsdPath,
                                     const char* targetDir,
+                                    int forceRebuild,
                                     kwlLogCallback errorLogCallback);
     
 #ifdef __cplusplus

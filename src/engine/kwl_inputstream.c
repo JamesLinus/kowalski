@@ -51,9 +51,9 @@ FILE* kwlInputStream_openFile(kwlInputStream* stream, const char* const path)
 #ifdef _WIN32
     /*make sure we're in binary mode to avoid nasty line ending surprises*/
     _set_fmode(_O_BINARY);
-	return fopen(path, "r");
+	return fopen(path, "rb");
 #else
-	return fopen(path, "r");
+	return fopen(path, "rb");
 #endif
 }
 

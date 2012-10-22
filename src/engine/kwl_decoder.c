@@ -89,17 +89,20 @@ kwlError kwlDecoder_init(kwlDecoder* decoder, kwlEventInstance* event)
         result = kwlInitDecoderPCM(decoder);
     }
     #ifdef KWL_IPHONE
-    else if (audioData->encoding == KWL_ENCODING_AAC ||
-             audioData->encoding == KWL_ENCODING_UNKNOWN)
+    else if (audioData->encoding == KWL_ENCODING_UNKNOWN)
     {
+        /*try the iphone decoder*/
         result = kwlInitDecoderIPhone(decoder);
     }
     #endif /*KWL_IPHONE*/
     
     if (result != KWL_NO_ERROR)
     {
-        //TODO: deinit gracefully
+        decoder->deinit(decoder);
+        return result;
     }
+    
+    KWL_ASSERT(decoder->numChannels > 0);
     
     decoder->currentDecodedBuffer = 
         (short*)KWL_MALLOC(sizeof(short) * decoder->maxDecodedBufferSize, "decoder back buffer");

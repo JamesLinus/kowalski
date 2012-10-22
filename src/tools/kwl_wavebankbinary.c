@@ -162,6 +162,7 @@ static char* kwlDuplicateString(const char* str)
 
 kwlResultCode kwlWaveBankBinary_create(kwlWaveBankBinary* wbBin,
                                        kwlEngineDataBinary* edBin,
+                                       xmlNode* projNode,
                                        const char* xmlPath,
                                        const char* audioFileRoot,
                                        int rootIsRelative,
@@ -220,7 +221,13 @@ kwlResultCode kwlWaveBankBinary_create(kwlWaveBankBinary* wbBin,
         kwlAudioData audioData;
         kwlLoadAudioFile(audioFilePath, &audioData, KWL_SKIP_AUDIO_DATA);
         
-        if (kwlAudioData_isLinearPCM(&audioData))
+        xmlNode* audioDataNode = kwlResolveAudioDataReference(projNode,
+                                                              wbBin->id,
+                                                              ei->fileName);
+        KWL_ASSERT(audioDataNode != 0);
+        const int isStreaming = kwlGetBoolAttributeValue(audioDataNode, KWL_XML_ATTR_STREAM);
+        
+        if (kwlAudioData_isLinearPCM(&audioData) && !isStreaming)
         {
             kwlLoadAudioFile(audioFilePath, &audioData, KWL_CONVERT_TO_INT16_OR_FAIL);
         }
@@ -229,9 +236,9 @@ kwlResultCode kwlWaveBankBinary_create(kwlWaveBankBinary* wbBin,
             /**/
             kwlLoadAudioFile(audioFilePath, &audioData, KWL_LOAD_ENTIRE_FILE);
         }
-        
+
         ei->encoding = audioData.encoding;
-        ei->isStreaming =
+        ei->isStreaming = isStreaming;
         ei->numBytes = audioData.numBytes;
         ei->numChannels = audioData.numChannels;
         ei->data = audioData.bytes;

@@ -27,6 +27,123 @@ freely, subject to the following restrictions:
 #include "kwl_inputstream.h"
 #include "kwl_memory.h"
 
+static void checkAudioFileOpenError(OSStatus result)
+{
+    switch (result) {
+            
+        case kAudioFileUnspecifiedError: //'wht?'
+            //An unspecified error has occurred.
+        {
+            KWL_ASSERT(0);
+            break;
+        }
+        case kAudioFileUnsupportedFileTypeError://	‘typ?'
+            //The file type is not supported.
+        {
+            KWL_ASSERT(0);
+            break;
+        }
+            
+        case kAudioFileUnsupportedDataFormatError: //	''fmt?'
+            //The data format is not supported by this file type.
+        {
+            KWL_ASSERT(0);
+            break;
+        }
+            
+        case kAudioFileUnsupportedPropertyError: //	'pty?'
+            //The property is not supported.
+        {
+            KWL_ASSERT(0);
+            break;
+        }
+            
+        case kAudioFileBadPropertySizeError: //	'!siz'
+            //The size of the property data was not correct.
+        {
+            KWL_ASSERT(0);
+            break;
+        }
+        case kAudioFilePermissionsError: //	'prm?'
+            //The operation violated the file permissions. For example, an attempt
+            //was made to write to a file opened with the kAudioFileReadPermission constant.
+        {
+            KWL_ASSERT(0);
+            break;
+        }
+        case kAudioFileNotOptimizedError: //	'optm'
+            //The chunks following the audio data chunk are preventing the
+            //extension of the audio data chunk. To write more data, you must optimize the file.
+        {
+            KWL_ASSERT(0);
+            break;
+        }
+        case kAudioFileInvalidChunkError://	'chk?'
+            //Either the chunk does not exist in the file or it is not supported by the file.
+        {
+            KWL_ASSERT(0);
+            break;
+        }
+        case kAudioFileDoesNotAllow64BitDataSizeError: //	'off?'
+            //The file offset was too large for the file type. The AIFF and WAVE
+            //file format types have 32-bit file size limits.
+        {
+            KWL_ASSERT(0);
+            break;
+        }
+        case kAudioFileInvalidPacketOffsetError: //	'pck?'
+            //A packet offset was past the end of the file, or not at the end of
+            // the file when a VBR format was written, or a corrupt packet size
+            //was read when the packet table was built.
+        {
+            KWL_ASSERT(0);
+            break;
+        }
+        case kAudioFileInvalidFileError: //	‘dta?'
+            //The file is malformed, or otherwise not a valid instance of an audio file of its type.
+        {
+            KWL_ASSERT(0);
+            break;
+        }
+        case kAudioFileOperationNotSupportedError: //	 0x6F703F3F
+            //The operation cannot be performed. For example, setting the
+            // kAudioFilePropertyAudioDataByteCount constant to increase the
+            //size of the audio data in a file is not a supported operation. Write the data instead.
+        {
+            KWL_ASSERT(0);
+            break;
+        }
+        case kAudioFileNotOpenError: //	-38
+            //The file is closed.
+        {
+            KWL_ASSERT(0);
+            break;
+        }
+        case kAudioFileEndOfFileError: //	-39
+            //End of file.
+        {
+            KWL_ASSERT(0);
+            break;
+        }
+        case kAudioFilePositionError: //	-40
+            //Invalid file position.
+        {
+            KWL_ASSERT(0);
+            break;
+        }
+        case kAudioFileFileNotFoundError:
+            //
+        {
+            KWL_ASSERT(0);
+            break;
+        }
+        default:
+            KWL_ASSERT(result == 0);
+    }
+    
+    
+}
+
 kwlError kwlInitDecoderIPhone(kwlDecoder* decoder)
 {
     /* Allocate decoder data.*/
@@ -51,9 +168,11 @@ kwlError kwlInitDecoderIPhone(kwlDecoder* decoder)
                                                  NULL, /*no inSetSizeFunc needed for reading.*/
                                                  0,
                                                  &audioFileID);
+    checkAudioFileOpenError(result);
     if (result == 1954115647 || /*'typ?'*/
         result != noErr)
     {
+        printf("ios decoder: KWL_UNKNOWN_FILE_FORMAT, result\n");
         return KWL_UNKNOWN_FILE_FORMAT;
     }
     
@@ -72,6 +191,7 @@ kwlError kwlInitDecoderIPhone(kwlDecoder* decoder)
                                   &sourceFormat);
     if (result != noErr)
     {
+        printf("ios decoder: KWL_UNSUPPORTED_ENCODING1, result\n");
         return KWL_UNSUPPORTED_ENCODING;
     }
     
@@ -119,6 +239,7 @@ kwlError kwlInitDecoderIPhone(kwlDecoder* decoder)
     if (result == 1718449215 || //'fmt?'
         result != noErr)
     {
+        printf("ios decoder: KWL_UNSUPPORTED_ENCODING, result\n");
         return KWL_UNSUPPORTED_ENCODING;
     }
     //CAShow(data->converter); /*Debug print the converter*/
@@ -126,7 +247,7 @@ kwlError kwlInitDecoderIPhone(kwlDecoder* decoder)
     /* 
      * Get the actual input and output formats
      */
-    int size = sizeof(sourceFormat);
+    UInt32 size = sizeof(sourceFormat);
     result = AudioConverterGetProperty(data->converter, 
                                        kAudioConverterCurrentInputStreamDescription, 
                                        &size, 
@@ -145,7 +266,7 @@ kwlError kwlInitDecoderIPhone(kwlDecoder* decoder)
      * priming information of the converter if this is the case.
      */
     AudioFilePacketTableInfo srcPti;
-    int ptiSize = sizeof(srcPti);
+    UInt32 ptiSize = sizeof(srcPti);
     OSStatus err = AudioFileGetProperty(audioFileID, 
                                         kAudioFilePropertyPacketTableInfo, 
                                         &ptiSize, 

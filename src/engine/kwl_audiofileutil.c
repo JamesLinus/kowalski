@@ -41,8 +41,6 @@ static void* kwlAllocateBufferWithEntireStream(kwlInputStream* stream, int* file
 
 kwlError kwlLoadAudioFile(const char* path, kwlAudioData* audioData, kwlAudioDataLoadingMode mode)
 {
-    audioData->encoding = KWL_ENCODING_UNKNOWN;
-    
     kwlError error = kwlLoadAIFF(path, audioData, mode);
     if (error == KWL_NO_ERROR)
     {
@@ -62,6 +60,18 @@ kwlError kwlLoadAudioFile(const char* path, kwlAudioData* audioData, kwlAudioDat
     }
     
     error = kwlLoadOggVorbis(path, audioData, mode);
+    
+    if (error != KWL_NO_ERROR)
+    {
+        audioData->encoding = KWL_ENCODING_UNKNOWN;
+        kwlInputStream stream;
+        kwlError result = kwlInputStream_initWithFile(&stream, path);
+        if (result == KWL_NO_ERROR && mode == KWL_LOAD_ENTIRE_FILE)
+        {
+            audioData->bytes = kwlAllocateBufferWithEntireStream(&stream, &audioData->numBytes);
+        }
+        kwlInputStream_close(&stream);
+    }
     return error;
 }
 
@@ -691,9 +701,13 @@ kwlError kwlLoadOggVorbis(const char* path, kwlAudioData* audioData, kwlAudioDat
     {
         /*nothing further*/
     }
-    else
+    else if (mode == KWL_CONVERT_TO_INT16_OR_FAIL)
     {
-        KWL_ASSERT(0 && "TODO");
+        return KWL_UNKNOWN_FILE_FORMAT;
+    }
+    else if (mode == KWL_LOAD_ENTIRE_FILE)
+    {
+        audioData->bytes = kwlAllocateBufferWithEntireStream(&stream, &audioData->numBytes);
     }
     
     kwlInputStream_close(&stream);

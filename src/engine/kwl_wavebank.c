@@ -148,6 +148,7 @@ kwlError kwlWaveBank_loadAudioData(kwlWaveBank* waveBank,
     }
     else
     {
+        KWL_ASSERT(0 && "TODO");
         /*do asynchronous loading*/
         kwlInputStream_initWithFile(&waveBank->loadingThread.inputStream, path);
         waveBank->loadingThread.waveBank = waveBank;
@@ -176,7 +177,7 @@ kwlError kwlWaveBank_loadAudioDataItems(kwlWaveBank* waveBank, kwlInputStream* s
         char* const waveEntryIdi = kwlInputStream_readASCIIString(stream);
         
         kwlAudioData* matchingAudioData = NULL;
-        int j;
+
         for (int j = 0; j < waveBankToLoadnumAudioDataEntries; j++)
         {
             kwlAudioData* entryj = &waveBank->audioDataItems[j];

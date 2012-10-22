@@ -40,6 +40,13 @@ kwlSemaphore* kwlSemaphoreOpen(const char* const name)
      * if a semaphore with the given name alread exits.
      */
     ret = sem_open(name, O_CREAT | O_EXCL, 0777, 0);
+    
+    if (ret == SEM_FAILED && errno == EEXIST)
+    {
+        sem_unlink(name);
+        ret = sem_open(name, O_CREAT | O_EXCL, 0777, 0);
+    }
+    
     if (ret == SEM_FAILED)
     {
         switch (errno) {

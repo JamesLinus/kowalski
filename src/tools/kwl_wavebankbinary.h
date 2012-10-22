@@ -89,6 +89,7 @@ extern "C"
      */
     kwlResultCode kwlWaveBankBinary_create(kwlWaveBankBinary* wbBin,
                                            kwlEngineDataBinary* edBin,
+                                           xmlNode* projNode,
                                            const char* xmlPath,
                                            const char* audioFileRoot,
                                            int rootIsRelative,

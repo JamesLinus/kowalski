@@ -284,7 +284,7 @@ xmlNode* kwlResolveNodePath(xmlNode* root, const char* path)
         char* currPathElement = KWL_MALLOC(currEnd - currStart + 1, "path element");
         kwlMemcpy(currPathElement, &path[currStart], currEnd - currStart);
         currPathElement[currEnd - currStart] = '\0';
-
+        
         //printf("    current path element '%s'\n", currPathElement);
         
         currNode = kwlGetChildWithIdAttributeValue(currNode, currPathElement);
@@ -305,15 +305,15 @@ xmlNode* kwlResolveAudioDataReference(xmlNode* someNode, const char* wbPath, con
 {
     /*get the project node (a bit hacky)*/
     xmlNode* rootNode = someNode;
-    while (xmlStrcmp(rootNode->name, (xmlChar*)KWL_XML_PROJECT_NODE_NAME) != 0)
+    while (xmlStrcmp(rootNode->name, (xmlChar*)KWL_XML_KOWALSKI_PROJECT_NODE) != 0)
     {
         rootNode = rootNode->parent;
     }
     
-    xmlNode* waveBankRootNode = kwlGetChild(rootNode, KWL_XML_WAVE_BANK_GROUP_NAME);
+    xmlNode* waveBankRootNode = kwlGetChild(rootNode, KWL_XML_WAVE_BANK_GROUP_NODE);
     xmlNode* waveBankNode = kwlResolveNodePath(waveBankRootNode, wbPath);
     
-    KWL_ASSERT(xmlStrEqual(waveBankNode->name, (xmlChar*)KWL_XML_WAVE_BANK_NAME));
+    KWL_ASSERT(xmlStrEqual(waveBankNode->name, (xmlChar*)KWL_XML_WAVE_BANK_NODE));
     
     if (waveBankNode == NULL)
     {

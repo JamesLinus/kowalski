@@ -58,27 +58,12 @@ extern "C"
     /**
      * Validates wave bank binaries, engine data binaries or project data xml files.
      * @param filePath The path to the file to validate.
+     * @param schemaPath The path to the project data XSD schema.
+     * @param logCallback Validtion output is printed using this callback.
      * @return An error code.
      */
     kwlResultCode kwlValidate(const char* filePath, const char* schemaPath, kwlLogCallback logCallback);
     
-    /**
-     * Validates a project data XML document.
-     */
-    kwlResultCode kwlValidateProjectData(const char* xmlPath,
-                                         const char* xsdPath,
-                                         int validateAudioFileReferences,
-                                         kwlLogCallback logCallback);
-    
-    /**
-     *
-     */
-    kwlResultCode kwlValidateWaveBank(const char* waveBankPath, kwlLogCallback logCallback);
-    
-    /**
-     *
-     */
-    kwlResultCode kwlValidateEngineData(const char* engineDataPath, kwlLogCallback logCallback);
     
     
 #ifdef __cplusplus

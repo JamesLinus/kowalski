@@ -42,9 +42,6 @@ tools
 - don't allow \ in path strings
 - assume unit params if mixbusparameter set is missing from preset?
 - use strlen in kwlFileOutputStream_writeASCIIString
-- libsndfile? no (lgpl)?
-- take audio file dir out of xml?
-- use xmlHashTable etc?
 - shorten attribute names
 - don't store mix bus index per parameter set but rely on same order as mix buses
 - chunk struct misnomer
@@ -52,5 +49,3 @@ tools
 - make top MixPresetGroup optional
 - allow empty wavebanks etc in binaries.
 - path notation for mix buses too?
-- fry node with expansion state
-- generate xsd docs?

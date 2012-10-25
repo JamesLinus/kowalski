@@ -48,13 +48,13 @@ extern "C"
     /**
      * The mix bus chunk of an engine data binary.
      */
-    typedef struct kwlMixBusDataChunk
+    typedef struct kwlMixBusesChunk
     {
         int chunkId;
         int chunkSize;
         int numMixBuses;
         kwlMixBusChunk* mixBuses;
-    } kwlMixBusDataChunk;
+    } kwlMixBusesChunk;
     
     /**
      * A single mix preset in the mix   chunk of an engine data binary.
@@ -72,13 +72,13 @@ extern "C"
     /**
      * The mix preset chunk of an engine data binary.
      */
-    typedef struct kwlMixPresetDataChunk
+    typedef struct kwlMixPresetsChunk
     {
         int chunkId;
         int chunkSize;
         int numMixPresets;
         kwlMixPresetChunk* mixPresets;
-    } kwlMixPresetDataChunk;
+    } kwlMixPresetsChunk;
     
     /**
      * A single wave bank in the wave bank chunk of an engine data binary.
@@ -93,14 +93,14 @@ extern "C"
     /**
      * The wave bank chunk of an engine data binary.
      */
-    typedef struct kwlWaveBankDataChunk
+    typedef struct kwlWaveBanksChunk
     {
         int chunkId;
         int chunkSize;
         int numAudioDataItemsTotal;
         int numWaveBanks;
         kwlWaveBankChunk* waveBanks;
-    } kwlWaveBankDataChunk;
+    } kwlWaveBanksChunk;
     
     /**
      * A single sound definition in the sound chunk of an engine data binary.
@@ -114,7 +114,6 @@ extern "C"
         float pitch;
         float pitchVariation;
         int playbackMode;
-        
         int numWaveReferences;
         int* waveBankIndices;
         int* audioDataIndices;
@@ -123,13 +122,13 @@ extern "C"
     /**
      * The sound chunk of an engine data binary.
      */
-    typedef struct kwlSoundDataChunk
+    typedef struct kwlSoundsChunk
     {
         int chunkId;
         int chunkSize;
         int numSoundDefinitions;
         kwlSoundChunk* soundDefinitions;
-    } kwlSoundDataChunk;
+    } kwlSoundsChunk;
     
     /**
      * A single event definition in the event chunk of an engine data binary.
@@ -158,35 +157,52 @@ extern "C"
     /**
      * The event chunk of an engine data binary.
      */
-    typedef struct kwlEventDataChunk
+    typedef struct kwlEventsChunk
     {
         int chunkId;
         int chunkSize;
         int numEventDefinitions;
         kwlEventChunk* eventDefinitions;
-    } kwlEventDataChunk;
+    } kwlEventsChunk;
     
     /**
-     * An engine data binary, i.e a struct representation of an engine data binary file.
+     * A struct representation of an engine data binary file.
      */
     typedef struct kwlEngineDataBinary
     {
+        /** The engine data binary file identifier. */
         char fileIdentifier[KWL_ENGINE_DATA_BINARY_FILE_IDENTIFIER_LENGTH];
-        kwlMixPresetDataChunk mixPresetChunk;
-        kwlMixBusDataChunk mixBusChunk;
-        kwlWaveBankDataChunk waveBankChunk;
-        kwlSoundDataChunk soundChunk;
-        kwlEventDataChunk eventChunk;
+        /** Wave bank data.*/
+        kwlWaveBanksChunk waveBanksChunk;
+        /** Mix bus data.*/
+        kwlMixBusesChunk mixBusesChunk;
+        /** Mix preset data.*/
+        kwlMixPresetsChunk mixPresetsChunk;
+        /** Sound definition data.*/
+        kwlSoundsChunk soundsChunk;
+        /** Event definition data.*/
+        kwlEventsChunk eventsChunk;
         
     } kwlEngineDataBinary;
     
     /**
-     *
+     * Checks if a file is an engine data binary.
+     * @param path The path of the file to check.
+     * @return Non-zero if \c path corresponds to a valid
+     * engine data binary file, zero otherwise.
      */
     int kwlFileIsEngineDataBinary(const char* path);
     
     /**
-     *
+     * Checks if the physical audio files referenced from a given engine data binary exist.
+     * @param bin The binary to check.
+     * @param xmlPath The path of the project data XML file (needed to resolve paths
+     * relative to the this file).
+     * @param audioFileRoot The audio file root folder.
+     * @param rootIsRelative If non-zero, the \c audioRootFolder path is relative to \c xmlPath,
+     * otherwise \c audioRootFolder is an absolute path and \c xmlPath is ignored.
+     * @param errorLogCallback A callback used to print any errors.
+     * @return A result code.
      */
     kwlResultCode kwlEngineDataBinary_validateFileReferences(kwlEngineDataBinary* bin,
                                                              const char* xmlPath,
@@ -195,22 +211,39 @@ extern "C"
                                                              kwlLogCallback errorLogCallback);
     
     /**
-     *
+     * Writes a given engine data binary to a file.
+     * @param bin The binary to write.
+     * @param binPath The path to write the file to.
+     * @return A result code.
      */
     kwlResultCode kwlEngineDataBinary_writeToFile(kwlEngineDataBinary* bin,
                                                   const char* binPath);
     
     /**
-     *
+     * Loads an engine data binary from a given project data XML file.
+     * @param bin The binary to load data into.
+     * @param xmlPath The path to the project XML data file.
+     * @param xmlPath The path to the project XML data schema.
+     * @param validateAudioFileReferences If non-zero, loading will fail if
+     * the project data XML file contains invalid references to physical audio files,
+     * otherwise loading will only fail on errors in the XML file.
+     * @param errorLogCallback Any errors are printed to this callback.
+     * @return A result code.
      */
     kwlResultCode kwlEngineDataBinary_loadFromXMLFile(kwlEngineDataBinary* bin,
-                                                  const char* xmlPath,
-                                                  const char* xsdPath,
-                                                  int validateAudioFileReferences,
-                                                  kwlLogCallback errorLogCallback);
+                                                      const char* xmlPath,
+                                                      const char* xsdPath,
+                                                      int validateAudioFileReferences,
+                                                      kwlLogCallback errorLogCallback);
     
     /**
-     * Assumes that \c document has been properly validated.
+     * Loads an engine data binary from a given libxml XML document.
+     * This function assumes that \c document has been properly validated.
+     * @param bin The binary to load data into.
+     * @param xmlPath The path to the project XML data file.
+     * @param document A libxml document pointer representing a valid project data XML file.
+     * @param errorLogCallback Any errors are printed to this callback.
+     * @return A result code.
      */
     kwlResultCode kwlEngineDataBinary_loadFromXMLDocument(kwlEngineDataBinary* bin,
                                                           const char* xmlPath,
@@ -218,19 +251,26 @@ extern "C"
                                                           kwlLogCallback errorLogCallback);
     
     /**
-     *
+     * Loads an engine data binary from a given binary file.
+     * @param bin The binary to load data into.
+     * @param binPath The path to the engine data binary file to load.
+     * @param errorLogCallback Any errors are printed to this callback.
+     * @return A result code.
      */
     kwlResultCode kwlEngineDataBinary_loadFromBinaryFile(kwlEngineDataBinary* bin,
                                                          const char* binPath,
                                                          kwlLogCallback errorLogCallback);
     
     /**
-     *
+     * Frees all memory associated with a given engine data binary.
+     * @param The binary to free.
      */
     void kwlEngineDataBinary_free(kwlEngineDataBinary* bin);
     
     /**
-     *
+     * Prints the contents of a given engine data binary.
+     * @param The binary to view.
+     * @param logCallback A callback that handles the printing.
      */
     void kwlEngineDataBinary_dump(kwlEngineDataBinary* bin,
                                   kwlLogCallback logCallback);

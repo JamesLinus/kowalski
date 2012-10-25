@@ -50,9 +50,13 @@ extern "C"
      */
     typedef struct kwlWaveBankBinary
     {
+        /** The wave bank binary file identifier.*/
         char fileIdentifier[KWL_WAVE_BANK_BINARY_FILE_IDENTIFIER_LENGTH];
+        /** The id of the wave bank.*/
         char* id;
+        /** The number of audio data entries*/
         int numEntries;
+        /** The audio data entries.*/
         kwlWaveBankEntryChunk* entries;
         
     } kwlWaveBankBinary;
@@ -73,8 +77,8 @@ extern "C"
                                        const char* path);
     
     /**
-     * Creates a wave bank binary corresponding to a wave bank binary file.
-     * @param bin The wave bank binary to populate with data.
+     * Loads a wave bank binary file (including audio data) into into a \kwlWaveBankBinary struct.
+     * @param bin The wave bank binary to load data into.
      * @param path The path of the wave bank binary file.
      * @param errorCallback A callback used for logging any error messages.
      * @return An error code.
@@ -84,8 +88,17 @@ extern "C"
                                                        kwlLogCallback errorLogCallback);
     
     /**
-     * Creates a wave bank binary corresponding to a wavebank with a given id.
-     * @return An error code.
+     * Creates a wave bank binary corresponding to a specific wave bank entry
+     * in an engine data binary.
+     * @param wbBin The wave bank binary to load data into.
+     * @param edBin The engine data binary.
+     * @param projNode A pointer to the KowalskiProject XML node of a valid project data document.
+     * @param xmlPath The path to the project data XML document
+     * @param audioFileRoot The path to the audio file root directory.
+     * @param rootIsRelative Non-zero if \c audioFileRoot is a relative path, zero if it's absolute.
+     * @param waveBankId The node path of the wave bank to build.
+     * @param errorLogCallback Any errors are printed using this callback.
+     * @return A result code.
      */
     kwlResultCode kwlWaveBankBinary_create(kwlWaveBankBinary* wbBin,
                                            kwlEngineDataBinary* edBin,

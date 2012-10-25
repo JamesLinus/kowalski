@@ -181,11 +181,13 @@ kwlResultCode kwlWaveBankBinary_create(kwlWaveBankBinary* wbBin,
         return rc;
     }
     
+    kwlMemset(wbBin, 0, sizeof(kwlWaveBankBinary));
+    
     /*find the wavebank*/
     kwlWaveBankChunk* waveBank = NULL;
-    for (int i = 0; i < edBin->waveBankChunk.numWaveBanks; i++)
+    for (int i = 0; i < edBin->waveBanksChunk.numWaveBanks; i++)
     {
-        kwlWaveBankChunk* wbi = &edBin->waveBankChunk.waveBanks[i];
+        kwlWaveBankChunk* wbi = &edBin->waveBanksChunk.waveBanks[i];
         if (strcmp(wbi->id, waveBankId) == 0)
         {
             waveBank = wbi;
@@ -225,7 +227,7 @@ kwlResultCode kwlWaveBankBinary_create(kwlWaveBankBinary* wbBin,
                                                               wbBin->id,
                                                               ei->fileName);
         KWL_ASSERT(audioDataNode != 0);
-        const int isStreaming = kwlGetBoolAttributeValue(audioDataNode, KWL_XML_ATTR_STREAM);
+        const int isStreaming = kwlGetBoolAttributeValue(audioDataNode, KWL_XML_AUDIO_DATA_STREAM);
         
         if (kwlAudioData_isLinearPCM(&audioData) && !isStreaming)
         {
@@ -236,7 +238,7 @@ kwlResultCode kwlWaveBankBinary_create(kwlWaveBankBinary* wbBin,
             /**/
             kwlLoadAudioFile(audioFilePath, &audioData, KWL_LOAD_ENTIRE_FILE);
         }
-
+        
         ei->encoding = audioData.encoding;
         ei->isStreaming = isStreaming;
         ei->numBytes = audioData.numBytes;

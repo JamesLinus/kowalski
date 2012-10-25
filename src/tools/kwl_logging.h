@@ -30,17 +30,28 @@ extern "C"
 #endif /* __cplusplus */
     
     /**
-     *
+     * A callback for logging various kinds of messages.
+     * Accepts printf style formatting.
+     * @param message The message to print.
      */
     typedef void (*kwlLogCallback)(const char* message, ...);
     
     /**
-     *
+     * The default log callback. Prints to stdout.
+     * @param format The message to print.
      */
     void kwlDefaultLogCallback(const char* format, ...);
     
     /**
-     *
+     * The same as kwlDefaultLogCallback but adds an extra new line
+     * after each call.
+     * @param format The message to print.
+     */
+    void kwlLogCallbackWithExtraNewline(const char* format, ...);
+    
+    /**
+     * This log callback does nothing. Used for supressing output.
+     * @param format Whatever. Gets ignored.
      */
     void kwlSilentLogCallback(const char* format, ...);
     

@@ -99,8 +99,8 @@ kwlResultCode kwlBuildWaveBanks(const char* xmlPath,
     }
     
     xmlNode* projNode = xmlDocGetRootElement(doc);
-    char* audioFileRoot = kwlGetAttributeValueCopy(projNode, KWL_XML_ATTR_PROJECT_AUDIO_FILE_ROOT);
-    int rootIsRelative = kwlGetBoolAttributeValue(projNode, KWL_XML_ATTR_PROJECT_AUDIO_FILE_ROOT_IS_RELATIVE);
+    char* audioFileRoot = kwlGetAttributeValueCopy(projNode, KWL_XML_KOWALSKI_PROJECT_AUDIO_FILE_ROOT);
+    int rootIsRelative = kwlGetBoolAttributeValue(projNode, KWL_XML_KOWALSKI_PROJECT_AUDIO_FILE_ROOT_IS_RELATIVE);
     
     kwlEngineDataBinary edb;
     kwlResultCode r = kwlEngineDataBinary_loadFromXMLDocument(&edb,
@@ -117,13 +117,13 @@ kwlResultCode kwlBuildWaveBanks(const char* xmlPath,
     
     kwlResultCode finalResult = KWL_SUCCESS;
     
-    for (int i = 0; i < edb.waveBankChunk.numWaveBanks; i++)
+    for (int i = 0; i < edb.waveBanksChunk.numWaveBanks; i++)
     {
-        kwlWaveBankChunk* edwb = &edb.waveBankChunk.waveBanks[i];
+        kwlWaveBankChunk* edwb = &edb.waveBanksChunk.waveBanks[i];
         
         /*create a wave bank structure...*/
-        const char* wbId = edb.waveBankChunk.waveBanks[i].id;
-           
+        const char* wbId = edb.waveBanksChunk.waveBanks[i].id;
+        
         kwlWaveBankBinary wbBin;
         kwlResultCode wbResult = kwlWaveBankBinary_create(&wbBin,
                                                           &edb,

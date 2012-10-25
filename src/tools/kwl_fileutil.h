@@ -30,27 +30,41 @@ extern "C"
 #endif /* __cplusplus */
     
     /**
-     *
+     * Checks if a path corresponds to an existing file.
+     * @param path The path to check.
+     * @return Non-zero if the file exists, zero otherwise.
      */
     int kwlDoesFileExist(const char* path);
     
     /**
-     *
+     * Checks if a given file is a directory.
+     * @param path The file to check.
+     * @return Non-zero if the file is a directory, zero if it isn't
+     * (or if it doesn't exist).
      */
     int kwlIsFileDirectory(const char* path);
     
     /**
-     *
+     * Gets the time stamp of a file.
+     * @param path The file.
+     * @return The time stamp.
      */
     long kwlGetFileTimeStamp(const char* path);
     
     /**
-     *
+     * Appends a path element to a base path.
+     * The returned string must be freed by the caller.
+     * @param path The base path.
+     * @param toAppend The path element to append.
+     * @return The combined path.
      */
     char* kwlAppendPathElement(const char* path, const char* toAppend);
     
     /**
-     *
+     * Gets the path to the directory containing a given file.
+     * @param path The file to get the containing directory of.
+     * @return The containing directory of \c path (or NULL if \c path
+     * does not exist).
      */
     char* kwlGetFileDirectory(const char* path);
     

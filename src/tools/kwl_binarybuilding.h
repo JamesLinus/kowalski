@@ -33,7 +33,16 @@ extern "C"
 #endif /* __cplusplus */
     
     /**
-     *
+     * Builds an engine data binary file from a given project data XML file.
+     * Unless \c forceRebuild is set, this function performs dependency
+     * checking and will only rebuild an existing engine data binary
+     * file if the XML file has more recent changes.
+     * @param xmlPath The path to the project data XML file.
+     * @param xsdPath The path to the project data XSD schema.
+     * @param targetFile The path of the resulting engine data binary file.
+     * @param forceRebuild If non-zero, dependecy checking is bypassed.
+     * @param errorLogCallback Any errors are printed using this callback.
+     * @return A result code.
      */
     kwlResultCode kwlBuildEngineData(const char* xmlPath,
                                      const char* xsdPath,
@@ -42,7 +51,18 @@ extern "C"
                                      kwlLogCallback errorLogCallback);
     
     /**
-     *
+     * Creates one wave bank binary file for all wave banks in a given project
+     * XML data file. Unless \c forceRebuild is set, this function performs
+     * dependency checking and will only rebuild an existing wave bank binary
+     * file if the XML file or any audio file referenced by the wave bank
+     * has more recent changes.
+     * @param xmlPath The path to the project data XML file.
+     * @param xsdPath The path to the project data XSD schema.
+     * @param targetDir The target directory. A wave bank with node path \'group/bank' will
+     * be written to the file \bank.kwb in the subdirectory \group of \targetDir.
+     * @param forceRebuild If non-zero, dependecy checking is bypassed.
+     * @param errorLogCallback Any errors are printed using this callback.
+     * @return A result code.
      */
     kwlResultCode kwlBuildWaveBanks(const char* xmlPath,
                                     const char* xsdPath,

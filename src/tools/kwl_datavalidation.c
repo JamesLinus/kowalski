@@ -63,10 +63,10 @@ kwlResultCode kwlValidate(const char* filePath, const char* schemaPath, kwlLogCa
     logCallback("Validating project data XML file '%s':\n", filePath);
     kwlEngineDataBinary edb;
     kwlResultCode result = kwlEngineDataBinary_loadFromXMLFile(&edb,
-                                                           filePath,
-                                                           schemaPath,
-                                                           0,
-                                                           logCallback);
+                                                               filePath,
+                                                               schemaPath,
+                                                               0,
+                                                               logCallback);
     kwlEngineDataBinary_free(&edb);
     if (result == KWL_SUCCESS)
     {
@@ -74,30 +74,6 @@ kwlResultCode kwlValidate(const char* filePath, const char* schemaPath, kwlLogCa
     }
     return result;
 }
-
-kwlResultCode kwlValidateProjectData(const char* xmlPath,
-                                     const char* xsdPath,
-                                     int validateAudioFileReferences,
-                                     kwlLogCallback errorCallback)
-{
-    
-    
-    kwlEngineDataBinary bin;
-    kwlMemset(&bin, 0, sizeof(kwlEngineDataBinary));
-    
-    kwlResultCode result = kwlEngineDataBinary_loadFromXMLFile(&bin,
-                                                           xmlPath,
-                                                           xsdPath,
-                                                           validateAudioFileReferences,
-                                                           errorCallback);
-    
-    /*clean up*/
-    kwlEngineDataBinary_free(&bin);
-    
-    return result;
-    
-}
-
 
 
 

@@ -21,8 +21,8 @@
  distribution.
  */
 
-#ifndef KWL_PROJECT_DATA_BINARY_REPRESENTATION_H
-#define KWL_PROJECT_DATA_BINARY_REPRESENTATION_H
+#ifndef KWL_ENGINE_DATA_BINARY_H
+#define KWL_ENGINE_DATA_BINARY_H
 
 #include "kwl_datavalidation.h"
 #include "kwl_enginedata.h"
@@ -36,7 +36,7 @@ extern "C"
 #endif /* __cplusplus */
     
     /**
-     * A single mix bus in the mix bus chunk of an engine data binary.
+     * A single mix bus in the mix buses chunk of an engine data binary.
      */
     typedef struct kwlMixBusChunk
     {
@@ -46,7 +46,7 @@ extern "C"
     } kwlMixBusChunk;
     
     /**
-     * The mix bus chunk of an engine data binary.
+     * The mix buses chunk of an engine data binary.
      */
     typedef struct kwlMixBusesChunk
     {
@@ -57,7 +57,7 @@ extern "C"
     } kwlMixBusesChunk;
     
     /**
-     * A single mix preset in the mix   chunk of an engine data binary.
+     * A single mix preset in the mix presets chunk of an engine data binary.
      */
     typedef struct kwlMixPresetChunk
     {
@@ -70,7 +70,7 @@ extern "C"
     } kwlMixPresetChunk;
     
     /**
-     * The mix preset chunk of an engine data binary.
+     * The mix presets chunk of an engine data binary.
      */
     typedef struct kwlMixPresetsChunk
     {
@@ -81,7 +81,7 @@ extern "C"
     } kwlMixPresetsChunk;
     
     /**
-     * A single wave bank in the wave bank chunk of an engine data binary.
+     * A single wave bank in the wave banks chunk of an engine data binary.
      */
     typedef struct kwlWaveBankChunk
     {
@@ -91,7 +91,7 @@ extern "C"
     } kwlWaveBankChunk;
     
     /**
-     * The wave bank chunk of an engine data binary.
+     * The wave banks chunk of an engine data binary.
      */
     typedef struct kwlWaveBanksChunk
     {
@@ -103,7 +103,7 @@ extern "C"
     } kwlWaveBanksChunk;
     
     /**
-     * A single sound definition in the sound chunk of an engine data binary.
+     * A single sound definition in the sounds chunk of an engine data binary.
      */
     typedef struct kwlSoundChunk
     {
@@ -120,7 +120,7 @@ extern "C"
     } kwlSoundChunk;
     
     /**
-     * The sound chunk of an engine data binary.
+     * The sounds chunk of an engine data binary.
      */
     typedef struct kwlSoundsChunk
     {
@@ -131,7 +131,7 @@ extern "C"
     } kwlSoundsChunk;
     
     /**
-     * A single event definition in the event chunk of an engine data binary.
+     * A single event definition in the events chunk of an engine data binary.
      */
     typedef struct kwlEventChunk
     {
@@ -155,7 +155,7 @@ extern "C"
     } kwlEventChunk;
     
     /**
-     * The event chunk of an engine data binary.
+     * The events chunk of an engine data binary.
      */
     typedef struct kwlEventsChunk
     {
@@ -282,4 +282,4 @@ extern "C"
 #endif /* __cplusplus */
 
 
-#endif /*KWL_PROJECT_DATA_BINARY_REPRESENTATION_H*/
+#endif /*KWL_ENGINE_DATA_BINARY_H*/

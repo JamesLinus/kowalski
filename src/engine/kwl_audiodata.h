@@ -20,8 +20,8 @@
  3. This notice may not be removed or altered from any source
  distribution.
  */
-#ifndef KWL__AUDIO_DATA_H
-#define KWL__AUDIO_DATA_H
+#ifndef KWL_AUDIO_DATA_H
+#define KWL_AUDIO_DATA_H
 
 /*! \file */
 
@@ -113,4 +113,4 @@ extern "C"
 }
 #endif /* __cplusplus */
 
-#endif /*KWL__AUDIO_DATA_H*/
+#endif /*KWL_AUDIO_DATA_H*/

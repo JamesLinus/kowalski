@@ -21,8 +21,8 @@ freely, subject to the following restrictions:
    distribution.
 */
 
-#ifndef KWL__DSP_UNIT_H
-#define KWL__DSP_UNIT_H
+#ifndef KWL_DSP_UNIT_H
+#define KWL_DSP_UNIT_H
 
 /*! \file */ 
 
@@ -80,4 +80,4 @@ typedef struct kwlDSPUnit
 }
 #endif /* __cplusplus */
         
-#endif /*KWL__DSP_UNIT_H*/
+#endif /*KWL_DSP_UNIT_H*/

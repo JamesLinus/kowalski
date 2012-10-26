@@ -21,8 +21,8 @@ freely, subject to the following restrictions:
    distribution.
 */
 
-#ifndef KWL__EVENT_H
-#define KWL__EVENT_H
+#ifndef KWL_EVENT_INSTANCE_H
+#define KWL_EVENT_INSTANCE_H
 
 /*! \file */ 
 
@@ -214,4 +214,4 @@ int kwlEventInstance_render(kwlEventInstance* event,
 }
 #endif /* __cplusplus */    
     
-#endif /*KWL__EVENT_H*/
+#endif /*KWL_EVENT_INSTANCE_H*/

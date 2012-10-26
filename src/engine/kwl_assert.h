@@ -21,8 +21,8 @@ freely, subject to the following restrictions:
    distribution.
 */
 
-#ifndef KWL__ASSERT_H
-#define KWL__ASSERT_H
+#ifndef KWL_ASSERT_H
+#define KWL_ASSERT_H
 
 /*! \file */ 
 
@@ -40,4 +40,4 @@ extern "C"
 }
 #endif /* __cplusplus */    
 
-#endif /*KWL__ASSERT_H*/
+#endif /*KWL_ASSERT_H*/

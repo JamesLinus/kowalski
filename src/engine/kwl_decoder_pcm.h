@@ -21,8 +21,8 @@
  distribution.
 */
 
-#ifndef KWL__DECODER_PCM_H
-#define KWL__DECODER_PCM_H
+#ifndef KWL_DECODER_PCM_H
+#define KWL_DECODER_PCM_H
 
 /*! \file */ 
 
@@ -73,4 +73,4 @@ int kwlRewindDecoderPCM(kwlDecoder* decoder);
 }
 #endif /* __cplusplus */
 
-#endif /*KWL__DECODER_PCM_H*/
+#endif /*KWL_DECODER_PCM_H*/

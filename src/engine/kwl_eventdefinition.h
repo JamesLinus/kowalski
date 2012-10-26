@@ -21,8 +21,8 @@ freely, subject to the following restrictions:
    distribution.
 */
 
-#ifndef KWL__EVENT_DEFINITION_H
-#define KWL__EVENT_DEFINITION_H
+#ifndef KWL_EVENT_DEFINITION_H
+#define KWL_EVENT_DEFINITION_H
 
 /*! \file */ 
 
@@ -106,4 +106,4 @@ void kwlEventDefinition_init(kwlEventDefinition* eventDefinition);
 }
 #endif /* __cplusplus */    
 
-#endif /*KWL__EVENT_DEFINITION_H*/
+#endif /*KWL_EVENT_DEFINITION_H*/

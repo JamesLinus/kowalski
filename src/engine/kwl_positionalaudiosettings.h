@@ -21,8 +21,8 @@ freely, subject to the following restrictions:
    distribution.
 */
 
-#ifndef KWL__POSITIONAL_AUDIO_SETTINGS_H
-#define KWL__POSITIONAL_AUDIO_SETTINGS_H
+#ifndef KWL_POSITIONAL_AUDIO_SETTINGS_H
+#define KWL_POSITIONAL_AUDIO_SETTINGS_H
 
 /*! \file */ 
 
@@ -68,4 +68,4 @@ void kwlPositionalAudioSettings_setDefaults(kwlPositionalAudioSettings* settings
 }
 #endif /* __cplusplus */    
 
-#endif /*KWL__POSITIONAL_AUDIO_SETTINGS_H*/
+#endif /*KWL_POSITIONAL_AUDIO_SETTINGS_H*/

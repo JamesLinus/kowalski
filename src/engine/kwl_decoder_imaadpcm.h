@@ -20,8 +20,8 @@ freely, subject to the following restrictions:
    3. This notice may not be removed or altered from any source
    distribution.
 */
-#ifndef KWL__DECODER_IMAADPCM_H
-#define KWL__DECODER_IMAADPCM_H
+#ifndef KWL_DECODER_IMAADPCM_H
+#define KWL_DECODER_IMAADPCM_H
 
 /*! \file */ 
 
@@ -142,5 +142,5 @@ static inline int decodeNibble(int nibble, int *predictor, int*stepIndex)
 #endif /* __cplusplus */    
 
 
-#endif /*KWL__DECODER_IMAADPCM_H*/
+#endif /*KWL_DECODER_IMAADPCM_H*/
 

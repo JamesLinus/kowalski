@@ -21,8 +21,8 @@ freely, subject to the following restrictions:
    distribution.
 */
 
-#ifndef KWL__LOCK_H
-#define KWL__LOCK_H
+#ifndef KWL_LOCK_H
+#define KWL_LOCK_H
 
 /*! \file */ 
 
@@ -199,4 +199,4 @@ void kwlThreadJoin(kwlThread* thread);
 #endif /* __cplusplus */
         
 
-#endif /*KWL__LOCK_H*/
+#endif /*KWL_LOCK_H*/

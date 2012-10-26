@@ -21,8 +21,8 @@
  distribution.
  */
 
-#ifndef KWL__KOWALSKI_H
-#define KWL__KOWALSKI_H
+#ifndef KWL_KOWALSKI_H
+#define KWL_KOWALSKI_H
 
 /*! \file
  This header defines the main portion of the public Kowalski Engine API.
@@ -1489,4 +1489,4 @@ extern "C"
 }
 #endif /* __cplusplus */
 
-#endif /*KWL__KOWALSKI_H*/
+#endif /*KWL_KOWALSKI_H*/

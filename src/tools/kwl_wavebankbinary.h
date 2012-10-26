@@ -21,8 +21,8 @@
  distribution.
  */
 
-#ifndef KWL_WAVE_BANK_BINARY_REPRESENTATION_H
-#define KWL_WAVE_BANK_BINARY_REPRESENTATION_H
+#ifndef KWL_WAVE_BANK_BINARY_H
+#define KWL_WAVE_BANK_BINARY_H
 
 #include "kwl_logging.h"
 #include "kwl_wavebank.h"
@@ -46,7 +46,7 @@ extern "C"
     } kwlWaveBankEntryChunk;
     
     /**
-     * A wave bank binary, i.e a struct representation of a wave bank binary file.
+     * A struct representation of a wave bank binary file.
      */
     typedef struct kwlWaveBankBinary
     {
@@ -128,4 +128,4 @@ extern "C"
 #endif /* __cplusplus */
 
 
-#endif /*KWL_WAVE_BANK_BINARY_REPRESENTATION_H*/
+#endif /*KWL_WAVE_BANK_BINARY_H*/

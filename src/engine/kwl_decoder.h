@@ -21,8 +21,8 @@ freely, subject to the following restrictions:
    distribution.
 */
 
-#ifndef KWL__DECODER_H
-#define KWL__DECODER_H
+#ifndef KWL_DECODER_H
+#define KWL_DECODER_H
 
 /*! \file */ 
 
@@ -92,4 +92,4 @@ int kwlDecoder_decodeNewBufferForEvent(kwlDecoder* decoder, struct kwlEventInsta
 }
 #endif /* __cplusplus */    
     
-#endif /*KWL__DECODER_H*/
+#endif /*KWL_DECODER_H*/

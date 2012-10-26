@@ -20,8 +20,8 @@ freely, subject to the following restrictions:
    3. This notice may not be removed or altered from any source
    distribution.
 */
-#ifndef KWL__SOUND_ENGINE_H
-#define KWL__SOUND_ENGINE_H
+#ifndef KWL_ENGINE_H
+#define KWL_ENGINE_H
 
 /*! \file */ 
 
@@ -44,10 +44,9 @@ extern "C"
 {
 #endif /* __cplusplus */
     
-/***********************************************************************
- * Sound engine struct.
- ***********************************************************************/
-/** A struct representing the singleton Kowalski sound engine. */
+/** 
+ * A struct representing the singleton Kowalski sound engine. 
+ */
 typedef struct kwlEngine
 {
     /** The software mixer responsible for generating the final output buffers. */
@@ -352,4 +351,4 @@ kwlError kwlEngine_hostSpecificDeinitialize(kwlEngine* engine);
 }
 #endif /* __cplusplus */    
     
-#endif /*KWL__SOUND_ENGINE_H*/
+#endif /*KWL_ENGINE_H*/

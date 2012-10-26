@@ -21,8 +21,8 @@ freely, subject to the following restrictions:
    distribution.
 */
 
-#ifndef KWL__DECODER_OGGVORBIS_H
-#define KWL__DECODER_OGGVORBIS_H
+#ifndef KWL_DECODER_OGGVORBIS_H
+#define KWL_DECODER_OGGVORBIS_H
 
 /*! \file */ 
 
@@ -111,4 +111,4 @@ int kwlRewindDecoderOggVorbis(kwlDecoder* decoder);
 }
 #endif /* __cplusplus */
         
-#endif /*KWL__DECODER_OGGVORBIS_H*/
+#endif /*KWL_DECODER_OGGVORBIS_H*/

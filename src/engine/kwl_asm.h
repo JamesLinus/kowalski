@@ -21,8 +21,8 @@
  distribution.
  */
 
-#ifndef KWL__ASM_H
-#define KWL__ASM_H
+#ifndef KWL_ASM_H
+#define KWL_ASM_H
 
 /*! \file
  This file contains methods called in the tight loops
@@ -502,4 +502,4 @@ extern "C"
 #endif /* __cplusplus */
 
 
-#endif /*KWL__ASM_H*/
+#endif /*KWL_ASM_H*/

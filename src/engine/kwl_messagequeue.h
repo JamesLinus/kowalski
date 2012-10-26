@@ -21,8 +21,8 @@ freely, subject to the following restrictions:
    distribution.
 */
 
-#ifndef KWL__MESSAGE_QUEUE_H
-#define KWL__MESSAGE_QUEUE_H
+#ifndef KWL_MESSAGE_QUEUE_H
+#define KWL_MESSAGE_QUEUE_H
 
 #include "kwl_memory.h"
 #include "kwl_assert.h"
@@ -133,4 +133,4 @@ int kwlMessageQueue_addMessageWithParam(kwlMessageQueue* queue, kwlMessageType t
 }
 #endif /* __cplusplus */
         
-#endif /*KWL__MESSAGE_QUEUE_H*/
+#endif /*KWL_MESSAGE_QUEUE_H*/

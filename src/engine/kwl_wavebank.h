@@ -21,8 +21,8 @@ freely, subject to the following restrictions:
    distribution.
 */
 
-#ifndef KWL__WAVE_BANK_H
-#define KWL__WAVE_BANK_H
+#ifndef KWL_WAVE_BANK_H
+#define KWL_WAVE_BANK_H
 
 /*! \file */ 
 
@@ -121,4 +121,4 @@ void kwlWaveBank_unload(kwlWaveBank* waveBank);
 }
 #endif /* __cplusplus */    
     
-#endif /*KWL__WAVE_BANK_H*/
+#endif /*KWL_WAVE_BANK_H*/

@@ -93,7 +93,7 @@ int checkPathExists(const char* p)
  */
 int main(int argc, const char * argv[])
 {
-    if (1)
+    if (0)
     {
         if (argc <= 2)
         {
@@ -141,19 +141,29 @@ int main(int argc, const char * argv[])
             if (kwlFileIsEngineDataBinary(binPath))
             {
                 kwlEngineDataBinary edb;
-                kwlEngineDataBinary_loadFromBinaryFile(&edb,
-                                                       binPath,
-                                                       kwlDefaultLogCallback);
-                kwlEngineDataBinary_dump(&edb, kwlDefaultLogCallback);
+                kwlResultCode result = kwlEngineDataBinary_loadFromBinaryFile(&edb,
+                                                                              binPath,
+                                                                              kwlDefaultLogCallback);
+                if (result != KWL_SUCCESS)
+                {
+                    kwlEngineDataBinary_free(&edb);
+                    return result;
+                }
+                kwlEngineDataBinary_dump(&edb, kwlLogCallbackWithExtraNewline);
                 kwlEngineDataBinary_free(&edb);
             }
             else if (kwlFileIsWaveBankBinary(binPath))
             {
                 kwlWaveBankBinary wbb;
-                kwlWaveBankBinary_loadFromBinaryFile(&wbb,
-                                                     binPath,
-                                                     kwlDefaultLogCallback);
-                kwlWaveBankBinary_dump(&wbb, kwlDefaultLogCallback);
+                kwlResultCode result = kwlWaveBankBinary_loadFromBinaryFile(&wbb,
+                                                                            binPath,
+                                                                            kwlDefaultLogCallback);
+                if (result != KWL_SUCCESS)
+                {
+                    kwlWaveBankBinary_free(&wbb);
+                    return result;
+                }
+                kwlWaveBankBinary_dump(&wbb, kwlLogCallbackWithExtraNewline);
                 kwlWaveBankBinary_free(&wbb);
             }
             else
@@ -167,9 +177,11 @@ int main(int argc, const char * argv[])
             printf("Invalid operation '%s'.", operation);
             return 0;
         }
+        
+        return 0;
     }
     
-    return 0;
+    
     
     const char* xmlPath = "/Users/perarne/code/kowalski/res/demodata/master/demoproject.xml";
     const char* xsdPath = "/Users/perarne/code/kowalski/src/tools/kowalski.xsd";
@@ -198,7 +210,7 @@ int main(int argc, const char * argv[])
     }
     
     //build wave banks
-    if (1)
+    if (0)
     {
         kwlBuildWaveBanks(xmlPath,
                           xsdPath,
@@ -286,26 +298,14 @@ int main(int argc, const char * argv[])
     }
     
     //validate xml
-    if (0)
+    if (1)
     {
-        kwlResultCode result = kwlValidateProjectData(xmlPath, xsdPath, 1, kwlDefaultLogCallback);
+        kwlResultCode result = kwlValidate(xmlPath, xsdPath, kwlLogCallbackWithExtraNewline);
 
     }
     
-    //validate kwl
-    if (0)
-    {
-        kwlValidateEngineData(kwlPath, kwlDefaultLogCallback);
-    }
-    
-    //validate kwb
-    if (0)
-    {
-        kwlValidateWaveBank(kwbPath, kwlDefaultLogCallback);
-    }
-    
     //build engine data
-    if (1)
+    if (0)
     {
         kwlBuildEngineData(xmlPath,
                            xsdPath,

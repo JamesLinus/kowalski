@@ -21,8 +21,8 @@ freely, subject to the following restrictions:
    distribution.
 */
 
-#ifndef KWL__DECODER_IPHONE_H
-#define KWL__DECODER_IPHONE_H
+#ifndef KWL_DECODER_IPHONE_H
+#define KWL_DECODER_IPHONE_H
 
 /*! \file */ 
 
@@ -126,4 +126,4 @@ int kwlRewindDecoderIPhone(kwlDecoder* decoder);
     
 #endif /*KWL_IPHONE*/
 
-#endif /*KWL__DECODER_IPHONE_H*/
+#endif /*KWL_DECODER_IPHONE_H*/

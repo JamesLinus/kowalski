@@ -20,8 +20,8 @@
  3. This notice may not be removed or altered from any source
  distribution.
  */
-#ifndef KWL__SOFTWARE_MIXER_H
-#define KWL__SOFTWARE_MIXER_H
+#ifndef KWL_MIXER_H
+#define KWL_MIXER_H
 
 /*! \file */
 
@@ -171,4 +171,4 @@ extern "C"
 }
 #endif /* __cplusplus */
 
-#endif /*KWL__SOFTWARE_MIXER_H*/
+#endif /*KWL_MIXER_H*/

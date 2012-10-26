@@ -21,8 +21,8 @@ freely, subject to the following restrictions:
    distribution.
 */
 
-#ifndef KWL__SOUND_H
-#define KWL__SOUND_H
+#ifndef KWL_SOUND_DEFINITION_H
+#define KWL_SOUND_DEFINITION_H
 
 /*! \file */ 
 
@@ -183,4 +183,4 @@ int kwlSoundDefinition_pickNextBufferForEvent(kwlSoundDefinition* sound, struct 
 }
 #endif /* __cplusplus */    
     
-#endif /*KWL__SOUND_H*/
+#endif /*KWL_SOUND_DEFINITION_H*/

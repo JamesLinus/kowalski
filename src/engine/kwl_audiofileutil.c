@@ -1,25 +1,25 @@
 /*
-Copyright (c) 2010-2012 Per Gantelius
-
-This software is provided 'as-is', without any express or implied
-warranty. In no event will the authors be held liable for any damages
-arising from the use of this software.
-
-Permission is granted to anyone to use this software for any purpose,
-including commercial applications, and to alter it and redistribute it
-freely, subject to the following restrictions:
-
-   1. The origin of this software must not be misrepresented; you must not
-   claim that you wrote the original software. If you use this software
-   in a product, an acknowledgment in the product documentation would be
-   appreciated but is not required.
-
-   2. Altered source versions must be plainly marked as such, and must not be
-   misrepresented as being the original software.
-
-   3. This notice may not be removed or altered from any source
-   distribution.
-*/
+ Copyright (c) 2010-2012 Per Gantelius
+ 
+ This software is provided 'as-is', without any express or implied
+ warranty. In no event will the authors be held liable for any damages
+ arising from the use of this software.
+ 
+ Permission is granted to anyone to use this software for any purpose,
+ including commercial applications, and to alter it and redistribute it
+ freely, subject to the following restrictions:
+ 
+ 1. The origin of this software must not be misrepresented; you must not
+ claim that you wrote the original software. If you use this software
+ in a product, an acknowledgment in the product documentation would be
+ appreciated but is not required.
+ 
+ 2. Altered source versions must be plainly marked as such, and must not be
+ misrepresented as being the original software.
+ 
+ 3. This notice may not be removed or altered from any source
+ distribution.
+ */
 #include "kwl_audiofileutil.h"
 #include "kwl_asm.h"
 #include "kwl_memory.h"
@@ -95,7 +95,7 @@ kwlError kwlLoadAIFF(const char* path, kwlAudioData* audioData, kwlAudioDataLoad
     
     return result;
 }
-    
+
 kwlError kwlLoadAIFFFromStream(kwlInputStream* stream, kwlAudioData* audioData, kwlAudioDataLoadingMode mode)
 {
     kwlMemset(audioData, 0, sizeof(kwlAudioData));
@@ -152,9 +152,9 @@ kwlError kwlLoadAIFFFromStream(kwlInputStream* stream, kwlAudioData* audioData, 
             commonChunkFound = 1;
             
             int unsupportedSampleSize = sampleSize != 8 &&
-                                        sampleSize != 16 && 
-                                        sampleSize != 24 && 
-                                        sampleSize != 32;
+            sampleSize != 16 &&
+            sampleSize != 24 &&
+            sampleSize != 32;
             
             if (unsupportedSampleSize != 0 || numChannels > 2)
             {
@@ -192,7 +192,7 @@ kwlError kwlLoadAIFFFromStream(kwlInputStream* stream, kwlAudioData* audioData, 
             int chunkSize = kwlInputStream_readIntBE(stream);
             kwlInputStream_skip(stream, chunkSize);
         }
-        else 
+        else
         {
             int chunkSize = kwlInputStream_readIntBE(stream);
             kwlInputStream_skip(stream, chunkSize);
@@ -200,8 +200,8 @@ kwlError kwlLoadAIFFFromStream(kwlInputStream* stream, kwlAudioData* audioData, 
         }
     }
     
-    kwlAudioEncoding encoding = KWL_ENCODING_UNKNOWN;    
-        
+    kwlAudioEncoding encoding = KWL_ENCODING_UNKNOWN;
+    
     switch (sampleSize)
     {
         case 8:
@@ -219,7 +219,7 @@ kwlError kwlLoadAIFFFromStream(kwlInputStream* stream, kwlAudioData* audioData, 
     }
     
     if (encoding == KWL_ENCODING_UNKNOWN &&
-        mode == KWL_CONVERT_TO_INT16_OR_FAIL) 
+        mode == KWL_CONVERT_TO_INT16_OR_FAIL)
     {
         return KWL_UNSUPPORTED_ENCODING;
     }
@@ -229,10 +229,10 @@ kwlError kwlLoadAIFFFromStream(kwlInputStream* stream, kwlAudioData* audioData, 
     
     if (mode == KWL_CONVERT_TO_INT16_OR_FAIL)
     {
-        finalSamples = kwlConvertBufferTo16BitSigned((char*)readSamples, 
-                                                     dataSizeInBytes, 
-                                                     &numBytes, 
-                                                     encoding, 
+        finalSamples = kwlConvertBufferTo16BitSigned((char*)readSamples,
+                                                     dataSizeInBytes,
+                                                     &numBytes,
+                                                     encoding,
                                                      1);
         audioData->encoding = KWL_ENCODING_SIGNED_16BIT_PCM;
         audioData->isBigEndian = 0;
@@ -279,12 +279,12 @@ kwlError kwlLoadWAV(const char* path, kwlAudioData* audioData, kwlAudioDataLoadi
     return result;
 }
 
-kwlError kwlLoadWAVFromStreamWithOptionalIMA4Params(kwlInputStream* stream, 
-                                                    kwlAudioData* audioData, 
-                                                    kwlAudioDataLoadingMode mode, 
-                                                    int* firstDataBlockByteOut,
-                                                    int* dataBlockSizeOut,
-                                                    int* nBlockAlignOut)
+static kwlError kwlLoadWAVFromStreamWithOptionalIMA4Params(kwlInputStream* stream,
+                                                           kwlAudioData* audioData,
+                                                           kwlAudioDataLoadingMode mode,
+                                                           int* firstDataBlockByteOut,
+                                                           int* dataBlockSizeOut,
+                                                           int* nBlockAlignOut)
 {
     kwlMemset(audioData, 0, sizeof(kwlAudioData));
     
@@ -336,22 +336,22 @@ kwlError kwlLoadWAVFromStreamWithOptionalIMA4Params(kwlInputStream* stream,
             const int sampleRate = kwlInputStream_readIntLE(stream);
             const int  byteRate = kwlInputStream_readIntLE(stream);
             nBlockAlign = kwlInputStream_readShortLE(stream);
-            if (nBlockAlignOut != NULL)    
+            if (nBlockAlignOut != NULL)
             {
                 *nBlockAlignOut = nBlockAlign;
             }
             bitsPerSample = kwlInputStream_readShortLE(stream);
             const short cbSize = audioFormat == 1 ? 0 : kwlInputStream_readIntLE(stream);
             /*
-            printf("    chunk size      = %d\n", chunkSize);
-            printf("    audio format    = %d\n", audioFormat);
-            printf("    num channels    = %d\n", numChannels);
-            printf("    sample rate     = %d\n", sampleRate);
-            printf("    byte rate = %d\n", byteRate);
-            printf("    block align     = %d\n", nBlockAlign);
-            printf("    bits per sample = %d\n", bitsPerSample);
-            printf("    cbSize = %d\n", cbSize);
-            */
+             printf("    chunk size      = %d\n", chunkSize);
+             printf("    audio format    = %d\n", audioFormat);
+             printf("    num channels    = %d\n", numChannels);
+             printf("    sample rate     = %d\n", sampleRate);
+             printf("    byte rate = %d\n", byteRate);
+             printf("    block align     = %d\n", nBlockAlign);
+             printf("    bits per sample = %d\n", bitsPerSample);
+             printf("    cbSize = %d\n", cbSize);
+             */
             if (audioFormat == 0x1) /*PCM*/
             {
                 switch (bitsPerSample)
@@ -391,7 +391,7 @@ kwlError kwlLoadWAVFromStreamWithOptionalIMA4Params(kwlInputStream* stream,
                 return KWL_UNSUPPORTED_ENCODING;
             }
             
-            fmtChunkFound = 1;            
+            fmtChunkFound = 1;
         }
         else if (c1 == 'd' && c2 == 'a' && c3 == 't' && c4 =='a')
         {
@@ -419,24 +419,24 @@ kwlError kwlLoadWAVFromStreamWithOptionalIMA4Params(kwlInputStream* stream,
             }
             
             /*
-            if (sourceEncoding == KWL_ENCODING_IMA_ADPCM)
-            {
-                audioData->bytes = readSamples;
-                audioData->encoding = KWL_ENCODING_IMA_ADPCM;
-                audioData->numBytes = chunkSize;
-                audioData->numFrames = chunkSize * 2 / numChannels;
-            }
-            else*/
+             if (sourceEncoding == KWL_ENCODING_IMA_ADPCM)
+             {
+             audioData->bytes = readSamples;
+             audioData->encoding = KWL_ENCODING_IMA_ADPCM;
+             audioData->numBytes = chunkSize;
+             audioData->numFrames = chunkSize * 2 / numChannels;
+             }
+             else*/
             {
                 int convertedSizeInBytes = -1;
                 audioData->bytes = NULL;
                 
                 if (mode == KWL_CONVERT_TO_INT16_OR_FAIL)
                 {
-                    audioData->bytes = (short*)kwlConvertBufferTo16BitSigned((char*)readSamples, 
-                                                                             chunkSize, 
-                                                                             &convertedSizeInBytes, 
-                                                                             sourceEncoding, 
+                    audioData->bytes = (short*)kwlConvertBufferTo16BitSigned((char*)readSamples,
+                                                                             chunkSize,
+                                                                             &convertedSizeInBytes,
+                                                                             sourceEncoding,
                                                                              0);
                     audioData->encoding = KWL_ENCODING_SIGNED_16BIT_PCM;
                     audioData->numBytes = convertedSizeInBytes;
@@ -476,26 +476,26 @@ kwlError kwlLoadWAVFromStreamWithOptionalIMA4Params(kwlInputStream* stream,
     }
     
     //kwlInputStream_close(stream);
-        
+    
     return KWL_NO_ERROR;
 }
 
-kwlError kwlLoadWAVFromStream(kwlInputStream* stream, 
-                              kwlAudioData* audioData, 
+kwlError kwlLoadWAVFromStream(kwlInputStream* stream,
+                              kwlAudioData* audioData,
                               kwlAudioDataLoadingMode mode)
 {
     return kwlLoadWAVFromStreamWithOptionalIMA4Params(stream, audioData, mode, NULL, NULL, NULL);
 }
 
-kwlError kwlLoadIMAADPCMWAVMetadataFromStream(kwlInputStream* stream, 
-                                              kwlAudioData* audioData, 
+kwlError kwlLoadIMAADPCMWAVMetadataFromStream(kwlInputStream* stream,
+                                              kwlAudioData* audioData,
                                               int* firstDataBlockByte,
                                               int* dataBlockSize,
                                               int* nBlockAlign)
 {
-    return kwlLoadWAVFromStreamWithOptionalIMA4Params(stream, 
-                                                      audioData, 
-                                                      KWL_SKIP_AUDIO_DATA, 
+    return kwlLoadWAVFromStreamWithOptionalIMA4Params(stream,
+                                                      audioData,
+                                                      KWL_SKIP_AUDIO_DATA,
                                                       firstDataBlockByte,
                                                       dataBlockSize,
                                                       nBlockAlign);
@@ -560,7 +560,7 @@ kwlError kwlLoadAUFromStream(kwlInputStream* stream, kwlAudioData* audioData, kw
     kwlInputStream_reset(stream);
     kwlInputStream_skip(stream, dataOffset);
     
-    kwlAudioEncoding encoding = KWL_ENCODING_UNKNOWN;    
+    kwlAudioEncoding encoding = KWL_ENCODING_UNKNOWN;
     switch (encodingInt)
     {
         case 2:
@@ -578,7 +578,7 @@ kwlError kwlLoadAUFromStream(kwlInputStream* stream, kwlAudioData* audioData, kw
     }
     
     if (encoding == KWL_ENCODING_UNKNOWN &&
-        mode == KWL_CONVERT_TO_INT16_OR_FAIL) 
+        mode == KWL_CONVERT_TO_INT16_OR_FAIL)
     {
         kwlInputStream_close(stream);
         return KWL_UNSUPPORTED_ENCODING;
@@ -591,10 +591,10 @@ kwlError kwlLoadAUFromStream(kwlInputStream* stream, kwlAudioData* audioData, kw
     {
         void* readSamples = KWL_MALLOC(dataSizeInBytes, "read au audio data");
         kwlInputStream_read(stream, (signed char*)readSamples, dataSizeInBytes);
-        finalSamples = kwlConvertBufferTo16BitSigned((char*)readSamples, 
-                                                     dataSizeInBytes, 
-                                                     &numBytes, 
-                                                     encoding, 
+        finalSamples = kwlConvertBufferTo16BitSigned((char*)readSamples,
+                                                     dataSizeInBytes,
+                                                     &numBytes,
+                                                     encoding,
                                                      1);
         
         audioData->encoding = KWL_ENCODING_SIGNED_16BIT_PCM;
@@ -745,7 +745,7 @@ short* kwlConvertBufferTo16BitSigned(char* inBuffer,
     const int numSamples = inBufferSizeInBytes / bytesPerSample;
     *outBufferSizeInBytes = numSamples * 2;
     short* outBuffer = inBufferEncoding == KWL_ENCODING_SIGNED_16BIT_PCM ? (short*)inBuffer :
-        (short*)KWL_MALLOC(*outBufferSizeInBytes, "converted audio buffer");
+    (short*)KWL_MALLOC(*outBufferSizeInBytes, "converted audio buffer");
     
     switch (inBufferEncoding)
     {

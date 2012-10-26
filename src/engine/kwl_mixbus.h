@@ -20,8 +20,8 @@ freely, subject to the following restrictions:
    3. This notice may not be removed or altered from any source
    distribution.
 */
-#ifndef KWL__MIX_BUS_H
-#define KWL__MIX_BUS_H
+#ifndef KWL_MIX_BUS_H
+#define KWL_MIX_BUS_H
 
 /*! \file */ 
 
@@ -110,4 +110,4 @@ void kwlMixBus_print(kwlMixBus* bus, int recursionDepth);
 }
 #endif /* __cplusplus */    
     
-#endif /*KWL__MIX_BUS_H*/
+#endif /*KWL_MIX_BUS_H*/

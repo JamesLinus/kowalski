@@ -21,8 +21,8 @@ freely, subject to the following restrictions:
    distribution.
 */
 
-#ifndef KWL__AUDIO_FILE_UTIL_H
-#define KWL__AUDIO_FILE_UTIL_H
+#ifndef KWL_AUDIO_FILE_UTIL_H
+#define KWL_AUDIO_FILE_UTIL_H
 
 /*! \file */ 
 
@@ -134,4 +134,4 @@ kwlError kwlLoadIMAADPCMWAVMetadataFromStream(kwlInputStream* stream,
 }
 #endif /* __cplusplus */   
     
-#endif /*KWL__AUDIO_FILE_UTIL_H*/
+#endif /*KWL_AUDIO_FILE_UTIL_H*/

@@ -21,8 +21,8 @@ freely, subject to the following restrictions:
    distribution.
 */
 
-#ifndef KWL__LISTENER_H
-#define KWL__LISTENER_H
+#ifndef KWL_LISTENER_H
+#define KWL_LISTENER_H
 
 /*! \file */ 
 
@@ -78,4 +78,4 @@ void kwlPositionalAudioListener_setDefaults(kwlPositionalAudioListener* listener
 }
 #endif /* __cplusplus */    
     
-#endif /*KWL__LISTENER_H*/
+#endif /*KWL_LISTENER_H*/

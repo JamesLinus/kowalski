@@ -21,8 +21,8 @@
  distribution.
  */
 
-#ifndef KWL__ENGINE_DATA_H
-#define KWL__ENGINE_DATA_H
+#ifndef KWL_ENGINE_DATA_H
+#define KWL_ENGINE_DATA_H
 
 /*! \file */ 
 
@@ -150,4 +150,4 @@ void kwlEngineData_freeEventData(kwlEngineData* data);
 }
 #endif /* __cplusplus */    
 
-#endif /*KWL__ENGINE_DATA_H*/
+#endif /*KWL_ENGINE_DATA_H*/

@@ -21,8 +21,8 @@
  distribution.
  */
 
-#ifndef KWL__INPUT_STREAM_H
-#define KWL__INPUT_STREAM_H
+#ifndef KWL_INPUT_STREAM_H
+#define KWL_INPUT_STREAM_H
 
 /*! \file */
 
@@ -211,4 +211,4 @@ extern "C"
 }
 #endif /* __cplusplus */    
 
-#endif /*KWL__INPUT_STREAM_H*/
+#endif /*KWL_INPUT_STREAM_H*/

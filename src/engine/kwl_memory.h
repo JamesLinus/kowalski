@@ -21,8 +21,8 @@ freely, subject to the following restrictions:
    distribution.
 */
 
-#ifndef KWL__MEMORY_H
-#define KWL__MEMORY_H
+#ifndef KWL_MEMORY_H
+#define KWL_MEMORY_H
 
 /*! \file */ 
 
@@ -108,4 +108,4 @@ void kwlDebugFree(void* pointer);
 }
 #endif /* __cplusplus */    
 
-#endif /*KWL__MEMORY_H*/
+#endif /*KWL_MEMORY_H*/

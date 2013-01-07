@@ -15,7 +15,7 @@ interactive applications where audio plays an important role.
 
 Why another audio engine?
 -------------------------
-There are plenty of audio engines aound, but Kowalski 
+There are plenty of audio engines around, but Kowalski 
 is the only option that is
 
 * Highly portable
@@ -24,7 +24,7 @@ is the only option that is
 * Data driven, using well defined and documented XML and binary formats
 
 External dependencies have been kept to a minimum; the Kowalski engine only relies
-on platform specific libraries to pass buffers to the audio hardware the Kowalski tools
+on platform specific libraries to pass buffers to the audio hardware and the Kowalski tools
 only depend on libxml2.
 
 Features

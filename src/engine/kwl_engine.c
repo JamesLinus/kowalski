@@ -1110,13 +1110,13 @@ kwlError kwlEngine_update(kwlEngine* engine, float timeStepSec)
     kwlEngine_updateMixPresets(engine, timeStepSec);
         
     kwlDSPUnit* inputDspUnit = (kwlDSPUnit*)engine->mixer->inputDSPUnit.valueEngine;
-    if (inputDspUnit != NULL)
+    if (inputDspUnit != NULL && inputDspUnit->updateDSPEngineCallback != NULL)
     {
         inputDspUnit->updateDSPEngineCallback(inputDspUnit->data);
     }
     
     kwlDSPUnit* outputDspUnit = (kwlDSPUnit*)engine->mixer->outputDSPUnit.valueEngine;
-    if (outputDspUnit != NULL)
+    if (outputDspUnit != NULL && outputDspUnit->updateDSPEngineCallback != NULL)
     {
         outputDspUnit->updateDSPEngineCallback(outputDspUnit->data);
     }

@@ -1384,10 +1384,7 @@ extern "C"
      * @param numFrames The number of frames of the buffer to process.
      * @param data The user data associated with the DSP unit.
      */
-    typedef void (*kwlDSPCallback)(float* inBuffer,
-    int numChannels,
-    int numFrames,
-    void* data);
+    typedef void (*kwlDSPCallback)(float* inBuffer, int numChannels, int numFrames, void* data);
     
     /**
      * Called to notify a DSP unit to update its parameters.

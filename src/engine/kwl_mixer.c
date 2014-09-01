@@ -96,7 +96,7 @@ void kwlMixer_updateInput(kwlMixer* mixer)
         mixer->inputDSPUnit.valueMixer = mixer->inputDSPUnit.valueShared;
         
         kwlDSPUnit* dspUnit = (kwlDSPUnit*)mixer->inputDSPUnit.valueMixer;
-        if (dspUnit != NULL)
+        if (dspUnit != NULL && dspUnit->updateDSPMixerCallback != NULL)
         {
             dspUnit->updateDSPMixerCallback(dspUnit->data);
         }
@@ -168,7 +168,7 @@ void kwlMixer_updateOutput(kwlMixer* const mixer)
         /*update master dsp unit, if any.*/
         mixer->outputDSPUnit.valueMixer = mixer->outputDSPUnit.valueShared;
         kwlDSPUnit* dspUnit = (kwlDSPUnit*)mixer->outputDSPUnit.valueMixer;
-        if (dspUnit != NULL)
+        if (dspUnit != NULL && dspUnit->updateDSPMixerCallback != NULL)
         {
             dspUnit->updateDSPMixerCallback(dspUnit->data);
         }
